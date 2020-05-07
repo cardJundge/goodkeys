@@ -1,0 +1,13 @@
+<!--任务退回框-->
+<view class="module-body" catchtouchmove="true"  wx:if="{{isShow}}" catchtap="toCloseModule">
+  <view class="module-content" catchtap="stopBubble">
+    <view class="top-title">驳回</view>
+    <view class="input-box">
+      <textarea placeholder="请输入退回原因" placeholder-class="ph-class" bindinput="getBackReason" maxlength="500"></textarea>
+    </view>
+    <view class="bottom-btn-bar">
+      <view bindtap="toCloseModule">取消</view>
+      <view bindtap="toConfirm">确定</view>
+    </view>
+  </view>
+</view>

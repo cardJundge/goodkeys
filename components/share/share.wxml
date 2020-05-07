@@ -1,0 +1,16 @@
+<view class="share-body" wx:if="{{isShow}}" catchtap="toCloseModule">
+  <view class="share-box">
+    <view class="share-content" catchtap="stopBubble">
+      <canvas canvas-id="shareCanvas" style="width:476rpx;height:846rpx"></canvas>
+    </view>
+    <view class="share-save" bindtap="judgePhotoLimits" wx:if="{{!photoLimit}}">
+      保存图片
+    </view>
+    <view class="share-save" bindtap="toSaveImg" wx:if="{{photoLimit}}">
+      保存图片
+    </view>
+    <view catchtap="toCloseModule">
+      <i-icon type="delete" color="#fff" size="36"/>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,56 @@
+<!--客户管理-->
+<view class="customer-body">
+  <!-- 暂无客户 -->
+  <view class="customer-null" wx:if="{{!someOne}}">
+    <view class="customer-null-box">
+      <view>
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/invitation_null_bg.png"></image>
+        <text>快去邀请客户吧</text>
+      </view>
+      <view bindtap="">
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/icon_share.png"></image>
+        <text>分享</text>
+      </view>
+    </view>
+  </view>
+  <!-- 客户列表 -->
+  <view class="customer-content" wx:if="{{someOne}}">
+    <view class="search-box">
+      <view class="search">
+        <input placeholder-class="ph-class" type='text' placeholder="搜索客户" bindinput="search"></input>
+        <image src="/images/personnel/icon_search.png"></image>
+      </view>
+      <view class="search-btn">搜索</view>
+    </view>
+    <view class="customer-list">
+      <view class="customer-item" wx:for="{{clientList}}">
+        <view class="item-info">
+          <view class="item-info-left">
+            <image src="{{item.user_id.face}}"></image>
+            <view class="item-info-left-text">
+              <text>{{item.user_id.nickname}}</text>
+              <text>17635372126</text>
+              <view>
+                <text></text>
+                <text></text>
+                <text></text>
+              </view>
+            </view>
+          </view>
+          <view class="item-info-right" bindtap="toEditTags" data-id="{{item.id}}">编辑</view>
+        </view>
+        <view class="item-impression">
+          <view>
+            <image src="/images/mine/shops/icon_star.png"></image>
+            <text>客户印象：</text>
+          </view>
+          <view class="tags-box">
+            <view class="tags-item" wx:for="{{item.impress}}" wx:for-item="its">{{its}}</view>
+          </view>
+        </view>
+        <view class="more-btn" bindtap="toCustomerDetails" data-id="{{item.id}}">查看更多>></view>
+      </view>
+    </view>
+  </view>
+</view>
+<tags isShow="{{tagsModalShow}}" clientData="{{clientData}}" />

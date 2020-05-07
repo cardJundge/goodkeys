@@ -1,0 +1,24 @@
+<!--管理者审批-->
+<view class="module-body" catchtouchmove="true" wx:if="{{isShow}}" catchtap="toCloseModule">
+	<view class="module-content" catchtap="stopBubble">
+		<view class="top-title">{{approvalBoxName}}</view>
+		<!-- 原因 -->
+		<view class="input-title" wx:if="{{approvalType == 'text'}}">内容</view>
+		<view class="input-title" wx:if="{{approvalType == 'int'}}">数字</view>
+		<view class="input-box">
+			<textarea wx:if="{{approvalType == 'text'}}" placeholder="请输入内容" placeholder-class="ph-class" bindinput="getTextInput" maxlength="500" value="{{textValue}}"></textarea>
+			<input wx:if="{{approvalType == 'int'}}" placeholder="请输入数字" placeholder-class="ph-class" bindinput="getIntInput" type="number"></input>
+			<scroll-view wx:if="{{approvalType == 'check'}}" scroll-y='true' style="max-height: 680rpx;">
+				<checkbox-group class="input-box-list" bindchange="toSelectOption">
+					<label class="input-box-item" wx:for="{{optionData}}">
+						<checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+					</label>
+				</checkbox-group>
+			</scroll-view>
+		</view>
+		<view class="bottom-btn-bar">
+			<view bindtap="toCloseModule">取消</view>
+			<view bindtap="toConfirm">确定</view>
+		</view>
+	</view>
+</view>

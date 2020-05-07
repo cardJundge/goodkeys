@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "add-module": "/components/add-module/add-module"
+  },
+  "navigationBarTitleText": "联盟"
+}

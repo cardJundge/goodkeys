@@ -1,0 +1,9 @@
+/* 增值服务 */
+@import "../common-top/common-top.wxss";
+.search {
+  width: 100%;
+}
+
+.list-content {
+  margin-top: 60rpx; 
+}

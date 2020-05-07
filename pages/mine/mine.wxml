@@ -1,0 +1,105 @@
+<!--我-->
+<view class="mine-body">
+  <view class="mine-card">
+    <view class="mine-card-box">
+      <view class="mine-card-info">
+        <view class="mine-avatar">
+          <image class="mine-avatar-bg" src="/images/mine/avatar_bg.png"></image>
+          <image class="mine-avatar-img" src="{{avatarUrl}}"></image>
+          <!-- <image class="mine-avatar-img" src="{{avatarUrl}}"></image> -->
+        </view>
+        <view class="mine-text">
+          <text>{{basicUserInfo.name}}</text>
+          <!-- <text wx:if="{{basicUserInfo.type == 1}}">{{basicUserInfo.short_name}}公估公司</text>
+          <text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.short_name}}4S店</text>
+          <text wx:if="{{basicUserInfo.type == 3}}">{{basicUserInfo.short_name}}维修店</text>
+          <text wx:if="{{basicUserInfo.type == 4}}">{{basicUserInfo.short_name}}保险公司</text>
+          <text wx:if="{{basicUserInfo.type == 5}}">{{basicUserInfo.short_name}}调查公司</text>
+          <text wx:if="{{basicUserInfo.type == 6}}">{{basicUserInfo.short_name}}咨询公司</text>
+          <text wx:if="{{basicUserInfo.type == 7}}">{{basicUserInfo.short_name}}律所</text> -->
+          <view class="vip-box">
+            <image src="/images/mine/icon_vip.png"></image>
+            <text>非会员</text>
+          </view>
+        </view>
+      </view>
+      <view class="mine-card-btn">
+        <image bindtap="editInfo" src="/images/mine/icon_edit.png"></image>
+      </view>
+    </view>
+
+  </view>
+  <view class="mine-list">
+    <!-- <view class="mine-item" bindtap="toShops">
+      <image src="/images/mine/icon_shops.png"></image>
+      <view class="mine-item-text">
+        <text>我的商铺</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view> -->
+    <view class="mine-item" bindtap="toAccount">
+      <image src="/images/mine/icon_money.png"></image>
+      <view class="mine-item-text">
+        <text>账户钱包</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" bindtap="unbindWX" wx:if="{{basicUserInfo.openId_omo}}">
+      <image src="/images/mine/icon_wx.png"></image>
+      <view class="mine-item-text">
+        <text>解绑微信</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" bindtap="toBindWX" wx:if="{{!basicUserInfo.openId_omo}}">
+      <image src="/images/mine/icon_wx.png"></image>
+      <view class="mine-item-text">
+        <text>绑定微信</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" bindtap="toDataDetails">
+      <image src="/images/mine/icon_data.png"></image>
+      <view class="mine-item-text">
+        <text>数据统计</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" wx:if="{{basicUserInfo.type == 2 || basicUserInfo.type == 3}}" bindtap="toProject">
+      <!-- <view class="mine-item" bindtap="toServer"> -->
+      <image src="/images/mine/icon_program.png"></image>
+      <view class="mine-item-text">
+        <text>服务项目</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" wx:if="{{basicUserInfo.type == 2 || basicUserInfo.type == 3}}" bindtap="toService">
+      <image src="/images/mine/icon_brand.png"></image>
+      <view class="mine-item-text">
+        <text>服务品牌</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <!-- <view class="mine-item" bindtap="toBuyBusiness">
+      <image src="/images/mine/icon_money.png"></image>
+      <view class="mine-item-text">
+        <text>购买商业版</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view> -->
+    <view class="mine-item" bindtap="modifyPwd">
+      <image src="/images/mine/icon_modify.png"></image>
+      <view class="mine-item-text">
+        <text>修改密码</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" bindtap="toLogout">
+      <image src="/images/mine/icon_logout.png"></image>
+      <view class="mine-item-text">
+        <text>退出登录</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+  </view>
+</view>

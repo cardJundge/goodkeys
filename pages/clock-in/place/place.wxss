@@ -1,0 +1,5 @@
+/* 人员位置 */
+canvas {
+  width: 210rpx;
+  height: 90rpx;
+}

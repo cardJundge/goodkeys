@@ -1,0 +1,56 @@
+<!--申请加入详情-->
+<view class="join-details-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
+<view class="join-details-body" wx:if="{{!spinShow}}">
+  <view class="union-details-top">
+    <view class="top-bg">
+      <view class="top-box">
+        <view class="top-card">
+          <view class="top-card-left">
+            <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
+            <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+          </view>
+          <view class="top-card-right">
+            {{unionInfo.name}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="union-details-content">
+    <!-- 联盟简介 -->
+    <view class="union-introduce">
+      <text>联盟简介</text>
+      <textarea class="union-introduce-content" value="{{unionInfo.intro}}" disabled="disabled"></textarea>
+    </view>
+    <!-- 盟主 -->
+    <view class="union-leader">
+      <view>盟主</view>
+      <view class="union-leader-info">
+        <image wx:if="{{leaderInfo.face}}" src="{{imgUrl}}{{leaderInfo.face}}"></image>
+        <image wx:if="{{!leaderInfo.face}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+        <text>{{leaderInfo.name}}</text>
+      </view>
+    </view>
+    <!-- 联盟成员 -->
+    <view class="union-member">
+      <view>联盟成员</view>
+      <view>{{unionInfo.number}}人</view>
+    </view>
+    <!-- 主导业务 -->
+    <view class="union-business">
+      <text>主导业务</text>
+      <view class="union-business-content">
+        <view class="union-business-item" wx:for="{{unionInfo.module}}" wx:for-item="it">{{it}}</view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="union-btn-box" wx:if="{{joinStatus == '去申请'}}">
+      <view class="union-btn" bindtap="toApply" wx:if="{{!isApply}}">申请加入</view>
+      <view class="union-btn" wx:if="{{isApply}}">申请中...</view>
+    </view>
+  </view>
+</view>

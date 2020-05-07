@@ -1,0 +1,90 @@
+/* 创建联盟 */
+
+.establish-body {
+}
+
+.establish-form {
+  width: 100%;
+  padding: 0 24rpx;
+}
+
+.establish-item {
+  width: 100%;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.establish-item-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.establish-item-box>view:first-child {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.establish-item input {
+  text-align: right;
+}
+
+.establish-item text {
+  color: #a3a3a3;
+}
+
+.establish-box {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.establish-box view {
+  padding: 8rpx 16rpx;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 8rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.establish-item-textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.establish-item-textarea textarea {
+  width: 100%;
+  height: 180rpx;
+}
+
+.img-cell {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.img-cell image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.establish-btn {
+  width: 100%;
+  height: 80rpx;
+  background: #1a65ff;
+  border-radius: 40rpx;
+  color: #fff;
+  font-size: 36rpx;
+  line-height: 80rpx;
+  text-align: center;
+  margin-top: 110rpx;
+}

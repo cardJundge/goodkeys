@@ -1,0 +1,38 @@
+<!--商铺管理-->
+<view class="shops-body">
+  <form bindsubmit="formSubmit">
+    <view class="shops-form">
+      <view class="input-box">
+        <label>商铺名称</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺名称" name="shopsName" value="{{formData.shopsName}}" bindinput="getShopsName"></input>
+      </view>
+      <view class="input-box">
+        <label>商铺简称</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺简称" name="shopsShortName" value="{{formData.shopsShortName}}" bindinput="getShopsShortName"></input>
+      </view>
+      <view class="input-box">
+        <label>服务电话</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入服务电话" name="phoneNumber" value="{{formData.phoneNumber}}" bindinput="getPhoneNumber"></input>
+      </view>
+      <view class="input-box direction-input-box">
+        <label>商铺位置</label>
+        <textarea placeholder-class="ph-class" type="text" placeholder="请输入商铺位置" name="shopsAddress" value="{{formData.shopsAddress}}" bindinput="getShopsAddress"></textarea>
+      </view>
+      <view class="input-box direction-input-box">
+        <label>商铺照片</label>
+        <view class="image-box">
+          <view class="image-item" wx:for="{{imageList}}">
+            <image src="{{imgUrl}}{{item}}!100" bindtap="previewImage" data-index="{{index}}"></image>
+            <i-icon class="del-icon" type="delete_fill" size="16" color="#FF9E1A" data-index="{{index}}" bindtap="delImg"/>
+          </view>
+          <view class="image-item" bindtap="uploadImg">
+            <i-icon type="add" color="#898989" size="28" />
+            <text>添加照片</text>
+          </view>
+        </view>
+
+      </view>
+      <button formType="submit" class="add-btn">确定</button>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,84 @@
+/* 类型选择 */
+
+.type-top {
+  width: 100%;
+  height: 114rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx;
+  border-bottom: 24rpx solid #f9f9f9;
+}
+
+.type-top .type-grade {
+  color: #a6a6a6;
+  display: flex;
+  align-items: center;
+}
+
+.type-box .type-item {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e9e9e9;
+  margin-left: 24rpx;
+}
+
+.type-box radio {
+  width: 60rpx;
+}
+
+.type-box .date-box {
+  width: 100%;
+}
+
+.type-box .date-box .date-item {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e9e9e9;
+  margin-left: 48rpx;
+  color: #909090;
+}
+
+.type-box .dropDown-box {
+  width: 100%;
+}
+
+.type-box .dropDown-box .dropDown-item {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e9e9e9;
+  margin-left: 48rpx;
+  color: #909090;
+}
+
+.type-box .dropDown-box .dropDown-item image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 24rpx;
+}
+
+.type-box .dropDown-box .dropDown-item .dropDown-item-input {
+  width: 600rpx;
+}
+
+.type-box .dropDown-box .dropDown-item-add text {
+  color: #1a65ff;
+}
+
+.type-btn {
+  width: 702rpx;
+  height: 80rpx;
+  margin: 60rpx auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 20rpx;
+}

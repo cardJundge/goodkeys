@@ -1,0 +1,20 @@
+<!--添加模块---》第一步-->
+<view class="first-body">
+  <view class="first-title">
+    <image src="/images/index/add_module_1.png"></image>
+  </view>
+  <view class="first-content">
+    <view class="form-name">
+      <label>模块名称</label>
+      <input placeholder="请输入模块名称" placeholder-class="ph-class" value="{{moduleName}}" bindinput="getModuleName"></input>
+    </view>
+    <view class="form-icon">
+      <label>模块图标</label>
+      <view class="form-icon-right" bindtap="toSelectIcon">
+        <image src="{{moduleIcon}}"></image>
+        <i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
+      </view>
+    </view>
+    <view class="operation-btn" bindtap="nextStep">下一步</view>
+  </view>
+</view>

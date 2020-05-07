@@ -1,0 +1,24 @@
+<!--联盟通知-->
+<view class="notice-body">
+  <view class="notice-list">
+    <view class="notice-item" wx:for="{{noticeList}}">
+      <view class="item-left">
+        <image src="{{imgUrl}}{{item.unionFace}}"></image>
+        <view class="item-left-info">
+          <text>{{item.unionName}}</text>
+          <text>{{item.service.name}}申请加入</text>
+        </view>
+      </view>
+      <view class="item-right" wx:if="{{item.status == 0}}">
+        <view bindtap="toHandle" data-status="2" data-leagueid="{{item.league_id}}" data-applyid="{{item.apply_id}}">拒绝</view>
+        <view bindtap="toHandle" data-status="1" data-leagueid="{{item.league_id}}" data-applyid="{{item.apply_id}}">同意</view>
+      </view>
+      <view class="item-right item-right-text" wx:if="{{item.status == 1}}">
+        <text>已同意</text>
+      </view>
+      <view class="item-right item-right-text" wx:if="{{item.status == 2}}">
+        <text>已拒绝</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,171 @@
+/* 人员打卡详情 */
+.card {
+  width: 702rpx;
+  height: 148rpx;
+  margin: 0 auto;
+  padding: 0 24rpx;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+}
+
+.card-left image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+
+.card-left text {
+  font-size: 36rpx;
+}
+
+.card-right {
+  width: 110rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+  color: #fff;
+}
+
+.status-01 {
+  background: #1a65ff;
+}
+
+.status-02 {
+  background: #FF881A;
+}
+
+.status-03 {
+  background: #19D64D;
+}
+
+.status-04 {
+  background: #F21AFF;
+}
+
+.calendar {
+  width: 100%;
+  padding: 12rpx 0;
+  position: relative;
+}
+
+.calendar-title {
+  width: 318rpx;
+  height: 60rpx;
+  padding: 0 5rpx;
+  border: 1rpx solid #1a65ff;
+  border-radius: 30rpx;
+  position: absolute;
+  z-index: 999;
+  top: 34rpx;
+  left: 24rpx;
+}
+
+.calendar-title-item {
+  width: 102rpx;
+  height: 50rpx;
+  border-radius: 30rpx;
+  color: #1a65ff;
+}
+
+.calendar-title-item-active {
+  background: #1A65FF;
+  color: #fff;
+}
+
+.calendar-content {
+  width: 100%;
+  padding: 0 12rpx;
+}
+
+.calendar-week-title,
+.calendar-month-title {
+  width: 100%;
+  padding: 12rpx;
+}
+
+.calendar-week-title>view,
+.calendar-month-title>view {
+  height: 80rpx;
+  font-size: 24rpx;
+}
+
+.calendar-week-title>view>text,
+.calendar-month-title>view>text {
+  padding: 12rpx;
+}
+
+.calendar-week,
+.calendar-month {
+  width: 702rpx;
+  margin: 0 auto;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 20rpx;
+  padding: 0 24rpx;
+
+}
+
+.calendar-week-item,
+.calendar-month-item {
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 1rpx solid #e2e2e2;
+}
+
+.calendar-week-item text:last-child,
+.calendar-month-item text:last-child {
+  color: #8e8e8e;
+}
+
+.record {
+  
+}
+
+.record-msg-01 {
+  font-size: 24rpx;
+  color: #8e8e8e;
+  padding: 24rpx 24rpx 0;
+}
+
+.record-msg-02 {
+  width: 100%;
+  height: 84rpx;
+  font-size: 24rpx;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #e2e2e2;
+}
+
+.record-msg-02 image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 12rpx;
+}
+
+.steps {
+  padding: 24rpx;
+}
+
+.steps-title text:last-child{
+  font-size: 24rpx;
+  color: #8e8e8e;
+  margin-left: 24rpx;
+}
+
+.steps-content {
+  color: #8e8e8e;
+  font-size: 24rpx;
+}
+
+.steps-content image{
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 12rpx;
+}
+
+.steps-content-late {
+  width: 180rpx;
+  height: 40rpx;
+  background: #FF9831;
+  color: #fff;
+  margin-top: 12rpx;
+  border-radius: 20rpx;
+}

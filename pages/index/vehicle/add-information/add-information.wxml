@@ -1,0 +1,25 @@
+<!--添加案件相关资料-->
+<view class="information-body">
+  <form bindsubmit="addRelatedInfo">
+    <view class="related-info-content">
+      <!-- <view class="title">相关资料</view> -->
+      <view wx:for='{{relatedInfoList}}' wx:key="" wx:for-index="relatedindex">
+        <view class="related-title-item">
+          <text>标题{{relatedindex+1}}</text>
+          <input placeholder="请输入标题" placeholder-class="ph-class" data-titleindex="{{relatedindex}}" bindinput="getInputTitle"></input>
+        </view>
+        <view class="related-info-item">
+          <view wx:for="{{item.picture}}" wx:key="" class="image-item" catchtap="previewImage" data-index="{{index}}" data-relatedindex="{{relatedindex}}">
+            <image src="{{item.path}}" class="pic"></image>
+            <i-icon type="delete_fill" class="del" size="22" catchtap="delImg" id="{{item.id}}"  data-index="{{index}}" />
+          </view>
+          <view class="camera" catchtap="chooseImg" data-index="{{relatedindex}}">
+            <image src="/images/index/add.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="add-btn" bindtap="addRelated">添加</view>
+    </view>
+    <button class="sure-btn" form-type="submit">确定</button>
+  </form>
+</view>

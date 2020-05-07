@@ -1,0 +1,128 @@
+/* 客户管理详情 */
+.customer-details-body {
+  padding: 24rpx;
+}
+
+.customer-details {
+  width: 100%;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.20);
+  border-radius: 30rpx;
+  padding: 24rpx;
+}
+
+.details-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24rpx;
+}
+
+.details-info-left {
+  display: flex;
+  align-items: center;
+}
+
+.details-info-left>image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.details-info-left-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.details-info-left-text text:last-child {
+  width: 306rpx;
+  height: 8rpx;
+  border-bottom: 1px dashed #cbcbcb;
+}
+
+.details-info-right {
+  font-size: 24rpx;
+  color: #6E9EFF;
+}
+
+.details-impression {
+  display: flex;
+  align-items: flex-start;
+}
+
+.details-impression image {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  margin-right: 6rpx;
+}
+
+.details-impression>view:first-child {
+  width: 180rpx;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.tags-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tags-item {
+  padding: 0 12rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background: #6e9eff;
+  color: #fff;
+  border-radius: 20rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  font-size: 24rpx;
+}
+
+.record-box {
+  width: 100%;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.record-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.record-item text:first-child {
+  font-size: 40rpx;
+}
+
+.record-item text:last-child {
+  color: #6E6E7A;
+}
+
+.footprint-title {
+  padding: 24rpx 0;
+  color: #6E6E7A;
+}
+
+.step-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-title text:first-child {
+  font-weight: normal;
+  font-size: 24rpx;
+  color: #80848f;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+}

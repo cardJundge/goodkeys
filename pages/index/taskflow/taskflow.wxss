@@ -1,0 +1,32 @@
+/*自定义模块列表 */
+@import "../common-top/common-top.wxss";
+.taskflow-body {
+}
+
+.list-content {
+  margin-top: 60rpx;
+}
+
+.list-item-right {
+  width: 180rpx;
+  height: 135rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-item-right view {
+  width: 180rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30rpx;
+}
+
+.no-data {
+  width: 100%;
+  margin-top: 120rpx;
+  text-align: center;
+  color: #737373;
+}

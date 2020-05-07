@@ -1,0 +1,180 @@
+/**首页**/
+
+.index-body {}
+
+.spin-article {}
+
+/* 数据统计 */
+
+.data {
+  width: 100%;
+  height: 220rpx;
+}
+
+.data-bg {
+  width: 100%;
+  height: 120rpx;
+  background: #1a65ff;
+  border-radius: 0 0 30rpx 30rpx;
+  position: relative;
+}
+
+/* .data-title {
+  width: 100%;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.data-title text:first-child {
+  font-size: 36rpx;
+} */
+
+.data-content {
+  width: 100%;
+  height: 202rpx;
+  position: absolute;
+  bottom: -100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.data-item {
+  width: 202rpx;
+  height: 202rpx;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-item text:first-child {
+  font-size: 60rpx;
+}
+
+/* 业务模块 */
+
+.business {}
+
+.business-title {
+  width: 100%;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.business-title text:first-child {
+  font-size: 36rpx;
+}
+
+.business-title text:last-child {
+  color: #1a65ff;
+}
+
+.business-content {
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.business-item {
+  width: 340rpx;
+  height: 154rpx;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+  margin-bottom: 22rpx;
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  position: relative;
+}
+
+.business-item .left {
+  width: 106rpx;
+  height: 106rpx;
+  margin-right: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.business-item-text {
+  width: 128rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.business-item-text text {
+  font-size: 32rpx;
+  color: #242429;
+}
+
+.business-item-edit {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
+}
+
+/* 接单系统 */
+
+.qms {}
+
+.qms-title {
+  width: 100%;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.qms-title text:first-child {
+  font-size: 36rpx;
+}
+
+.qms-content {
+  width: 100%;
+  padding: 0 24rpx 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qms-item {
+  width: 340rpx;
+  height: 126rpx;
+  box-shadow: 0 0 6rpx 2rpx rgba(0, 0, 0, 0.1);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qms-item-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.qms-item-left text:last-child {
+  font-size: 20rpx;
+  color: #BBBBBB;
+  margin-top: 12rpx;
+}
+
+.qms-item image {
+  width: 80rpx;
+  height: 80rpx;
+}

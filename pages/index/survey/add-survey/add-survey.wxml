@@ -1,0 +1,171 @@
+<!--添加查勘定损-->
+<!-- 短信 -->
+<view class="add-survey-body" wx:if="{{isAnalysis}}">
+  <view class="analysis">
+    <form bindsubmit='toAnalysis'>
+      <view class="analysis-title">粘贴短信</view>
+      <textarea name="message" maxlength="800" class="analysis-content" placeholder="请粘贴短信" placeholder-class="ph-class"></textarea>
+      <view class="analysis-msg" bindtap="toHandWriting">直接填写</view>
+      <button class="analysis-btn" formType="submit">解析短信</button>
+    </form>
+  </view>
+</view>
+<!-- 填写 -->
+<view class="add-survey-body" wx:if="{{!isAnalysis}}">
+  <view class="survey">
+    <form bindsubmit='formSubmit'>
+      <view class="add-survey-form">
+        <view class="survey-item">
+          <label>类型</label>
+          <radio-group class="survey-item-radio" name='classify' bindchange='surveyRadioChange'>
+            <radio value='survey' checked='{{!isThreeRes}}'>查勘</radio>
+            <radio value='loss' checked='{{isThreeRes}}'>定损</radio>
+          </radio-group>
+        </view>
+        <view class="survey-item" wx:if="{{isThreeRes}}">
+          <label></label>
+          <radio-group class="survey-item-radio" bindchange='surveyRadioChange01'>
+            <radio value='threeRes' checked='{{!targetChecked}}'>三责</radio>
+            <radio value='target' checked='{{targetChecked}}'>标的</radio>
+          </radio-group>
+        </view>
+        <view class="survey-item">
+          <label>保险公司</label>
+          <picker bindchange="insuranceChange" name='insurance' range="{{insuranceNameList}}">
+            <input wx:if="{{!hasInsuranceName}}" placeholder="请选择保险公司" placeholder-class="ph-class" disabled="disabled"></input>
+            <view wx:if="{{hasInsuranceName}}" class="survey-item-picker">{{hasInsuranceName}}</view>
+          </picker>
+        </view>
+        <!-- <view class="survey-item">
+          <label>查勘员</label>
+          <input name="" placeholder-class="ph-class" placeholder="请输入查勘员姓名"></input>
+        </view> -->
+        <!-- 工号(太平、平安有) -->
+        <!-- <view class="survey-item" wx:if="{{isJobNo}}">
+          <label>工号</label>
+          <input name="" placeholder-class="ph-class" placeholder="请输入查勘员工号"></input> -->
+        <!-- </view> -->
+        <!-- 查勘日期(平安有) -->
+        <view class="survey-item" wx:if="{{isSurveyTime}}">
+          <label>查勘日期</label>
+          <picker mode="date" value="{{surveyTime}}" start="2010" end="2050" bindchange="surveyTimeChange">
+            <input wx:if="{{!surveyTime}}" placeholder="请选择查勘日期" placeholder-class="ph-class" disabled="disabled"></input>
+            <view wx:if="{{surveyTime}}">{{surveyTime}}</view>
+          </picker>
+        </view>
+        <!-- 派工人(平安、太平都没有) -->
+        <view class="survey-item" wx:if="{{isDispatchedWorkers}}">
+          <label>派工人</label>
+          <input name="dispatchedWorkers" value="{{dispatchedWorkers}}" bindinput="dispatchedWorkersInput" placeholder-class="ph-class" placeholder="请输入派工人姓名"></input>
+        </view>
+        <!-- 案件号 -->
+        <view class="survey-item">
+          <label>案件号</label>
+          <input name="reportNo" value="{{reportNo}}" bindinput="reportNoInput" class="survey-item-input" placeholder-class="ph-class" placeholder="请输入案件号"></input>
+        </view>
+        <!-- 车牌号 -->
+        <view class="survey-item">
+          <label>车牌号</label>
+          <input name="carNo" value="{{carNo}}" bindinput="carNoInput" placeholder-class="ph-class" placeholder="请输入车牌号"></input>
+        </view>
+        <!-- 任务类型（其他、太平） -->
+        <view class="survey-item" wx:if="{{!taskPingan}}">
+          <label>任务类型</label>
+          <picker bindchange="taskChangeOther" value="{{taskIndexOther}}" range="{{taskModesOther}}">
+            <input wx:if="{{!taskModesOther[taskIndexOther]}}" placeholder="{{taskModesOtherName ? taskModesOtherName :'请选择任务类型'}}" placeholder-class="ph-class" disabled="disabled"></input>
+            <view wx:if="{{taskModesOther[taskIndexOther]}}" class="survey-item-picker">{{taskModesOther[taskIndexOther]}}</view>
+          </picker>
+        </view>
+        <!-- 任务类型（平安） -->
+        <view class="survey-item" wx:if="{{taskPingan}}">
+          <label>任务类型</label>
+          <picker bindchange="taskChangePingan" value="{{taskIndexPingan}}" range="{{taskModesPingan}}">
+            <input wx:if="{{!taskModesPingan[taskIndexPingan]}}" placeholder="{{taskModesPinganName ? taskModesPinganName :'请选择任务类型'}}" placeholder-class="ph-class" disabled="disabled"></input>
+            <view wx:if="{{taskModesPingan[taskIndexPingan]}}" class="survey-item-picker">{{taskModesPingan[taskIndexPingan]}}</view>
+          </picker>
+        </view>
+        <!-- 派工时间(太平没有) -->
+        <view class="survey-item" wx:if="{{isDispatchingTime}}">
+          <label>派工时间</label>
+          <picker mode="multiSelector" value="{{dateTime}}" bindchange="changedateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+            <input placeholder="请选择派工时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{sendTimeFirst && !sendTimeName}}">
+            </input>
+            <view class="survey-item-picker" wx:if="{{sendTimeFirst && sendTimeName}}">
+              {{sendTimeName}}
+            </view>
+            <view class="survey-item-picker" wx:if="{{!sendTimeFirst}}">
+              {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
+            </view>
+          </picker>
+        </view>
+        <!-- 报案时间（太平有） -->
+        <view class="survey-item" wx:if="{{isReportTime}}">
+          <label>报案时间</label>
+          <picker mode="date" value="{{reportTime}}" start="2010" end="2050" bindchange="reportTimeChange">
+          <input placeholder="请选择报案时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!reportTime}}"></input>
+            <view wx:if="{{reportTime}}">{{reportTime}}</view>
+          </picker>
+        </view>
+        <!-- 出险/定损地点（平安、太平有） -->
+        <view class="survey-item survey-item-address" wx:if="{{isFixedLossAdd}}">
+          <label>出险/定损地点</label>
+          <input name="fixedLossAdd" value="{{fixedLossAdd}}" bindinput="fixedLossAddInput" class="survey-item-input" placeholder-class="ph-class" placeholder="请输入出险/定损地点"></input>
+          <view class="survey-item-address-img" bindtap="selectAddress">
+            <image src="/images/index/address.png"></image>
+          </view>
+        </view>
+        <!-- 案件类型（太平有） -->
+        <view class="survey-item" wx:if="{{isreportType}}">
+          <label>案件类型</label>
+          <picker mode="selector" range="{{reportType}}" value="{{reportIndex}}" bindchange="reportTypeChange">
+            <input wx:if="{{!reportType[reportIndex]}}" placeholder="{{reportTypeName ? reportTypeName :'请选择案件类型'}}" placeholder-class="ph-class" disabled="disabled"></input>
+            <view wx:if="{{reportType[reportIndex]}}" class="survey-item-picker">{{reportType[reportIndex]}}</view>
+          </picker>
+        </view>
+        <!-- 区域（平安） -->
+        <view class="survey-item" wx:if="{{isRegion && regionPingan}}">
+          <label>区域</label>
+          <picker mode="multiSelector" value="{{regionIndexPingan}}" bindchange="regionChangePingan" bindcolumnchange="regionChangeColumnPingan" range="{{regionListPingan}}">
+            <input placeholder="请选择区域" placeholder-class="ph-class" disabled="disabled" wx:if="{{regionFirst && !areName}}"></input>
+            <view wx:if="{{regionFirst && areName}}">{{areName}}</view>
+            <view wx:if="{{!regionFirst}}" class="survey-item-picker">{{regionListPingan[0][regionIndexPingan[0]]}} {{regionListPingan[1][regionIndexPingan[1]]}}</view>
+          </picker>
+        </view>
+        <!-- 区域（其他保险公司（太平没有）） -->
+        <view class="survey-item" wx:if="{{isRegion && !regionPingan}}">
+          <label>区域</label>
+          <picker bindchange="regionChangeOther" value="{{regionIndexOther}}" range="{{regionListOther}}">
+           <input wx:if="{{!regionListOther[regionIndexOther]}}" placeholder="{{areName ? areName : '请选择区域'}}" placeholder-class="ph-class" disabled="disabled"></input>
+            <view wx:if="{{regionListOther[regionIndexOther]}}" class="survey-item-picker">{{regionListOther[regionIndexOther]}}</view>
+          </picker>
+        </view>
+        <!-- 派工时间段（平安有） -->
+        <view class="survey-item" wx:if="{{isTimeSlot}}">
+          <label>派工时间段</label>
+          <picker mode="multiSelector" value="{{timeSlotIndexPingan}}" bindchange="timeChangePingan" bindcolumnchange="timeChangeColumnPingan" range="{{timeSlotListPingan}}">
+            <input placeholder="请选择派工时间段" placeholder-class="ph-class" disabled="disabled" class="survey-item-picker" wx:if="{{sendDataFirst && !sendDataName}}"></input>
+            <view class="survey-item-picker" wx:if="{{sendDataFirst && sendDataName}}">{{sendDataName}}</view>
+            <view class="survey-item-picker" wx:if="{{!sendDataFirst}}">{{timeSlotListPingan[0][timeSlotIndexPingan[0]]}} {{timeSlotListPingan[1][timeSlotIndexPingan[1]]}}</view>
+          </picker>
+        </view>
+        <!-- 保单号(太平、平安没有) -->
+        <view class="survey-item" wx:if="{{isPolicyNo}}">
+          <label>保单号</label>
+          <input name="policyNo" value="{{policyNo}}" bindinput="policyNoInput" placeholder-class="ph-class" placeholder="请输入保单号"></input>
+        </view>
+        <!-- 承保机构(太平、平安没有) -->
+        <view class="survey-item" wx:if="{{isPolicyMechanism}}">
+          <label>承保机构</label>
+          <input name="policyMechanism" value="{{policyMechanism}}" bindinput="policyMechanismInput" placeholder-class="ph-class" placeholder="请输入承保机构"></input>
+        </view>
+
+        <view class="survey-item-textarea">
+          <label>备注</label>
+          <textarea name="remarks" value="{{remarks}}" bindinput="remarksInput" maxlength="800"></textarea>
+        </view>
+        <view class="analysis-msg" bindtap="toHandWriting">去解析</view>
+        <button class="survey-btn" formType="submit">确 定</button>
+      </view>
+    </form>
+  </view>
+</view>

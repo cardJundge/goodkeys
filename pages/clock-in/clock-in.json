@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "leave": "/components/leave/leave"
+  },
+  "navigationBarTitleText": "打卡统计"
+}

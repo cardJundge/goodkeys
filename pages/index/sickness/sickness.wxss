@@ -1,0 +1,63 @@
+/* 疾病调查 */
+@import "../common-top/common-top.wxss";
+.sickness-body {
+}
+
+.search {
+  width: 100%;
+}
+
+/* 状态选择 */
+
+.status-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0 24rpx;
+  margin-top: 84rpx;
+  white-space: nowrap;
+}
+
+.status-item {
+  padding: 0 24rpx;
+  /* width: 160rpx; */
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #e7efff;
+  color: #1a65ff;
+  border-radius: 30rpx;
+  display: inline-block;
+  margin-right: 12rpx;
+  margin-left: 12rpx;
+}
+
+.status-item:first-child {
+  margin-left: 0;
+}
+
+.status-item:last-child {
+  margin-right: 0;
+}
+
+.select-active {
+  background: #1a65ff;
+  color: #fff;
+  display: inline-block;
+}
+
+.more-data {
+  width: 100%;
+  line-height: 80rpx;
+  text-align: center;
+  color: #737373;
+}
+
+.no-data {
+  width: 100%;
+  margin-top: 120rpx;
+  text-align: center;
+  color: #737373;
+}

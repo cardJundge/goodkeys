@@ -1,0 +1,44 @@
+<!--审核弹框-->
+<view class="module-body" catchtouchmove="true" wx:if="{{isShow && !prompt}}" catchtap="toCloseModule">
+  <view class="module-content" catchtap="stopBubble" style="height: {{height}}rpx">
+    <view class="top-title">审核案件</view>
+    <!-- 状态 -->
+    <view class="state-title">状态:</view>
+    <radio-group class="state-box" bindchange='stateChange'>
+      <radio value='pass' checked="true">审核通过</radio>
+      <radio value='nopass' checked="false">审核不通过</radio>
+    </radio-group>
+    <!-- 原因 -->
+    <view class="input-title" wx:if="{{!isPass}}">原因:</view>
+    <view class="input-box" wx:if="{{!isPass}}">
+      <!-- <textarea auto-height="true" placeholder="请输入原因" placeholder-class="ph-class" bindinput="getNoPassReason" maxlength="500"></textarea> -->
+      <textarea placeholder="请输入原因" placeholder-class="ph-class" bindinput="getNoPassReason" maxlength="500"></textarea>
+    </view>
+    <view class="bottom-btn-bar">
+      <view bindtap="toCancel">取消</view>
+      <view bindtap="toConfirm">确定</view>
+    </view>
+  </view>
+</view>
+
+<!-- 审核是否通过提示框 -->
+<view class="module-body" catchtouchmove="true" wx:if="{{isShow && prompt}}" catchtap="toCloseModule">
+  <view class="module-content" catchtap="stopBubble" style="height: {{height}}rpx">
+    <view class="top-title">审核案件</view>
+    <!-- 状态 -->
+    <view class="state-title">状态:</view>
+    <radio-group class="state-box">
+      <radio checked="true">审核不通过</radio>
+    </radio-group>
+    <!-- 原因 -->
+    <view class="input-title">原因:</view>
+    <view class="input-box">
+      <scroll-view scroll-y='true' class="prompt-textarea">
+        <text>{{reason}}</text>
+      </scroll-view>
+    </view>
+    <view class="prompt-bottom-btn-bar">
+      <view class="prompt-confirm" bindtap="toClosePrompt">确定</view>
+    </view>
+  </view>
+</view>

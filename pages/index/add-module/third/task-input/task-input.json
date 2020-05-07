@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-icon": "/dist/icon/index"
+  },
+  "navigationBarTitleText": "员工操作项"
+}

@@ -1,0 +1,18 @@
+<!--修改密码-->
+<view class="modify-body">
+  <form bindsubmit="formSubmit">
+    <view class="modify-input">
+      <text>原始密码</text>
+      <input placeholder-class="ph-class" type="password" placeholder="输入原始密码" name="oldPassword" value="{{formData.oldPassword}}"></input>
+    </view>
+    <view class="modify-input">
+      <text decode="{{true}}">新密码&nbsp;&nbsp;&nbsp;&nbsp;</text>
+      <input placeholder-class="ph-class" type="password" placeholder="输入新密码" name="password"  value="{{formData.password}}"></input>
+    </view>
+    <view class="modify-input">
+      <text>确认密码</text>
+      <input placeholder-class="ph-class" type="password" placeholder="再次输入密码" name="repeatPassword"  value="{{formData.repeatPassword}}"></input>
+    </view>
+    <button class="modify-btn" formType="submit">确定</button>
+  </form>
+</view>

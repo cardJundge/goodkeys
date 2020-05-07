@@ -1,0 +1,42 @@
+<!--创建联盟-->
+<view class="establish-body">
+  <form bindsubmit='onConfirm'>
+    <view class="establish-form">
+      <view class="establish-item">
+        <label>联盟logo</label>
+        <view class="img-cell" bindtap="selectImg">
+          <image wx:if="{{!imgLogo}}" src="/images/union/add_img.png"></image>
+          <image wx:if="{{imgLogo}}" src="{{imgUrl}}{{imgLogo}}"></image>
+        </view>
+      </view>
+      <view class="establish-item">
+        <label>联盟名称</label>
+        <input name="unionName" bindinput="getUnionName" value="{{unionName}}" placeholder="请输入联盟名称" placeholder-class="ph-class"></input>
+      </view>
+      <view class="establish-item establish-item-textarea" wx:if="{{!isAddModule}}">
+        <label>联盟简介</label>
+        <textarea name="unionIntro" bindinput="getUnionIntro" value="{{unionIntro}}" placeholder="请输入联盟简介" placeholder-class="ph-class"></textarea>
+      </view>
+      <!-- 加入联盟方式 -->
+      <view class="establish-item">
+        <label>加入方式</label>
+        <picker value="{{addWay}}" range="{{addWayList}}" bindchange="addWayChange">
+          <view wx:if="{{!addWay}}" style="color: #a3a3a3">请选择加入方式</view>
+          <view wx:if="{{addWay}}">{{addWay}}</view>
+        </picker>
+      </view>
+      <view class="establish-item establish-item-box">
+        <view>
+          <label>主导业务</label>
+          <text bindtap="addModule">请选择</text>
+        </view>
+        <view class="establish-box">
+          <view wx:for="{{businessArray}}">{{item}}</view>
+        </view>
+      </view>
+      <button class="establish-btn" formType="submit">确定</button>
+    </view>
+  </form>
+  <!-- 添加模块components -->
+  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" bind:closeEvent="closeEvent" flag="1" />
+</view>

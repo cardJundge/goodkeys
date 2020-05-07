@@ -1,0 +1,100 @@
+<!--人员打卡详情-->
+<view class="personnel-body">
+	<view class="card flex-sb-01">
+		<view class="card-left flex al-c">
+			<image src="/images/logo.png"></image>
+			<text>zhangxx</text>
+		</view>
+		<view class="card-right flex-c-01 status-01">正常</view>
+	</view>
+	<view class="calendar">
+		<view class="calendar-title flex al-c">
+			<block wx:for="{{timeTab}}">
+				<view class="calendar-title-item flex-c-01 {{index == timeTabActive ? 'calendar-title-item-active' : ''}}" bind:tap="timeTabChange" data-index="{{index}}">{{item}}</view>
+			</block>
+		</view>
+		<view class="calendar-content" wx:if="{{timeTabActive == 0}}">
+			<calendar calendarConfig="{{calendarConfig}}" bind:onTapDay="onTapDay"></calendar>
+		</view>
+		<view class="calendar-content" wx:if="{{timeTabActive == 1}}">
+			<view class="calendar-week-title flex al-c ju-fe">
+				<view class="flex-sb-01">
+					<i-icon type="return" color="#8e8e8e" size="18" />
+					<text>2020.04.14-2020.04.21</text>
+					<i-icon type="enter" color="#8e8e8e" size="18" />
+				</view>
+			</view>
+			<view class="calendar-week">
+				<view class="calendar-week-item flex-sb-01">
+					<text>出勤天数</text>
+					<text>23天</text>
+				</view>
+				<view class="calendar-week-item flex-sb-01">
+					<text>休息天数</text>
+					<text>23天</text>
+				</view>
+				<view class="calendar-week-item flex-sb-01">
+					<text>请假</text>
+					<text>1天</text>
+				</view>
+			</view>
+		</view>
+		<view class="calendar-content" wx:if="{{timeTabActive == 2}}">
+			<view class="calendar-month-title flex al-c ju-fe">
+				<view class="flex-sb-01">
+					<i-icon type="return" color="#8e8e8e" size="16" />
+					<text>2020.04</text>
+					<i-icon type="enter" color="#8e8e8e" size="16" />
+				</view>
+			</view>
+			<view class="calendar-month">
+				<view class="calendar-month-item flex-sb-01">
+					<text>出勤天数</text>
+					<text>23天</text>
+				</view>
+				<view class="calendar-month-item flex-sb-01">
+					<text>休息天数</text>
+					<text>23天</text>
+				</view>
+				<view class="calendar-month-item flex-sb-01">
+					<text>请假</text>
+					<text>1天</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="record" wx:if="{{timeTabActive == 0}}">
+		<text class="record-msg-01">班次:默认班次09:00-18:00</text>
+		<view class="record-msg-02 flex al-c">
+			<image src="/images/clock/record_msg.png"></image>
+			<text>今日打卡1次</text>
+		</view>
+		<view class="steps">
+			<i-steps current="1" direction="vertical">
+				<i-step>
+					<view slot="title" class="steps-title">
+						<text>打卡时间:14:42:50</text>
+						<text>(上班 时间 09:00)</text>
+					</view>
+					<view slot="content" class="steps-content">
+						<view class="flex al-c">
+							<image src="/images/index/location_01.png"></image>
+							<text>陕西省西安市雁塔区科技路地铁口</text>
+						</view>
+						<view class="steps-content-late flex-c-01">迟到16分钟</view>
+					</view>
+				</i-step>
+				<i-step>
+					<view slot="title" class="steps-title">
+						<text>打卡时间:14:42:50</text>
+						<text>(上班 时间 09:00)</text>
+					</view>
+					<view slot="content" class="steps-content flex al-c">
+						<image src="/images/index/location_01.png"></image>
+						<text>陕西省西安市雁塔区科技路地铁口xx</text>
+					</view>
+				</i-step>
+			</i-steps>
+		</view>
+	</view>
+</view>

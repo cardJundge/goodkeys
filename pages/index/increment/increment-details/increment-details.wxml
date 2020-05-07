@@ -1,0 +1,57 @@
+<!--增值服务-详情-->
+<view>
+	<view class="details-top">
+		<view class="top-item" wx:if="{{hasPackage}}">
+			<text>保单号:</text>
+			<text>{{incrementDetails.policy_no}}</text>
+		</view>
+		<view class="top-item" wx:if="{{hasPackage}}">
+			<text>车牌号:</text>
+			<text>{{incrementDetails.car_no}}</text>
+		</view>
+		<view class="top-item">
+			<text>保险公司:</text>
+			<text wx:if="{{incrementDetails.service_id == '3949'}}">中银保险陕西分公司</text>
+			<text wx:elif="{{incrementDetails.service_id == '4065'}}">中银保险河南分公司</text>
+			<text wx:elif="{{incrementDetails.service_id == '4122'}}">中银保险辽宁分公司</text>
+			<text wx:else>{{incrementDetails.service_id.name}}</text>
+		</view>
+		<view class="top-item">
+			<text>被保险人姓名:</text>
+			<text>{{incrementDetails.name ? incrementDetails.name : incrementDetails.user_name}}</text>
+		</view>
+		<view class="top-item">
+			<text>联系电话:</text>
+			<text>{{incrementDetails.mobile}}</text>
+		</view>
+		<view class="top-item" wx:if="{{hasPackage}}">
+			<text>服务开始时间:</text>
+			<text>{{incrementDetails.start_date}}</text>
+		</view>
+		<view class="top-item" wx:if="{{hasPackage}}">
+			<text>服务截止时间:</text>
+			<text>{{incrementDetails.end_date}}</text>
+		</view>
+	</view>
+	<view class="details-content">
+		<view class="content-tab">
+			<view class="tab-item" wx:for="{{tabList}}">
+				<text class="{{isActive == index ? 'tab-active' : ''}}">{{item}}</text>
+				<view class="line" wx:if="{{isActive == index}}"></view>
+			</view>
+		</view>
+		<view class="content-list" wx:if="{{hasPackage}}">
+			<block wx:for="{{projectList}}">
+				<view class="content-item" bindtap="toPackDetails" data-user="{{incrementDetails.user_id}}" data-classify="{{item.id}}" data-policy="{{incrementDetails.id}}" data-name="{{item.name}}">
+					<view>{{index+1}}、{{item.name}}</view>
+					<view class="content-item-right">{{item.used}}/{{item.count}}</view>
+				</view>
+			</block>
+		</view>
+		<view class="content-list" wx:if="{{!hasPackage}}">
+			<view class="image-box">
+				<text>未开通</text>
+			</view>
+		</view>
+	</view>
+</view>

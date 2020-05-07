@@ -1,0 +1,104 @@
+/* 添加人员 */
+
+.add-body {
+}
+
+.add-form {
+  width: 100%;
+  padding: 0 24rpx;
+}
+
+.input-box {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #c6c6c6;
+}
+
+.leader-box {
+  width: 100%;
+  height: 110rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-box text {
+  margin-right: 48rpx;
+}
+
+.select-box {
+  width: 100%;
+  /* height: 258rpx; */
+  border-bottom: 1rpx solid #c6c6c6;
+}
+
+.select-box-title {
+  padding: 24rpx 0;
+}
+
+.select-tag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.select-tag-item {
+  /* width: 180rpx; */
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #1a65ff;
+  background: #FFFFFF;
+  border: 1rpx solid #1a65ff;
+  border-radius: 30rpx;
+  margin-right: 24rpx;
+  margin-bottom: 24rpx;
+  padding: 0 12rpx;
+}
+
+.select-active {
+  /* width: 180rpx; */
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #FFFFFF;
+  background: #1a65ff;
+  border: 1rpx solid #1a65ff;
+  border-radius: 30rpx;
+  margin-right: 24rpx;
+  margin-bottom: 24rpx;
+  padding: 0 12rpx;
+}
+
+.add-btn {
+  width: 702rpx;
+  height: 80rpx;
+  /* position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  background: #1A65FF;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  margin: 24rpx 0;
+}
+
+.select-text {
+  width: 210rpx;
+  height: 42rpx;
+}
+
+.select-text-active {
+  width: 210rpx;
+  height: 42rpx;
+  color: #d9d9d9;
+}
+
+.ph-class {
+  color: #d9d9d9;
+}

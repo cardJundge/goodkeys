@@ -1,0 +1,200 @@
+<!--自定义模块详情-->
+<view>
+	<view class="details-top">
+		<!-- 案件信息 -->
+		<block wx:for="{{fieldInfo}}">
+			<view class="top-item top-item-img" wx:if="{{item.type == 'image' && index < 4}}">
+				<text>{{item.name}}</text>
+				<view class="top-item-img-box">
+					<view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex" wx:if="{{imgindex < 3}}">
+						<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="imgindex" data-name="{{item.name}}" data-flag="field"></image>
+					</view>
+				</view>
+			</view>
+			<view class="top-item" wx:if="{{item.type != 'image' && index < 4}}">
+				<text>{{item.name}}:</text>
+				<text>{{item.value}}</text>
+			</view>
+		</block>
+		<view class="top-item">
+			<text>执行人:</text>
+			<text>{{taskName}}</text>
+		</view>
+		<view class="top-item">
+			<text>开始时间:</text>
+			<text>{{startTime}}</text>
+		</view>
+		<view class="top-item">
+			<text>截止时间:</text>
+			<text>{{endTime}}</text>
+		</view>
+		<view class="unfold" wx:if="{{!unfold && fieldInfo.length > 4}}" bindtap="toUnfold">
+			<i-icon type="unfold" color="#9C9C9C" size="24" />
+		</view>
+		<block wx:for="{{fieldInfo}}" wx:if="{{unfold}}">
+			<view class="top-item top-item-img" wx:if="{{item.type == 'image' && index > 3}}">
+				<text>{{item.name}}</text>
+				<view class="top-item-img-box">
+					<view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex" wx:if="{{imgindex < 3}}">
+						<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="imgindex" data-name="{{item.name}}" data-flag="field"></image>
+					</view>
+				</view>
+			</view>
+			<view class="top-item" wx:if="{{item.type != 'image' && index > 3}}">
+				<text>{{item.name}}:</text>
+				<text>{{item.value}}</text>
+			</view>
+		</block>
+		<view class="unfold" wx:if="{{unfold}}" bindtap="toPackup">
+			<i-icon type="packup" color="#9C9C9C" size="24" />
+		</view>
+	</view>
+	<view class="details-content">
+		<view class="content-tab">
+			<view class="tab-item" wx:for="{{tabList}}" bindtap="changeTab" data-index="{{index}}">
+				<text class="{{isActive == index ? 'tab-active' : ''}}">{{item}}</text>
+				<view class="line" wx:if="{{isActive == index}}"></view>
+			</view>
+		</view>
+		<view class="content-box">
+			<!-- 作业员录入 -->
+			<view class="task-input" wx:if="{{tabList[isActive] == '员工操作项'}}">
+				<block wx:for="{{norm}}">
+					<!-- 未完成 -->
+					<view class="content-box-item" wx:if="{{!item.record}}">
+						<view class="item-incomplete">
+							<text>{{index+1}}、{{item.name}}</text>
+							<view>未完成</view>
+						</view>
+					</view>
+					<!-- 已完成 -->
+					<view class="content-box-item" wx:if="{{item.record}}">
+						<view class="item-complete">
+							<view class="item-complete-title">
+								<text>{{index+1}}、{{item.name}}</text>
+								<view>已完成</view>
+							</view>
+							<view class="item-complete-text">
+								<view>
+									<text>时间</text>
+									<text>{{item.record.date}}</text>
+								</view>
+								<view>
+									<text>地点</text>
+									<text>{{item.record.place}}</text>
+									<image class="location-icon" src="/images/index/location_01.png"></image>
+								</view>
+								<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
+									<text>内容</text>
+									<view class="image-box" wx:if="{{item.type == 'image'}}">
+										<view class="image-item" wx:for="{{item.record.content}}" wx:for-item="imgitem" wx:for-index="imgindex">
+											<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="{{imgindex}}" data-flag="task" data-name="{{item.name}}"></image>
+										</view>
+									</view>
+								</view>
+								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select' || item.type == 'check'}}">
+									<text>内容</text>
+									<text>{{item.record.content}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
+			</view>
+
+			<!-- 管理者审核 -->
+			<view class="approval" wx:if="{{tabList[isActive] == '管理操作项'}}">
+				<block wx:for="{{approval}}">
+					<!-- 未完成 -->
+					<view class="content-box-item" wx:if="{{!item.record}}">
+						<view class="item-incomplete" wx:if="{{item.type == 'select'}}">
+							<text>{{index+1}}、{{item.name}}</text>
+							<picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}">
+								<view class="complete-option-btn">去完成</view>
+							</picker>
+						</view>
+						<view class="item-incomplete" wx:elif="{{item.type == 'check'}}">
+							<text>{{index+1}}、{{item.name}}</text>
+							<view bindtap="optionCheck" data-name="{{item.name}}" data-type="{{item.type}}" data-option="{{item.value.option}}">去完成</view>
+						</view>
+						<view class="item-incomplete" wx:else>
+							<text>{{index+1}}、{{item.name}}</text>
+							<view bindtap="toComplete" data-name="{{item.name}}" data-type="{{item.type}}">去完成</view>
+						</view>
+					</view>
+					<!-- 已完成 -->
+					<view class="content-box-item" wx:if="{{item.record}}">
+						<view class="item-complete">
+							<view class="item-complete-title">
+								<text>{{index+1}}、{{item.name}}</text>
+								<view>已完成</view>
+							</view>
+							<view class="item-complete-text">
+								<view>
+									<text>时间</text>
+									<text>{{item.record.date}}</text>
+								</view>
+								<view>
+									<text>地点</text>
+									<text>{{item.record.place}}</text>
+									<image class="location-icon" src="/images/index/location_01.png"></image>
+								</view>
+								<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
+									<text>内容</text>
+									<view class="image-box">
+										<view class="image-item" wx:for="{{item.record.content}}" wx:for-item="imgitem" wx:for-index="imgindex">
+											<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="{{imgindex}}" data-flag="approval" data-name="{{item.name}}"></image>
+										</view>
+									</view>
+								</view>
+								<!-- <view wx:if="{{item.type == 'check'}}">
+									<text>内容</text>
+									<text>{{item.record.content.checked.join(',')}}</text>
+								</view> -->
+								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select' || item.type == 'check'}}">
+									<text>内容</text>
+									<text>{{item.record.content}}</text>
+								</view>
+							</view>
+							<picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}" wx:if="{{item.type == 'select'}}">
+								<text class="item-complete-change">更改</text>
+							</picker>
+							<text class="item-complete-change" wx:elif="{{item.type == 'check'}}" bindtap="optionCheck" data-name="{{item.name}}" data-type="{{item.type}}" data-option="{{item.value.option}}">更改</text>
+							<text wx:else class="item-complete-change" bindtap="toComplete" data-name="{{item.name}}" data-type="{{item.type}}">更改</text>
+						</view>
+					</view>
+				</block>
+			</view>
+
+			<!-- 客户评价 -->
+			<view class="evaluate" wx:if="{{tabList[isActive] == '评价操作项'}}">
+				<!-- 已评价 -->
+				<!-- <block wx:for="{{evaluate}}"> -->
+				<!-- <view class="content-box-item" wx:if="{{item.record}}">
+            <view class="item-complete">
+              <view class="item-complete-title">
+                <text>{{index+1}}、{{item.name}}</text>
+                <text></text>
+              </view>
+              <view class="item-complete-text">
+                <view>
+                  <text>内容</text>
+                  <text>{{item.content}}</text>
+                </view>
+              </view>
+            </view>
+          </view> -->
+				<!-- 未评价 -->
+				<view class="content-box-item" wx:if="{{!item.record}}">
+					<view class="no-evaluate">
+						<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/no_evaluate.png"></image>
+						<text>暂无评价</text>
+					</view>
+				</view>
+				<!-- </block> -->
+			</view>
+		</view>
+	</view>
+
+	<approval-box isShow="{{approvalBoxShow}}" approvalBoxName="{{approvalBoxName}}" approvalType="{{approvalType}}" optionData="{{tempOption}}" bind:boxConfirm="boxConfirm" />
+</view>

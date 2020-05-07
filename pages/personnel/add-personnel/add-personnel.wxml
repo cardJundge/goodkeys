@@ -1,0 +1,47 @@
+<!--添加人员-->
+<view class="add-body">
+  <form bindsubmit="formSubmit">
+    <view class="add-form">
+      <view class="input-box">
+        <text>作业员姓名</text>
+        <input placeholder-class="ph-class" type="text" placeholder="输入作业员姓名" name="nickName" value="{{formData.nickName}}"></input>
+      </view>
+      <view class="input-box">
+        <text>作业员电话</text>
+        <input placeholder-class="ph-class" type="text" placeholder="输入作业员电话" name="mobile" value="{{formData.mobile}}"></input>
+      </view>
+      <view class="input-box">
+        <text decode="{{true}}">机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <input placeholder-class="ph-class" type="text" placeholder="输入机构名称" name="org" value="{{formData.org}}"></input>
+      </view>
+      <view class="input-box">
+        <text decode="{{true}}">工号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <input placeholder-class="ph-class" type="text" placeholder="输入作业员工号" name="jobNo" value="{{formData.jobNo}}"></input>
+      </view>
+      <view class="input-box" wx:if="{{!isEdit}}">
+        <text decode="{{true}}">密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <input placeholder-class="ph-class" type="text" placeholder="初始密码为123456" name="password" value="{{formData.password}}"></input>
+      </view>
+      <view class="input-box">
+        <text decode="{{true}}">分组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <picker bindchange="bindGroupChange" value="{{number}}" range="{{groupDataName}}">
+          <!-- <input placeholder-class="ph-class" type="text" placeholder="请选择分组" value="{{groupData[number].name}}"></input> -->
+          <text class="{{groupData[number].name ? 'select-text' : 'select-text-active'}}">{{groupData[number].name?groupData[number].name: '请选择分组'}}</text>
+        </picker>
+      </view>
+      <view class="input-box leader-box">
+        <text>组长</text>
+        <switch checked="{{isLeader == 0 ? false: true}}" color="#1A65FF" bindchange="leaderChange"/>
+      </view>
+      <view class="select-box">
+        <view class="select-box-title">人员类型</view>
+        <view class="select-tag">
+          <view bindtap="changeStyle" wx:for="{{selectData}}" wx:item="item" wx:key="" class="{{item.selected? 'select-active': 'select-tag-item'}}" data-index="{{index}}">{{item.name}}</view>
+          <view bindtap="changeOtherStyle" wx:for="{{otherSelected}}" wx:item="item" wx:key="" class="{{item.selected? 'select-active': 'select-tag-item'}}" data-index="{{index}}">{{item.name}}</view>
+        </view>
+      </view>
+      <button class="add-btn" formType="submit">确定</button>
+    </view>
+  </form>
+
+</view>

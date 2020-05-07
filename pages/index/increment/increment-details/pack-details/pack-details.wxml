@@ -1,0 +1,24 @@
+<!--增值服务包使用详情-->
+<view class="pack-no" wx:if="{{packDetails.length == 0}}">
+	暂无使用记录
+</view>
+<view wx:else class="pack-list">
+	<block wx:for="{{packDetails}}">
+		<view class="pack-item">
+			<view class="pack-item-top">
+				<text>{{item.add_time}}</text>
+				<text wx:if="{{item.work_status == 0}}">待接单</text>
+				<text wx:if="{{item.work_status == 1}}">服务商接单</text>
+				<text wx:if="{{item.work_status == 2}}">已分配</text>
+				<text wx:if="{{item.work_status == 3}}">进行中</text>
+				<text wx:if="{{item.work_status == 4}}">已完成</text>
+				<text wx:if="{{item.work_status == 5}}">已反馈</text>
+				<text wx:if="{{item.work_status == 6}}">已取消</text>
+			</view>
+			<view class="pack-item-bottom">
+				<text>{{classifyName}}</text>
+				<text>¥{{item.price}}</text>
+			</view>
+		</view>
+	</block>
+</view>

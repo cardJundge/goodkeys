@@ -1,0 +1,222 @@
+/* 联盟详情 */
+
+.union-details-body {
+}
+
+.union-details-top {
+  width: 100%;
+  height: 160rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.top-bg {
+  width: 100%;
+  height: 30rpx;
+  background: #1a65ff;
+  border-radius: 0 0 20rpx 20rpx;
+  position: relative;
+}
+
+.top-box {
+  width: 100%;
+  height: 160rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: -130rpx;
+  top: 0;
+  left: 0;
+}
+
+.top-card {
+  width: 100%;
+  height: 160rpx;
+  padding: 24rpx;
+  background: #fff;
+  box-shadow: 0 0 4rpx 2rpx rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-card-left {
+  display: flex;
+  align-items: center;
+}
+
+.top-card-left-img {
+  margin-right: 24rpx;
+}
+
+.top-card-left-img image {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  border: 1rpx solid #1a65ff;
+}
+
+.top-card-left-text {
+  font-size: 36rpx;
+  color: #35383a;
+}
+
+.top-card-right {
+  background: #1a65ff;
+  color: #fff;
+  padding: 12rpx 24rpx;
+  border-radius: 48rpx;
+}
+
+.union-details-content {
+  margin-top: 160rpx;
+}
+
+.union-member {
+  padding: 24rpx;
+}
+
+.union-member-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.union-member-top>view {
+  display: flex;
+  align-items: center;
+  color: #838383;
+}
+
+.union-member-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 24rpx 16rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.member-item {
+  width: 96rpx;
+  margin-right: 46rpx;
+  margin-bottom: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.leader-icon {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9;
+}
+
+.member-item:nth-child(5n) {
+  margin-right: 0;
+}
+
+.member-item image:first-child {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  border: 1rpx solid #1a65ff;
+  margin-bottom: 12rpx;
+}
+
+.member-item text {
+  font-size: 24rpx;
+  color: #838383;
+  width: 100%;
+  height: 34rpx;
+  line-height: 34rpx;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* 联盟简介 */
+
+.union-introduce {
+  padding: 0 24rpx 24rpx;
+}
+
+.union-introduce-title {
+}
+
+.union-introduce-content {
+  width: 100%;
+  height: auto !important;
+  color: #838383;
+  border-bottom: 2rpx solid #f2f2f2;
+  padding: 12rpx 0;
+  min-height: 168rpx;
+}
+
+/* 主导业务 */
+
+.union-business {
+  padding: 0 24rpx 24rpx;
+}
+
+.union-business-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.union-business-item {
+  padding: 8rpx 24rpx;
+  display: flex;
+  align-items: center;
+  margin-right: 24rpx;
+  margin-bottom: 12rpx;
+  background: #1a65ff;
+  border-radius: 8rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+/* 加入联盟方式 */
+
+.union-mode {
+  padding: 0 24rpx 24rpx;
+}
+
+.union-mode-top {
+  padding-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.union-mode-top>view {
+  display: flex;
+  align-items: center;
+  color: #838383;
+}
+
+.union-btn-box {
+  padding: 12rpx 24rpx;
+}
+
+.union-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #e0e0e0;
+  border-radius: 60rpx;
+  font-size: 36rpx;
+  color: #8d8d8d;
+}

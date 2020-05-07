@@ -1,0 +1,108 @@
+/* 分配作业员 */
+
+.assignment-body {
+}
+
+.assignment-top {
+  width: 100%;
+  height: 60rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.search-bg {
+  width: 100%;
+  height: 30rpx;
+  background: #1a65ff;
+  border-radius: 0 0 20rpx 20rpx;
+  position: relative;
+}
+
+.search-box {
+  width: 100%;
+  height: 60rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: -30rpx;
+  top: 0;
+  left: 0;
+}
+
+.search {
+  width: 702rpx;
+  height: 60rpx;
+  background: #fff;
+  border: 2rpx solid #f2f2f2;
+  border-radius: 36rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.search image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.assignment-content {
+  margin-top: 60rpx;
+}
+
+.assignment-content-null {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 310rpx;
+}
+
+.assignment-content-null image {
+  width: 193rpx;
+  height: 150rpx;
+  margin-bottom: 36rpx;
+}
+
+.assignment-content-null text {
+  font-size: 26rpx;
+  color: #36393b;
+  margin-bottom: 164rpx;
+}
+
+.assignment-content-null view {
+  width: 306rpx;
+  height: 70rpx;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 40rpx;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.assignment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 702rpx;
+  margin: 0 24rpx;
+  height: 80rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.assignment-btn {
+  padding: 0;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #1a65ff;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  font-size: 36rpx;
+}

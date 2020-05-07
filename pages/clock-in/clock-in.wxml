@@ -1,0 +1,145 @@
+<!--打卡统计-->
+<view class="clock-in-body">
+	<!-- 打卡、请假切换 -->
+	<view class="switch flex-c-01">
+		<view class="switch-tab flex al-c">
+			<block wx:for="{{tabList}}">
+				<view class="switch-item flex-c-01 {{index == switchActive ? 'switch-active' : ''}}" bindtap="switchTab" data-index="{{index}}">{{item}}</view>
+			</block>
+		</view>
+	</view>
+	<view wx:if="{{switchActive == 0}}">
+		<!-- 打卡统计卡片 -->
+		<view class="statistics flex-sb-02">
+			<view class="statistics-01 flex-sb-01">
+				<view class="flex al-c">
+					<picker mode="date" start="2010" end="2050" bindchange="dateChange">
+						<view>{{dateObj}}</view>
+					</picker>
+					<i-icon type="unfold" color="#1a65ff" size="20" />
+				</view>
+				<text bindtap="toPlace">查看人员位置</text>
+			</view>
+			<view class="statistics-02 flex-sa-02">
+				<text>打卡人数/全部人数</text>
+				<text>12/20</text>
+				<text>考勤设置</text>
+			</view>
+			<view class="statistics-03 flex-sa-01">
+				<view class="statistics-03-item flex flex-d-col al-c">
+					<text>0</text>
+					<text>未打卡</text>
+				</view>
+				<view class="statistics-03-item flex flex-d-col al-c">
+					<text>110</text>
+					<text>已打卡</text>
+				</view>
+				<view class="statistics-03-item flex flex-d-col al-c">
+					<text>20</text>
+					<text>休假中</text>
+				</view>
+				<view class="statistics-03-item flex flex-d-col al-c">
+					<text>0</text>
+					<text>请假中</text>
+				</view>
+			</view>
+		</view>
+		<!-- 人员列表 -->
+		<view class="task-list">
+			<view class="task-item flex-sb-01" bindtap="toPersonnel">
+				<view class="task-item-left flex al-c">
+					<image src="/images/logo.png"></image>
+					<text>zhangxx</text>
+				</view>
+				<view class="task-item-right flex-c-01 status-01">正常</view>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{switchActive == 1}}">
+		<block>
+			<!-- 审批 -->
+			<view class="leave-item flex flex-d-col">
+				<view class="leave-item-title">张xx提交的请假</view>
+				<view class="leave-item-content">
+					<view class="flex al-c">
+						<text>开始时间: </text>
+						<text>2020-04-21 09：00</text>
+					</view>
+					<view class="flex al-c">
+						<text>结束时间: </text>
+						<text>2020-04-27 09：00</text>
+					</view>
+					<view class="flex al-c">
+						<text>请假事由: </text>
+						<text>事假</text>
+					</view>
+				</view>
+				<view class="leave-item-btn flex al-c ju-fe">
+					<view class="flex-c-01" bindtap="toRejectLeave">拒绝</view>
+					<view class="flex-c-01">同意</view>
+				</view>
+			</view>
+			<!-- 审批通过 -->
+			<view class="leave-item flex-sb-01">
+				<view class="left flex flex-d-col">
+					<view class="leave-item-title">张xx提交的请假</view>
+					<view class="leave-item-content">
+						<view class="flex al-c">
+							<text>开始时间: </text>
+							<text>2020-04-21 09：00</text>
+						</view>
+						<view class="flex al-c">
+							<text>结束时间: </text>
+							<text>2020-04-27 09：00</text>
+						</view>
+						<view class="flex al-c">
+							<text>请假事由: </text>
+							<text>事假</text>
+						</view>
+					</view>
+				</view>
+				<view class="right">
+					<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/leave_reject.png"></image>
+				</view>
+			</view>
+			<!-- 审批拒绝 -->
+			<view class="leave-item">
+				<view class="flex-sb-01">
+					<view class="left flex flex-d-col">
+						<view class="leave-item-title">张xx提交的请假</view>
+						<view class="leave-item-content">
+							<view class="flex al-c">
+								<text>开始时间: </text>
+								<text>2020-04-21 09：00</text>
+							</view>
+							<view class="flex al-c">
+								<text>结束时间: </text>
+								<text>2020-04-27 09：00</text>
+							</view>
+							<view class="flex al-c">
+								<text>请假事由: </text>
+								<text>事假</text>
+							</view>
+						</view>
+					</view>
+					<view class="right">
+						<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/leave_pass.png"></image>
+					</view>
+				</view>
+				<view class="line"></view>
+				<!-- 审批时间(拒绝理由) -->
+				<view class="leave-item-content">
+					<view class="flex al-c">
+						<text>审批时间: </text>
+						<text>2020-04-21 09：00</text>
+					</view>
+					<view class="flex al-c">
+						<text>拒绝理由: </text>
+						<text>不同意</text>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+	<leave isShow="{{leaveShow}}" bind:boxConfirm="boxConfirm" />
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-steps": "/dist/steps/index",
+    "i-step": "/dist/step/index",
+    "tags": "/components/tags/tags"
+  },
+  "navigationBarTitleText": "客户管理"
+}

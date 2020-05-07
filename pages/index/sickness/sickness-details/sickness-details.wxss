@@ -1,0 +1,330 @@
+/* 疾病调查详情 */
+
+.disease-step {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.disease-step text {
+  width: 220rpx;
+  height: 58rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(181, 209, 250, 0.5);
+  color: #1a65ff;
+  border-radius: 50rpx;
+  border: 1rpx solid rgba(181, 209, 250, 0.5);
+  font-size: 28rpx;
+}
+
+.disease-content {
+  width: 92%;
+  margin: 0 4%;
+  display: flex;
+  flex-direction: column;
+  font-size: 26rpx;
+}
+
+.disease-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.whole-task {
+  width: 702rpx;
+  margin: 24rpx 24rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 124rpx;
+}
+
+.whole-task-tip {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, sans-serif;
+  letter-spacing: 1rpx;
+  display: flex;
+}
+
+.line {
+  width: 50rpx;
+  height: 6rpx;
+  background: #1a65ff;
+  margin-top: 2rpx;
+}
+
+.task-list {
+  box-shadow: 0 0 2rpx 2rpx rgba(216, 216, 216, 0.5);
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24rpx;
+  margin: 12rpx 0;
+  align-items: center;
+}
+
+/* .task-list-feedback {
+  width: 100%;
+  padding: 0 3%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-list-feedback text:first-child {
+  line-height: 90rpx;
+}
+
+.task-list-feedback text:last-child {
+  width: 400rpx;
+  line-height: 40rpx;
+  text-align: right;
+} */
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.address {
+  color: #bbb9b9;
+  font-size: 24rpx;
+  padding-left: 50rpx;
+}
+
+.task-info {
+  color: #bbb9b9;
+  font-size: 24rpx;
+  padding-left: 50rpx;
+}
+
+.item-result{
+  width: 180rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30rpx;
+  color: #fff;
+}
+
+.status04 {
+  background: #d0d0d0;
+}
+
+.status05 {
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
+}
+
+/* .nextstep{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a65ff;
+  color: white;
+  position: fixed;
+  bottom: 0;
+} */
+
+.whole-base-tip {
+  display: flex;
+  line-height: 50rpx;
+}
+
+.base {
+  color: #bbb9b9;
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, sans-serif;
+  letter-spacing: 1rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-right: 12rpx;
+}
+
+.active {
+  color: #000;
+  /* border-bottom: 5rpx solid #000; */
+  font-weight: 600;
+  font-size: 30rpx;
+  width: 200rpx;
+  margin-right: 12rpx;
+  /* padding-top: 10rpx !important; */
+}
+
+.base-infor {
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(216, 216, 216, 0.5);
+  margin-top: 16rpx;
+}
+
+.base-item {
+  box-shadow: none;
+  border-bottom: 1rpx solid rgba(216, 216, 216, 0.5);
+  border-radius: 0;
+  height: 80rpx;
+  padding: 0 24rpx;
+  width: 100%;
+}
+
+.base-item text:first-child {
+  width: 320rpx;
+}
+
+.accidentstyle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12rpx 24rpx;
+  border-bottom: 1rpx solid rgba(216, 216, 216, 0.5);
+}
+
+.accidentstyle text {
+  line-height: 45rpx;
+}
+
+.pic-mode {
+  width: 100%;
+  margin: 3% 0;
+  border-radius: 20rpx;
+  box-shadow: 0 0 2rpx 2rpx rgba(216, 216, 216, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.pic-mode text {
+  padding: 3% 0 0 3%;
+}
+
+.whole-data-img {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12rpx 24rpx;
+}
+
+.data-list {
+  width: 154rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 12rpx 24rpx 0 0;
+}
+
+.data-list image {
+  width: 154rpx;
+  height: 154rpx;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+}
+
+.data-list video {
+  width: 170rpx;
+}
+
+input {
+  text-align: right;
+}
+
+/* .recording-whole{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16rpx 3%;
+} */
+
+/* .recording{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 70rpx;
+  align-items: center;
+  border: 1rpx solid rgb(241, 241, 241);
+  border-radius: 50rpx;
+  
+}
+
+.recording image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+} */
+
+/* .shangchuan{
+  width: 70rpx;
+  height: 70rpx;
+} */
+
+.no-info {
+  padding: 78rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-info text {
+  color: #aeaeae;
+}
+
+.operation-box {
+  width: 750rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+  background: #1a65ff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.operation-item {
+  height: 90rpx;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24rpx;
+}
+
+.modal-item {
+  padding: 12rpx 0;
+}
+
+.modal-item text {
+  text-align: left;
+}
+
+.modal-item text:first-child{
+  margin-right: 24rpx;
+}
+
+.modal-item text:last-child {
+  color: #242429;
+}
+
+.modal-item-remark {
+  display: flex;
+  flex-direction: column;
+}

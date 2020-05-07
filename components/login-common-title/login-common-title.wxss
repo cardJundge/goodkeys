@@ -1,0 +1,14 @@
+/* (注册忘记密码头部) */
+
+.login-common-title {
+  width: 100%;
+  padding: 42rpx 0 6rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-common-title view {
+  font-size: 50rpx;
+  font-family: PingFangSC-Medium;
+}

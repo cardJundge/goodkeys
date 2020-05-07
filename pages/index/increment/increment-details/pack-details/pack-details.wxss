@@ -1,0 +1,46 @@
+/* 增值服务包使用详情 */
+.pack-no {
+  width: 100%;
+  padding: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8e8e8e;
+}
+
+.pack-list {
+  padding: 24rpx;
+}
+
+.pack-item {
+  width: 100%;
+  height: 156rpx;
+  padding: 24rpx;
+  box-shadow: 0 0 4rpx 0 #0000001a;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.pack-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pack-item-top text:first-child {
+  color: #909090;
+}
+
+.pack-item-top text:last-child {
+  font-size: 24rpx;
+  color: #1A65FF;
+}
+
+.pack-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,13 @@
+<!--底部操作模态框-->
+<view class="bottom-modal-body" wx:if="{{isShow}}" catchtap="closeModal">
+  <view class="bottom-content" catchtap="stopBubble">
+    <view class="bottom-item" bindtap="toEdit" wx:if="{{status < 5}}">
+      <i-icon class="icon" type="brush_fill" size="18" />
+      <text>编辑</text>
+    </view>
+    <view class="bottom-item" bindtap="toDel">
+      <i-icon class="icon" type="trash_fill" size="18" />
+      <text>删除</text>
+    </view>
+  </view>
+</view>

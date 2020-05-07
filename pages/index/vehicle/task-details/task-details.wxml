@@ -1,0 +1,78 @@
+<!--调查任务-->
+<view class="task-details-body">
+  <view class="title">{{vehName}}</view>
+  <view>
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+          <view slot="content">
+            <view>
+              <view class="form-item">
+                <label>调查人员:</label>
+                <view>{{personName ? personName : '无'}}</view>
+              </view>
+
+              <!-- <view class="form-item">
+                <label>面访地址:</label>
+                <view>{{task.place ? task.place : '无'}}</view>
+              </view> -->
+
+              <view class="form-item">
+                <label>详细地址:</label>
+                <view>{{task.address ? task.address : '无'}}</view>
+              </view>
+
+              <view class="form-item">
+                <label>面访对象姓名:</label>
+                <view>{{task.tracer ? task.tracer : '无'}}</view>
+              </view>
+
+              <view class="form-item mode-style">
+                <label>调查经过说明:</label>
+                <view>{{task.state ? task.state : '无'}}</view>
+              </view>
+
+              <view class="investigation" wx:if="{{task.image.length !== 0 || task.audio.length !== 0}}">
+                <label>调查材料:</label>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                  </view>
+                </view>
+                <view class="image-cell" wx:if="{{task.audio.length != 0}}">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
+                  </view>
+                </view>
+                <view class="image-cell" wx:if="{{task.video.length != 0}}">
+                  <view wx:for="{{task.video}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playVideo" data-src="{{item}}">
+                    <video id="myVideo{{index}}" src="{{imgUrl}}{{item}}" object-fit="cover" bindplay="playvideo" bindfullscreenchange='bindfullscreenchange' class="pic"></video>
+                  </view>
+                </view>
+              </view>
+              <view class="investigation" wx:if="{{task.image.length == 0 && task.audio.length == 0 && task.video.length == 0}}">
+                暂无调查材料
+              </view>
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
+    </view>
+    <!-- 驳回原因 -->
+    <view class="reject-list" wx:if="{{taskReject.length != 0}}">
+      <view class="reject-title">驳回意见:</view>
+      <view class="reject-item" wx:for="{{taskReject}}">
+        <view class="reject-item-time">
+          <text>{{index + 1}}、</text>
+          <text>{{item.created_at}}</text>
+        </view>
+        <view class="reject-item-reason">{{item.reason}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="footer" wx:if="{{vehCaseStatus < 4 && vehTaskStatus == 1}}" bindtap="toBackTask">退回</view>
+</view>
+<back isShow="{{isShowBack}}" bind:confirmEvent="confirmEvent" />

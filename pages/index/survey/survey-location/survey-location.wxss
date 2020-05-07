@@ -1,0 +1,39 @@
+/* 出险/定损地点 */
+.survey-location-body {
+
+}
+
+.address-list {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 104rpx
+}
+
+.address-item {
+  width: 702rpx;
+  height: 80rpx;
+  padding: 0 24rpx;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center
+}
+
+.address-item image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.address-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  background: #1a65ff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 36rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tags": "/components/tags/tags"
+  },
+  "navigationBarTitleText": "客户管理"
+}

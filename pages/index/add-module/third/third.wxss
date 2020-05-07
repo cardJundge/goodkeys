@@ -1,0 +1,25 @@
+/* p添加模块---》第三步 */
+.third-body {
+
+}
+
+.third-title {
+  display: flex;
+  justify-content: center;
+  padding: 30rpx 0;
+}
+
+.third-title image {
+  width: 612rpx;
+  height: 68rpx;
+}
+
+.third-item {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx;
+  border-bottom: 1px solid #e9e9e9;
+}

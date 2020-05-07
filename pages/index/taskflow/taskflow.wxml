@@ -1,0 +1,49 @@
+<!--自定义模块列表-->
+<view class="taskflow-body">
+	<view class="list-top">
+		<view class="search-bg">
+			<view class="search-box">
+				<view class="search">
+					<input placeholder-class="ph-class" type='text' placeholder="搜索业务" bindconfirm="search"></input>
+					<image src="/images/personnel/icon_search.png"></image>
+				</view>
+				<image bindtap="addTaskflow" class="add" src="/images/personnel/icon_add.png"></image>
+			</view>
+		</view>
+	</view>
+
+	<!-- 动画加载 -->
+	<view class="loading-img" wx:if="{{spinShow}}">
+		<image src="/images/loading.gif"></image>
+	</view>
+	<view class="list-content" wx:if="{{!spinShow && !noData}}">
+		<view class="list-item" wx:for="{{taskflowList}}" wx:key="" catchtap="toTaskflowDetail" bindtouchstart='bindTouchStart' bindtouchend='bindTouchEnd' bindlongtap="toDelTaskflow" data-id="{{item.id}}" data-taskname="{{item.task_id.nickname}}">
+			<view class="list-item-left">
+				<text>{{item.case_no}}</text>
+				<text>{{item.task_id.nickname}} | {{item.start_date}}</text>
+			</view>
+			<view class='list-item-right' wx:if="{{item.showType == 'norm'}}">
+				<prograss wx:if="{{item.percentage || item.percentage == 0}}" proportion="{{item.percentage}}" />
+			</view>
+			<view class='list-item-right' wx:if="{{item.showType == 'approval'}}">
+				<view wx:if="{{item.approvalName == '已审批'}}" class="status04">
+					{{item.approvalName}}
+				</view>
+				<view wx:if="{{item.approvalName == '未审批'}}" class="status01">
+					{{item.approvalName}}
+				</view>
+			</view>
+			<view class='list-item-right' wx:if="{{item.showType == 'comment'}}">
+				<view wx:if="{{item.commentName == '已评价'}}" class="status04">
+					{{item.commentName}}
+				</view>
+				<view wx:if="{{item.commentName == '未评价'}}" class="status01">
+					{{item.commentName}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="no-data" wx:if="{{noData}}">
+		暂无数据
+	</view>
+</view>

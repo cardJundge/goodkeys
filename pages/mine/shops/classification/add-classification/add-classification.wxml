@@ -1,0 +1,8 @@
+<!--添加分类-->
+<view class="add-classification-body">
+  <view class="add-item">
+    <label>分类名称</label>
+    <input placeholder="请输入分类名称" placeholder-class="ph-class" bindinput="getClassificationName" value="{{classificationName}}"></input>
+  </view>
+  <view class="add-btn" bindtap="toConfirm">确定</view>
+</view>

@@ -1,0 +1,136 @@
+/* 加入联盟 */
+
+.union-join-body {
+}
+
+.union-join-list {
+}
+
+.union-join-item {
+  padding: 24rpx;
+  border-bottom: 2rpx solid #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+}
+
+.item-left-img {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 12rpx;
+}
+
+.item-left-img image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.item-left-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-left-info>view:first-child text:first-child {
+  /* font-size: 26rpx; */
+  color: #030303;
+  margin-right: 12rpx;
+}
+
+.item-left-info>view:first-child text:last-child {
+  font-size: 22rpx;
+  color: #b3b3b3;
+}
+
+.item-left-info>view:last-child {
+  width: 450rpx;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-size: 22rpx;
+  color: #b3b3b3;
+}
+
+.item-left-info-module {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 6rpx;
+}
+
+.item-left-info-module view {
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 0 8rpx;
+  background: #1a65ff;
+  color: #fff;
+  margin-right: 12rpx;
+  margin-bottom: 6rpx;
+  border-radius: 6rpx;
+  font-size: 18rpx;
+}
+
+.item-right {
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+}
+
+.status01 {
+  background: #1a65ff;
+  color: #fff;
+}
+
+.status02 {
+  background: #ff811a;
+  color: #fff;
+}
+
+.status03 {
+  background: #dedede;
+  color: #3c3c3c;
+}
+
+.union-join-list-null {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 310rpx;
+}
+
+.union-join-list-null image {
+  width: 193rpx;
+  height: 150rpx;
+  margin-bottom: 36rpx;
+}
+
+.union-join-list-null text {
+  font-size: 26rpx;
+  color: #36393b;
+  margin-bottom: 164rpx;
+}
+
+.loading-img {
+  width: 100%;
+  height: 80rpx;
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-img image{
+  width: 40rpx;
+  height: 40rpx;
+}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "calendar": "/dist/calendar/index",
+    "i-icon": "/dist/icon/index",
+    "i-steps": "../../dist/steps/index",
+    "i-step": "../../dist/step/index"
+  }
+}

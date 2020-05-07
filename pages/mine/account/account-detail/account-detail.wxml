@@ -1,0 +1,21 @@
+<!--明细-->
+<view>
+  <view class="detail-list" wx:if="{{hasRecord}}">
+    <block wx:for="{{beanList}}">
+      <view class="detail-item">
+        <view class="detail-left">
+          <view class="detail-text">{{item.title}}</view>
+          <view class="detail-time">{{item.time}}</view>
+        </view>
+        <view class="detail-right">{{item.bean}}</view>
+      </view>
+    </block>
+
+  </view>
+  <view class="no-detail" wx:if="{{!hasRecord}}">
+    <view class="no-detail-img">
+      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/bean.png" />
+    </view>
+    <text>暂时没有账户明细...</text>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "i-modal": "/dist/modal/index",
+    "i-icon": "/dist/icon/index",
+    "bottom-modal": "/components/bottom-modal/bottom-modal",
+    "qr-code": "/components/qr-code/qr-code"
+  },
+  "navigationBarTitleText": "查勘定损详情"
+}

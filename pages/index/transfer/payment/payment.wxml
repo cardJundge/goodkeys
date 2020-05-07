@@ -1,0 +1,42 @@
+<!--支付页面-->
+<view class="payment-body">
+  <view class="payment-top">
+    <view class="payment-top-left">
+      <view></view>
+      <view></view>
+      <text>应付金额:</text>
+    </view>
+    <view class="payment-top-right">
+      <text>RMB</text>
+      <text>{{money}}.00</text>
+    </view>
+  </view>
+  <view class="payment-content">
+    <view class="payment-content-title">
+      <view></view>
+      <view>
+        <text>付款方式</text>
+        <text>TERMS OF PAYMENT</text>
+      </view>
+    </view>
+    <view class="payment-content-list">
+      <radio-group class="radiogroup" bindchange="paymentChange">
+        <view class="payment-content-item">
+          <view>
+            <image src="/images/index/wechat_icon.png"></image>
+            <text>微信支付</text>
+          </view>
+          <radio value="0" checked="true"></radio>
+        </view>
+         <view class="payment-content-item">
+          <view>
+            <image src="/images/index/bean_icon.png"></image>
+            <text>账户钱包</text>
+          </view>
+          <radio value="1" checked=""></radio>
+        </view>
+      </radio-group>
+    </view>
+  </view>
+  <view class="payment-btn" bindtap="toPay">确认支付</view>
+</view>

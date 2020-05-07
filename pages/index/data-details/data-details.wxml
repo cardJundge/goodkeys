@@ -1,0 +1,23 @@
+<!--数据统计详情-->
+<view class="defalut"></view>
+<view class="data-details-body">
+  <cover-view class="chart-date">
+    <block wx:for="{{chartDate}}" wx:key="">
+      <cover-view class="chart-date-text {{dataIndex == index ? 'item-active' : ''}}" bindtap="selectDate" data-index="{{index}}">{{item}}</cover-view>
+      <!-- <text wx:else data-index="{{index}}" bindtap="selectDate">{{item}}</text> -->
+    </block>
+  </cover-view>
+  <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+</view>
+
+<view class="task-total">
+  <text>累计任务流</text>
+  <text>总数量{{allCounts}}</text>
+</view>
+
+<view class="task-whole-mode">
+  <view wx:for="{{allData}}" wx:key="" class="task-category">
+    <text>{{item.name}}</text>
+    <text>{{item.num}}</text>
+  </view>
+</view>

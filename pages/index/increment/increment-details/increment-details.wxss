@@ -1,0 +1,100 @@
+/* 增值服务-详情 */
+.details-top {
+  padding: 12rpx 24rpx;
+}
+
+.details-top .top-item {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #dbdbdb;
+  font-size: 24rpx;
+}
+
+.content-tab {
+  width: 100%;
+  padding: 12rpx 24rpx;
+  display: flex;
+  align-items: center;
+  color: #828282;
+}
+
+.tab-item {
+  line-height: 48rpx;
+  margin-right: 36rpx;
+  font-size: 24rpx;
+  position: relative;
+}
+
+.tab-item .line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50rpx;
+  height: 6rpx;
+  background: #1a65ff;
+}
+
+.tab-active {
+  font-size: 30rpx;
+  color: #242429;
+}
+
+.content-list {
+  padding: 24rpx;
+}
+
+.content-item {
+  width: 100%;
+  height: 102rpx;
+  box-shadow: 0 0 6rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 20rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12rpx;
+}
+
+.content-item-right {
+  width: 166rpx;
+  height: 60rpx;
+  background: #1A65FF;
+  color: #fff;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-box {
+  width: 100%;
+  height: 600rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box image{
+  width: 226rpx;
+  height: 226rpx;
+}
+
+.image-box text {
+  color: #939393;
+  margin: 24rpx 0 40rpx;
+}
+
+.image-box view {
+  width: 310rpx;
+  height: 80rpx;
+  background: #1a65ff;
+  color: #ffffff;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

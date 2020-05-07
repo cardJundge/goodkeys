@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "i-modal": "/dist/modal/index",
+    "i-icon": "/dist/icon/index",
+    "task-title": "/components/task-title/task-title",
+    "examine": "/components/examine/examine"
+  },
+  "navigationBarTitleText": "车物调查"
+}

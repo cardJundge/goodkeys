@@ -1,0 +1,102 @@
+/* 注册--》最后一步*/
+
+.register-next-body {
+
+}
+
+.register-tips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-tips>text {
+  font-size: 36rpx;
+}
+
+.tips-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 74rpx;
+  margin-bottom: 48rpx;
+}
+
+.tips-box image {
+  width: 348rpx;
+  height: 62rpx;
+}
+
+.register-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-item {
+  width: 630rpx;
+  height: 90rpx;
+  box-shadow: 0 0 6rpx 0 rgba(0, 0, 0, 0.2);
+  border-radius: 60rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 34rpx;
+  margin-bottom: 48rpx;
+  position: relative;
+}
+
+.register-item image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.line {
+  width: 0;
+  height: 50rpx;
+  border-left: 1rpx solid #d0d0d0;
+  margin: 0 48rpx 0 38rpx;
+}
+
+.register-input {
+}
+
+.register-select {
+  width: 210rpx;
+  height: 42rpx;
+}
+
+.register-select-text {
+  width: 210rpx;
+  height: 42rpx;
+  color: #a3a3a3;
+}
+
+.icon {
+  position: absolute;
+  right: 48rpx;
+  top: 24rpx;
+}
+
+.register-input-picker {
+  display: flex;
+  align-items: center;
+
+}
+
+.code-input {
+  width: 240rpx;
+}
+
+.register-btn {
+  width: 630rpx;
+  height: 90rpx;
+  background: #1a65ff;
+  border-radius: 60rpx;
+  margin-top: 64rpx;
+  font-size: 36rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,173 @@
+<!--添加自定义模块任务流-->
+<view class="add-taskflow">
+	<view class="add-list">
+		<block wx:for="{{field}}">
+			<!-- 文本型 -->
+			<view class="add-item" wx:if="{{item.type == 'text'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<input placeholder="请输入内容" placeholder-class="ph-class" bindinput="getInputInfo" value="{{item.value}}" data-name="{{item.name}}"></input>
+				</view>
+			</view>
+			<!-- 数字型 -->
+			<view class="add-item" wx:if="{{item.type == 'int'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<input placeholder="请输入数字型内容" placeholder-class="ph-class" type="number" bindinput="getInputInfo" value="{{item.value}}" data-name="{{item.name}}"></input>
+				</view>
+			</view>
+			<!-- 位置型 -->
+			<view class="add-item" wx:if="{{item.type == 'location'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content location-content">
+					<input placeholder="请选择位置" placeholder-class="ph-class" disabled="disabled" value="{{item.value}}"></input>
+					<image src="/images/index/location.png" bindtap="tochooseLocation" data-name="{{item.name}}"></image>
+				</view>
+			</view>
+			<!-- 图片型 -->
+			<view class="add-item-image" wx:if="{{item.type == 'image'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<!-- <view class="add-item-content">
+          <input placeholder="请上传图片" placeholder-class="ph-class" disabled="disabled" bindtap="toUploadImg" data-name="{{item.name}}"></input>
+        </view> -->
+				<view class="image-box" wx:if="{{item.type == 'image'}}">
+					<view class="image-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex">
+						<image src="{{imgUrl}}{{imgitem}}" data-index="{{imgindex}}"></image>
+						<i-icon class="image-item-icon" type="delete_fill" color="#ef5959" size="24" bindtap="delImage" data-name="{{item.name}}" data-index="{{imgindex}}" />
+					</view>
+					<view class="image-item" bindtap="uploadImg" data-name="{{item.name}}">
+						<image src="/images/index/add_img_bg.png"></image>
+					</view>
+				</view>
+			</view>
+			<!-- 下拉选择-单选型 -->
+			<view class="add-item" wx:if="{{item.type == 'select'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}">
+						<view>
+							<input placeholder="请选择" placeholder-class="ph-class" disabled="disabled" value="{{item.value}}"></input>
+						</view>
+					</picker>
+				</view>
+			</view>
+			<!-- 下拉选择-多选型 -->
+			<view class="add-item" wx:if="{{item.type == 'check'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<input bindtap="optionCheck" data-type="{{item.type}}" data-name="{{item.name}}" data-option="{{item.value.option}}" placeholder="请选择" placeholder-class="ph-class" value = "{{selectedOption}}" disabled="disabled"></input>
+				</view>
+			</view>
+			<!-- 日期型 -->
+			<view class="add-item" wx:if="{{item.type == 'date'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<picker mode="date" start="2010" end="2050" bindchange="dateChange" data-name="{{item.name}}">
+						<input wx:if="{{!item.value}}" placeholder="请选择日期" placeholder-class="ph-class" disabled="disabled"></input>
+						<view wx:if="{{item.value}}">{{item.value}}</view>
+					</picker>
+				</view>
+			</view>
+			<!-- 时间型 -->
+			<view class="add-item" wx:if="{{item.type == 'time'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<picker mode="time" start="00:00" end="23:59" bindchange="timeChange" data-name="{{item.name}}">
+						<input wx:if="{{!item.value}}" placeholder="请选择时间" placeholder-class="ph-class" disabled="disabled"></input>
+						<view wx:if="{{item.value}}">{{item.value}}</view>
+					</picker>
+				</view>
+			</view>
+			<!-- 时间日期型 -->
+			<view class="add-item" wx:if="{{item.type == 'datetime'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<picker mode="multiSelector" value="{{dateTime}}" bindchange="datetimeChange" bindcolumnchange="datetimeColumnChange" range="{{dateTimeArray}}" data-name="{{item.name}}">
+						<input wx:if="{{!item.value}}" placeholder="请选择日期时间" placeholder-class="ph-class" disabled="disabled"></input>
+						<view wx:if="{{item.value}}">{{item.value}}</view>
+					</picker>
+				</view>
+			</view>
+		</block>
+		<!-- 开始时间 -->
+		<view class="add-item">
+			<view class="add-item-title">
+				<text>*</text>
+				<text>开始时间</text>
+			</view>
+			<view class="add-item-content">
+				<picker mode="multiSelector" value="{{dateTime}}" bindchange="datetimeFixedChange" bindcolumnchange="datetimeFixedColumnChange" range="{{dateTimeArray}}" data-name="开始时间">
+					<input wx:if="{{!startDatetime}}" placeholder="请选择开始时间" placeholder-class="ph-class" disabled="disabled"></input>
+					<view wx:if="{{startDatetime}}">{{startDatetime}}</view>
+				</picker>
+			</view>
+		</view>
+		<!-- 截止时间 -->
+		<view class="add-item">
+			<view class="add-item-title">
+				<text>*</text>
+				<text>截止时间</text>
+			</view>
+			<view class="add-item-content">
+				<picker mode="multiSelector" value="{{dateTime}}" bindchange="datetimeFixedChange" bindcolumnchange="datetimeFixedColumnChange" range="{{dateTimeArray}}" data-name="截止时间">
+					<input wx:if="{{!endDatetime}}" placeholder="请选择截止时间" placeholder-class="ph-class" disabled="disabled"></input>
+					<view wx:if="{{endDatetime}}">{{endDatetime}}</view>
+				</picker>
+			</view>
+		</view>
+		<!-- 执行人 -->
+		<view class="add-item">
+			<view class="add-item-title">
+				<text>*</text>
+				<text>执行人</text>
+			</view>
+			<view class="add-item-content">
+				<picker bindchange="taskSelect" range="{{taskList}}">
+					<view>
+						<input placeholder="请选择作业员" placeholder-class="ph-class" disabled="disabled" value="{{taskName}}"></input>
+					</view>
+				</picker>
+			</view>
+		</view>
+	</view>
+	<view class="add-btn">
+		<view bindtap="onConfirm">确定</view>
+	</view>
+</view>
+<approval-box isShow="{{approvalBoxShow}}" approvalBoxName="{{approvalBoxName}}" approvalType="{{approvalType}}" optionData="{{tempOption}}" bind:boxConfirm="boxConfirm" />

@@ -1,0 +1,514 @@
+<!--调查任务-->
+<view class="task-details-body">
+  <view class="title-tab">
+    <view class="tab-item" wx:for="{{tabList}}" bindtap="changeTab" data-index="{{index}}">
+      <text class="{{isActive == index ? 'tab-active' : ''}}">{{item}}</text>
+    </view>
+  </view>
+  <view class="requirement" wx:if="{{isActive == 1}}">
+    <view class="requirement-title">调查要求:</view>
+    <view wx:if="{{sicknessTaskId<3}}">
+      <view>(1)针对就诊经过(或意外事故经过)，医保、商保、生活轨迹、既往病史、工作单位及体检情况进行全面了解，以上信息制作笔录，并索取相关就诊资料(拍照形式)；</view>
+      <view>(2)核实事故人身份与会员是否相符，人证合一拍照(验伤需按调查作业规则进行)；</view>
+      <view>(3)如会员无法进行面见，按作业要求与申请人或会员家属完成面访；</view>
+      <view>(4)如出现会员身故，进行法医鉴定、放弃互助申请等特殊场景，请按作业要求完成；</view>
+      <view>(5)面访获取资料请按作业要求上传。</view>
+    </view>
+
+    <view wx:elif="{{sicknessTaskId<9}}">
+      <view>(1)调取本次疾病门诊及住院就诊病例，病历资料需支持重疾评定，上传病例需符合公示材料要求；</view>
+      <view>(2)排查门诊信息包括：门诊记录、影像报告、门诊病历；</view>
+      <view>(3)根据案情需要走访一生，核实会员就诊信息；</view>
+      <view>(4)如无法正常调取，请会员或会员家属配合。</view>
+    </view>
+
+    <view wx:elif="{{sicknessTaskId<17}}">
+      <view>(1)具体地点拍照，如楼牌、门牌等；</view>
+      <view>(2)单位走访有一个重要目的，即为成员单位是否每年组织体检，用以对体检机构排查进行铺垫。</view>
+    </view>
+
+    <view wx:if="{{sicknessTaskId ==17}}">
+      <view>(1)成员面访中提及的商业保险必查</view>
+      <view>(2)商业排查需从下列商保公司中排查任意3家（建议先排查TOP3），指定上报具体如下：1)、中国人寿、2)、平安人寿、3)、太平洋人寿、4)、新华人寿、5)、中国太平、6)、泰康人寿、7)、华夏人寿、8)、阳光人寿、9)、人保健康、10）、国泰人寿。</view>
+      <view>(3)如有商业保险，需拍摄商业险保单；</view>
+    </view>
+
+    <view wx:elif="{{sicknessTaskId==18}}">
+      <view>(1)排查会员医保、新农合报销记录；</view>
+      <view>(2)携带成员身份证复印件及委托书前往社保所属单位调取，必要时成员或家属跟随一同前往调取。</view>
+    </view>
+    
+    <view wx:if="{{sicknessTaskId==19}}">
+      <view>(1)结合案情需要，对既往体检机构或可能体检机构进行排查；</view>
+      <view>(2)直接向成员索要；</view>
+      <view>(3)成员常去的医院内的体检中心调查（需携带委托书）；</view>
+      <view>(4)如均无法查找体检记录，则需向各大体检机构索取，或通过各体检机构的APP通过成员身份证号检索。</view>
+      <view>(5)如直接有体检报告则通过报告排查阳性点，如以上调查均无体检报告，则说明于调查报告内。</view>
+    </view>
+  </view>
+  <view wx:if="{{isActive == 0}}">
+    <!-- 第一个样式 (面访病患) -->
+    <view wx:if="{{style == 'firstStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>面访时间:</label>
+                  <view>{{task.face_date ? task.face_date : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>面访地址:</label>
+                  <view>{{task.face_address ? task.face_address : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>公估人姓名:</label>
+                  <view>{{task.task_name ? task.task_name : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>面访对象与患病成员关系:</label>
+                  <view>{{task.face_relation ? task.face_relation : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>面访对象姓名:</label>
+                  <view>{{task.face_name ? task.face_name : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>是否阳性:</label>
+                  <view>{{task.is_positive == 1 ? '是':'否'}}</view>
+                </view>
+
+                <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
+                  <label>阳性说明:</label>
+                  <view>{{task.positive_state ? task.positive_state : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>面访经过说明:</label>
+                  <view>{{task.face_state ? task.face_state : '无'}}</view>
+                </view>
+
+                <view class="investigation" wx:if="{{task.image.length !== 0 || task.audio.length !== 0}}">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+                <view class="investigation" wx:if="{{task.image.length == 0 && task.audio.length == 0}}">
+                  暂无调查材料
+                </view>
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <!-- 第二个样式(排查) -->
+    <view wx:if="{{style == 'secondStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>医院名称:</label>
+                  <view>{{task.hospital ? task.hospital : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>排查时间:</label>
+                  <view>{{task.screen_date ? task.screen_date : '无'}}</view>
+                </view>
+
+                <view class="form-item" wx:if="{{task.screen_type == 1}}">
+                  <label>排查类型:</label>
+                  <view>门诊</view>
+                </view>
+                <view class="form-item" wx:if="{{task.screen_type == 2}}">
+                  <label>排查类型:</label>
+                  <view>住院</view>
+                </view>
+                <view class="form-item" wx:if="{{task.screen_type == 3}}">
+                  <label>排查类型:</label>
+                  <view>门诊及医院</view>
+                </view>
+
+                <view class="form-item">
+                  <label>排查科室:</label>
+                  <view>{{task.screen_department ? task.screen_department : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>是否阳性:</label>
+                  <view>{{task.is_positive == 1 ? '是' : '否'}}</view>
+                </view>
+
+                <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
+                  <label>阳性说明:</label>
+                  <view>{{task.positive_state ? task.positive_state : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>医院排查结论:</label>
+                  <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
+                </view>
+
+                <view class="investigation">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <!-- 第三个样式(走访) -->
+    <view wx:if="{{style == 'thirdStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>走访对象:</label>
+                  <view>{{task.visit_name ? task.visit_name : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>走访时间:</label>
+                  <view>{{task.visit_date ? task.visit_date : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>走访地址:</label>
+                  <view>{{task.visit_address ? task.visit_address : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>是否阳性:</label>
+                  <view>{{task.is_positive == 1 ? '是': '否'}}</view>
+                </view>
+
+                <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
+                  <label>阳性说明:</label>
+                  <text>{{task.positive_state ? task.positive_state : '无'}}</text>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>走访结论:</label>
+                  <text>{{task.visit_conclusion ? task.visit_conclusion : '无'}}</text>
+                </view>
+
+                <view class="investigation">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <!-- 第四个样式 (商保排查)-->
+    <view wx:if="{{style == 'fourthStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>公司名称:</label>
+                  <view>{{task.company ? task.company : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>商保排查结论:</label>
+                  <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>互助排查名称:</label>
+                  <view>{{task.help_screen_name ? task.help_screen_name : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>互助排查结论:</label>
+                  <view>{{task.help_screen_conclusion ? task.help_screen_conclusion : '无'}}</view>
+                </view>
+
+                <view class="investigation">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <!-- 第五个样式 (社保排查) -->
+    <view wx:if="{{style == 'fifthStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>社保局名称:</label>
+                  <view>{{task.social_security ? task.social_security : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>排查时间:</label>
+                  <view>{{task.screen_date ? task.screen_date : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>是否阳性:</label>
+                  <view>{{task.is_positive == 1 ? '是':'否'}}</view>
+                </view>
+
+                <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
+                  <label>阳性说明:</label>
+                  <view>{{task.positive_state ? task.positive_state : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>社保排查结论:</label>
+                  <view>{{task.social_security_screen_conclusion ? task.social_security_screen_conclusion : '无'}}</view>
+                </view>
+
+                <view class="investigation">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <!-- 第六个样式(体检机构排查) -->
+    <view wx:if="{{style == 'sixthStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>体检机构名称:</label>
+                  <view>{{task.medical_org ? task.medical_org : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>排查时间:</label>
+                  <view>{{task.screen_date ? task.screen_date : '无'}}</view>
+                </view>
+                <view class="form-item">
+                  <label>是否阳性:</label>
+                  <view>{{task.is_positive == 1 ? '是' : '否'}}</view>
+                </view>
+
+                <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
+                  <label>阳性说明:</label>
+                  <view>{{task.positive_state ? task.positive_state : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>体检排查结论:</label>
+                  <view>{{task.medical_screen_conclusion ? task.medical_screen_conclusion : '无'}}</view>
+                </view>
+
+                <view class="investigation">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <!-- 第七个样式(事故地点排查) -->
+    <view wx:if="{{style == 'seventhStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>排查时间:</label>
+                  <view>{{task.screen_date ? task.screen_date : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>事故地址:</label>
+                  <view>{{task.accident_address ? task.accident_address : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>排查结论:</label>
+                  <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
+                </view>
+
+                <view class="investigation">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <!-- 第八个样式(事故处理机构排查) -->
+    <view wx:if="{{style == 'eighthStyle'}}">
+      <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
+        <i-collapse name="{{name}}">
+          <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
+            <view slot="content">
+              <view>
+                <view class="form-item">
+                  <label>排查时间:</label>
+                  <view>{{task.screen_date ? task.screen_date : '无'}}</view>
+                </view>
+
+                <view class="form-item">
+                  <label>处理机构:</label>
+                  <view>{{task.accident_address ? task.accident_address : '无'}}</view>
+                </view>
+
+                <view class="form-item mode-style">
+                  <label>排查结论:</label>
+                  <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
+                </view>
+
+                <view class="investigation">
+                  <label>调查材料:</label>
+                  <view class="image-cell">
+                    <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                    </view>
+                  </view>
+                  <view class="image-cell">
+                    <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                      <image src="/images/index/voice.png"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </i-collapse-item>
+        </i-collapse>
+      </view>
+      <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+        <view class="no-data">暂无记录</view>
+      </view>
+    </view>
+
+    <view class="reject-mode" wx:if="{{taskReject.reason}}">
+      <text>驳回意见:</text>
+      <text>{{taskReject.reason}}</text>
+    </view>
+  </view>
+</view>

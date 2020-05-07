@@ -1,0 +1,16 @@
+<!--图标选择-->
+<view class="icon-body">
+  <view class="icon-title">
+    <image wx:if="{{imgUrl}}" src="{{selected}}"></image>
+  </view>
+  <view class="icon-content">
+    <view wx:for="{{iconList}}">
+      <image class="icon-item {{selected == item.src ? 'is-active' : ''}}" src="{{item.src}}" bindtap="selectIcon" data-src="{{item.src}}">
+      <i-icon wx:if="{{selected == item.src}}" class="icon-success" type="success_fill" color="#14D680"/>
+      </image>
+    </view>
+  </view>
+  <view class="btn-box">
+    <view class="icon-btn" bindtap="onConfirm">确定</view>
+  </view>
+</view>

@@ -1,0 +1,49 @@
+<!--添加服务/商品-->
+<view class="add-service-body">
+  <form bindsubmit="formSubmit">
+    <view class="add-service-form">
+      <view class="input-box">
+        <label>商品/服务名称</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商品/服务名称" name="serviceName" value="{{formData.serviceName}}"></input>
+      </view>
+      <view class="input-box">
+        <label>价格</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商品/服务价格" name="servicePrice" value="{{formData.servicePrice}}"></input>
+      </view>
+      <view class="input-box direction-input-box">
+        <label>简介</label>
+        <textarea placeholder-class="ph-class" type="text" placeholder="请输入商品/服务简介" name="serviceIntro" value="{{formData.serviceIntro}}"></textarea>
+      </view>
+      <view class="input-box">
+        <label>类型</label>
+        <picker value="{{serviceTypeIndex}}" range="{{serviceType}}" bindchange="serviceTypeChange">
+          <input wx:if="{{!serviceType[serviceTypeIndex]}}" placeholder-class="ph-class" placeholder="请选择商品/服务类型" disabled="disabled"></input>
+          <view wx:if="{{serviceType[serviceTypeIndex]}}" class="survey-item-picker">{{serviceType[serviceTypeIndex]}}</view>
+        </picker>
+      </view>
+      <view class="input-box">
+        <label>分类</label>
+        <picker mode="multiSelector" value="{{multiIndex}}" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{multiArray}}" >
+          <input wx:if="{{!hasCate}}" placeholder-class="ph-class" placeholder="请选择商品/服务分类" disabled="disabled"></input>
+          <view wx:if="{{hasCate && !showEditCateData}}">{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}</view>
+          <view wx:if="{{hasCate && showEditCateData}}">{{editCateName}} {{editCateChildName}}</view>
+        </picker>
+      </view>
+      <view class="input-box direction-input-box">
+        <label>照片</label>
+        <view class="image-box">
+          <view class="image-item" wx:if="{{imageItem && imgUrl}}">
+            <image src="{{imgUrl}}{{imageItem}}" data-index="{{index}}" bindtap="previewImage"></image>
+            <i-icon class="del-icon" type="delete_fill" size="16" color="#FF9E1A" bindtap="delImg"/>
+          </view>
+          <view class="image-item" wx:if="{{!imageItem}}" bindtap="uploadImg">
+            <i-icon type="add" color="#898989" size="28" />
+            <text>添加照片</text>
+          </view>
+        </view>
+
+      </view>
+      <button formType="submit" class="add-btn">确定</button>
+    </view>
+  </form>
+</view>

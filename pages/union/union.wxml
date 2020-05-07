@@ -1,0 +1,57 @@
+<!--联盟-->
+<view class="union-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
+<view class="union-body">
+  <view class="union-top">
+    <view class="search-bg">
+      <view class="search-box">
+        <view class="search">
+          <input placeholder-class="ph-class" type='text' placeholder="请输入联盟名称进行搜索" bindinput="search"></input>
+          <image src="/images/personnel/icon_search.png"></image>
+        </view>
+        <image bindtap="openUnionSheet" class="add" src="/images/personnel/icon_add.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="union-content" wx:if="{{!someUnion}}">
+    <view class="union-content-null">
+      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/someone_null_bg.png"></image>
+      <text>暂无联盟</text>
+      <view class="union-content-null-btn">
+        <view bindtap="applyUnion">申请加入</view>
+        <view bindtap="establishUnion">创建联盟</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="union-content" wx:if="{{someUnion}}">
+    <view class="uniopn-notice" bindtap="toNoticeList" wx:if="{{noticeList.length !== 0}}">
+      <view class="notice-left">
+        <image src="/images/union/notice.png"></image>
+      </view>
+      <view class="notice-right">
+        <text>联盟通知</text>
+        <text>有{{noticeList.length}}名成员申请加入联盟</text>
+      </view>
+    </view>
+    <view class="union-list">
+      <view class="union-item" wx:for="{{myUnionList}}" bindtap="toUnionDetails" data-id="{{item.id}}">
+        <view class="union-item-left">
+          <image wx:if="{{item.logo}}" src="{{imgUrl}}{{item.logo}}"></image>
+          <image wx:if="{{!item.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+        </view>
+        <view class="union-item-right">
+          <view>{{item.name}}</view>
+          <view class="union-item-right-module">
+            <view wx:for="{{item.module}}" wx:for-item="it">{{it}}</view>
+          </view>
+          <view>{{item.intro}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

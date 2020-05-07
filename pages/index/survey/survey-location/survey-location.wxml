@@ -1,0 +1,12 @@
+<!--出险/定损地点-->
+<view class="survey-location-body">
+  <map id="myMap" markers="{{markers}}" style="width:100%;height:660rpx;" longitude="{{poi.longitude}}" latitude="{{poi.latitude}}" scale='16' show-location>
+  </map>
+  <view class='address-list'>
+    <view class="address-item" wx:for="{{markers}}" bindtap='selectlocation' data-licationid='{{index}}'>
+      <text>{{item.title}}</text>
+      <image src='/images/index/active.png' wx:if="{{index==imageId}}"></image>
+    </view>
+  </view>
+  <view class="address-btn" bindtap="onConfirm">确定</view>
+</view>

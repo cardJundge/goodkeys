@@ -1,0 +1,62 @@
+/* 忘记密码 */
+
+.forget-body {
+
+}
+
+.forget-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 112rpx;
+}
+
+.forget-item {
+  width: 630rpx;
+  height: 90rpx;
+  box-shadow: 0 0 6rpx 0 rgba(0, 0, 0, 0.2);
+  border-radius: 60rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 34rpx;
+  margin-bottom: 48rpx;
+}
+
+.forget-item image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.line {
+  width: 0;
+  height: 50rpx;
+  border-left: 1rpx solid #d0d0d0;
+  margin: 0 48rpx 0 38rpx;
+}
+
+.code-input {
+  width: 240rpx;
+}
+
+.code-text {
+  width: 150rpx;
+  height: 40rpx;
+  color: #1a84ff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.forget-btn {
+  width: 630rpx;
+  height: 90rpx;
+  background: #1A65FF;
+  border-radius: 60rpx;
+  margin-top: 202rpx;
+  font-size: 36rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,28 @@
+<!--转单公司选择-->
+<view class='company-body'>
+  <view class='left-scroll'>
+    <scroll-view scroll-y="true" style="height: {{screenHeight}}px" scroll-into-view="true" scroll-with-animation="true">
+      <block wx:for="{{unionData}}">
+        <view class="{{currentUnion == item.id?'active':''}}" data-id='{{item.id}}' bindtap='selectUnion'>
+          <text>{{item.name}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='right-scroll'>
+    <scroll-view scroll-y="true" style="height: {{screenHeight}}px" scroll-into-view="true" scroll-with-animation="true">
+      <block wx:for="{{unionData}}" wx:if="{{currentUnion == item.id}}">
+        <!-- <view class='list-title' id="{{'inToview'+item.id}}"></view> -->
+        <view class='list-content'>
+          <radio-group class="radiogroup" bindchange="companyChange">
+            <view class='list-item' wx:for="{{item.service}}" wx:for-item="it" wx:if="{{serviceId != it.id}}">
+              <text>{{it.name}}</text>
+              <radio value="{{it.id}}"></radio>
+            </view>
+          </radio-group>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="company-btn" bindtap="onConfirm">确 定</view>
+</view>

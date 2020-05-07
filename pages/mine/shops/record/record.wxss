@@ -1,0 +1,59 @@
+/* 收入记录 */
+
+page {
+  background: #efefef;
+  height: 100%;
+}
+
+.record-body {
+  height: 100%;
+}
+
+.record-list {
+  height: 100%;
+}
+
+.record-item {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120rpx;
+  border-bottom: 1rpx solid #ccc;
+  padding: 0 70rpx 0 24rpx;
+}
+
+.record-item-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.record-item-left text:first-child {
+  font-size: 30rpx;
+  color: #909090;
+}
+
+.record-item-left text:last-child {
+  font-size: 24rpx;
+  color: #cdcdcd;
+}
+
+.record-item-right {
+  font-size: 40rpx;
+  color: #242729;
+}
+
+.no-record-img {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #909090;
+}
+
+.no-record-img image {
+  width: 252rpx;
+  height: 224rpx;
+}

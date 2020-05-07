@@ -1,0 +1,63 @@
+/* 服务项目列表 */
+
+.project-body {
+}
+
+.project-title {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 24rpx;
+  background: #1a65ff;
+  text-align: right;
+  line-height: 80rpx;
+}
+
+.project-content {
+}
+
+.project-list {
+}
+
+.project-item {
+  width: 100%;
+  padding: 0 24rpx;
+  height: 160rpx;
+  border-bottom: 1rpx solid #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-left {
+  display: flex;
+  align-items: center;
+}
+
+.project-left image{
+ width: 80rpx;
+ height: 80rpx;
+ margin-right: 24rpx;
+}
+
+.project-right {
+  display: flex;
+  align-items: center;
+}
+
+.project-right-btn {
+  width: 140rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
+  border-radius: 100rpx;
+}
+
+
+.project-right-btn-del {
+  color: #fff;
+  border: 1rpx solid #1a65ff;
+  background: #1a65ff;
+  margin-left: 24rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "approval-box": "../../../../components/approval-box/approval-box"
+  },
+  "navigationBarTitleText": "录入任务流信息"
+}

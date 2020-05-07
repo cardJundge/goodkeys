@@ -1,0 +1,62 @@
+<!--用户详情-->
+<view class="customer-details-body">
+  <view class="customer-details">
+    <view class="details-info">
+      <view class="details-info-left">
+        <image src="/images/logo.png"></image>
+        <view class="details-info-left-text">
+          <text>客户昵称</text>
+          <text>17635372126</text>
+          <text></text>
+        </view>
+      </view>
+      <view class="details-info-right" bindtap="toEditTags">编辑</view>
+    </view>
+    <view class="details-impression">
+      <view>
+        <image src="/images/mine/shops/icon_star.png"></image>
+        <text>客户印象：</text>
+      </view>
+      <view class="tags-box">
+        <view class="tags-item">客户印象</view>
+        <view class="tags-item">客户印象</view>
+        <view class="tags-item">客户</view>
+        <view class="tags-item">客户</view>
+        <view class="tags-item">客户印象</view>
+      </view>
+    </view>
+    <!-- 记录信息 -->
+    <view class="record-box">
+      <view class="record-item">
+        <text>10</text>
+        <text>看过</text>
+      </view>
+      <view class="record-item">
+        <text>10</text>
+        <text>购买</text>
+      </view>
+      <view class="record-item">
+        <text>20000</text>
+        <text>消费</text>
+      </view>
+    </view>
+  </view>
+  <!-- 记录足迹 -->
+  <view class="footprint">
+    <view class="footprint-title">记录</view>
+    <view>
+      <i-steps current="{{schedule.length}}" direction="vertical">
+        <i-step wx:for="{{schedule}}" wx:for-item="scheduleitem">
+          <view slot="title" class="step-title">
+            <text>{{scheduleitem.date}}</text>
+            <text>{{scheduleitem.title}}</text>
+          </view>
+          <view slot="content" class="step-content">
+            <text>{{scheduleitem.content}}</text>
+          </view>
+        </i-step>
+      </i-steps>
+    </view>
+  </view>
+</view>
+<tags isShow="{{tagsModalShow}}" />

@@ -1,0 +1,161 @@
+/* 申请加入详情 */
+
+.join-details-body {
+
+}
+
+.union-details-top {
+  width: 100%;
+  height: 160rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.top-bg {
+  width: 100%;
+  height: 30rpx;
+  background: #1a65ff;
+  border-radius: 0 0 20rpx 20rpx;
+  position: relative;
+}
+
+.top-box {
+  width: 100%;
+  height: 160rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: -130rpx;
+  top: 0;
+  left: 0;
+}
+
+.top-card {
+  width: 100%;
+  height: 160rpx;
+  padding: 24rpx;
+  background: #fff;
+  box-shadow: 0 0 4rpx 2rpx rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.top-card-left {
+  margin-right: 24rpx;
+}
+
+.top-card-left image {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  border: 1rpx solid #1a65ff;
+}
+
+.top-card-right {
+  font-size: 36rpx;
+  color: #35383a;
+}
+
+.union-details-content {
+  margin-top: 160rpx;
+}
+
+/* 联盟简介 */
+
+.union-introduce {
+  padding: 24rpx;
+}
+
+.union-introduce-title {
+}
+
+.union-introduce-content {
+  width: 100%;
+  height: auto !important;
+  min-height: 168rpx;
+  color: #838383;
+  border-bottom: 2rpx solid #f2f2f2;
+  padding: 12rpx 0;
+}
+
+/* 盟主 */
+.union-leader {
+  padding: 0 24rpx 24rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.union-leader-info {
+  display: flex;
+  align-items: center;
+}
+
+.union-leader-info image {
+  width: 60rpx;
+  height: 60rpx;
+  border: 1rpx solid #1A65FF;
+  margin-right: 12rpx;
+  border-radius: 50%;
+}
+
+/* 成员 */
+
+.union-member {
+  padding: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.union-member view:last-child {
+  color: #838383;
+}
+
+/* 主导业务 */
+
+.union-business {
+  padding: 24rpx;
+}
+
+.union-business-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.union-business-item {
+  padding: 8rpx 24rpx;
+  display: flex;
+  align-items: center;
+  margin-right: 24rpx;
+  margin-bottom: 12rpx;
+  background: #1a65ff;
+  border-radius: 8rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.union-btn-box {
+  padding: 12rpx 24rpx;
+}
+
+.union-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #1a65ff;
+  border-radius: 60rpx;
+  font-size: 36rpx;
+  color: #fff;
+}

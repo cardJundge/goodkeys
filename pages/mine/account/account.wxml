@@ -1,0 +1,57 @@
+
+<view>
+  <view class="container-cash" wx:if="{{!showSuccess}}">
+    <!-- 我的余额 -->
+    <view class="balance">
+      <text class="cash-deailed" bind:tap="toCashDetails">提现明细</text>
+      <view class="balance-img">
+        <image src="/images/mine/wallet.png" />
+      </view>
+      <view class="balance-text">
+        <view></view>
+        <text>我的余额</text>
+        <view></view>
+      </view>
+      <view class="balance-num">
+        <text wx:if="{{cashData}}">{{cashData}}</text>
+        <text wx:else>0</text>
+      </view>
+    </view>
+    <!-- 提现卡片 -->
+    <view class="cash-card">
+      <view class="cash-title">提现到微信零钱包</view>
+      <view class="cash-content">
+        <view class="input-box">
+          <text>姓名：</text>
+          <input bindinput="getName" value="{{name}}" placeholder-class="input-holder" placeholder='请输入真实姓名' />
+        </view>
+        <view class="input-box">
+          <text>提现金额：</text>
+          <input type='number' class="bar" value="{{cashNum}}" bindinput="getNumber" placeholder-class="input-holder" placeholder='请输入提现数量' />
+          <text class="all-btn" bind:tap="onAllCashTap">全部提现</text>
+        </view>
+        <view class="tip">
+          可提现金额
+          <text wx:if="{{cashData}}">{{cashData}}</text>
+          <text wx:else>0</text> 豆子，最低提现金额100豆子
+        </view>
+      </view>
+      <button class="cash-btn" wx:if="{{!btnTrigger}}">{{withdrawalLoding? '提现中...':'提现'}}</button>
+      <button class="cash-btn_tri" wx:if="{{btnTrigger}}" bind:tap="onCashTap">提现</button>
+    </view>
+  </view>
+  <view class="container-success" wx:if="{{showSuccess}}">
+    <view class="title">
+      <view class="title-icon"></view>
+      <view class="title-text">提现成功!</view>
+    </view>
+    <view class="img">
+      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/success.png" />
+    </view>
+    <view class="message">稍后请留意您的微信钱包到账信息</view>
+    <view class="btn-bar">
+      <view class="btn back-btn" bind:tap="goBackMine">返回</view>
+      <view class="btn continue-btn" bind:tap="goCash">继续提现</view>
+    </view>
+  </view>
+</view>

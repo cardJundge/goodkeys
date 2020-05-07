@@ -1,0 +1,33 @@
+/* 修改密码 */
+.modify-body {
+
+}
+
+.modify-input {
+  margin: 0 auto;
+  width: 702rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+
+.modify-input text {
+  width: 128rpx;
+  margin-right: 78rpx;
+}
+
+.modify-btn {
+  /* position: fixed;
+  bottom: 0;
+  left: 0; */
+  width: 702rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  background: #1A65FF;
+  font-size: 36rpx;
+  border-radius: 40rpx;
+  margin: 24rpx;
+}

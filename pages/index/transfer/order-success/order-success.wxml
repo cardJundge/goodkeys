@@ -1,0 +1,5 @@
+<!--下单成功-->
+<view class="success-body">
+  <i-icon type="success_fill" size="128"/>
+  <text>下单成功</text>
+</view>

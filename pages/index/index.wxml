@@ -1,0 +1,87 @@
+<!-- 首页 -->
+<view class="index-body" wx:if="{{spinShow}}">
+	<view class="spin-article">
+		<i-spin size="large" fix></i-spin>
+	</view>
+</view>
+<view class="index-body">
+	<!-- 数据统计 -->
+	<view class="data">
+		<view class="data-bg">
+			<!-- <view class="data-title">
+        <text>数据统计</text>
+        <text bindtap="toDataDetails">详情</text>
+      </view> -->
+			<view class="data-content">
+				<view class="data-item" bindtap="toDataDetails">
+					<text>{{dataStatisticsArray.today?dataStatisticsArray.today:0}}</text>
+					<text>今日任务流</text>
+				</view>
+				<view class="data-item" bindtap="toDataDetails">
+					<text>{{dataStatisticsArray.week?dataStatisticsArray.week:0}}</text>
+					<text>本周任务流</text>
+				</view>
+				<view class="data-item" bindtap="toDataDetails">
+					<text>{{dataStatisticsArray.total?dataStatisticsArray.total:0}}</text>
+					<text>累计任务流</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 业务模块 -->
+	<view class="business">
+		<view class="business-title">
+			<text>业务模块</text>
+			<text bindtap="toManage">管理</text>
+		</view>
+		<view class="business-content">
+			<block wx:for="{{businessArray}}">
+				<!-- 系统模块 -->
+				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}" data-id="{{item.id}}">
+					<image class="left" src="{{item.img}}"></image>
+					<view class="business-item-text">
+						<text>{{item.name}}</text>
+					</view>
+					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'system'}}"></image>
+				</view>
+				<!-- 自定义模块 -->
+				<view wx:if="{{item.icon}}" class="business-item" catchtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
+					<image class="left" src="{{item.img}}"></image>
+					<view class="business-item-text">
+						<text>{{item.name}}</text>
+					</view>
+					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'define'}}"></image>
+				</view>
+			</block>
+			<view class="business-item" bindtap="toAddModule">
+				<!-- <i-icon class="left" type="add" size="48" color="#1a65ff" /> -->
+				<image class="left" src="/images/index/add_module.png"></image>
+				<view class="business-item-text">
+					<text>添加模块</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 企业管理系统 -->
+	<view class="qms">
+		<view class="qms-title">
+			<text>企业管理</text>
+		</view>
+		<view class="qms-content">
+			<view class="qms-item" bindtap="toClockIn">
+				<view class="qms-item-left">
+					<text>打卡</text>
+					<text>人员管控</text>
+				</view>
+				<image src="/images/clock/icon_clock.png"></image>
+			</view>
+			<view class="qms-item" bindtap="toUnion">
+				<view class="qms-item-left">
+					<text>联盟</text>
+					<text>相互合作</text>
+				</view>
+				<image src="/images/union/icon_union.png"></image>
+			</view>
+		</view>
+	</view>
+</view>

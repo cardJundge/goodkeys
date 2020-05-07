@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "prograss": "/components/prograss/prograss"
+  }
+}

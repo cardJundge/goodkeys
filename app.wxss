@@ -1,0 +1,169 @@
+/**app.wxss**/
+
+page {
+  font-size: 30rpx;
+  color: #242429;
+}
+
+view, textarea, scroll-view, button, radio-group {
+  box-sizing: border-box;
+}
+
+.ph-class {
+  color: #a3a3a3;
+}
+
+/* radio默认样式 */
+
+radio .wx-radio-input {
+  height: 30rpx;
+  width: 30rpx;
+}
+
+/* 选中后按钮样式 */
+
+radio .wx-radio-input.wx-radio-input-checked {
+  background: #1a65ff;
+  border: 1rpx solid #1a65ff;
+}
+
+/* 改变微信switch样式 */
+switch .wx-switch-input {
+  width: 82rpx !important;
+  height: 42rpx !important;
+  background: #1a65ff !important;
+  border: #1a65ff !important; /* 2018-07-18 重置开关边框颜色 */
+}
+
+/*白色样式（false的样式）*/
+switch .wx-switch-input::before {
+  width: 82rpx !important;
+  height: 42rpx !important;
+}
+
+/*蓝色样式（true的样式）*/
+switch .wx-switch-input::after {
+  width: 40rpx !important;
+  height: 42rpx !important;
+}
+
+checkbox .wx-checkbox-input {
+  width: 40rpx;
+  height: 40rpx;
+}
+/*checkbox选中后样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #1a65ff;
+}
+/*checkbox选中后图标样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 28rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+/* 首页添加模块里面的按钮样式 */
+.operation-btn {
+  width: 702rpx;
+  height: 80rpx;
+  margin: 60rpx auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 20rpx;
+}
+
+/* flex布局 */
+.flex {
+  display: flex;
+}
+
+.flex-d-col {
+  flex-direction: column;
+}
+
+.flex-d-row {
+  flex-direction: row;
+}
+
+.flex-w {
+  flex-wrap: wrap;
+}
+
+.al-c {
+  align-items: center;
+}
+
+.al-fs {
+  align-items: flex-start;
+}
+
+.al-fe {
+  align-items: flex-end;
+}
+
+.ju-sb {
+  justify-content: space-between;
+}
+
+.ju-sa {
+  justify-content: space-around;
+}
+
+.ju-c {
+  justify-content: center;
+}
+
+.ju-fe {
+  justify-content: flex-end;
+}
+
+.flex-c-01 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-c-02 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-sb-01 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-sb-02 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-sa-01 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-sa-02 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -1,0 +1,56 @@
+<!--添加模块---》第二步-->
+<view class="second-body-container">
+	<view class="second-title">
+		<image src="/images/index/add_module_2.png"></image>
+	</view>
+	<view class="second-body">
+		<view class="second-body-title">
+			<text>任物流信息</text>
+			<text>示例</text>
+		</view>
+		<view class="second-body-form">
+			<movable-area class='movable-area' style='display:{{movableViewInfo.showClass}}; height:{{pageInfo.scrollHeight+200}}px;'>
+				<movable-view class='movable-row' out-of-bounds='true' inertia="false" damping="9999" friction="9999" style='height:{{rowHeight}}px;' direction="vertical" y="{{movableViewInfo.y}}">
+					<view>{{movableViewInfo.data.name}}</view>
+				</movable-view>
+			</movable-area>
+
+			<view class="form-item form-add" bindtap="addField">
+				<image src="/images/index/add_module_icon.png"></image>
+				<text>添加字段</text>
+			</view>
+
+			<scroll-view scroll-y='false' style='height:{{allHeight}}rpx;'>
+				<view wx:for="{{fieldData}}" class="form-item form-select {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}" style='height: {{rowHeight}}px;padding-right: 80rpx;position: relative'>
+					<view class="left">
+						<image src="/images/index/del_module_icon.png" bindtap="delField" data-index="{{index}}"></image>
+						<input placeholder="请填写名称" placeholder-class="ph-class" value="{{item.name}}" bindinput="getFieldInput" data-index="{{index}}"></input>
+					</view>
+					<view wx:if="{{item.type == 'select'}}" class="right" bindtap="toSelectType" data-name="{{item.name}}" data-index="{{index}}" data-type="{{item.type}}" data-required="{{item.required}}" data-option="{{item.option}}">
+						<text style="width: 240rpx">下拉选择-单选型</text>
+						<i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
+					</view>
+					<view wx:elif="{{item.type == 'check'}}" class="right" bindtap="toSelectType" data-name="{{item.name}}" data-index="{{index}}" data-type="{{item.type}}" data-required="{{item.required}}" data-option="{{item.value.option}}">
+						<text style="width: 240rpx">下拉选择-多选型</text>
+						<i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
+					</view>
+					<view wx:else class="right" bindtap="toSelectType" data-name="{{item.name}}" data-index="{{index}}" data-type="{{item.type}}" data-required="{{item.required}}">
+						<text wx:if="{{item.type == 'text'}}">文本型</text>
+						<text wx:if="{{item.type == 'int'}}">数字型</text>
+						<text wx:if="{{item.type == 'location'}}">位置型</text>
+						<text wx:if="{{item.type == 'image'}}">图片型</text>
+						<text wx:if="{{item.type == 'date' || item.type == 'datetime' || item.type == 'time'}}">日期型</text>
+						<i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
+					</view>
+					<!-- 排序 -->
+					<view class="touch-sort" data-index='{{index}}' catchtouchstart="dragStart" catchtouchmove="dragMove" catchtouchend="dragEnd">
+					</view>
+				</view>
+			</scroll-view>
+			<!-- 编辑进来的 -->
+			<view class="second-btn" bindtap="nextStep" wx:if="{{flag == 'edit'}}">确定</view>
+			<!-- 添加进来的 -->
+			<view class="second-btn" bindtap="nextStep" wx:if="{{flag == 'add'}}">下一步</view>
+		</view>
+	</view>
+</view>

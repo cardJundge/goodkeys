@@ -1,0 +1,15 @@
+<!--请假审批框-->
+<view class="leave-body" catchtouchmove="true" wx:if="{{isShow}}" catchtap="toCloseModule">
+	<view class="leave-content" catchtap="stopBubble">
+		<view class="top-title">请假审批</view>
+		<!-- 原因 -->
+		<view class="input-title">请输入拒绝理由</view>
+		<view class="input-box">
+			<textarea placeholder="请输入拒绝理由" placeholder-class="ph-class" bindinput="getTextInput" maxlength="500" value="{{textValue}}"></textarea>
+		</view>
+		<view class="bottom-btn-bar">
+			<view bindtap="toCloseModule">取消</view>
+			<view bindtap="toConfirm">确定</view>
+		</view>
+	</view>
+</view>

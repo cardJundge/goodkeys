@@ -1,0 +1,45 @@
+<!-- 业务模块列表 -->
+<view class="list-body">
+  <view class="list-top">
+    <view class="search-bg">
+      <view class="search-box">
+        <view class="search">
+          <input placeholder-class="ph-class" type='text' placeholder="搜索业务" bindconfirm="search"></input>
+          <image src="/images/personnel/icon_search.png"></image>
+        </view>
+        <image bindtap="addBusiness" class="add" src="/images/personnel/icon_add.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 状态选择 -->
+  <view class="status-box">
+    <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="{{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
+  </view>
+  <!-- 动画加载 -->
+  <view class="loading-img" wx:if="{{spinShow}}">
+    <image src="/images/loading.gif"></image>
+  </view>
+  <view class="list-content" wx:if="{{!spinShow && !hasNoData}}">
+    <view class="list-item" wx:for="{{businessList}}" wx:key="" bindtap="toBusinessDetail" data-listId="{{item.id}}">
+      <view class="list-item-left">
+        <text>案件号: {{item.report_no}}</text>
+        <text wx:if="{{item.type == 0}}">查勘 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+        <text wx:if="{{item.type == 1}}">三责 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+        <text wx:if="{{item.type == 2}}">标的 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+      </view>
+      <text class='list-item-right status01' wx:if='{{item.status==0}}'>待审核</text>
+      <text class='list-item-right status06' wx:if='{{item.status==1}}'>审核失败</text>
+      <text class='list-item-right status02' wx:if='{{item.status==2}}'>审核成功</text>
+      <text class='list-item-right status01' wx:if='{{item.status==3}}'>已分配</text>
+      <text class='list-item-right status02' wx:if='{{item.status==4}}'>进行中</text>
+      <text class='list-item-right status04' wx:if='{{item.status==5}}'>已取消</text>
+      <text class='list-item-right status04' wx:if='{{item.status==6}}'>已完成</text>
+      <text class='list-item-right status04' wx:if='{{item.status==100 && (item.turn_service_id != serviceId)}}'>已转单</text>
+      <text class='list-item-right status01' wx:if='{{item.status==100 && (item.turn_service_id == serviceId)}}'>待审核</text>
+    </view>
+    <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>
+  </view>
+  <view class="no-data" wx:if="{{!spinShow && hasNoData}}">
+    暂无数据
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<!--客户印象标签-->
+<view class="tags-body" wx:if="{{isShow}}" catchtap="toCloseModule">
+  <view class="tags-content" catchtap="stopBubble">
+    <view class="tags-title">
+      <text>客户印象</text>
+      <image src="/images/index/icon_close.png" catchtap="toCloseModule"></image>
+    </view>
+    <!-- 编辑印象标签 -->
+    <view class="tags-edit">
+      <input placeholder-class="ph-class" placeholder="编辑印象标签" bindinput="getImpress" value="{{impressNew}}"></input>
+    </view>
+    <!-- 标签栏 -->
+    <view class="tags-box">
+      <view class="tags-item" wx:for="{{clientData.impress}}">
+        {{item}}
+        <i-icon class="left-text-icon" type="delete_fill" size="16" color="#FF9E1A" bindtap="toDelTags"/>
+      </view>
+    </view>
+    <!-- 底部操作按钮 -->
+    <view class="operation-box">
+      <!-- 取消 -->
+      <view class="operation-cancel" bindtap="onCancel">取消</view>
+      <!-- 确定 -->
+      <view class="operation-confirm" bindtap="onConfirm">确定</view>
+    </view>
+  </view>
+</view>

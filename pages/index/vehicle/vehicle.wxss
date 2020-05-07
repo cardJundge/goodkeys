@@ -1,0 +1,89 @@
+/* 车物调查 */
+@import "../common-top/common-top.wxss";
+.vehicle-body {
+}
+
+/* 刷新 */
+
+.refresh-img {
+  padding-top: 36rpx;
+}
+
+.refresh-img image{
+  width: 100%;
+  height: 100rpx;
+}
+
+/* 状态选择 */
+
+.status-box {
+  width: 100%;
+  height: 136rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0 24rpx;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  background: #fff;
+  padding-top: 76rpx;
+}
+
+.status-item {
+  padding: 0 24rpx;
+  /* width: 160rpx; */
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #e7efff;
+  color: #1a65ff;
+  border-radius: 30rpx;
+  display: inline-block;
+  margin-right: 12rpx;
+  margin-left: 12rpx;
+}
+
+.status-item:first-child {
+  margin-left: 0;
+}
+
+.status-item:last-child {
+ margin-right: 0;
+}
+
+.select-active {
+  background: #1a65ff;
+  color: #fff;
+  display: inline-block;
+}
+
+.more-data {
+  width: 100%;
+  line-height: 80rpx;
+  text-align: center;
+  color: #737373;
+}
+
+.no-data {
+  width: 100%;
+  margin-top: 160rpx;
+  text-align: center;
+  color: #737373;
+}
+
+/* .swiper-content-item-right {
+  width: 100%;
+  height: 160rpx;
+}
+
+.swiper-content-item-right view {
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  background: #FF7165;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */

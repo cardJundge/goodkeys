@@ -1,0 +1,16 @@
+<!--作业员轨迹-->
+<view class="trail-body">
+	<view class="spin-article" wx:if="{{spinShow}}">
+		<i-spin size="large" fix></i-spin>
+	</view>
+	<view class="trail-top flex-c-01">{{currentSelect}}</view>
+	<view class="trail-calendar" hidden="{{fold}}">
+		<calendar calendarConfig="{{calendarConfig}}" bind:afterTapDay="afterTapDay"></calendar>
+	</view>
+	<view class="trail-fold flex-c-01">
+		<i-icon type="unfold" size="18" color="#8e8e8e" wx:if="{{!fold}}" bindtap="toFold"/>
+		<i-icon type="packup" size="18" color="#8e8e8e" wx:if="{{fold}}" bindtap="toUnFold"/>
+	</view>
+	<map longitude="{{poi.longitude}}" latitude="{{poi.latitude}}" markers="{{markers}}" polyline="{{polyline}}" polygons="{{polygons}}" bindmarkertap='goMarkersDetails' style="width: 100%; height: {{mapHeight}}rpx;" scale='12' subkey="UVIBZ-MMEW4-3L3UG-DAWD7-PL3LQ-WHF3C" show-location circles="{{circles}}">
+	</map>
+</view>

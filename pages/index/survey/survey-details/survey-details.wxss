@@ -1,0 +1,172 @@
+/* 查勘定损详情 */
+
+.survey-details-body {}
+
+.business {
+  width: 100%;
+  padding: 0 24rpx;
+}
+
+.business-title {
+  font-size: 36rpx;
+  padding: 24rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.business-content {
+  width: 100%;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.20);
+  border-radius: 20rpx;
+}
+
+.business-item {
+  width: 654rpx;
+  height: 90rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.20);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 24rpx;
+}
+
+.business-item text:last-child {
+  width: 460rpx;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.business-item-code {
+  color: #1a65ff;
+}
+
+/* 进度 */
+
+.progress {
+  width: 100%;
+  padding: 0 24rpx;
+}
+
+.detailed {
+  width: 100%;
+  padding: 0 24rpx 114rpx;
+}
+
+.progress-title {
+  font-size: 36rpx;
+  padding: 24rpx 0;
+}
+
+.progress-content {
+  width: 100%;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.20);
+  border-radius: 20rpx;
+}
+
+.progress-item {
+  width: 702rpx;
+  padding: 24rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.20);
+  display: flex;
+}
+
+.progress-left {
+  width: 18rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-right: 24rpx;
+}
+
+.progress-left image {
+  width: 18rpx;
+  height: 18rpx;
+}
+
+.progress-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-right text:nth-child(1) {
+  line-height: 40rpx;
+}
+
+.progress-right text:nth-child(2) {
+  font-size: 24rpx;
+  color: #717171;
+}
+
+.progress-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.progress-image-item {}
+
+.progress-image-item:nth-child(4) {
+  margin: 12rpx 0 12rpx 12rpx;
+}
+
+.progress-image-item image {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 12rpx;
+}
+
+
+/* 操作 */
+
+.operation {
+  width: 100%;
+  height: 90rpx;
+  box-shadow: 0 -2rpx 0 0 rgba(0, 0, 0, 0.10);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #1a65ff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.operation .icon {}
+
+.operation-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24rpx;
+}
+
+.modal-item {
+  padding: 12rpx 0;
+}
+
+.modal-item text {
+  text-align: left;
+}
+
+.modal-item text:first-child {
+  margin-right: 24rpx;
+}
+
+.modal-item text:last-child {
+  color: #242429;
+}
+
+.modal-item-remark {
+  display: flex;
+  flex-direction: column;
+}

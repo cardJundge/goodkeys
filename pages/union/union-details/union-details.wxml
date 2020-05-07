@@ -1,0 +1,74 @@
+<!--联盟详情-->
+<view claass="union-details-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
+<view class="union-details-body" wx:if="{{!spinShow}}">
+  <view class="union-details-top">
+    <view class="top-bg">
+      <view class="top-box">
+        <view class="top-card">
+          <view class="top-card-left">
+            <view class="top-card-left-img">
+              <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
+              <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+            </view>
+            <view class="top-card-left-text">{{unionInfo.name}}</view>
+          </view>
+          <view class="top-card-right" bindtap="toEditUnion" wx:if="{{leaderId == serviceId}}">
+            编辑
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="union-details-content">
+    <!-- 联盟成员 -->
+    <view class="union-member">
+      <view class="union-member-top">
+        <text>联盟成员</text>
+        <view bindtap="toMemberList">
+          <text>查看{{unionInfo.number}}名成员</text>
+          <i-icon type="enter" size="20" />
+        </view>
+      </view>
+      <view class="union-member-bottom">
+        <view class="member-item" wx:for="{{memberList}}" wx:for-item="memberitem">
+          <image wx:if="{{!memberitem.face}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+          <image wx:if="{{memberitem.face}}" src="{{imgUrl}}{{memberitem.face}}"></image>
+          <image class="leader-icon" src="/images/union/leader.png" wx:if="{{leaderId == memberitem.id}}"></image>
+          <text>{{memberitem.name}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 联盟简介 -->
+    <view class="union-introduce">
+      <text>联盟简介</text>
+      <textarea class="union-introduce-content" value="{{unionInfo.intro}}" disabled="disabled"></textarea>
+    </view>
+    <!-- 主导业务 -->
+    <view class="union-business">
+      <text>主导业务</text>
+      <view class="union-business-content">
+        <view class="union-business-item" wx:for="{{unionInfo.module}}" wx:for-item="it">{{it}}</view>
+      </view>
+    </view>
+    <!-- 加入联盟方式 -->
+    <!-- <view class="union-mode">
+      <view class="union-mode-top">
+        <text>联盟成员</text>
+        <view bindtap="toExamine">
+          <text wx:if="{{unionInfo.audit == 0}}">无需审核直接加入</text>
+          <text wx:if="{{unionInfo.audit == 1}}">需要审核</text>
+          <i-icon type="enter" size="20" />
+        </view>
+      </view>
+    </view> -->
+    <!-- 退出按钮 -->
+    <view class="union-btn-box">
+      <view class="union-btn" bindtap="signOutUnion" data-flag="0" wx:if="{{leaderId == serviceId}}">删除并退出</view>
+      <view class="union-btn" bindtap="signOutUnion" data-flag="1" wx:else>退出</view>
+    </view>
+  </view>
+</view>

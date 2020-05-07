@@ -1,0 +1,4 @@
+<!--(注册忘记密码头部)-->
+<view class="login-common-title">
+		<view>{{title}}</view>
+</view>

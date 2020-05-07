@@ -1,0 +1,175 @@
+/* 打卡统计 */
+.clock-in-body {
+  padding: 24rpx;
+}
+
+.switch {
+  width: 100%;
+  padding: 0 24rpx 24rpx;
+}
+
+.switch-tab {
+  width: 330rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #1a65ff;
+  padding: 5rpx;
+}
+
+.switch-item {
+  width: 160rpx;
+  height: 50rpx;
+  border-radius: 30rpx;
+  color: #1a65ff;
+}
+
+.switch-active {
+  background: #1a65ff;
+  color: #fff;
+}
+
+.statistics {
+  width: 100%;
+  height: 500rpx;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+  padding: 24rpx;
+}
+
+.statistics-01 {
+  width: 100%;
+  color: #1a65ff;
+}
+
+.statistics-01>text {
+  color: #888888;
+}
+
+.statistics-02 {
+  width: 230rpx;
+  height: 230rpx;
+  border-radius: 50%;
+  padding: 48rpx 0;
+  border: 2px solid #1a65ff;
+}
+
+.statistics-02 text:nth-child(1) {
+  font-size: 20rpx;
+  color: #888888;
+}
+
+.statistics-02 text:nth-child(2) {
+  font-size: 34rpx;
+  color: #1a65ff;
+}
+
+.statistics-02 text:nth-child(3) {
+  font-size: 20rpx;
+  color: #1a65ff;
+}
+
+.statistics-03 {
+  width: 100%;
+}
+
+.statistics-03-item text:first-child {
+  font-size: 48rpx;
+}
+
+.task-item {
+  width: 100%;
+  height: 148rpx;
+  padding: 0 24rpx;
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+}
+
+.task-item-left image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+
+.task-item-left text {
+  font-size: 36rpx;
+}
+
+.task-item-right {
+  width: 110rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+  color: #fff;
+}
+
+.status-01 {
+ background: #1a65ff;
+}
+
+.status-02 {
+  background: #FF881A;
+}
+
+.status-03 {
+  background: #19D64D ;
+}
+
+.status-04 {
+  background: #F21AFF;
+}
+
+/* 请假 */
+
+.leave-item {
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.leave-item-title {
+  margin-bottom: 24rpx;
+}
+
+.leave-item-content>view {
+  margin-bottom: 12rpx;
+}
+
+.leave-item-content>view>text:first-child {
+  color: #858585;
+  margin-right: 8rpx;
+}
+
+.leave-item-btn {
+  width: 100%;
+  padding-top: 24rpx;
+}
+
+.leave-item-btn>view {
+  width: 150rpx;
+  height: 60rpx;
+  border-radius: 20rpx;
+}
+
+.leave-item-btn>view:first-child {
+  border: 1rpx solid #1a65ff;
+  color: #1a65ff;
+  margin-right: 24rpx;
+}
+
+.leave-item-btn>view:last-child {
+  background: #1a65ff;
+  color: #fff;
+}
+
+.leave-item .right image{
+  width: 209rpx;
+  height: 168rpx;
+}
+
+.leave-item .line {
+  width: 100%;
+  height: 2rpx;
+  background: #e4e4e4;
+  margin: 12rpx 0 24rpx;
+}

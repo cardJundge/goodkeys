@@ -1,0 +1,19 @@
+<!--服务项目列表-->
+<view class="project-body">
+  <view class="project-title">
+    <i-icon type="add" color="#fff" size="28" bindtap="toAddProject"/>
+  </view>
+  <view class="project-content"></view>
+  <view class="project-list">
+    <view class="project-item">
+      <view class="project-left">
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+        <text>车辆清洗检测服务</text>
+      </view>
+      <view class="project-right">
+        <view class="project-right-btn" bindtap="toEdit">编辑</view>
+        <view class="project-right-btn project-right-btn-del" bindtap="toDel">删除</view>
+      </view>
+    </view>
+  </view>
+</view>

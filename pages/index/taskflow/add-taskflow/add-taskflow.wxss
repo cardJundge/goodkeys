@@ -1,0 +1,101 @@
+/* 添加自定义模块任务流 */
+
+.add-list {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 120rpx;
+}
+
+.add-item {
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #e9e9e9;
+}
+
+.add-item-image {
+  display: flex;
+  flex-direction: column;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #e9e9e9;
+}
+
+.add-item-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.add-item-title text:first-child {
+  color: #ff5c47;
+  width: 28rpx;
+}
+
+.add-item-content {
+  padding-left: 28rpx;
+  position: relative;
+}
+
+.add-item-content input {
+  width: 80%;
+}
+
+.image-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 14rpx;
+}
+
+.image-item {
+  padding: 12rpx;
+  position: relative;
+}
+
+.image-item-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.image-item image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.location-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-content image {
+  width: 36rpx;
+  height: 44rpx;
+}
+
+.add-btn {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #fff;
+}
+
+.add-btn view {
+  width: 702rpx;
+  height: 80rpx;
+  background: #1a65ff;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+}

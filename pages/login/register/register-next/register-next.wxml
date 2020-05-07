@@ -1,0 +1,46 @@
+<!--注册--》最后一步-->
+<view class="register-next-body">
+  <common-title title="{{register.title}}" />
+  <view class="register-tips">
+    <text>完善公司信息</text>
+    <view class="tips-box">
+      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/tips_02.png"></image>
+    </view>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class="register-form">
+      <!-- 公司全称 -->
+      <view class="register-item">
+        <image src="/images/login/login_name.png" mode=""></image>
+        <view class="line"></view>
+        <view class="register-input">
+          <input placeholder-class="ph-class" type="text" placeholder="请输入公司全称" name="company" value="{{formData.company}}" />
+        </view>
+      </view>
+      <!-- 公司简称 -->
+      <view class="register-item">
+        <image src="/images/login/login_name.png" mode=""></image>
+        <view class="line"></view>
+        <view class="register-input">
+          <input placeholder-class="ph-class" type="text" placeholder="请输入公司简称" name="shortName" value="{{formData.shortName}}" />
+        </view>
+      </view>
+      <!-- 选择公司类型 -->
+      <view class="register-item">
+        <image src="/images/login/login_type.png" mode=""></image>
+        <view class="line"></view>
+        <view class="register-input">
+          <picker bindchange="bindCompanyChange" value="{{company}}" range="{{companyArray}}">
+            <!-- <input placeholder-class="ph-class" type="text" placeholder="请选择公司类型"  value="{{companyArray[company]}}"></input> -->
+            <text name="companyType" class="{{companyArray[company] ? 'register-select' : 'register-select-text'}}">{{companyArray[company] ? companyArray[company] : '请选择公司类型'}}</text>
+          </picker>
+        </view>
+        <i-icon class="icon" type="unfold" font-size="18" color="#A6A6A6"/>
+      </view>
+
+      <button class="register-btn" formType="submit" wx:if="{{!isDisabled}}">确定</button>
+      <button class="register-btn" wx:if="{{isDisabled}}">注册中...</button>
+    </view>
+
+  </form>
+</view>

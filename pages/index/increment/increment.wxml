@@ -1,0 +1,23 @@
+<!--增值服务-->
+<view class="increment-body">
+	<view class="list-top">
+		<view class="search-bg">
+			<view class="search-box">
+				<view class="search">
+					<input placeholder-class="ph-class" type='text' placeholder="搜索业务" bindconfirm="search"></input>
+					<image src="/images/personnel/icon_search.png"></image>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="list-content">
+		<view wx:for="{{incrementList}}" class="list-item" catchtap="toIncrementDetails" data-id="{{item.id}}" data-mobile="{{item.mobile}}" data-name="{{item.name}}" data-status="{{item.status}}">
+        <view class="list-item-left">
+          <text>{{item.name}} | {{item.mobile}}</text>
+          <text>{{item.added_no}}</text>
+        </view>
+        <view wx:if="{{item.status == 0}}" class='list-item-right status01'>未开通</view>
+				<view wx:if="{{item.status == 1}}" class='list-item-right status04'>已开通</view>
+      </view>
+	</view>
+</view>

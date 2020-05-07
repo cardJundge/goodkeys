@@ -1,0 +1,66 @@
+<!--商品/服务-->
+<view class="service-body">
+  <!-- 商品/服务为空 -->
+  <view class="service-null" wx:if="{{noService}}">
+    <view class="service-null-box">
+      <view>
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/service_null_bg.png"></image>
+        <text>商铺空空如也～</text>
+      </view>
+      <view bindtap="toAddService">
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/icon_add.png"></image>
+        <text>添加</text>
+      </view>
+    </view>
+  </view>
+  <!-- 商品/服务列表 -->
+  <view wx:if="{{!noService}}">
+    <view class="service-list">
+      <view class="service-item" wx:for="{{serviceList}}">
+        <view class="item-top">
+          <image src="{{imgUrl}}{{item.pic}}"></image>
+          <view class="item-top-info">
+            <view class="item-top-info-first">
+              <text>{{item.name}}</text>
+              <view>
+                <text>¥</text>
+                <text>{{item.price}}</text>
+              </view>
+            </view>
+            <text class="item-top-info-second">{{item.intro}}</text>
+            <view class="item-top-info-third">
+              <text></text>
+              <text></text>
+              <text></text>
+            </view>
+          </view>
+        </view>
+        <view class="item-bottom">
+          <view class="item-bottom-left"></view>
+          <view class="item-bottom-right">
+            <view class="item-bottom-right-statistics">
+              <view class="statistics-content">
+                <text>{{item.buy}}</text>
+                <view>
+                  <text></text>
+                  <text>购买</text>
+                </view>
+              </view>
+              <view class="statistics-content">
+                <text>{{item.look}}</text>
+                <view>
+                  <text></text>
+                  <text>看过</text>
+                </view>
+              </view>
+            </view>
+            <view class="item-bottom-right-btn">
+              <view bindtap="toDelService" data-id="{{item.id}}">删除</view>
+              <view bindtap="toEditService" data-id="{{item.id}}">编辑</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

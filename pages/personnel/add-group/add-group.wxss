@@ -1,0 +1,94 @@
+/* 增加分组 */
+
+.add-group-body {
+}
+
+.group-item {
+  width: 702rpx;
+  height: 90rpx;
+  margin: 0 24rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.group-item text {
+  margin-right: 24rpx;
+}
+
+.group-content-null {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 310rpx;
+}
+
+.group-content-null image {
+  width: 193rpx;
+  height: 150rpx;
+  margin-bottom: 36rpx;
+}
+
+.group-content-null text {
+  font-size: 26rpx;
+  color: #36393b;
+  margin-bottom: 164rpx;
+}
+
+.group-content-null view {
+  width: 306rpx;
+  height: 70rpx;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 40rpx;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.group-btn {
+  margin: 24rpx;
+  width: 702rpx;
+  height: 80rpx;
+  /* position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  background: #1a65ff;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+}
+
+.group-content-item {
+  width: 100%;
+  height: 100rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+}
+
+.item-right-btn {
+  width: 140rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
+  border-radius: 100rpx;
+}
+
+.item-right-btn-del {
+  color: #fff;
+  border: 1rpx solid #1a65ff;
+  background: #1a65ff;
+  margin-left: 24rpx;
+}

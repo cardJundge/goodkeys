@@ -1,0 +1,44 @@
+<!--添加服务项目-->
+<view class="add-project-body">
+  <form bindsubmit='formSubmit'>
+    <view class="project-form">
+      <view class="project-item">
+        <label>分类</label>
+        <picker bindchange="projectChange" range="{{projectNameList}}">
+          <view class="project-item-picker" wx:if="{{projectName}}">{{projectName}}</view>
+          <view class="project-item-icon" wx:if="{{!projectName}}">
+            <text>请选择</text>
+            <i-icon type="unfold" />
+          </view>
+        </picker>
+      </view>
+      <view class="project-item">
+        <label>市场价</label>
+        <input placeholder="请输入市场价" placeholder-class="ph-class" value="{{marketPrice}}" bindinput="marketInput"></input>
+      </view>
+      <view class="project-item">
+        <label>平台价</label>
+        <input placeholder="请输入平台价" placeholder-class="ph-class" value="{{truePrice}}" bindinput="trueInput"></input>
+      </view>
+      <view class="project-item">
+        <label>有效期</label>
+        <picker mode="multiSelector" value="{{dateTime}}" bindchange="changedateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+          <view class="project-item-icon">
+              <text>{{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}</text>
+             <i-icon type="unfold" />
+          </view>
+        </picker>
+      </view>
+      <view class="project-item item-image">
+        <label>缩略图</label>
+        <view class="image-box" bindtap='addPic' wx:if="{{!imgSrc}}">
+           <image src="/images/index/add.png"></image> 
+        </view>
+        <view class="image-box" wx:if="{{imgSrc}}">
+           <image src="{{imgUrl}}{{imgSrc}}"></image> 
+        </view>
+      </view>
+    </view>
+    <button class="project-btn" formType="submit">确定</button>
+  </form>
+</view>

@@ -1,0 +1,35 @@
+<!--加入联盟-->
+<view class="union-join-body">
+  <view class="loading-img" wx:if="{{spinShow}}">
+    <image src="/images/loading.gif"></image>
+  </view>
+  <view class="union-join-list" wx:if="{{!spinShow && someUnion}}">
+    <view class="union-join-item" wx:for="{{unionList}}" bindtap="toJoin" data-status="{{item.status}}" data-id="{{item.id}}">
+      <view class="item-left">
+        <view class="item-left-img">
+          <image wx:if="{{item.logo}}" src="{{imgUrl}}{{item.logo}}"></image>
+          <image wx:if="{{!item.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+        </view>
+        <view class="item-left-info">
+          <view>
+            <text>{{item.name}}</text>
+            <text>{{item.number}}名成员</text>
+          </view>
+          <view class="item-left-info-module">
+            <view wx:for="{{item.module}}" wx:for-item="it">{{it}}</view>
+          </view>
+          <view>{{item.intro}}</view>
+        </view>
+      </view>
+      <view class="item-right status01" wx:if="{{item.status == '去申请'}}">{{item.status}}</view>
+      <view class="item-right status02" wx:if="{{item.status == '已申请'}}">{{item.status}}</view>
+      <view class="item-right status03" wx:if="{{item.status == '已加入'}}">{{item.status}}</view>
+    </view>
+  </view>
+  <view class="union-join-list" wx:if="{{!spinShow && !someUnion}}">
+    <view class="union-join-list-null">
+      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/someone_null_bg.png"></image>
+      <text>暂无联盟</text>
+    </view>
+  </view>
+</view>

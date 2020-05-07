@@ -1,0 +1,21 @@
+/* 作业员轨迹 */
+.trail-body {
+
+}
+
+.trail-top {
+  width: 100%;
+  height: 60rpx;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.trail-calendar {
+  width: 100%;
+  height: 114rpx;
+}
+
+.trail-fold {
+  width: 100%;
+  height: 60rpx;
+  background: #fff;
+}

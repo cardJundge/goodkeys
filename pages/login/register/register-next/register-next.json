@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "common-title": "/components/login-common-title/login-common-title",
+    "i-icon": "/dist/icon/index"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "black"
+}

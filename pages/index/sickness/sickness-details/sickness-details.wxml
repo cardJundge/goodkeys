@@ -1,0 +1,259 @@
+<!--疾病调查详情-->
+<view class="disease-step">
+  <block wx:for="{{diseaseStep}}" wx:key="" wx:for-item="step">
+    <text wx:if='{{index==first}}' style="color:#fff;background:#1a65ff" bindtap="selectDiseaseStep" id="{{index}}">{{step}}</text>
+    <text wx:else bindtap="selectDiseaseStep" id="{{index}}">{{step}}</text>
+  </block>
+</view>
+
+<view class="disease-content">
+  <!-- <block wx:for="{{diseaseList}}" wx:key=""> -->
+  <view class="disease-item">
+    <text>案件号</text>
+    <text>{{diseaseList.report_no}}</text>
+  </view>
+  <view class="disease-item">
+    <text>对接人</text>
+    <text>{{diseaseList.docking}}</text>
+  </view>
+  <view class="disease-item" bindtap="phoneCall" data-phone="{{diseaseList.docking_mobile}}">
+    <text>联系电话</text>
+    <text style="color: #1a65ff">{{diseaseList.docking_mobile}}</text>
+  </view>
+  <!-- </block> -->
+</view>
+
+<view class="whole-task" wx:if="{{first == 0}}">
+  <view class="whole-task-tip">全部任务</view>
+  <view class="line"></view>
+  <block wx:for="{{sickTaskList}}" wx:key="" wx:for-item="item">
+    <view class="task-list" bindtap="toDetail" id="{{index}}" data-id="{{item.id}}" data-sickid="{{item.sickness_task_id}}" data-name="{{item.name}}">
+      <view class="item-content">
+        <text>{{index+1}}、{{item.name}}</text>
+        <view class="task-info" catchtap="stopBubble">{{item.taskname}}-
+          <text style="color: #1a65ff" bindtap="phoneCall" data-phone="{{item.taskmobile}}">{{item.taskmobile}}</text>
+        </view>
+        <text class="address">{{item.area[0]}}市</text>
+      </view>
+      <view class="item-result status04" wx:if="{{item.status == 2 || item.status == 3}}">已完成</view>
+      <view class="item-result status05" wx:else>未完成</view>
+    </view>
+  </block>
+   <!-- 转单 -->
+  <view class="operation-box"  wx:if="{{diseaseList.status < 2 && isShowTransfer && !turnOut && !turnIn}}" bindtap="toChangeOrder">
+    <view class="operation-item">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
+  </view>
+  <view class="operation-box"  wx:if="{{diseaseList.status < 2 && turnIn}}" bindtap="toSendBack">
+    <view class="operation-item">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>退回</text>
+    </view>
+  </view>
+  <view class="operation-box"  wx:if="{{(diseaseList.status < 2 && turnOut) || (diseaseList.status == 100 && turnOut)}}">
+    <view class="operation-item">
+      <text>已转单</text>
+    </view>
+  </view>
+</view>
+
+<view class="whole-task" wx:if='{{first == 1}}'>
+  <view class="whole-base-tip">
+    <view wx:for="{{baseTitle}}" wx:key="index" class="base {{currentTab==index ? 'active' : ''}}" bindtap='switchnav' data-index='{{index}}'>
+      <view>{{item}}</view>
+      <view class="{{currentTab==index ? 'line' : ''}}"></view>
+    </view>
+  </view>
+
+  <view class="base-infor">
+
+    <!-- 患者信息 -->
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>成员姓名:</text>
+      <text>{{diseaseList.sick}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>证件类型:</text>
+      <text>{{diseaseList.sick_id_type}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>证件号码:</text>
+      <text>{{diseaseList.sick_id_no}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>保障产品:</text>
+      <text>{{diseaseList.product}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>常住地址:</text>
+      <text>{{diseaseList.sick_address}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>确诊医院:</text>
+      <text>{{diseaseList.sick_hospital}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>确诊疾病:</text>
+      <text>{{diseaseList.sick_sickness}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>出险时间:</text>
+      <text>{{diseaseList.out_time}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>生效时间:</text>
+      <text>{{diseaseList.effect_time}}</text>
+    </view>
+
+    <view class="accidentstyle" wx:if="{{currentTab == 0}}">
+      <text>事故说明:</text>
+      <text>{{diseaseList.remark}}</text>
+    </view>
+
+    <!-- 申请人信息 -->
+    <view class="task-list base-item" wx:if="{{currentTab == 1}}">
+      <text>申请人姓名:</text>
+      <text>{{diseaseList.proposer}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 1}}">
+      <text>证件类型:</text>
+      <text>{{diseaseList.proposer_id_type}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 1}}">
+      <text>证件号码:</text>
+      <text>{{diseaseList.proposer_id_no}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 1}}">
+      <text>常住地址:</text>
+      <text>{{diseaseList.proposer_address}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 1}}" bindtap="phoneCall" data-phone="{{diseaseList.proposer_mobile}}">
+      <text>联系电话:</text>
+      <text style="color: #1a65ff">{{diseaseList.proposer_mobile}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 1}}">
+      <text>与成员的关系:</text>
+      <text>{{diseaseList.proposer_relation}}</text>
+    </view>
+
+  </view>
+</view>
+
+<view class="whole-task" wx:if="{{first == 2}}">
+  <view class="whole-task-tip">相关资料</view>
+  <view class="line"></view>
+
+  <view class="pic-mode">
+    <view wx:if="{{sicknessData.length !== 0}}" wx:for="{{sicknessData}}" wx:for-item="data" wx:for-index="index">
+      <text>{{data.title}}（{{data.picture.length}}份）</text>
+      <view class="whole-data-img">
+        <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="">
+          <image src="{{imgUrl}}{{item}}!100" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
+          <!-- <text>资料</text>
+          <view wx:if="{{index<9}}">0{{index+1}}</view>
+          <view wx:else>{{index+1}}</view> -->
+        </view>
+      </view>
+    </view>
+    <view class="no-info" wx:if="{{sicknessData.length == 0}}">
+      <!-- <image src="/images/index/order_null.png"></image> -->
+      <text>暂无资料</text>
+    </view>
+  </view>
+  <!-- <view class="pic-mode">
+    <text>录音</text>
+    <view class="whole-data-img">
+      <view class="data-list voicestyle" wx:for="{{voiceDataList}}" wx:key="">
+        <image src="/images/index/voice.png"></image>
+        <view wx:if="{{index<9}}">资料 0{{index+1}}</view>
+        <view wx:else>{{index+1}}</view>
+      </view>
+    </view>
+
+    <view class="recording-whole" wx:if="{{voiceIsshow}}">
+      <view class="recording" catchtouchstart="startvoice" catchtouchend='endvoice' style="background:{{bg}}">
+        <image src="/images/icon_yuyin@2x.png"></image>
+        <view>{{voicetext}}</view>
+      </view>
+      <image src="/images/cloud.png" class="shangchuan" bindtap="uploadvoice"></image>
+    </view>
+  </view> -->
+</view>
+
+<view class="whole-task" wx:if='{{first == 3}}'>
+  <view class="whole-task-tip">机构回复</view>
+  <view class="line"></view>
+  <view class="no-info" wx:if="{{!doubttext}}">
+    <!-- <image src="/images/index/order_null.png"></image> -->
+    <text>暂无机构回复</text>
+  </view>
+  <view class="base-infor" wx:if="{{doubttext}}">
+    <view class="accidentstyle">
+      <text>阳性疑点:</text>
+      <text>{{doubttext}}</text>
+    </view>
+    <!-- <view class="task-list base-item">
+      <text>涉及省份:</text>
+      <text>{{diseaseList.province}}</text>
+    </view>
+    <view class="task-list base-item">
+      <text>调查金额:</text>
+      <text>{{diseaseList.money}}</text>
+    </view> -->
+    <view class="task-list base-item">
+      <text>客户放弃申领:</text>
+      <text>{{diseaseList.give_up}}</text>
+    </view>
+    <view class="accidentstyle">
+      <text>调查问题反馈:</text>
+      <text>{{diseaseList.feedback}}</text>
+    </view>
+    <view class="accidentstyle" style="border-bottom: 0">
+      <text>调查整体说明:</text>
+      <text>{{diseaseList.all_remark}}</text>
+    </view>
+  </view>
+</view>
+<i-modal title="提示" visible="{{visible}}" actions="{{actions}}" bind:click="modalClick" bind:cancel="modalCancel">
+  <view class="modal-content">
+   <view class="modal-item">
+      <text>转单公司</text>
+      <text>{{transferOrderDetail.from_servie}}</text>
+    </view>
+    <view class="modal-item">
+      <text>转单时间</text>
+      <text>{{transferOrderDetail.turn_date}}</text>
+    </view>
+    <view class="modal-item">
+      <text>案件分类</text>
+      <text>{{transferOrderDetail.type}}</text>
+    </view>
+    <view class="modal-item modal-item-remark" wx:if="{{transferOrderDetail.remark}}">
+      <text>备注</text>
+      <text>{{transferOrderDetail.remark}}</text>
+    </view>
+    <view class="modal-item">
+      <text>转单金额</text>
+      <text>{{transferOrderDetail.money}}</text>
+    </view>
+     <view class="modal-item">
+      <text>支付方式</text>
+      <text>{{transferOrderDetail.pay}}</text>
+    </view>
+  </view>
+</i-modal>

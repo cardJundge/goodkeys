@@ -1,0 +1,22 @@
+<view class="container" wx:if="{{isShow}}" catchtap="closeMode">
+  <!-- <form bindsubmit="submitaddtitle"> -->
+  <view class="whole-mode" catchtap="stopBubble" >
+    <view class="title">
+      <text>添加任务</text>
+    </view>
+    <view class="task-content">
+      <text>任务标题:</text>
+      <input placeholder="请输入添加任务的标题" bindinput="inputTitle"></input>
+    </view>
+    <view class="task-content">
+      <text>调查地点:</text>
+      <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+        <input placeholder=" -  省  -  市 " disabled="disabled" wx:if="{{!region[0]}}"></input>
+        <input disabled="disabled" value="{{region[0]+'-'+region[1]}}" wx:else></input>
+      </picker>
+    </view>
+
+    <button bindtap="sure">确定</button>
+  </view>
+  <!-- </form> -->
+</view>

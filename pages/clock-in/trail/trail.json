@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "calendar": "/dist/calendar/index",
+    "i-spin": "/dist/spin/index",
+    "i-icon": "/dist/icon/index"
+  }
+}

@@ -1,0 +1,26 @@
+<!--添加模块-->
+<view class="module-body" catchtouchmove="true"  wx:if="{{isShow}}" catchtap="toCloseModule">
+  <view class="module-content" wx:if="{{bottomSpin}}">
+    <view class="loading-img">
+      <image src="/images/index/code.gif"></image>
+      <text>模块加载中...</text>
+    </view>
+  </view>
+  <view class="module-content" wx:if="{{!bottomSpin}}" catchtap="stopBubble">
+    <view class="module-title">
+      <text>添加模块</text>
+      <!-- <i-icon type="close" class="close-icon" size="18" color="#979797"/> -->
+    </view>
+    <scroll-view class="module-list-scroll" scroll-y='true'>
+      <view class="module-list">
+        <view wx:for="{{module}}" wx:for-item="item" class="module-item" data-index="{{index}}" bindtap="selectModule">
+          <view class="circle" wx:if="{{!item.selected}}"></view>
+          <i-icon class="icon" wx:if="{{item.selected}}" type="success_fill" size="22" color="#1A65FF" />
+          <image src="{{item.img}}"></image>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="module-btn" bindtap="onConfirm">确定</view>
+  </view>
+</view>

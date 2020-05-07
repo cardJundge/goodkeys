@@ -1,0 +1,68 @@
+/* 联盟通知 */
+
+.notice-body {
+}
+
+.notice-list {
+}
+
+.notice-item {
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+}
+
+.item-left image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.item-left-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-left-info text:last-child {
+  font-size: 26rpx;
+  color: #b3b3b3;
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+}
+
+.item-right-text {
+  color: #b3b3b3;
+  width: 252rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.item-right view {
+  width: 120rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  color: #fff;
+  border-radius: 20rpx;
+}
+
+.item-right view:first-child {
+  margin-right: 12rpx;
+  background: #ff651a;
+}
+
+.item-right view:last-child {
+  background: #1a65ff;
+}

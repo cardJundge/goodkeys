@@ -1,0 +1,71 @@
+/* 明细 */
+
+page {
+  background: #efefef;
+}
+
+view {
+  box-sizing: border-box;
+}
+
+.container {
+  /* padding-bottom: 150rpx; */
+}
+
+.detail-list {
+}
+
+.detail-item {
+  background: #fff;
+  height: 120rpx;
+  border-bottom: 1rpx solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 70rpx 0 24rpx;
+}
+
+.detail-left {
+}
+
+.detail-text {
+  font-size: 30rpx;
+  color: #909090;
+}
+
+.detail-time {
+  font-size: 24rpx;
+  color: #cdcdcd;
+}
+
+.detail-right {
+  font-size: 40rpx;
+  color: #242729;
+}
+
+/* 没有明细显示样式 */
+
+.no-detail {
+  width: 750rpx;
+  height: 1190rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-detail text {
+  font-size: 30rpx;
+  color: #909090;
+}
+
+.no-detail-img {
+  width: 100%;
+  text-align: center;
+}
+
+.no-detail-img image {
+  width: 200rpx;
+  height: 170rpx;
+  margin-bottom: 24rpx;
+}

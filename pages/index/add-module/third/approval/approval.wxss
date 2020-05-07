@@ -1,0 +1,45 @@
+/* 管理者审批 */
+@import "../common.wxss";
+
+page {
+  height: 100%;
+  width: 100%;
+}
+
+.approval-body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.movable-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+}
+
+.movable-area .movable-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #eee;
+  background: #fff;
+}
+
+.ready-place {
+  background: #ccc;
+}
+
+.touch-sort {
+  width: 80rpx;
+  height: 90rpx;
+  background: url('https://6f6d-omo-service-b6dza-1301029807.tcb.qcloud.la/images/sort_icon.png?sign=7aeb36235a74f320c8818464684d8451&t=1585208445') no-repeat center;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9;
+}

@@ -1,0 +1,11 @@
+<!--评价二维码-->
+<view class="qr-code-body" wx:if="{{isShow}}">
+  <view class="qr-code-content">
+    <view class="no-image" wx:if="{{!qrImg}}">
+      <image src="/images/index/code.gif"></image>
+      <text>二维码生成中...</text>
+    </view>
+    <image wx:if="{{qrImg}}" src="data:image/png;base64,{{qrImg}}"></image>
+  </view>
+  <i-icon bindtap="closeModal" type="delete" size="48" color="#ffffff" />
+</view>
