@@ -187,7 +187,7 @@
 				<!-- 未评价 -->
 				<view class="content-box-item" wx:if="{{!item.record}}">
 					<view class="no-evaluate">
-						<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/no_evaluate.png"></image>
+						<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/no_evaluate.png"></image>
 						<text>暂无评价</text>
 					</view>
 				</view>

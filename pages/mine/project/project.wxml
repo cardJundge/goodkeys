@@ -7,7 +7,7 @@
   <view class="project-list">
     <view class="project-item">
       <view class="project-left">
-        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+        <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png"></image>
         <text>车辆清洗检测服务</text>
       </view>
       <view class="project-right">

@@ -5,7 +5,7 @@
       <view class="commpany-info">
         <view class="commpany-info-card">
         <image class="mine-avatar-img" src="{{avatarUrl}}"></image>
-          <!-- <image class="mine-avatar-img" src="{{avatarUrl ? avatarUrl : 'cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png'}}"></image> -->
+          <!-- <image class="mine-avatar-img" src="{{avatarUrl ? avatarUrl : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/default_user.png'}}"></image> -->
           <view class="commpany-info-card-text">
             <text wx:if="{{basicUserInfo.type == 1}}">{{basicUserInfo.name}}公估公司</text>
             <text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.name}}4S店</text>

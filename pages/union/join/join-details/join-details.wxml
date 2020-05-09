@@ -11,7 +11,7 @@
         <view class="top-card">
           <view class="top-card-left">
             <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
-            <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+            <image wx:if="{{!unionInfo.logo}}" src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/default_user.png"></image>
           </view>
           <view class="top-card-right">
             {{unionInfo.name}}
@@ -31,7 +31,7 @@
       <view>盟主</view>
       <view class="union-leader-info">
         <image wx:if="{{leaderInfo.face}}" src="{{imgUrl}}{{leaderInfo.face}}"></image>
-        <image wx:if="{{!leaderInfo.face}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+        <image wx:if="{{!leaderInfo.face}}" src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png"></image>
         <text>{{leaderInfo.name}}</text>
       </view>
     </view>

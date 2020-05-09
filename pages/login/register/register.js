@@ -8,7 +8,7 @@ var loginModel = new LoginModel()
 Page({
   data: {
     register: {
-      title: '注册Goodkeys企业版端账号'
+      title: '注册Goodkeys企业版账号'
     },
     codetime: 0,
     isDisabled: false,

@@ -11,7 +11,7 @@
   </view>
   <view class="record-list">
     <view class="no-record-img">
-      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/classification_null_bg.png" />
+      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/classification_null_bg.png" />
       <text>暂时没有记录...</text>
     </view>
   </view>

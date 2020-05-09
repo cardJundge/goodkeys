@@ -39,7 +39,7 @@
 		<view class="top-content top-content-task" wx:if="{{currentPage == 'task'}}">
 			<view class="task-card">
 				<view class="task-card-left">
-					<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+					<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png"></image>
 					<text>{{taskName}}</text>
 				</view>
 				<view class="task-card-right">0分</view>
@@ -67,8 +67,8 @@
 			</view>
 		</view>
 	</view>
-	<view class="no-data" wx:if="{{noData}}">
-		<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/statistics_no_data.png"></image>
+	<view class="no-data" wx:if="{{noData || (moduleFlag == 'system' && allStatistics.total == 0 && allStatistics.complete == 0 && allStatistics.unfinished == 0)}}">
+		<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/statistics_no_data.png"></image>
 		<text>暂无数据</text>
 	</view>
 	<view wx:if="{{moduleFlag == 'define' && !noData}}">
@@ -178,7 +178,7 @@
 						<view class="th">分数</view>
 					</view>
 					<view class="tr" wx:for="{{tableData}}">
-						<view class="td" bindtap="enterTaskPage" data-id="{{item.id}}" data-name="{{item.nickname}}">{{item.nickname}}</view>
+						<view class="td" style="color: #1a65ff" bindtap="enterTaskPage" data-id="{{item.id}}" data-name="{{item.nickname}}">{{item.nickname}}</view>
 						<view class="td">{{item.aging}}</view>
 						<view class="td">0</view>
 						<view class="td">{{item.over_rate}}</view>

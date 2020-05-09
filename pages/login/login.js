@@ -29,8 +29,7 @@ Page({
   initValidate() {
     const rules = {
       phone: {
-        required: true,
-        tel: true
+        required: true
       },
       password: {
         required: true
@@ -39,8 +38,7 @@ Page({
     }
     const messages = {
       phone: {
-        required: '请填写手机号',
-        tel: '请填写正确的手机号'
+        required: '请填写手机号'
       },
       password: {
         required: '请填写密码'

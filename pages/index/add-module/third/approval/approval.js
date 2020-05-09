@@ -109,13 +109,7 @@ Page({
 
   // 点击确定按钮
   onConfirm() {
-    if (this.data.approvalData.length == 0) {
-      return wx.showToast({
-        title: '客户评价不能为空',
-        icon: 'none'
-      })
-    } else {
-      let arr = []
+    let arr = []
       this.data.approvalData.forEach((item, index) => {
         arr.push(item.name)
       })
@@ -125,7 +119,6 @@ Page({
           icon: 'none'
         })
       }
-    }
     let data = JSON.stringify(this.data.approvalData)
     var pages = getCurrentPages()
     var currPage = pages[pages.length - 1] //当前页面

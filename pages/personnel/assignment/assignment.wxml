@@ -13,7 +13,7 @@
 
   <view class="assignment-content" wx:if="{{!someone}}">
     <view class="assignment-content-null">
-      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/someone_null_bg.png"></image>
+      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/someone_null_bg.png"></image>
       <text>暂无人员</text>
       <view bindtap="addStaff">立即添加</view>
     </view>

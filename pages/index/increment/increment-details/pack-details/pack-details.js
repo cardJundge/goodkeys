@@ -16,7 +16,8 @@ Page({
     this.data.classifyId = options.classifyId
     this.data.policyId = options.policyId
     this.setData({
-      classifyName: options.classifyName
+      classifyName: options.classifyName,
+      classifyId: options.classifyId
     })
     this.getPackDetails()
   },

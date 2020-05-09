@@ -4,11 +4,11 @@
   <view class="service-null" wx:if="{{noService}}">
     <view class="service-null-box">
       <view>
-        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/service_null_bg.png"></image>
+        <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/service_null_bg.png"></image>
         <text>商铺空空如也～</text>
       </view>
       <view bindtap="toAddService">
-        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/icon_add.png"></image>
+        <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/icon_add.png"></image>
         <text>添加</text>
       </view>
     </view>

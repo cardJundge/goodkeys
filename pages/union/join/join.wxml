@@ -8,7 +8,7 @@
       <view class="item-left">
         <view class="item-left-img">
           <image wx:if="{{item.logo}}" src="{{imgUrl}}{{item.logo}}"></image>
-          <image wx:if="{{!item.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+          <image wx:if="{{!item.logo}}" src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/default_user.png"></image>
         </view>
         <view class="item-left-info">
           <view>
@@ -28,7 +28,7 @@
   </view>
   <view class="union-join-list" wx:if="{{!spinShow && !someUnion}}">
     <view class="union-join-list-null">
-      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/someone_null_bg.png"></image>
+      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/someone_null_bg.png"></image>
       <text>暂无联盟</text>
     </view>
   </view>

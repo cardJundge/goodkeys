@@ -16,7 +16,7 @@
       <view class="member-content-title">盟主</view>
       <view>
         <image wx:if="{{leaderInfo.face}}" src="{{imgUrl}}{{leaderInfo.face}}"></image>
-        <image wx:if="{{!leaderInfo.face}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+        <image wx:if="{{!leaderInfo.face}}" src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png"></image>
         <text>{{leaderInfo.name}}</text>
       </view>
     </view>
@@ -28,7 +28,7 @@
           <view wx:for="{{item.list}}" wx:for-index="in" wx:key="{{in}}" wx:for-item="it">
             <view slot="content" class="member-content-item">
               <view class="member-content-item-left">
-                <image src="{{it.face ? imgUrl + it.face : 'cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png'}}"></image>
+                <image src="{{it.face ? imgUrl + it.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
                 <view class="member-content-item-text">
                   <text>{{it.name}}</text>
                 </view>

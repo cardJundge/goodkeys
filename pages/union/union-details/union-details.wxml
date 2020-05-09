@@ -12,7 +12,7 @@
           <view class="top-card-left">
             <view class="top-card-left-img">
               <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
-              <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+              <image wx:if="{{!unionInfo.logo}}" src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/default_user.png"></image>
             </view>
             <view class="top-card-left-text">{{unionInfo.name}}</view>
           </view>
@@ -35,7 +35,7 @@
       </view>
       <view class="union-member-bottom">
         <view class="member-item" wx:for="{{memberList}}" wx:for-item="memberitem">
-          <image wx:if="{{!memberitem.face}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/task_default_avatar.png"></image>
+          <image wx:if="{{!memberitem.face}}" src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png"></image>
           <image wx:if="{{memberitem.face}}" src="{{imgUrl}}{{memberitem.face}}"></image>
           <image class="leader-icon" src="/images/union/leader.png" wx:if="{{leaderId == memberitem.id}}"></image>
           <text>{{memberitem.name}}</text>

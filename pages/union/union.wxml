@@ -19,7 +19,7 @@
 
   <view class="union-content" wx:if="{{!someUnion}}">
     <view class="union-content-null">
-      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/someone_null_bg.png"></image>
+      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/someone_null_bg.png"></image>
       <text>暂无联盟</text>
       <view class="union-content-null-btn">
         <view bindtap="applyUnion">申请加入</view>
@@ -42,7 +42,7 @@
       <view class="union-item" wx:for="{{myUnionList}}" bindtap="toUnionDetails" data-id="{{item.id}}">
         <view class="union-item-left">
           <image wx:if="{{item.logo}}" src="{{imgUrl}}{{item.logo}}"></image>
-          <image wx:if="{{!item.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+          <image wx:if="{{!item.logo}}" src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/default_user.png"></image>
         </view>
         <view class="union-item-right">
           <view>{{item.name}}</view>

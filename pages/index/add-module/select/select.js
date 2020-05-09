@@ -59,32 +59,30 @@ Page({
   onLoad(options) {
     console.log(options)
     if (options.flag == 'task') {
-      if (options.type == 'select' || options.type == 'check') {
+      if (options.type == 'select') {
         this.setData({
           flag: options.flag,
           tempData: {
             name: options.name,
             weight: options.weight,
-            type: options.type
-          }
+            type: options.type,
+            option: JSON.parse(options.option)
+          },
+          selectData: JSON.parse(options.option)
         })
-        if (options.type == 'select') {
-          this.setData({
-            tempData: {
+      } else if (options.type == 'check') {
+        this.setData({
+          flag: options.flag,
+          tempData: {
+            name: options.name,
+            weight: options.weight,
+            type: options.type,
+            value: {
               option: JSON.parse(options.option)
-            },
-            selectData: JSON.parse(options.option)
-          })
-        } else {
-          this.setData({
-            tempData: {
-              value: {
-                option: JSON.parse(options.option)
-              }
-            },
-            checkData: JSON.parse(options.option)
-          })
-        }
+            }
+          },
+          checkData: JSON.parse(options.option)
+        })
       } else {
         this.setData({
           flag: options.flag,
@@ -103,35 +101,32 @@ Page({
         }
       })
     } else {
-      if (options.type == 'select' || options.type == 'check') {
+      if (options.type == 'select') {
         this.setData({
           flag: options.flag,
+          switchChecked: options.required == 1 ? true : false,
           tempData: {
             name: options.name,
             required: options.required,
-            type: options.type
+            type: options.type,
+            option: JSON.parse(options.option)
           },
-          switchChecked: options.required == 1 ? true : false
+          selectData: JSON.parse(options.option)
         })
-        console.log('bug',this.data.tempData)
-        if (options.type == 'select') {
-          this.setData({
-            tempData: {
+      } else if (options.type == 'check') {
+        this.setData({
+          flag: options.flag,
+          switchChecked: options.required == 1 ? true : false,
+          tempData: {
+            name: options.name,
+            required: options.required,
+            type: options.type,
+            value: {
               option: JSON.parse(options.option)
-            },
-            selectData: JSON.parse(options.option)
-          })
-        } else {
-          this.setData({
-            tempData: {
-              value: {
-                option: JSON.parse(options.option)
-              }
-            },
-            checkData: JSON.parse(options.option)
-          })
-        }
-        console.log('bug测试',this.data.tempData)
+            }
+          },
+          checkData: JSON.parse(options.option)
+        })
       } else {
         this.setData({
           flag: options.flag,
@@ -217,7 +212,7 @@ Page({
       })
     } else if (e.detail.value == 'select') {
       this.data.tempData.type = e.detail.value
-      this.data.tempData.option = []
+      this.data.tempData.option = this.data.selectData ? this.data.selectData : ''
       this.setData({
         dateBoxShow: false,
         selectBoxShow: true,
@@ -226,7 +221,7 @@ Page({
     } else if (e.detail.value == 'check') {
       this.data.tempData.type = e.detail.value
       this.data.tempData.value = {
-        option: []
+        option: this.data.checkData ? this.data.checkData : []
       }
       this.setData({
         dateBoxShow: false,
@@ -303,7 +298,7 @@ Page({
       this.setData({
         selectData: this.data.selectData
       })
-      console.log(this.data.tempData,this.data.selectData)
+      console.log(this.data.tempData, this.data.selectData)
       this.data.tempData.option = this.data.selectData
     } else {
       this.data.checkData.forEach((item, index) => {

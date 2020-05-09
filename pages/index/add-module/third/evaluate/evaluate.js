@@ -47,8 +47,8 @@ Page({
 
   toSelectType(e) {
     let evaluateType = e.currentTarget.dataset.type,
-    evaluateRequired = e.currentTarget.dataset.required,
-    evaluateName = e.currentTarget.dataset.name
+      evaluateRequired = e.currentTarget.dataset.required,
+      evaluateName = e.currentTarget.dataset.name
     this.data.evaluateId = e.currentTarget.dataset.index
     if (evaluateType == 'select' || evaluateType == 'check') {
       let evaluateOption = JSON.stringify(e.currentTarget.dataset.option)
@@ -59,7 +59,7 @@ Page({
       wx.navigateTo({
         url: '../../select/select?flag=' + 'evaluate' + '&name=' + evaluateName + '&type=' + evaluateType + '&required=' + evaluateRequired,
       })
-    }  
+    }
   },
 
   // 添加评价字段
@@ -108,22 +108,15 @@ Page({
 
   // 点击确定按钮
   onConfirm() {
-    if (this.data.evaluateData.length == 0) {
+    let arr = []
+    this.data.evaluateData.forEach((item, index) => {
+      arr.push(item.name)
+    })
+    if (arr.includes("")) {
       return wx.showToast({
-        title: '客户评价不能为空',
+        title: '名称不能为空',
         icon: 'none'
       })
-    } else {
-      let arr = []
-      this.data.evaluateData.forEach((item, index) => {
-        arr.push(item.name)
-      })
-      if (arr.includes("")) {
-        return wx.showToast({
-          title: '名称不能为空',
-          icon: 'none'
-        })
-      }
     }
     let data = JSON.stringify(this.data.evaluateData)
     var pages = getCurrentPages()

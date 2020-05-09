@@ -46,7 +46,7 @@
       <view class="title-text">提现成功!</view>
     </view>
     <view class="img">
-      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/success.png" />
+      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/success.png" />
     </view>
     <view class="message">稍后请留意您的微信钱包到账信息</view>
     <view class="btn-bar">

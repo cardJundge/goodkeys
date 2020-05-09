@@ -50,6 +50,7 @@
 		</view>
 		<view class="content-list" wx:if="{{!hasPackage}}">
 			<view class="image-box">
+				<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/increment_null.png"></image>
 				<text>未开通</text>
 			</view>
 		</view>

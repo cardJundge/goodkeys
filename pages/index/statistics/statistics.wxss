@@ -360,8 +360,8 @@ page {
 }
 
 .no-data image {
-  width: 400rpx;
-  height: 400rpx;
+  width: 418rpx;
+  height: 418rpx;
 }
 
 .no-data text {

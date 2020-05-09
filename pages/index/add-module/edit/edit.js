@@ -129,32 +129,39 @@ Page({
 
   // 提交
   onConfirm() {
-    let params = {
-      id: this.data.moduleId,
-      name: this.data.moduleName,
-      icon: this.data.moduleIcon,
-      field: this.data.fieldData
-    }
-    if (this.data.taskInputData && this.data.taskInputData.length != 0) {
-      params.norm = this.data.taskInputData
-    }
-    if (this.data.approvalData && this.data.approvalData.length != 0) {
-      params.approval = this.data.approvalData
-    }
-
-    if (this.data.evaluateData && this.data.evaluateData.length != 0) {
-      params.comment = this.data.evaluateData
-    }
-
-    indexModel.editModule(params, res => {
-      if (res.data.status == 1) {
-        wx.showToast({
-          title: '模块修改成功'
-        })
-        wx.switchTab({
-          url: '../../index',
-        })
+    if (this.data.approvalData.length == 0 && this.data.evaluateData.length == 0 && this.data.taskInputData.length == 0) {
+      return wx.showToast({
+        title: '请创建任务流标准',
+        icon: 'none'
+      })
+    } else {
+      let params = {
+        id: this.data.moduleId,
+        name: this.data.moduleName,
+        icon: this.data.moduleIcon,
+        field: this.data.fieldData
       }
-    })
+      if (this.data.taskInputData && this.data.taskInputData.length != 0) {
+        params.norm = this.data.taskInputData
+      }
+      if (this.data.approvalData && this.data.approvalData.length != 0) {
+        params.approval = this.data.approvalData
+      }
+
+      if (this.data.evaluateData && this.data.evaluateData.length != 0) {
+        params.comment = this.data.evaluateData
+      }
+
+      indexModel.editModule(params, res => {
+        if (res.data.status == 1) {
+          wx.showToast({
+            title: '模块修改成功'
+          })
+          wx.switchTab({
+            url: '../../index',
+          })
+        }
+      })
+    }
   }
 })

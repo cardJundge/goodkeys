@@ -99,7 +99,7 @@
 					</view>
 				</view>
 				<view class="right">
-					<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/leave_reject.png"></image>
+					<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/leave_reject.png"></image>
 				</view>
 			</view>
 			<!-- 审批拒绝 -->
@@ -123,7 +123,7 @@
 						</view>
 					</view>
 					<view class="right">
-						<image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/leave_pass.png"></image>
+						<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/leave_pass.png"></image>
 					</view>
 				</view>
 				<view class="line"></view>

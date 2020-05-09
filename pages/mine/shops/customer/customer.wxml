@@ -4,11 +4,11 @@
   <view class="customer-null" wx:if="{{!someOne}}">
     <view class="customer-null-box">
       <view>
-        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/invitation_null_bg.png"></image>
+        <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/invitation_null_bg.png"></image>
         <text>快去邀请客户吧</text>
       </view>
       <view bindtap="">
-        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/icon_share.png"></image>
+        <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/icon_share.png"></image>
         <text>分享</text>
       </view>
     </view>

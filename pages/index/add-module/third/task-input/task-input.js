@@ -115,23 +115,33 @@ Page({
     this.data.taskInputData.forEach((item, index) => {
       item.weight = parseInt(item.weight)
     })
-    if (this.data.taskInputData.length == 0) {
+    let arr = []
+    this.data.taskInputData.forEach((item, index) => {
+      arr.push(item.name)
+    })
+    if (arr.includes("")) {
       return wx.showToast({
-        title: '作业员录入不能为空',
+        title: '名称不能为空',
         icon: 'none'
       })
-    } else {
-      let arr = []
-      this.data.taskInputData.forEach((item, index) => {
-        arr.push(item.name)
-      })
-      if (arr.includes("")) {
-        return wx.showToast({
-          title: '名称不能为空',
-          icon: 'none'
-        })
-      }
     }
+    // if (this.data.taskInputData.length == 0) {
+    //   return wx.showToast({
+    //     title: '作业员录入不能为空',
+    //     icon: 'none'
+    //   })
+    // } else {
+    //   let arr = []
+    //   this.data.taskInputData.forEach((item, index) => {
+    //     arr.push(item.name)
+    //   })
+    //   if (arr.includes("")) {
+    //     return wx.showToast({
+    //       title: '名称不能为空',
+    //       icon: 'none'
+    //     })
+    //   }
+    // }
     let data = JSON.stringify(this.data.taskInputData)
     var pages = getCurrentPages()
     var currPage = pages[pages.length - 1] //当前页面
