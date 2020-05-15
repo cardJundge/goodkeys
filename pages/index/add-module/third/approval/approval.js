@@ -48,17 +48,16 @@ Page({
 
   toSelectType(e) {
     let approvalType = e.currentTarget.dataset.type,
-    approvalRequired = e.currentTarget.dataset.required,
     approvalName = e.currentTarget.dataset.name
     this.data.approvalId = e.currentTarget.dataset.index
     if (approvalType == 'select' || approvalType == 'check') {
       let approvalOption = JSON.stringify(e.currentTarget.dataset.option)
       wx.navigateTo({
-        url: '../../select/select?flag=' + 'approval' + '&name=' + approvalName + '&type=' + approvalType + '&required=' + approvalRequired + '&option=' + approvalOption,
+        url: '../../select/select?flag=' + 'approval' + '&name=' + approvalName + '&type=' + approvalType + '&option=' + approvalOption,
       })
     } else {
       wx.navigateTo({
-        url: '../../select/select?flag=' + 'approval' + '&name=' + approvalName + '&type=' + approvalType + '&required=' + approvalRequired,
+        url: '../../select/select?flag=' + 'approval' + '&name=' + approvalName + '&type=' + approvalType,
       })
     }
   },
@@ -67,7 +66,6 @@ Page({
   addApprovalField() {
     this.data.approvalData.push({
       name: '',
-      required: 1,
       type: 'text'
     })
     this.setData({

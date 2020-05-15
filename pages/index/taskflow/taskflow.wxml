@@ -13,12 +13,18 @@
 	</view>
 
 	<!-- 动画加载 -->
-	<view class="loading-img" wx:if="{{spinShow}}">
-		<image src="/images/loading.gif"></image>
+	<view class="list-content" wx:if="{{spinShow}}">
+		<view class="spin-article">
+			<i-spin size="large" fix></i-spin>
+		</view>
 	</view>
-	<view class="list-content" wx:if="{{!spinShow && !noData}}">
+	<scroll-view class="list-content" style="{{height*2 - 60}}rpx" wx:if="{{!spinShow && !noData}}">
 		<view class="list-item" wx:for="{{taskflowList}}" wx:key="" catchtap="toTaskflowDetail" bindtouchstart='bindTouchStart' bindtouchend='bindTouchEnd' bindlongtap="toDelTaskflow" data-id="{{item.id}}" data-taskname="{{item.task_id.nickname}}">
-			<view class="list-item-left">
+			<view class="list-item-left" wx:if="{{item.transcendData.length != 0}}">
+				<text>{{item.transcendData[0]}}</text>
+				<text>{{item.transcendData[1]}} | {{item.transcendData[2]}}</text>
+			</view>
+			<view class="list-item-left" wx:else>
 				<text>{{item.case_no}}</text>
 				<text>{{item.task_id.nickname}} | {{item.start_date}}</text>
 			</view>
@@ -33,16 +39,9 @@
 					{{item.approvalName}}
 				</view>
 			</view>
-			<view class='list-item-right' wx:if="{{item.showType == 'comment'}}">
-				<view wx:if="{{item.commentName == '已评价'}}" class="status04">
-					{{item.commentName}}
-				</view>
-				<view wx:if="{{item.commentName == '未评价'}}" class="status01">
-					{{item.commentName}}
-				</view>
-			</view>
 		</view>
-	</view>
+		<view class="more-data" wx:if="{{hasMoreData}}">上拉加载更多...</view>
+	</scroll-view>
 	<view class="no-data" wx:if="{{noData}}">
 		暂无数据
 	</view>

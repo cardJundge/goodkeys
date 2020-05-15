@@ -224,6 +224,8 @@ page {
 
 .select-item {
   width: 100%;
+  border-bottom: 1px solid #ececec;
+  margin-top: 24rpx;
 }
 
 .select-item-name {}
@@ -236,12 +238,17 @@ page {
 }
 
 .select-item-left {
-  /* width: 220rpx; */
+  width: 220rpx;
   height: 300rpx;
 }
 
+.select-item-pie-more {
+  width: 100%;
+  /* height: 520rpx; */
+}
+
 .select-item-right {
-  /* width: 380rpx; */
+  width: 380rpx;
 }
 
 .select-item-bottom {

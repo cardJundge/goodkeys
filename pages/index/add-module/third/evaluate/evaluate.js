@@ -47,17 +47,16 @@ Page({
 
   toSelectType(e) {
     let evaluateType = e.currentTarget.dataset.type,
-      evaluateRequired = e.currentTarget.dataset.required,
       evaluateName = e.currentTarget.dataset.name
     this.data.evaluateId = e.currentTarget.dataset.index
     if (evaluateType == 'select' || evaluateType == 'check') {
       let evaluateOption = JSON.stringify(e.currentTarget.dataset.option)
       wx.navigateTo({
-        url: '../../select/select?flag=' + 'evaluate' + '&name=' + evaluateName + '&type=' + evaluateType + '&required=' + evaluateRequired + '&option=' + evaluateOption,
+        url: '../../select/select?flag=' + 'evaluate' + '&name=' + evaluateName + '&type=' + evaluateType + '&option=' + evaluateOption,
       })
     } else {
       wx.navigateTo({
-        url: '../../select/select?flag=' + 'evaluate' + '&name=' + evaluateName + '&type=' + evaluateType + '&required=' + evaluateRequired,
+        url: '../../select/select?flag=' + 'evaluate' + '&name=' + evaluateName + '&type=' + evaluateType,
       })
     }
   },
@@ -66,7 +65,6 @@ Page({
   addEvaluateField() {
     this.data.evaluateData.push({
       name: '',
-      required: 1,
       type: 'text'
     })
     this.setData({

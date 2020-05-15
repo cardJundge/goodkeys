@@ -139,11 +139,15 @@ Page({
         id: this.data.moduleId,
         name: this.data.moduleName,
         icon: this.data.moduleIcon,
-        field: this.data.fieldData
+        field: this.data.fieldData,
+        norm: null,
+        approval: null,
+        comment: null
       }
       if (this.data.taskInputData && this.data.taskInputData.length != 0) {
         params.norm = this.data.taskInputData
       }
+      
       if (this.data.approvalData && this.data.approvalData.length != 0) {
         params.approval = this.data.approvalData
       }

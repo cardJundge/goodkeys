@@ -1,7 +1,6 @@
 // 数据统计
 import * as echarts from '../../../components/ec-canvas/echarts.min.js'
 const color = ['#1a65ff', '#508EF9', '#5DC7FE', '#42D8B0', '#9BD23C', '#EBD322', '#F98D50', '#B2EB22', '#428BD8', '#F8824F', '#821AFF', '#F950EA', '#D05DFE', '#FF5790', '#FF5E5E']
-let barWidth = 20
 import {
   IndexModel
 } from '../models/index.js'
@@ -19,7 +18,7 @@ Page({
     moduleList: [],
     topActive: 0,
     navScrollLeft: 0,
-    dateList: ['7', '15', '30'],
+    dateList: ['7', '15', '30', '60', '90'],
     date: 7,
     flag: 'all',
     ageingActive: 0,
@@ -36,6 +35,9 @@ Page({
     },
     ec3: {
       onInit: initChart03
+    },
+    ec4: {
+      onInit: initChart04
     },
     // pieList: [{ name: '数据1', data: [{ name: '时间', value: '0' }, { name: '地点', value: '20' }] }, { name: '数据2', data: [{ name: '时间', value: '50' }, { name: '地点', value: '50' }] }],
     pieColor: color,
@@ -104,56 +106,116 @@ Page({
           noData: false
         })
         // 拆分超期数键和值
-        let tempLatenum = [], tempLaterate = [], laternumVal = [], laterateVal = [], overdueKey, overdueVal, ageingVal = [], selectData = [], checkData = [], tableData = []
+        let tempLatenum = [], tempLaterate = [], laternumVal = [], laterateVal = [], overdueKey, overdueVal, ageingVal = [], selectData = [], checkData = [], tableData = [], pieMoreData = []
+
+        // 超期数
         if (res.data.data.overdue) {
           overdueKey = Object.keys(res.data.data.overdue)
           overdueVal = Object.values(res.data.data.overdue)
+          let tempOverdueKey = []
+          overdueKey.forEach((item,index) => {
+            if (this.data.date == 7 || this.data.date == 15) {
+              tempOverdueKey.push(item)
+            } else if (this.data.date == 30) {
+              if (index % 2 == 0) {
+                console.log(index)
+                tempOverdueKey.push(item)
+              }
+            } else if (this.data.date == 60) {
+              if (index % 4 == 0) {
+                tempOverdueKey.push(item)
+              }
+            } else if (this.data.date == 90) {
+              if (index % 6 == 0) {
+                tempOverdueKey.push(item)
+              }
+            }
+          })
           overdueVal.forEach((item, index) => {
-            laternumVal.push(item.over)
-            laterateVal.push(item.over_rate)
+            if (this.data.date == 7 || this.data.date == 15) {
+              laternumVal.push(item.over)
+              laterateVal.push(item.over_rate)
+            } else if (this.data.date == 30) {
+              if (index % 2 == 0) {
+                laternumVal.push(item.over)
+                laterateVal.push(item.over_rate)
+              }
+            } else if (this.data.date == 60) {
+              if (index % 4 == 0) {
+                laternumVal.push(item.over)
+                laterateVal.push(item.over_rate)
+              }
+            } else if (this.data.date == 90) {
+              if (index % 6 == 0) {
+                laternumVal.push(item.over)
+                laterateVal.push(item.over_rate)
+              }
+            }
           })
           tempLatenum.push({
-            key: overdueKey,
+            key: tempOverdueKey,
             value: laternumVal
           })
           tempLaterate.push({
-            key: overdueKey,
+            key: tempOverdueKey,
             value: laterateVal
           })
         }
 
         if (res.data.data.select) {
-          let selectKey, selectVal
+          let selectKey, selectVal, tempData = []
           selectKey = Object.keys(res.data.data.select)
           selectVal = Object.values(res.data.data.select)
           selectVal.forEach((item, index) => {
+            tempData.push({
+              key: [],
+              value: []
+            })
             item.forEach((item1, index1) => {
               item1.value = Number(item1.chose.split("%")[0])
               item1.name = item1.option
+              tempData[index].key.push(item1.option)
+              tempData[index].value.push(item1.value)
             })
             selectData.push({
               name: selectKey[index],
               data: item
             })
+            let tempData01 = []
+            tempData01.push(tempData[index])
+            pieMoreData.push({
+              name: selectKey[index],
+              data: tempData01
+            })
           })
-          console.log(selectData)
         }
 
         if (res.data.data.check) {
-          let checkKey, checkVal
+          let checkKey, checkVal, tempData = []
           checkKey = Object.keys(res.data.data.check)
           checkVal = Object.values(res.data.data.check)
           checkVal.forEach((item, index) => {
+            tempData.push({
+              key: [],
+              value: []
+            })
             item.forEach((item1, index1) => {
               item1.value = Number(item1.chose.split("%")[0])
-              item1.name = item1.option
+              item1.name = item1.option,
+                tempData[index].key.push(item1.option)
+              tempData[index].value.push(item1.value)
             })
             checkData.push({
               name: checkKey[index],
               data: item
             })
+            let tempData01 = []
+            tempData01.push(tempData[index])
+            pieMoreData.push({
+              name: checkKey[index],
+              data: tempData01
+            })
           })
-          console.log(checkData)
         }
 
         if (res.data.data.norm) {
@@ -179,8 +241,10 @@ Page({
               latenumData: tempLatenum,
               laterateData: tempLaterate,
               ageingData: ageingVal,
-              pieList: selectData.concat(checkData)
+              pieList: selectData.concat(checkData),
+              pieMoreList: pieMoreData
             })
+            console.log(this.data.pieMoreList)
           } else {
             this.setData({
               allStatistics: res.data.data
@@ -276,7 +340,7 @@ Page({
   // 时效统计时间切换
   changeAgeingTab(e) {
     let index = e.currentTarget.dataset.index,
-    date = e.currentTarget.dataset.date
+      date = e.currentTarget.dataset.date
     this.setData({
       ageingActive: index,
       date: date,
@@ -313,17 +377,12 @@ Page({
   changeLatenumTab(e) {
     let index = e.currentTarget.dataset.index,
       date = e.currentTarget.dataset.date
-      console.log(index)
+    console.log(index)
     this.setData({
       latenumActive: index,
       date: date,
       flag: 'latenum'
     })
-    if (index == 0) {
-      barWidth = 20
-    } else {
-      barWidth = 10
-    }
     this.getAllStatisticsData()
   },
 
@@ -403,13 +462,15 @@ function initChart02(canvas, width, height, data) {
     grid: {
       show: false,
       left: 40,
-      right: 20
+      right: 20,
+      top: 24,
+      bottom: 60
     },
     //	x轴
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: data[0].key, //x轴数据
+      data: data[0].key, //x轴数据 
       // x轴的字体样式
       axisLabel: {
         show: true,
@@ -488,7 +549,7 @@ function initChart02(canvas, width, height, data) {
   return chart
 }
 
-// 柱状图
+// 柱状图-竖
 function initChart03(canvas, width, height, data) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -504,7 +565,9 @@ function initChart03(canvas, width, height, data) {
     grid: {
       show: false,
       left: 40,
-      right: 20
+      right: 20,
+      top: 24,
+      bottom: 60
     },
     xAxis: {
       type: 'category',
@@ -564,7 +627,101 @@ function initChart03(canvas, width, height, data) {
     series: [{
       data: data[0].value,
       type: 'bar',
-      barWidth: barWidth
+      barWidth: 20
+    }]
+  }
+  chart.setOption(option)
+  return chart
+}
+
+// 柱状图-横
+function initChart04(canvas, width, height, data) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  })
+  canvas.setChart(chart)
+  var option = {
+    color: ['#1a65ff'],
+    tooltip: {
+      show: true,
+      trigger: 'axis'
+    },
+    grid: {
+      show: false,
+      left: 70,
+      right: 20,
+      top: 20,
+      bottom: 40
+    },
+    xAxis: {
+      x: 'center',
+      type: 'value',
+      show: true,
+      min: 0,
+      max: 100,
+      // y轴的字体样式
+      axisLabel: {
+        formatter: '{value}%',
+        show: true,
+        textStyle: {
+          color: '#9C9C9C',
+          fontSize: '12',
+        }
+      },
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          type: 'dotted',
+          color: '#ECECEC'
+        }
+      },
+      axisLine: {
+        show: false
+      }
+    },
+    yAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: data[0].key, //x轴数据
+      // x轴的字体样式
+      axisLabel: {
+        formatter: function (value) {
+          let valueTxt = ''
+          if (value.length > 4) {
+            valueTxt = value.substring(0, 5) + '...'
+          } else {
+            valueTxt = value
+          }
+          return valueTxt
+        },
+        show: true,
+        textStyle: {
+          color: '#9C9C9C',
+          fontSize: '10',
+        }
+      },
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        show: false,
+      },
+      // 是否显示坐标轴轴线
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#ECECEC'
+        }
+      }
+    },
+    series: [{
+      data: data[0].value,
+      type: 'bar',
+      barWidth: 5
     }]
   }
   chart.setOption(option)

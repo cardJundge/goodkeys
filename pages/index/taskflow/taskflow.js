@@ -7,44 +7,73 @@ import {
 var indexModel = new IndexModel()
 Page({
   data: {
-    taskflowList: [{}],
+    taskflowList: [],
     proportion: 80,
-    noData: false
+    noData: false,
+    page: 1,
+    pageSize: 20,
+    spinShow: true
   },
 
   onLoad(options) {
-    console.log(options)
     this.setData({
       moduleId: options.moduleId,
       moduleName: options.moduleName
     })
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          height: res.windowHeight
+        })
+      }
+    })
     wx.setNavigationBarTitle({
       title: options.moduleName
     })
+    this.getModuleField()
   },
 
   onShow() {
+    this.setData({
+      page: 1,
+      spinShow: true,
+      taskflowList: []
+    })
     this.getTaskflowList()
   },
 
-  getTaskflowList() {
-    this.setData({
-      spinShow: true
-    })
+  // 获取模块字段
+  getModuleField() {
     let params = {
-      module_id: this.data.moduleId
+      id: this.data.moduleId
+    }
+    indexModel.getModuleField(params, res => {
+      if (res.data.status == 1) {
+        this.setData({
+          field: res.data.data.field
+        })
+        console.log(this.data.field)
+      }
+    })
+  },
+
+  getTaskflowList() {
+    let params = {
+      module_id: this.data.moduleId,
+      page: this.data.page,
     }
     indexModel.getTaskflowList(params, res => {
+      let taskflowList = this.data.taskflowList
+      let taskflowInfo = res.data.data.data
       if (res.data.status == 1) {
         if (res.data.data.data.length == 0) {
           this.setData({
-            noData: true
+            noData: true,
+            spinShow: false
           })
         } else {
-          this.setData({
-            noData: false
-          })
-          res.data.data.data.forEach((item, index) => {
+          // ------------------------------------------------
+          taskflowInfo.forEach((item, index) => {
             if (item.norm) {
               let tempArr1 = []
               item.norm.forEach((item1, index1) => {
@@ -66,36 +95,6 @@ Page({
                     item.approvalName = '未审批'
                   } else {
                     item.approvalName = '已审批'
-
-                    if (item.comment) {
-                      item.showType = 'comment'
-                      let tempArr3 = []
-                      item.comment.forEach((item3, index3) => {
-                        if (item3.record) {
-                          tempArr3.push(item3)
-                        }
-                        if (tempArr3.length < item.comment.length) {
-                          item.commentName = '未评价'
-                        } else {
-                          item.commentName = '已评价'
-                        }
-                      })
-                    }
-                  }
-                })
-              }
-
-              if (item.percentage == 100 && item.comment && !item.approval) {
-                item.showType = 'comment'
-                let tempArr2 = []
-                item.comment.forEach((item2, index2) => {
-                  if (item2.record) {
-                    tempArr2.push(item2)
-                  }
-                  if (tempArr2.length < item.comment.length) {
-                    item.commentName = '未评价'
-                  } else {
-                    item.commentName = '已评价'
                   }
                 })
               }
@@ -112,46 +111,39 @@ Page({
                   item.approvalName = '未审批'
                 } else {
                   item.approvalName = '已审批'
-
-                  if (item.comment) {
-                    let tempArr3 = []
-                    item.showType = 'comment'
-                    item.comment.forEach((item3, index3) => {
-                      if (item3.record) {
-                        tempArr3.push(item3)
-                      }
-                      if (tempArr3.length < item.comment.length) {
-                        item.commentName = '未评价'
-                      } else {
-                        item.commentName = '已评价'
-                      }
-                    })
-                  }
-                }
-              })
-            }
-
-            if (!item.norm && !item.approval && item.comment) {
-              let tempArr3 = []
-              item.showType = 'comment'
-              item.comment.forEach((item3, index3) => {
-                if (item3.record) {
-                  tempArr3.push(item3)
-                }
-                if (tempArr3.length < item.comment.length) {
-                  item.commentName = '未评价'
-                } else {
-                  item.commentName = '已评价'
                 }
               })
             }
           })
+          taskflowInfo.forEach((item, index) => {
+            item.transcendData = []
+            item.field.forEach((item1, index1) => {
+              item1.isShow = this.data.field[index1].isShow
+              if (item1.isShow == 1) {
+                item.transcendData.push(item1.value)
+              }
+            })
+          })
+          // -------------------------------------------------
+          if (taskflowInfo.length < this.data.pageSize) {
+            this.setData({
+              taskflowInfo: taskflowInfo,
+              taskflowList: taskflowList.concat(taskflowInfo),
+              hasMoreData: false
+            })
+          } else {
+            this.setData({
+              taskflowInfo: taskflowInfo,
+              taskflowList: taskflowList.concat(taskflowInfo),
+              hasMoreData: true
+            })
+          }
+          this.setData({
+            noData: false,
+            spinShow: false,
+          })
+          console.log(this.data.taskflowList)
         }
-        this.setData({
-          taskflowList: res.data.data.data,
-          spinShow: false
-        })
-        console.log(this.data.taskflowList)
       }
     })
   },
@@ -187,65 +179,33 @@ Page({
           let params = {
             id: listId
           }
-          // this.data.taskflowList.forEach((item, index) => {
-            // if (item.id == listId) {
-              // if (item.norm) {
-              //   item.norm.forEach((item1, index1) => {
-              //     if (item1.record) {
-              //       wx.showToast({
-              //         title: '案件正在进行中',
-              //         icon: 'none'
-              //       })
-              //       this.data.caseDelFlag = false
-              //       return
-              //     }
-              //   })
-              // }
-              // if (item.approval) {
-              //   item.approval.forEach((item1, index1) => {
-              //     if (item1.record) {
-              //       wx.showToast({
-              //         title: '案件正在进行中',
-              //         icon: 'none'
-              //       })
-              //       this.data.caseDelFlag = false
-              //       return
-              //     }
-              //   })
-              // }
-              // if (item.comment) {
-              //   item.comment.forEach((item1, index1) => {
-              //     if (item1.record) {
-              //       wx.showToast({
-              //         title: '案件正在进行中',
-              //         icon: 'none'
-              //       })
-              //       this.data.caseDelFlag = false
-              //       return
-              //     }
-              //   })
-              // }
-            // }
-          // })
 
-            indexModel.delTaskflow(params, res=> {
-              if (res.data.status == 1) {
+          indexModel.delTaskflow(params, res => {
+            if (res.data.status == 1) {
+              wx.showToast({
+                title: '删除成功',
+              })
+              this.getTaskflowList()
+            } else {
+              if (res.data.msg.match('Token')) { } else {
                 wx.showToast({
-                  title: '删除成功',
+                  title: res.data.msg ? res.data.msg : '请求超时',
+                  icon: 'none'
                 })
-                this.getTaskflowList()
-              } else {
-                if (res.data.msg.match('Token')) {} else {
-                  wx.showToast({
-                    title: res.data.msg ? res.data.msg : '请求超时',
-                    icon: 'none'
-                  })
-                }
               }
-            })    
+            }
+          })
         }
       }
     })
+  },
+
+  // 上拉加载
+  onReachBottom() {
+    if (this.data.hasMoreData) {
+      this.data.page = this.data.page + 1
+      this.getTaskflowList()
+    }
   },
 
   bindTouchStart(e) {

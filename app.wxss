@@ -29,15 +29,15 @@ radio .wx-radio-input.wx-radio-input-checked {
 
 /* 改变微信switch样式 */
 switch .wx-switch-input {
-  width: 82rpx !important;
+  width: 78rpx !important;
   height: 42rpx !important;
   background: #1a65ff !important;
-  border: #1a65ff !important; /* 2018-07-18 重置开关边框颜色 */
+  border: #1a65ff !important;
 }
 
 /*白色样式（false的样式）*/
 switch .wx-switch-input::before {
-  width: 82rpx !important;
+  width: 80rpx !important;
   height: 42rpx !important;
 }
 

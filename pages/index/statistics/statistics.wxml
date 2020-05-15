@@ -87,12 +87,12 @@
 							<text>{{index+1}}、</text>
 							<text>{{item.norm}}</text>
 						</view>
-						<view>平均{{item.avg}}分钟</view>
+						<view>平均{{item.avg}}</view>
 					</view>
 				</block>
 			</view>
 		</view>
-		<!-- 下拉选择型的标题 -->
+		<!-- 下拉选择型的标题-饼图 -->
 		<view class="select" wx:if="{{pieList && pieList.length != 0}}">
 			<view class="select-title">下拉选择型</view>
 			<view class="chart-tab">
@@ -101,15 +101,15 @@
 				</block>
 			</view>
 			<view class="select-content">
-				<view class="select-item" wx:for="{{pieList}}">
+				<view class="select-item" wx:for="{{pieList}}" wx:if="{{item.data.length < 6}}">
 					<view class="select-item-name">{{item.name}}</view>
 					<view>
-						<view class="select-item-left" style="width:{{item.data.length<5?'220':'300'}}rpx">
+						<view class="select-item-left">
 							<ec-canvas id="mychart-dom-bar" class='mychart-bar' canvas-id="mychart-bar" importData="{{item.data}}" ec="{{ ec1 }}"></ec-canvas>
 						</view>
-						<view class="select-item-right" style="width:{{item.data.length<5?'380':'300'}}rpx">
+						<view class="select-item-right">
 							<block wx:for="{{item.data}}" wx:for-item="pieItem" wx:for-index="pieIndex">
-								<view class="select-item-right-item" wx:if="{{pieIndex < 5}}">
+								<view class="select-item-right-item">
 									<view>
 										<view style="background:{{pieColor[pieIndex]}}"></view>
 										<text>{{pieItem.option}}</text>
@@ -119,17 +119,14 @@
 							</block>
 						</view>
 					</view>
-					<view wx:if="{{item.data.length>5}}">
-						<view class="select-item-bottom">
-							<block wx:for="{{item.data}}" wx:for-item="pieItem" wx:for-index="pieIndex">
-								<view class="select-item-right-item" wx:if="{{pieIndex > 4}}" style="width: 300rpx">
-									<view>
-										<view style="background:{{pieColor[pieIndex]}}"></view>
-										<text>{{pieItem.option}}</text>
-									</view>
-									<text>{{pieItem.chose}}</text>
-								</view>
-							</block>
+				</view>
+				<view>
+					<view class="select-item" wx:for="{{pieMoreList}}" wx:if="{{item.data[0].key.length > 5}}">
+						<view class="select-item-name">{{item.name}}</view>
+						<view>
+							<view class="select-item-pie-more" style="height:{{item.data[0].key.length*60}}rpx">
+								<ec-canvas id="mychart" canvas-id="mychart-bar" importData="{{item.data}}" ec="{{ ec4 }}"></ec-canvas>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -172,7 +169,6 @@
 					<view class="tr">
 						<view class="th">执行人</view>
 						<view class="th">完成时效</view>
-						<view class="th">阳性点率</view>
 						<view class="th">逾期率</view>
 						<view class="th">超期数</view>
 						<view class="th">分数</view>
@@ -180,7 +176,6 @@
 					<view class="tr" wx:for="{{tableData}}">
 						<view class="td" style="color: #1a65ff" bindtap="enterTaskPage" data-id="{{item.id}}" data-name="{{item.nickname}}">{{item.nickname}}</view>
 						<view class="td">{{item.aging}}</view>
-						<view class="td">0</view>
 						<view class="td">{{item.over_rate}}</view>
 						<view class="td">{{item.over}}</view>
 						<view class="td">0</view>

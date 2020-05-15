@@ -51,6 +51,7 @@ Page({
     ],
     dateBoxShow: false,
     selectBoxShow: false,
+    isShowList: false,  //是否在列表上显示
     selectData: [],
     checkData: [],
     gradeList: ['5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60', '65', '70', '75', '80', '85', '90', '95', '100']
@@ -100,14 +101,60 @@ Page({
           })
         }
       })
+    } else if (options.flag == 'info'){
+      this.setData({
+        flag: options.flag,
+        switchChecked: options.required == 1 ? true : false,
+        isShowSwitchChecked: options.isShow == 1 ? true : false,
+        transcend: Number(options.transcend)
+      })
+      if (options.type == 'select') {
+        this.setData({       
+          tempData: {
+            name: options.name,
+            required: options.required,
+            isShow: options.isShow ? options.isShow : 0,
+            type: options.type,
+            option: JSON.parse(options.option)
+          },
+          isShowList: false,   
+          selectData: JSON.parse(options.option)
+        })
+      } else if (options.type == 'check') {
+        this.setData({
+          tempData: {
+            name: options.name,
+            required: options.required,
+            isShow: options.isShow ? options.isShow : 0,
+            type: options.type,
+            value: {
+              option: JSON.parse(options.option)
+            }
+          },
+          isShowList: false,
+          checkData: JSON.parse(options.option)
+        })
+      } else {
+        this.setData({
+          tempData: {
+            name: options.name,
+            required: options.required,
+            type: options.type,
+            isShow: options.isShow ? options.isShow : 0,
+          }
+        })
+        if (options.type == 'text' || options.type == 'int' || options.type == 'datetime') {
+          this.setData({
+            isShowList: true,
+          })
+        }
+      }
     } else {
       if (options.type == 'select') {
         this.setData({
           flag: options.flag,
-          switchChecked: options.required == 1 ? true : false,
           tempData: {
             name: options.name,
-            required: options.required,
             type: options.type,
             option: JSON.parse(options.option)
           },
@@ -116,10 +163,8 @@ Page({
       } else if (options.type == 'check') {
         this.setData({
           flag: options.flag,
-          switchChecked: options.required == 1 ? true : false,
           tempData: {
             name: options.name,
-            required: options.required,
             type: options.type,
             value: {
               option: JSON.parse(options.option)
@@ -132,10 +177,8 @@ Page({
           flag: options.flag,
           tempData: {
             name: options.name,
-            required: options.required,
             type: options.type
-          },
-          switchChecked: options.required == 1 ? true : false
+          }
         })
       }
     }
@@ -198,7 +241,19 @@ Page({
       switchChecked: e.detail.value,
       tempData: this.data.tempData
     })
+  },
 
+  // 选择当前项是否在列表显示(任务流信息录入)
+  isShowSwitchChange(e) {
+    if (e.detail.value == true) {
+      this.data.tempData.isShow = 1
+    } else {
+      this.data.tempData.isShow = 0
+    }
+    this.setData({
+      isShowSwitchChecked: e.detail.value,
+      tempData: this.data.tempData
+    })
   },
 
   // 选择类型
@@ -208,7 +263,8 @@ Page({
       this.setData({
         dateBoxShow: true,
         selectBoxShow: false,
-        checkBoxShow: false
+        checkBoxShow: false,
+        isShowList: true
       })
     } else if (e.detail.value == 'select') {
       this.data.tempData.type = e.detail.value
@@ -216,7 +272,8 @@ Page({
       this.setData({
         dateBoxShow: false,
         selectBoxShow: true,
-        checkBoxShow: false
+        checkBoxShow: false,
+        isShowList: false
       })
     } else if (e.detail.value == 'check') {
       this.data.tempData.type = e.detail.value
@@ -226,7 +283,8 @@ Page({
       this.setData({
         dateBoxShow: false,
         selectBoxShow: false,
-        checkBoxShow: true
+        checkBoxShow: true,
+        isShowList: false
       })
     } else {
       this.data.tempData.type = e.detail.value
@@ -236,6 +294,15 @@ Page({
         checkBoxShow: false,
         tempData: this.data.tempData
       })
+      if (e.detail.value == 'text' || e.detail.value == 'int') {
+        this.setData({
+          isShowList: true
+        })
+      } else {
+        this.setData({
+          isShowList: false
+        })
+      }
     }
   },
 
@@ -274,6 +341,7 @@ Page({
       this.setData({
         selectData: this.data.selectData
       })
+      this.data.tempData.option = this.data.selectData
     } else {
       this.data.checkData.forEach((item, index) => {
         if (dropDownIndex == index) {
@@ -283,6 +351,7 @@ Page({
       this.setData({
         checkData: this.data.checkData
       })
+      this.data.tempData.value.option = this.data.checkData
     }
   },
 
@@ -343,6 +412,9 @@ Page({
           })
         }
       }
+      if (this.data.tempData.value) {
+        delete this.data.tempData.value
+      }
     } else if (this.data.tempData.type == 'check') {
       if (this.data.tempData.value.option.length == 0) {
         return wx.showToast({
@@ -364,6 +436,9 @@ Page({
     } else {
       if (this.data.tempData.option) {
         delete this.data.tempData.option
+      }
+      if (this.data.tempData.value) {
+        delete this.data.tempData.value
       }
       wx.navigateBack({
         delta: 1

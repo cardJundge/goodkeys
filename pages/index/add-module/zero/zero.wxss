@@ -58,17 +58,17 @@
 }
 
 .define-item {
-  width: 120rpx;
+  width: 174rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 72rpx;
+  /* margin-right: 72rpx; */
   margin-bottom: 24rpx;
 }
 
-.define-item:nth-child(4n) {
+/* .define-item:nth-child(4n) {
   margin-right: 0;
-}
+} */
 
 .define-item image {
   width: 100rpx;
@@ -79,6 +79,11 @@
 
 .define-item text {
   color: #838383;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .list-item-left {

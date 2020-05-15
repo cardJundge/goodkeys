@@ -326,6 +326,7 @@ Page({
       if (item.name == name) {
         params.record['content'] = item.value
         params.approval_id = index
+        params.title = item.name
       }
     })
     params.record['place'] = this.data.address

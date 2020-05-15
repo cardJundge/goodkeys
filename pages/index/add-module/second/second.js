@@ -15,16 +15,23 @@ Page({
       selectedIndex: null,
     },
     rowHeight: 45,
-    fieldData: []
+    fieldData: [],
+    transcend: 0 //显示在列表个数是否超过3个
   },
 
   onLoad(options) {
+    console.log(JSON.parse(options.fieldData))
     if (options.flag == 'add') {
       this.data.moduleName = options.moduleName
       this.data.moduleIcon = options.moduleIcon
     } else if (options.flag == 'edit') {
       this.setData({
         fieldData: JSON.parse(options.fieldData)
+      })
+      this.data.fieldData.forEach((item, index)=> {
+        if (!item.isShow) {
+          item.isShow = 0
+        }
       })
     }
     wx.getSystemInfo({
@@ -43,6 +50,7 @@ Page({
   },
 
   onShow() {
+    console.log(this.data.tempData)
     if (this.data.tempData) {
       this.data.fieldData[this.data.fieldId] = this.data.tempData
       // console.log(this.data.fieldData)
@@ -51,8 +59,30 @@ Page({
         tempData: ''
       })
     }
+    // 判断显示在列表个数是否超过三个
+    this.judgeTranscend()
+  },
 
-    console.log(this.data.fieldData)
+  // 判断显示在列表个数是否超过三个
+  judgeTranscend() {
+    let temp = 0
+    this.data.fieldData.forEach((item, index) =>{
+      item.isShow = Number(item.isShow)
+      item.required = Number(item.required)
+      if (item.isShow == 1) {
+        console.log(item)
+        temp ++
+      }
+    })
+    if (temp > 2) {
+      this.setData({
+        transcend: 1
+      })
+    } else {
+      this.setData({
+        transcend: 0
+      })
+    }
   },
 
   // 增加字段
@@ -60,6 +90,7 @@ Page({
     this.data.fieldData.push({
       name: '',
       required: 1,
+      isShow: 0,
       type: 'text'
     })
     this.setData({
@@ -103,16 +134,17 @@ Page({
   toSelectType(e) {
     let fieldType = e.currentTarget.dataset.type,
       fieldName = e.currentTarget.dataset.name,
-      fieldRequired = e.currentTarget.dataset.required
+      fieldRequired = e.currentTarget.dataset.required,
+      fieldIsShow = e.currentTarget.dataset.isshow
     this.data.fieldId = e.currentTarget.dataset.index
     if (fieldType == 'select' || fieldType == 'check') {
       let fieldOption = JSON.stringify(e.currentTarget.dataset.option)
       wx.navigateTo({
-        url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired + '&option=' + fieldOption,
+        url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired + '&option=' + fieldOption + '&isShow=' + fieldIsShow + '&transcend=' + this.data.transcend,
       })
     } else {
       wx.navigateTo({
-        url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired,
+        url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired+ '&isShow=' + fieldIsShow+ '&transcend=' + this.data.transcend,
       })
     }
 

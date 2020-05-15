@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "prograss": "/components/prograss/prograss"
+    "prograss": "/components/prograss/prograss",
+    "i-spin": "/dist/spin/index",
+    "i-icon": "/dist/icon/index"
   }
 }
