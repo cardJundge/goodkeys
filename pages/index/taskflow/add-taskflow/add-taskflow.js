@@ -217,7 +217,7 @@ Page({
 
   boxConfirm(e) {
     let selectedOption = [],
-    name = e.detail.approvalBoxName
+      name = e.detail.approvalBoxName
     e.detail.approvalBoxList.forEach((item, index) => {
       if (item.checked == true) {
         selectedOption.push(item.name)
@@ -354,24 +354,47 @@ Page({
 
   // 确定按钮
   onConfirm() {
+    console.log(this.data.field)
+    this.data.isRequired = true
     this.data.taskFlowList = {}
     this.data.taskFlowList.field = []
     this.data.taskFlowList['module_id'] = this.data.moduleId
     this.data.field.forEach((item, index) => {
-      if (item.required == 1 && !item.value) {
-        return wx.showToast({
-          title: '必填项内容不能为空',
-          icon: 'none'
-        })
-      } else if (item.value) {
-        this.data.taskFlowList.field.push({
-          name: item.name,
-          key: item.key,
-          value: item.value,
-          type: item.type
-        })
+      if (item.type == 'check') {
+        if (item.required == 1 && !item.value.checked) {
+          this.data.isRequired = false
+          wx.showToast({
+            title: '必填项内容不能为空',
+            icon: 'none'
+          })
+          return
+        }
+      } else {
+        if (item.required == 1 && !item.value) {
+          this.data.isRequired = false
+          wx.showToast({
+            title: '必填项内容不能为空',
+            icon: 'none'
+          })
+          return
+        } else if (item.value) {
+          this.data.taskFlowList.field.push({
+            name: item.name,
+            key: item.key,
+            value: item.value,
+            type: item.type
+          })
+        }
       }
     })
+
+    if (this.data.isRequired == false) {
+      return wx.showToast({
+        title: '必填项内容不能为空',
+        icon: 'none'
+      })
+    }
+
     if (!this.data.startDatetime) {
       return wx.showToast({
         title: '必填项内容不能为空',

@@ -20,7 +20,6 @@ Page({
   },
 
   onLoad(options) {
-    console.log(JSON.parse(options.fieldData))
     if (options.flag == 'add') {
       this.data.moduleName = options.moduleName
       this.data.moduleIcon = options.moduleIcon

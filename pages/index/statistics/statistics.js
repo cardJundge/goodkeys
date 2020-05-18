@@ -721,7 +721,19 @@ function initChart04(canvas, width, height, data) {
     series: [{
       data: data[0].value,
       type: 'bar',
-      barWidth: 5
+      barWidth: 8,
+      itemStyle: {
+        normal: {
+          label: {
+            show: true,
+            position: 'right',
+            textStyle: {
+              color: '#9C9C9C',
+              fontSize: 10
+            }
+          }
+        }
+      }
     }]
   }
   chart.setOption(option)

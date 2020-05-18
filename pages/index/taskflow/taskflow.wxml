@@ -20,13 +20,21 @@
 	</view>
 	<scroll-view class="list-content" style="{{height*2 - 60}}rpx" wx:if="{{!spinShow && !noData}}">
 		<view class="list-item" wx:for="{{taskflowList}}" wx:key="" catchtap="toTaskflowDetail" bindtouchstart='bindTouchStart' bindtouchend='bindTouchEnd' bindlongtap="toDelTaskflow" data-id="{{item.id}}" data-taskname="{{item.task_id.nickname}}">
-			<view class="list-item-left" wx:if="{{item.transcendData.length != 0}}">
-				<text>{{item.transcendData[0]}}</text>
-				<text>{{item.transcendData[1]}} | {{item.transcendData[2]}}</text>
-			</view>
-			<view class="list-item-left" wx:else>
+			<view class="list-item-left" wx:if="{{item.transcendData.length == 0}}">
 				<text>{{item.case_no}}</text>
 				<text>{{item.task_id.nickname}} | {{item.start_date}}</text>
+			</view>
+			<view class="list-item-left" wx:if="{{item.transcendData.length == 1}}">
+				<text>{{item.transcendData[0]}}</text>
+				<text>{{item.task_id.nickname}} | {{item.start_date}}</text>
+			</view>
+			<view class="list-item-left" wx:if="{{item.transcendData.length == 2}}">
+				<text>{{item.transcendData[0]}}</text>
+				<text>{{item.transcendData[1]}} | {{item.task_id.nickname}}</text>
+			</view>
+			<view class="list-item-left" wx:if="{{item.transcendData.length == 3}}">
+				<text>{{item.transcendData[0]}}</text>
+				<text>{{item.transcendData[1]}} | {{item.transcendData[2]}}</text>
 			</view>
 			<view class='list-item-right' wx:if="{{item.showType == 'norm'}}">
 				<prograss wx:if="{{item.percentage || item.percentage == 0}}" proportion="{{item.percentage}}" />

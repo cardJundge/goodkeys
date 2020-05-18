@@ -66,7 +66,7 @@ Page({
       let taskflowList = this.data.taskflowList
       let taskflowInfo = res.data.data.data
       if (res.data.status == 1) {
-        if (res.data.data.data.length == 0) {
+        if (this.data.page == 1 && res.data.data.data.length == 0) {
           this.setData({
             noData: true,
             spinShow: false
@@ -83,36 +83,11 @@ Page({
               })
               item.showType = 'norm'
               item.percentage = Math.floor(tempArr1.length / item.norm.length * 100)
-
-              if (item.percentage == 100 && item.approval) {
-                item.showType = 'approval'
-                let tempArr2 = []
-                item.approval.forEach((item2, index2) => {
-                  if (item2.record) {
-                    tempArr2.push(item2)
-                  }
-                  if (tempArr2.length < item.approval.length) {
-                    item.approvalName = '未审批'
-                  } else {
-                    item.approvalName = '已审批'
-                  }
-                })
-              }
             }
 
-            if (!item.norm && item.approval) {
-              let tempArr2 = []
-              item.showType = 'approval'
-              item.approval.forEach((item2, index2) => {
-                if (item2.record) {
-                  tempArr2.push(item2)
-                }
-                if (tempArr2.length < item.approval.length) {
-                  item.approvalName = '未审批'
-                } else {
-                  item.approvalName = '已审批'
-                }
-              })
+            if (!item.norm && (item.approval || item.comment)) {
+              item.showType = 'norm'
+              item.percentage = 100
             }
           })
           taskflowInfo.forEach((item, index) => {
@@ -184,6 +159,11 @@ Page({
             if (res.data.status == 1) {
               wx.showToast({
                 title: '删除成功',
+              })
+              this.setData({
+                spinShow: true,
+                taskflowList: [],
+                page: 1
               })
               this.getTaskflowList()
             } else {
