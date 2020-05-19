@@ -33,10 +33,7 @@ Page({
   },
 
   onShow() {
-    var time = util.formatTime(new Date())
-    this.setData({
-      dateTime: time
-    })
+    this.changeTime()
     wx.getLocation({
       type: 'gcj02',
       success: (res) => {
@@ -53,6 +50,14 @@ Page({
           }
         })
       }
+    })
+  },
+
+  // 更新时间
+  changeTime() {
+    var time = util.formatTime(new Date())
+    this.setData({
+      dateTime: time
     })
   },
 
@@ -83,7 +88,7 @@ Page({
             item.value = item.value.checked.join(',')
           }
         })
-       
+
         this.setData({
           fieldInfo: res.data.data.field,
           startTime: res.data.data.start_date,
@@ -92,7 +97,9 @@ Page({
         if (res.data.data.norm) {
           res.data.data.norm.forEach((item, index) => {
             if (item.type == 'check' && item.record) {
-              item.record.content = item.record.content.checked.join(',')
+              item.record.forEach((item1, index1) => {
+                item1.content = item1.content.checked.join(',')
+              })
             }
           })
           this.data.tabList.push('员工操作项')
@@ -101,7 +108,9 @@ Page({
         if (res.data.data.approval) {
           res.data.data.approval.forEach((item, index) => {
             if (item.type == 'check' && item.record) {
-              item.record.content = item.record.content.checked.join(',')
+              item.record.forEach((item1, index1) => {
+                item1.contentCheck = item1.content.checked.join(',')
+              })
             }
           })
           this.data.tabList.push('管理操作项')
@@ -128,6 +137,7 @@ Page({
       imgArr = [],
       imgIndex = e.currentTarget.dataset.index,
       imgFlag = e.currentTarget.dataset.flag,
+      recordIndex = e.currentTarget.dataset.record,
       tempData
     if (imgFlag == 'field') {
       this.data.fieldInfo.forEach((item, index) => {
@@ -149,8 +159,12 @@ Page({
         tempData = this.data.approval
       tempData.forEach((item, index) => {
         if (item.name == name) {
-          item.record.content.forEach((item1, index1) => {
-            imgArr.push(this.data.imgUrl + item1)
+          item.record.forEach((item1, index1) => {
+            if (recordIndex == index1) {
+              item1.content.forEach((item2, index2) => {
+                imgArr.push(this.data.imgUrl + item2)
+              })
+            }
           })
           wx.previewImage({
             urls: imgArr,
@@ -303,7 +317,8 @@ Page({
             }
           })
           this.setData({
-            approval: this.data.approval
+            approval: this.data.approval,
+            imageList: this.data.imageList
           })
           console.log(this.data.approval)
           callback(true)
@@ -320,19 +335,24 @@ Page({
 
   // 完成审核
   toCompleteApproval(name) {
-    let params = {}
-    params.record = {}
+    this.changeTime()
+    let params = {}, tempRecord = {}
+    params.record = []
     this.data.approval.forEach((item, index) => {
       if (item.name == name) {
-        params.record['content'] = item.value
+        if (item.record) {
+          params.record = item.record
+        }
+        tempRecord['content'] = item.value
         params.approval_id = index
         params.title = item.name
       }
     })
-    params.record['place'] = this.data.address
-    params.record['date'] = this.data.dateTime
+    tempRecord['place'] = this.data.address
+    tempRecord['date'] = this.data.dateTime
     params.case_id = this.data.listId
-    console.log('zhelizheli', params)
+    params.record.push(tempRecord)
+    console.log('测试params',params)
     indexModel.toApproval(params, res => {
       if (res.data.status == 1) {
         this.getTaskflowDetail()
@@ -345,5 +365,5 @@ Page({
     this.setData({
       isActive: e.currentTarget.dataset.index
     })
-  },
+  }
 })

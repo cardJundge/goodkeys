@@ -74,29 +74,31 @@
 								<text>{{index+1}}、{{item.name}}</text>
 								<view>已完成</view>
 							</view>
-							<view class="item-complete-text">
-								<view>
-									<text>时间</text>
-									<text>{{item.record.date}}</text>
-								</view>
-								<view>
-									<text>地点</text>
-									<text>{{item.record.place}}</text>
-									<image class="location-icon" src="/images/index/location_01.png"></image>
-								</view>
-								<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
-									<text>内容</text>
-									<view class="image-box" wx:if="{{item.type == 'image'}}">
-										<view class="image-item" wx:for="{{item.record.content}}" wx:for-item="imgitem" wx:for-index="imgindex">
-											<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="{{imgindex}}" data-flag="task" data-name="{{item.name}}"></image>
+							<block wx:for="{{item.record}}" wx:for-item="recorditem" wx:for-index="recordindex">
+								<view class="item-complete-text">
+									<view>
+										<text>时间</text>
+										<text>{{recorditem.date}}</text>
+									</view>
+									<view>
+										<text>地点</text>
+										<text>{{recorditem.place}}</text>
+										<image class="location-icon" src="/images/index/location_01.png"></image>
+									</view>
+									<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
+										<text>内容</text>
+										<view class="image-box" wx:if="{{item.type == 'image'}}">
+											<view class="image-item" wx:for="{{recorditem.content}}" wx:for-item="imgitem" wx:for-index="imgindex">
+												<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="{{imgindex}}" data-flag="task" data-name="{{item.name}}" data-record="{{recordindex}}"></image>
+											</view>
 										</view>
 									</view>
+									<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select' || item.type == 'check'}}">
+										<text>内容</text>
+										<text>{{recorditem.content}}</text>
+									</view>
 								</view>
-								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select' || item.type == 'check'}}">
-									<text>内容</text>
-									<text>{{item.record.content}}</text>
-								</view>
-							</view>
+							</block>
 						</view>
 					</view>
 				</block>
@@ -124,38 +126,43 @@
 					</view>
 					<!-- 已完成 -->
 					<view class="content-box-item" wx:if="{{item.record}}">
-						<view class="item-complete">
+						<view class="item-complete" style="padding-bottom: 64rpx">
 							<view class="item-complete-title">
 								<text>{{index+1}}、{{item.name}}</text>
 								<view>已完成</view>
 							</view>
-							<view class="item-complete-text">
-								<view>
-									<text>时间</text>
-									<text>{{item.record.date}}</text>
-								</view>
-								<view>
-									<text>地点</text>
-									<text>{{item.record.place}}</text>
-									<image class="location-icon" src="/images/index/location_01.png"></image>
-								</view>
-								<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
-									<text>内容</text>
-									<view class="image-box">
-										<view class="image-item" wx:for="{{item.record.content}}" wx:for-item="imgitem" wx:for-index="imgindex">
-											<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="{{imgindex}}" data-flag="approval" data-name="{{item.name}}"></image>
+							<block wx:for="{{item.record}}" wx:for-item="recorditem" wx:for-index="recordindex">
+								<!-- <view class="record-item"> -->
+								<view class="item-complete-text">
+									<view>记录{{recordindex + 1}}:</view>
+									<view>
+										<text>时间</text>
+										<text>{{recorditem.date}}</text>
+									</view>
+									<view>
+										<text>地点</text>
+										<text>{{recorditem.place}}</text>
+										<image class="location-icon" src="/images/index/location_01.png"></image>
+									</view>
+									<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
+										<text>内容</text>
+										<view class="image-box">
+											<view class="image-item" wx:for="{{recorditem.content}}" wx:for-item="imgitem" wx:for-index="imgindex">
+												<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="{{imgindex}}" data-flag="approval" data-name="{{item.name}}" data-record="{{recordindex}}"></image>
+											</view>
 										</view>
 									</view>
+									<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select'}}">
+										<text>内容</text>
+										<text>{{recorditem.content}}</text>
+									</view>
+									<view wx:if="{{item.type == 'check'}}">
+										<text>内容</text>
+										<text>{{recorditem.contentCheck}}</text>
+									</view>
 								</view>
-								<!-- <view wx:if="{{item.type == 'check'}}">
-									<text>内容</text>
-									<text>{{item.record.content.checked.join(',')}}</text>
-								</view> -->
-								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select' || item.type == 'check'}}">
-									<text>内容</text>
-									<text>{{item.record.content}}</text>
-								</view>
-							</view>
+								<!-- </view> -->
+							</block>
 							<picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}" wx:if="{{item.type == 'select'}}">
 								<text class="item-complete-change">更改</text>
 							</picker>

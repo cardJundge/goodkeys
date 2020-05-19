@@ -17,6 +17,7 @@ Page({
     field: [],
     optionChecked: [],
     approvalBoxShow: false,
+    btnDisabled: false // 防止表单重复提交
   },
 
   onLoad(options) {
@@ -354,7 +355,7 @@ Page({
 
   // 确定按钮
   onConfirm() {
-    console.log(this.data.field)
+    
     this.data.isRequired = true
     this.data.taskFlowList = {}
     this.data.taskFlowList.field = []
@@ -425,18 +426,22 @@ Page({
 
     console.log(this.data.taskFlowList)
     let params = this.data.taskFlowList
-    indexModel.addTaskflow(params, res => {
-      if (res.data.status == 1) {
-        wx.showToast({
-          title: '任务流添加成功',
-          icon: 'none'
-        })
-        wx.navigateBack({
-          delta: 1
-        })
-      } else {
-
-      }
-    })
+    if (this.data.btnDisabled == false) {
+      this.data.btnDisabled = true
+      indexModel.addTaskflow(params, res => {
+        if (res.data.status == 1) {
+          this.data.btnDisabled = false
+          wx.showToast({
+            title: '任务流添加成功',
+            icon: 'none'
+          })
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+  
+        }
+      })
+    }
   }
 })

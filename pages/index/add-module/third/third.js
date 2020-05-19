@@ -9,7 +9,8 @@ Page({
   data: {
     taskInputData: [],
     evaluateData: [],
-    approvalData: []
+    approvalData: [],
+    btnDisabled: false // 防止重复提交
   },
 
   onLoad(options) {
@@ -50,44 +51,48 @@ Page({
 
   // 确定(添加模块)
   onConfirm() {
-    if (this.data.approvalData.length == 0 && this.data.evaluateData.length == 0 && this.data.taskInputData.length == 0) {
-      return wx.showToast({
-        title: '请创建任务流标准',
-        icon: 'none'
-      })
-    } else {
-      let params = {
-        name: this.data.moduleName,
-        icon: this.data.moduleIcon,
-        field: this.data.fieldData
-      }
-      if (this.data.taskInputData.length != 0) {
-        params.norm = this.data.taskInputData
-      }
-      if (this.data.approvalData.length != 0) {
-        params.approval = this.data.approvalData
-      }
-
-      if (this.data.evaluateData.length != 0) {
-        params.comment = this.data.evaluateData
-      }
-      indexModel.addModule(params, res => {
-        if (res.data.status == 1) {
-          wx.showToast({
-            title: '模块创建成功',
-          })
-          wx.switchTab({
-            url: '../../index',
-          })
-        } else {
-          if (res.data.msg.match('Token')) { } else {
-            wx.showToast({
-              title: res.data.msg ? res.data.msg : '请求超时',
-              icon: 'none'
-            })
-          }
+    if (this.data.btnDisabled == false) {
+      this.data.btnDisabled = true
+      if (this.data.approvalData.length == 0 && this.data.evaluateData.length == 0 && this.data.taskInputData.length == 0) {
+        return wx.showToast({
+          title: '请创建任务流标准',
+          icon: 'none'
+        })
+      } else {
+        let params = {
+          name: this.data.moduleName,
+          icon: this.data.moduleIcon,
+          field: this.data.fieldData
         }
-      })
+        if (this.data.taskInputData.length != 0) {
+          params.norm = this.data.taskInputData
+        }
+        if (this.data.approvalData.length != 0) {
+          params.approval = this.data.approvalData
+        }
+  
+        if (this.data.evaluateData.length != 0) {
+          params.comment = this.data.evaluateData
+        }
+        indexModel.addModule(params, res => {
+          if (res.data.status == 1) {
+            wx.showToast({
+              title: '模块创建成功',
+            })
+            wx.switchTab({
+              url: '../../index',
+            })
+            this.data.btnDisabled = false
+          } else {
+            if (res.data.msg.match('Token')) { } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '请求超时',
+                icon: 'none'
+              })
+            }
+          }
+        })
+      }
     }
   }
 })
