@@ -119,6 +119,18 @@
 							<text>{{index+1}}、{{item.name}}</text>
 							<view bindtap="optionCheck" data-name="{{item.name}}" data-type="{{item.type}}" data-option="{{item.value.option}}">去完成</view>
 						</view>
+						<view class="item-complete-image" wx:elif="{{item.type == 'image' && imageList && imageList.length != 0 && currentImgName == item.name}}">
+							<view class="image-box">
+								<view class="image-item" wx:for="{{imageList}}" wx:for-item="imgitem" wx:for-index="imgindex">
+									<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage01" data-index="{{imgindex}}"></image>
+									<image class="del-icon" src="/images/index/del_icon.png" bindtap="delImage" data-index="{{imgindex}}"></image>
+								</view>
+								<view class="image-item">
+									<image bindtap="toComplete" data-name="{{item.name}}" data-type="{{item.type}}" data-temp="true" src="/images/index/add_img_bg.png"></image>
+								</view>
+							</view>
+							<view class="image-box-btn" bindtap="toCompleteApprovalTemp" data-name="{{item.name}}">确定</view>
+						</view>
 						<view class="item-incomplete" wx:else>
 							<text>{{index+1}}、{{item.name}}</text>
 							<view bindtap="toComplete" data-name="{{item.name}}" data-type="{{item.type}}">去完成</view>
@@ -163,6 +175,20 @@
 								</view>
 								<!-- </view> -->
 							</block>
+							<!-- 临时图片 -->
+							<view class="item-complete-image" wx:if="{{item.type == 'image' && imageList && imageList.length != 0 && currentImgName == item.name}}">
+								<view class="image-box">
+									<view class="image-item" wx:for="{{imageList}}" wx:for-item="imgitem" wx:for-index="imgindex">
+										<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage01" data-index="{{imgindex}}"></image>
+										<image class="del-icon" src="/images/index/del_icon.png" bindtap="delImage" data-index="{{imgindex}}"></image>
+									</view>
+									<view class="image-item">
+										<image bindtap="toComplete" data-name="{{item.name}}" data-type="{{item.type}}" data-temp="true" src="/images/index/add_img_bg.png"></image>
+									</view>
+								</view>
+								<view class="image-box-btn" bindtap="toCompleteApprovalTemp" data-name="{{item.name}}">确定</view>
+							</view>
+
 							<picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}" wx:if="{{item.type == 'select'}}">
 								<text class="item-complete-change">更改</text>
 							</picker>

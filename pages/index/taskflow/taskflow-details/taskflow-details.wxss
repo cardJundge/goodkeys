@@ -217,6 +217,7 @@
 
 .item-complete-image .image-box .image-item {
   padding: 12rpx;
+  position: relative;
 }
 
 .item-complete-image .image-box .image-item image {
@@ -224,6 +225,26 @@
   height: 180rpx;
   border: 1rpx solid #eee;
   border-radius: 20rpx;
+}
+
+.item-complete-image .image-box .image-item .del-icon {
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.item-complete-image .image-box-btn {
+  width: 180rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  background: #1a65ff;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30rpx;
 }
 
 .no-evaluate {

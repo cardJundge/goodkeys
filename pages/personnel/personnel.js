@@ -97,21 +97,10 @@ Page({
     })
   },
 
-  // 添加分组
+  // 进入分组页面（添加编辑）
   addGroup() {
-    wx.showActionSheet({
-      itemList: ['添加分组', '编辑分组'],
-      success: res => {
-        if (res.tapIndex == 0) {
-          wx.navigateTo({
-            url: './add-group/add-group?isEdit=' + 1,
-          })
-        } else if (res.tapIndex == 1) {
-          wx.navigateTo({
-            url: './add-group/add-group?isEdit=' + 2,
-          })
-        }
-      }
+    wx.navigateTo({
+      url: './add-group/add-group?isEdit=' + 2,
     })
   },
 

@@ -56,7 +56,6 @@ Component({
       context.draw()
     },
     getProgress() {
-      console.log(this.data.proportion)
       // 第二种方式通过组件的生命周期函数执行代码
       this.drawProgressbg()
       this.drawCircle(this.data.proportion) 

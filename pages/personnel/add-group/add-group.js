@@ -87,12 +87,11 @@ Page({
     personnelModel.addGroup(params, res => {
       if (res.data.status == 1) {
         wx.showToast({
-          title: '添加成功',
-          success: res => {
-            wx.navigateBack({
-              delta: 1
-            })
-          }
+          title: '添加成功'
+        })
+        this.getGroupList()
+        this.setData({
+          isEdit: 2
         })
       } else {
         if (res.data.msg.match('Token已过期或失效')) {

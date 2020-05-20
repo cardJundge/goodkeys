@@ -33,5 +33,6 @@
         <view class="item-right-btn item-right-btn-del" data-id="{{item.id}}" bindtap="toDel">删除</view>
       </view>
     </view>
+    <view class="group-btn" bindtap="addGroup">添加分组</view>
   </view>
 </view>

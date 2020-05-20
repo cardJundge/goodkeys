@@ -37,7 +37,6 @@ Page({
     wx.getLocation({
       type: 'gcj02',
       success: (res) => {
-        console.log(res)
         address.reverseGeocoder({
           location: {
             latitude: res.latitude,
@@ -130,9 +129,8 @@ Page({
     })
   },
 
-  // 预览大图
+  // 预览大图(记录图片预览)
   previewImage(e) {
-    console.log(e)
     let name = e.currentTarget.dataset.name,
       imgArr = [],
       imgIndex = e.currentTarget.dataset.index,
@@ -170,23 +168,54 @@ Page({
             urls: imgArr,
             current: imgArr[imgIndex]
           })
-          console.log(imgArr, imgArr[imgIndex])
         }
       })
     }
+  },
 
+  // 预览大图(临时图片预览)
+  previewImage01(e) {
+    let imgIndex = e.currentTarget.dataset.index,
+    imgArr = []
+    this.data.imageList.forEach((item, index) => {
+      imgArr.push(this.data.imgUrl + item)
+    })
+    wx.previewImage({
+      urls: imgArr,
+      current: imgArr[imgIndex]
+    })
+  },
+
+  // 删除图片
+  delImage(e) {
+    let imgIndex = e.currentTarget.dataset.index
+    this.data.imageList.forEach((item, index) => {
+      if (index == imgIndex) {
+        this.data.imageList.splice(index, 1)
+      }
+    })
+    this.setData({
+      imageList: this.data.imageList
+    })
   },
 
   // 去完成任务
   toComplete(e) {
-    let name = e.currentTarget.dataset.name
-    let type = e.currentTarget.dataset.type
+    let name = e.currentTarget.dataset.name,
+    type = e.currentTarget.dataset.type,
+    isTempImg = e.currentTarget.dataset.temp
     if (type == 'image') {
+      this.setData({
+        currentImgName: name
+      })
       wx.showActionSheet({
         itemList: ['拍照', '从手机相册选择'],
         success: (res1) => {
-          console.log(res1.tapIndex);
-          this.data.imageList = []
+          if (isTempImg == 'true') {
+            // console.log(this.data.imageList)
+          } else {
+            this.data.imageList = []
+          }
           wx.chooseImage({
             count: 9,
             // 可以指定是原图还是压缩图
@@ -216,7 +245,6 @@ Page({
 
   // 下拉框-单选
   optionSelect(e) {
-    console.log(e)
     let name = e.currentTarget.dataset.name
     this.data.approval.forEach((item, index) => {
       if (item.name == name) {
@@ -291,12 +319,12 @@ Page({
   handle(i, name) {
     if (i < this.data.tempFilePaths.length) {
       this.uploadimage(i, name, res => {
-        console.log(res)
         this.handle(i + 1, name)
       })
     } else {
-      console.log("全部上传完成")
-      this.toCompleteApproval(name)
+      wx.hideLoading()
+      // console.log("全部上传完成")
+      // this.toCompleteApproval(name)
     }
   },
 
@@ -310,6 +338,9 @@ Page({
         let data = JSON.parse(res.data)
         console.log(data)
         if (data.status == 1) {
+          wx.showLoading({
+            title: i + 1 + '/' + this.data.tempFilePaths.length,
+          })
           this.data.imageList.push(data.data.filename)
           this.data.approval.forEach((item, index) => {
             if (item.name == name) {
@@ -320,7 +351,6 @@ Page({
             approval: this.data.approval,
             imageList: this.data.imageList
           })
-          console.log(this.data.approval)
           callback(true)
         } else {
           wx.showToast({
@@ -331,6 +361,11 @@ Page({
       },
       fail: (err) => { }
     })
+  },
+
+  toCompleteApprovalTemp(e) {
+    let name = e.currentTarget.dataset.name
+    this.toCompleteApproval(name)
   },
 
   // 完成审核
@@ -352,16 +387,17 @@ Page({
     tempRecord['date'] = this.data.dateTime
     params.case_id = this.data.listId
     params.record.push(tempRecord)
-    console.log('测试params',params)
     indexModel.toApproval(params, res => {
       if (res.data.status == 1) {
         this.getTaskflowDetail()
+        this.setData({
+          imageList: []
+        })
       }
     })
   },
 
   changeTab(e) {
-    console.log(e)
     this.setData({
       isActive: e.currentTarget.dataset.index
     })
