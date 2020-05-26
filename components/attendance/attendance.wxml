@@ -1,0 +1,33 @@
+<!--考勤弹框-->
+<view class="attendance-body" wx:if="{{isShow}}">
+	<view class="attendance-content" catchtap="stopBubble" wx:if="{{flag == 'type'}}">
+		<view class="title">考勤类型</view>
+		<view class="box">
+			<block wx:for="{{typeList}}">
+				<view class="box-item {{isActive == index ? 'box-active' : ''}}" bindtap="typeChange" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
+					<i-icon wx:if="{{isActive == index}}" type="success_fill" color="#1a65ff" size="28" />
+					<i-icon wx:else type="success_fill" color="#737373" size="28" />
+					<view class="type-text">
+						<text>{{item.name}}</text>
+						<text>{{item.intro}}</text>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+	<view class="attendance-content" wx:if="{{flag == 'time'}}">
+		<view class="title">考勤类型</view>
+		<view class="box">
+			<view class="box-item box-active box-item-time">
+				<text>星期</text>
+				<view class="time-gather">
+					<view wx:for="{{weekList}}" class="time-item {{item.checked == true ? 'time-item-active' : ''}}" bindtap="weekSelect" data-name="{{item.name}}">{{item.name}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="btn-bar">
+			<view class="btn-cancel" bindtap="toCancel">取消</view>
+			<view class="btn-confirm" bindtap="toConfirm">确定</view>
+		</view>
+	</view>
+</view>

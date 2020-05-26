@@ -73,7 +73,9 @@
     "pages/clock-in/clock-in",
     "pages/clock-in/personnel/personnel",
     "pages/clock-in/place/place",
-    "pages/clock-in/trail/trail"
+    "pages/clock-in/trail/trail",
+    "pages/clock-in/attendance/attendance",
+    "pages/clock-in/attendance/add-attendance/add-attendance"
   ],
   "window": {
     "backgroundTextStyle": "light",

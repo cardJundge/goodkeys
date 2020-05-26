@@ -68,13 +68,13 @@
 			<text>企业管理</text>
 		</view>
 		<view class="qms-content">
-			<!-- <view class="qms-item" bindtap="toClockIn">
+			<view class="qms-item" bindtap="toClockIn">
 				<view class="qms-item-left">
 					<text>打卡</text>
 					<text>人员管控</text>
 				</view>
 				<image src="/images/clock/icon_clock.png"></image>
-			</view> -->
+			</view>
 			<view class="qms-item" bindtap="toUnion">
 				<view class="qms-item-left">
 					<text>联盟</text>

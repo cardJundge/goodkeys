@@ -1,0 +1,119 @@
+/* 考勤弹框 */
+.attendance-body {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.attendance-content {
+  width: 100%;
+  /* padding: 24rpx; */
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.title {
+  width: 100%;
+  height: 114rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 100%;
+  padding: 0 24rpx;
+}
+
+.box-item {
+  width: 100%;
+  height: 154rpx;
+  border-radius: 20rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 36rpx;
+  border: 1px solid #fff;
+}
+
+.type-text{
+  display: flex;
+  flex-direction: column;
+  margin-left: 24rpx;
+}
+
+.type-text>text:last-child {
+  font-size: 24rpx;
+  color: #737373;
+  margin-top: 6rpx;
+}
+
+.box-active {
+  border: 1px solid #1a65ff;
+}
+
+.box-item-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time-gather {
+  width: 424rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time-item {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 1px solid #1a65ff;
+  color: #1a65ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-item-active {
+  color: #fff;
+  background: #1a65ff;
+}
+
+
+.btn-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.btn-bar>view {
+  width: 50%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cancel {
+  background: #E3E3E3;
+  color: #555555;
+}
+
+.btn-confirm {
+  background: #1a65ff;
+  color: #fff;
+}

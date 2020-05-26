@@ -39,8 +39,8 @@ Page({
         year: '2020',
         month: '4',
         day: '4',
-        todoText: '',
-        todoLabelColor: '#F21AFF'
+        todoText: '你的人',
+        todoLabelColor: ''
       },
       {
         year: '2020',

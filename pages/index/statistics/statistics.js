@@ -65,6 +65,9 @@ Page({
 
   // 获取所有统计数据
   getAllStatisticsData() {
+    wx.showLoading({
+      title: '数据加载中...',
+    })
     let params = {
       date: this.data.date
     }
@@ -102,6 +105,7 @@ Page({
     })
     indexModel.getAllStatistics(params, res => {
       if (res.data.status == 1) {
+        wx.hideLoading()
         this.setData({
           noData: false
         })
@@ -281,6 +285,7 @@ Page({
         this.setData({
           noData: true
         })
+        wx.hideLoading()
       }
     })
   },

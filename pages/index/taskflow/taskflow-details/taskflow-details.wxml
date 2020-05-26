@@ -119,7 +119,9 @@
 							<text>{{index+1}}、{{item.name}}</text>
 							<view bindtap="optionCheck" data-name="{{item.name}}" data-type="{{item.type}}" data-option="{{item.value.option}}">去完成</view>
 						</view>
+						<!-- 临时图片 -->
 						<view class="item-complete-image" wx:elif="{{item.type == 'image' && imageList && imageList.length != 0 && currentImgName == item.name}}">
+							<view class="image-title">记录1:</view>
 							<view class="image-box">
 								<view class="image-item" wx:for="{{imageList}}" wx:for-item="imgitem" wx:for-index="imgindex">
 									<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage01" data-index="{{imgindex}}"></image>
@@ -177,6 +179,7 @@
 							</block>
 							<!-- 临时图片 -->
 							<view class="item-complete-image" wx:if="{{item.type == 'image' && imageList && imageList.length != 0 && currentImgName == item.name}}">
+								<view class="image-title">记录{{item.record.length + 1}}:</view>
 								<view class="image-box">
 									<view class="image-item" wx:for="{{imageList}}" wx:for-item="imgitem" wx:for-index="imgindex">
 										<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage01" data-index="{{imgindex}}"></image>

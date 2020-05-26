@@ -64,8 +64,10 @@ App({
   globalData: {
     userInfo: null,
     hostName: 'http://test-api.feecgo.com', 
+    // hostName: 'http://192.168.1.123:8080',
     // hostName: 'https://api.feecgo.com',
     imgUrl: 'http://test-api.feecgo.com/storage/',
+    // imgUrl: 'http://192.168.1.123:8080/storage/',
     // imgUrl: 'https://api.feecgo.com/storage/',
     clound: "https://6f6d-omo-service-b6dza-1301029807/images/"
   }

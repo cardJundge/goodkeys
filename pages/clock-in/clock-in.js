@@ -55,5 +55,12 @@ Page({
     wx.navigateTo({
       url: './personnel/personnel',
     })
+  },
+
+  // 进入考勤设置
+  toAttendance() {
+    wx.navigateTo({
+      url: './attendance/attendance',
+    })
   }
 })

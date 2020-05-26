@@ -235,6 +235,11 @@
   right: 0;
 }
 
+.item-complete-image .image-title {
+  margin-top: 12rpx;
+  margin-left: 30rpx;
+}
+
 .item-complete-image .image-box-btn {
   width: 180rpx;
   height: 60rpx;

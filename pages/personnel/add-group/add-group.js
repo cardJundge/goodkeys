@@ -9,9 +9,11 @@ Page({
   data: {
     groupName: '',
     groupEditName: '',
-    isEdit: 1
+    isEdit: 1,
+    addDisabled: false,
+    editDisabled: false
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       isEdit: options.isEdit
     })
@@ -61,10 +63,10 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确定删除分组吗？',
-      success: res=> {
-        if(res.confirm) {
-          personnelModel.delGroupList(e.currentTarget.dataset.id, res=> {
-            if(res.data.status == 1) {
+      success: res => {
+        if (res.confirm) {
+          personnelModel.delGroupList(e.currentTarget.dataset.id, res => {
+            if (res.data.status == 1) {
               wx.showToast({
                 title: '删除成功',
               })
@@ -78,6 +80,9 @@ Page({
 
   // 增加分组
   onConfirm() {
+    this.setData({
+      addDisabled: true
+    })
     wx.showLoading({
       title: '添加中...',
     })
@@ -91,9 +96,13 @@ Page({
         })
         this.getGroupList()
         this.setData({
-          isEdit: 2
+          isEdit: 2,
+          addDisabled: false
         })
       } else {
+        this.setData({
+          addDisabled: false
+        })
         if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({
@@ -107,6 +116,9 @@ Page({
 
   // 编辑
   onEditConfirm() {
+    this.setData({
+      editDisabled: true
+    })
     wx.showLoading({
       title: '编辑中...',
     })
@@ -115,16 +127,19 @@ Page({
       id: this.data.groupEditId
     }
     personnelModel.editGroupList(params, res => {
-      console.log(res)
       if (res.data.status == 1) {
         wx.showToast({
           title: '编辑成功',
         })
         this.getGroupList()
         this.setData({
-          isEdit: 2
+          isEdit: 2,
+          editDisabled: false
         })
-      }else {
+      } else {
+        this.setData({
+          editDisabled: false
+        })
         if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({

@@ -40,7 +40,7 @@
           <view bindtap="changeOtherStyle" wx:for="{{otherSelected}}" wx:item="item" wx:key="" class="{{item.selected? 'select-active': 'select-tag-item'}}" data-index="{{index}}">{{item.name}}</view>
         </view>
       </view>
-      <button class="add-btn" formType="submit">确定</button>
+      <button class="add-btn" formType="submit" disabled="{{isDisabled}}">确定</button>
     </view>
   </form>
 

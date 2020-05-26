@@ -79,10 +79,11 @@
 .item-right-btn {
   width: 140rpx;
   height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #1a65ff;
-  border: 1rpx solid #1a65ff;
+  border: 1px solid #1a65ff;
   border-radius: 100rpx;
 }
 

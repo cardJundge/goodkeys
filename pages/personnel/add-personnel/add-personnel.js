@@ -16,6 +16,7 @@ Page({
     groupData: [],
     isLeader: 0,
     isEdit: false,
+    isDisabled: false, // 防止表单重复提交
     formData: {
       nickName: '',
       mobile: '',
@@ -185,6 +186,9 @@ Page({
 
   // 提交添加人员表单
   formSubmit(e) {
+    this.setData({
+      isDisabled: true
+    })
     let params = e.detail.value
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
@@ -224,6 +228,9 @@ Page({
               })
             }
           }
+          this.setData({
+            isDisabled: false
+          })
         })
       } else {
         personnelModel.addTask(params, res => {
@@ -245,6 +252,9 @@ Page({
               })
             }
           }
+          this.setData({
+            isDisabled: false
+          })
         })
       }
      

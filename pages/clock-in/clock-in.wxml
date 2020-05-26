@@ -23,7 +23,7 @@
 			<view class="statistics-02 flex-sa-02">
 				<text>打卡人数/全部人数</text>
 				<text>12/20</text>
-				<text>考勤设置</text>
+				<text bindtap="toAttendance">考勤设置</text>
 			</view>
 			<view class="statistics-03 flex-sa-01">
 				<view class="statistics-03-item flex flex-d-col al-c">

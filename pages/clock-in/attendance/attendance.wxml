@@ -1,0 +1,16 @@
+<!--考勤-->
+<view class="attendance-body">
+	<view class="attendance-add flex" bindtap="toAddAttendance">
+    <image src="/images/index/add_module_icon.png"></image>
+    <view class="attendance-add-text flex flex-d-col">
+      <text>新增考勤组</text>
+      <text>参与考勤10人，考勤组3个</text>
+    </view>
+  </view>
+  <view class="attendance-list">
+    <view class="attendance-item flex-sb-01" bindtap="toEditAttendance">
+      <text>早班</text>
+      <i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
+    </view>
+  </view>
+</view>

@@ -4,7 +4,7 @@
     <text>分组名称</text>
     <input placeholder-class="ph-class" type="text" placeholder="输入分组名称" value="{{groupName}}" bindinput="groupNameInput"></input>
   </view>
-  <view class="group-btn" bindtap="onConfirm">确定</view>
+  <button class="group-btn" bindtap="onConfirm" disabled="{{addDisabled}}">确定</button>
 </view>
 
 <!--编辑分组-->
@@ -13,7 +13,7 @@
     <text>分组名称</text>
     <input placeholder-class="ph-class" type="text" placeholder="输入分组名称" value="{{groupEditName}}" bindinput="groupEditNameInput"></input>
   </view>
-  <view class="group-btn" bindtap="onEditConfirm">确定</view>
+  <button class="group-btn" bindtap="onEditConfirm" disabled="{{editDisabled}}">确定</button>
 </view>
 
 <!-- 分组列表 -->

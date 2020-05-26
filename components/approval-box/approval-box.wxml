@@ -6,7 +6,7 @@
 		<view class="input-title" wx:if="{{approvalType == 'text'}}">内容</view>
 		<view class="input-title" wx:if="{{approvalType == 'int'}}">数字</view>
 		<view class="input-box">
-			<textarea wx:if="{{approvalType == 'text'}}" placeholder="请输入内容" placeholder-class="ph-class" bindinput="getTextInput" maxlength="500" value="{{textValue}}"></textarea>
+			<textarea wx:if="{{approvalType == 'text'}}" placeholder="请输入内容" placeholder-class="ph-class" bindinput="getTextInput" maxlength="500"></textarea>
 			<input wx:if="{{approvalType == 'int'}}" placeholder="请输入数字" placeholder-class="ph-class" bindinput="getIntInput" type="number"></input>
 			<scroll-view wx:if="{{approvalType == 'check'}}" scroll-y='true' style="max-height: 680rpx;">
 				<checkbox-group class="input-box-list" bindchange="toSelectOption">
