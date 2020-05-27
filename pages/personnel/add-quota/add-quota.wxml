@@ -1,24 +1,25 @@
 <!--增加名额-->
 <view class="add-quota-body">
-  <view class="commpany">
-    <view class="commpany-bg">
-      <view class="commpany-info">
-        <view class="commpany-info-card">
-        <image class="mine-avatar-img" src="{{avatarUrl}}"></image>
-          <!-- <image class="mine-avatar-img" src="{{avatarUrl ? avatarUrl : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/default_user.png'}}"></image> -->
-          <view class="commpany-info-card-text">
-            <text wx:if="{{basicUserInfo.type == 1}}">{{basicUserInfo.name}}公估公司</text>
-            <text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.name}}4S店</text>
-            <text wx:if="{{basicUserInfo.type == 3}}">{{basicUserInfo.name}}维修公司</text>
-            <text wx:if="{{basicUserInfo.type == 4}}">{{basicUserInfo.name}}保险公司</text>
-            <text>当前人数: 3人</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- 服务期限 -->
-  <view class="term">
+	<view class="commpany">
+		<view class="commpany-bg">
+			<view class="commpany-info">
+				<view class="commpany-info-card">
+					<!-- <image class="mine-avatar-img" src="{{avatarUrl}}"></image> -->
+					<!-- <image class="mine-avatar-img" src="{{avatarUrl ? avatarUrl : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/default_user.png'}}"></image> -->
+					<view class="commpany-info-card-text">
+						<text wx:if="{{basicUserInfo.type == 1}}">{{basicUserInfo.name}}公估公司</text>
+						<text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.name}}4S店</text>
+						<text wx:if="{{basicUserInfo.type == 3}}">{{basicUserInfo.name}}维修公司</text>
+						<text wx:if="{{basicUserInfo.type == 4}}">{{basicUserInfo.name}}保险公司</text>
+						<text>当前人数: 3人</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 服务期限 -->
+<!-- <view class="term">
     <view class="term-title">
       <text>服务期限</text>
       <view class="term-btn-bar">
@@ -27,9 +28,9 @@
         <image bindtap="addMoney" src="/images/personnel/icon_add_blue.png"></image>
       </view>
     </view>
-  </view>
-  <!-- 选择升级方案 -->
-  <view class="programme">
+  </view> -->
+<!-- 选择升级方案 -->
+<!-- <view class="programme">
     <view class="programme-title">选择升级方案</view>
     <view class="programme-content">
       <view wx:for="{{pckageData}}" wx:for-index="index" class="{{currentTab == index? 'programme-item-active':'programme-item'}}" data-id="{{index}}" bindtap="changeTab">
@@ -46,12 +47,12 @@
         </view>
       </view>
     </view>
-  </view>
-  <!-- 总计价钱 -->
-  <view class="total">
+  </view> -->
+<!-- 总计价钱 -->
+<!-- <view class="total">
     <text>总计</text>
     <text>¥ {{total}}元</text>
-  </view>
-  <!-- 确定购买 -->
-  <view class="purchase-btn">确定购买</view>
-</view>
+  </view> -->
+<!-- 确定购买 -->
+<!-- <view class="purchase-btn">确定购买</view>
+</view> -->

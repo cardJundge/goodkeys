@@ -9,6 +9,7 @@
 					<view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex" wx:if="{{imgindex < 3}}">
 						<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="imgindex" data-name="{{item.name}}" data-flag="field"></image>
 					</view>
+					<view wx:if="{{item.value.length > 3}}">...</view>
 				</view>
 			</view>
 			<view class="top-item" wx:if="{{item.type != 'image' && index < 4}}">

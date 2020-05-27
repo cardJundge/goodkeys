@@ -6,12 +6,23 @@
 
 .details-top .top-item {
   width: 100%;
-  height: 60rpx;
+  /* height: 60rpx; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1rpx solid #dbdbdb;
   font-size: 24rpx;
+  padding: 12rpx 0;
+}
+
+.details-top .top-item text:first-child {
+  width: 180rpx;
+}
+
+.details-top .top-item text:last-child {
+  width: 540rpx;
+  text-align: right;
+  word-break: break-all;
 }
 
 .details-top .top-item-img {

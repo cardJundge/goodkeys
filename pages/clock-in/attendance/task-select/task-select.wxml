@@ -1,0 +1,16 @@
+<!--作业员选择-->
+<view class="select-body">
+  <view class="select-top flex al-c">
+    <i-icon type="success_fill" color="#737373" size="24"/>
+    <text>全选</text>
+  </view>
+  <view class="select-box">
+    <checkbox-group bindchange="taskChange">
+      <view class="select-item flex al-c" wx:for="{{taskList}}" wx:key="">
+        <checkbox value="{{item.id}}" checked="{{item.checked}}"></checkbox>
+        <image src="{{item.face ? imgUrl+item.face : '/images/logo.png' }}"></image>
+        <text>{{item.nickname}}</text>
+      </view>
+    </checkbox-group>
+  </view>
+</view>

@@ -89,6 +89,17 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 增值服务删除
+  delIncrement(param, callback) {
+    var params = {
+      url: '/api/added/' + param.id + '/delete',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 获取疾病任务记录
   getSickRecordList(param, callback) {
     var params = {

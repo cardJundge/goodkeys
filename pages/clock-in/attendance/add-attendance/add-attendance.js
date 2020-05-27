@@ -3,14 +3,21 @@ Page({
   data: {
     noTask: false,
     taskFaceList: ['http://test-api.feecgo.com/images/icon/1@2x.png', 'http://test-api.feecgo.com/images/icon/2@2x.png', 'http://test-api.feecgo.com/images/icon/3@2x.png', 'http://test-api.feecgo.com/images/icon/4@2x.png'],
-    attendanceType: 1
+    attendanceTypeId: 1
   },
 
   onLoad(options) {
 
   },
 
-  // 选择考勤类型
+  // 考勤人员选择
+  taskSelect() {
+    wx.navigateTo({
+      url: '../task-select/task-select',
+    })
+  },
+
+  // 考勤类型选择（弹框）
   attendanceSelect() {
     this.setData({
       showAttendanceModal: true,
@@ -18,7 +25,15 @@ Page({
     })
   },
 
-  // 固定时间选择
+  // 考勤类型选择（弹框返回）
+  typeChangeEvent(e) {
+    this.setData({
+      attendanceTypeName: e.detail.typeName,
+      attendanceTypeId: e.detail.typeId
+    })
+  },
+
+  // 考勤时间选择（弹框）
   fixedTimeSelect() {
     this.setData({
       showAttendanceModal: true,
@@ -26,11 +41,16 @@ Page({
     })
   },
 
-  typeChangeEvent(e) {
+  // 考勤时间选择（弹框确定返回）
+  confirmEvent(e) {
     this.setData({
-      attendanceTypeName: e.detail.typeName,
-      attendanceType: e.detail.typeId
+      fixedTime: e.detail.weekChecked.join('、')
     })
+  },
+
+  // 进入排班页面
+  toShiftManagement() {
+
   },
 
   // 上班时间选择

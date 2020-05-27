@@ -10,7 +10,6 @@
     "pages/login/forget/forget",
     "pages/index/data-details/data-details",
     "pages/personnel/add-personnel/add-personnel",
-    "pages/personnel/add-quota/add-quota",
     "pages/mine/edit-info/edit-info",
     "pages/login/modify/modify",
     "pages/mine/account/account",
@@ -75,7 +74,8 @@
     "pages/clock-in/place/place",
     "pages/clock-in/trail/trail",
     "pages/clock-in/attendance/attendance",
-    "pages/clock-in/attendance/add-attendance/add-attendance"
+    "pages/clock-in/attendance/add-attendance/add-attendance",
+    "pages/clock-in/attendance/task-select/task-select"
   ],
   "window": {
     "backgroundTextStyle": "light",

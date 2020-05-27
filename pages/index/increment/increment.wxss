@@ -7,3 +7,17 @@
 .list-content {
   margin-top: 60rpx; 
 }
+
+.no-data {
+  width: 100%;
+  margin-top: 120rpx;
+  text-align: center;
+  color: #737373;
+}
+
+.more-data {
+  width: 100%;
+  line-height: 80rpx;
+  text-align: center;
+  color: #737373;
+}
