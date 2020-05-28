@@ -1,13 +1,20 @@
 // 新增考勤组
+var app = getApp()
 Page({
   data: {
-    noTask: false,
-    taskFaceList: ['http://test-api.feecgo.com/images/icon/1@2x.png', 'http://test-api.feecgo.com/images/icon/2@2x.png', 'http://test-api.feecgo.com/images/icon/3@2x.png', 'http://test-api.feecgo.com/images/icon/4@2x.png'],
-    attendanceTypeId: 1
+    isEdit: false,
+    isDisabled: false
   },
 
   onLoad(options) {
-
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
+    if (options.data) {
+      this.setData({
+        isEdit: true
+      })
+    }
   },
 
   // 考勤人员选择
@@ -65,5 +72,22 @@ Page({
     this.setData({
       endTime: e.detail.value
     })
+  },
+
+  // 保存-提交考勤分组
+  formSubmit() {
+    this.setData({
+      isDisabled: true
+    })
+    // 编辑
+    if (this.data.isEdit == true) {
+      wx.navigateBack({
+        delta: 1
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1
+      })
+    }  
   }
 })

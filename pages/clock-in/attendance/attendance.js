@@ -17,8 +17,9 @@ Page({
 
   // 查看考勤组详情（编辑考勤组）
   toEditAttendance() {
+    let data = 1
     wx.navigateTo({
-      url: './add-attendance/add-attendance',
+      url: './add-attendance/add-attendance?data=' + data,
     })
   }
 })

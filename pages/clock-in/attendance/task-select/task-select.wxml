@@ -1,7 +1,9 @@
 <!--作业员选择-->
 <view class="select-body">
   <view class="select-top flex al-c">
-    <i-icon type="success_fill" color="#737373" size="24"/>
+    <view wx:if="{{!isSelectAll}}" class="select-top-left-view" bindtap="selectAll"></view>
+    <i-icon class="select-top-left-icon" wx:else type="success_fill" bindtap="selectAll01" color="#1a65ff" size="26" />
+    <!-- <view  class="select-top-left" bindtap="selectAll01"></view> -->
     <text>全选</text>
   </view>
   <view class="select-box">
@@ -12,5 +14,9 @@
         <text>{{item.nickname}}</text>
       </view>
     </checkbox-group>
+  </view>
+  <view class="btn-box flex-sb-01">
+    <text>已选择:{{numPeople}}人</text>
+    <view class="btn-confirm flex-c-01" bindtap="onConfirm">确定</view>
   </view>
 </view>

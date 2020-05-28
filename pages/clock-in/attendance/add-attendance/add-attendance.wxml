@@ -3,11 +3,11 @@
 	<view class="add-top">
 		<view class="add-top-item flex-sb-01" bindtap="taskSelect">
 			<text>参与考勤人员</text>
-			<image src="/images/index/add_module_icon.png" wx:if="{{noTask}}"></image>
-			<view class="flex al-c" wx:if="{{!noTask}}">
+			<image src="/images/index/add_module_icon.png" wx:if="{{!selectTaskData || selectTaskData.length == 0}}"></image>
+			<view class="flex al-c" wx:if="{{selectTaskData &&  selectTaskData.length != 0}}">
 				<view class="taskface-box flex al-c">
-					<view wx:for="{{taskFaceList}}" wx:key style='transform:translateX({{-index*30}}rpx)'>
-						<image class='taskface-box-image' src='{{item}}' mode='aspectFill'></image>
+					<view wx:for="{{selectTaskData}}" wx:key style='transform:translateX({{-index*30}}rpx)'>
+						<image wx:if="{{index < 5}}" class='taskface-box-image' src='{{item.face ? imgUrl+item.face : "/images/logo.png"}}' mode='aspectFill'></image>
 					</view>
 				</view>
 				<i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
@@ -65,6 +65,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="add-btn flex-c-01">保存</view>
+	<button class="add-btn flex-c-01" bindtap="formSubmit" disabled="{{isDisabled}}">保存</button>
+	<view wx:if="{{isEdit == true}}" class="add-del-btn flex-c-01">删除考勤组</view>
 </view>
 <attendance-modal isShow="{{showAttendanceModal}}" flag="{{attendanceFlag}}" bind:typeChangeEvent="typeChangeEvent" bind:confirmEvent="confirmEvent" />

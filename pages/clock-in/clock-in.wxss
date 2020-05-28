@@ -42,7 +42,7 @@
 }
 
 .statistics-01>text {
-  color: #888888;
+  color: #A6A6A6;
 }
 
 .statistics-02 {
@@ -55,7 +55,7 @@
 
 .statistics-02 text:nth-child(1) {
   font-size: 20rpx;
-  color: #888888;
+  color: #A6A6A6;
 }
 
 .statistics-02 text:nth-child(2) {
@@ -136,7 +136,7 @@
 }
 
 .leave-item-content>view>text:first-child {
-  color: #858585;
+  color: #A6A6A6;
   margin-right: 8rpx;
 }
 
