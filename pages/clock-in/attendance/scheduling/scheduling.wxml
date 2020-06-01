@@ -1,0 +1,25 @@
+<!--排班-->
+<view class="scheduling-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+		<i-spin size="large" fix></i-spin>
+	</view>
+</view>
+<view class="scheduling-body" wx:else>
+	<view class="scheduling-top flex ju-c al-fe">
+		<i-icon type="return" size="18" color="#717171"/>
+		<text>2020年5月</text>
+		<i-icon type="enter" size="18" color="#717171"/>
+	</view>
+  <view class="scheduling-week flex-sa-01">
+    <view wx:for="{{weekList}}">{{item}}</view>
+  </view>
+	<view class="scheduling-content">
+		<view class="scheduling-table flex flex-w">
+			<view class="scheduling-td" wx:for="{{tableList}}">{{item.date}}
+				<view class="scheduling-td-item" wx:for="{{item.taskList}}" wx:for-item="taskitem" wx:for-index="taskindex" wx:if="{{taskindex<3}}" bindtap="taskSelect">{{taskitem}}</view>
+				<view class="scheduling-td-item-msg" wx:if="{{item.taskList.length>2}}">还有{{item.taskList.length - 3}}个人</view>
+			</view>
+		</view>
+	</view>
+	<view class="scheduling-btn flex-c-01">确定</view>
+</view>

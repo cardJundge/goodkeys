@@ -97,9 +97,32 @@ function dateTimePicker(startYear, endYear, date) {
     dateTime: dateTime
   }
 }
+
+function getDates(days, todate) {
+  var dateArry = [];
+  for (var i = 0; i < days; i++) {
+    var dateObj = dateLater(todate, i);
+    dateArry.push(dateObj)
+  }
+  return dateArry;
+}
+function dateLater(dates, later) {
+  let dateObj = {};
+  let show_day = new Array('日', '一', '二', '三', '四', '五', '六');
+  let date = new Date(dates);
+  date.setDate(date.getDate() + later);
+  let day = date.getDay();
+  let yearDate = date.getFullYear();
+  let month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
+  let dayFormate = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+  dateObj.time =  yearDate+'-'+ month + '-' + dayFormate;
+  dateObj.week = show_day[day];
+  return dateObj;
+}
 module.exports = {
   dateTimePicker: dateTimePicker,
   getMonthDay: getMonthDay,
   getNow: getNow,
-  getNowDate: getNowDate
+  getNowDate: getNowDate,
+  getDates: getDates
 }

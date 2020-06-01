@@ -3,16 +3,24 @@ var app = getApp()
 Page({
   data: {
     isEdit: false,
-    isDisabled: false
+    isDisabled: false,
+    attendanceTypeId: 1,
+    attendanceTypeName: '固定时间上下班'
   },
 
   onLoad(options) {
     this.setData({
       imgUrl: app.globalData.imgUrl
     })
+    wx.setNavigationBarTitle({
+      title: '新增考勤组',
+    })
     if (options.data) {
       this.setData({
         isEdit: true
+      })
+      wx.setNavigationBarTitle({
+        title: '编辑考勤组',
       })
     }
   },
@@ -56,8 +64,10 @@ Page({
   },
 
   // 进入排班页面
-  toShiftManagement() {
-
+  toScheduling() {
+    wx.navigateTo({
+      url: '../scheduling/scheduling',
+    })
   },
 
   // 上班时间选择
@@ -89,5 +99,18 @@ Page({
         delta: 1
       })
     }  
+  },
+
+  // 删除考勤组
+  toDelAttendance() {
+    wx.showModal({
+      title: '提示',
+      content: '确定删除该考勤组？',
+      success: res=> {
+        if (res.confirm) {
+          
+        }
+      }
+    })
   }
 })

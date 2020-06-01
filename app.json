@@ -75,7 +75,8 @@
     "pages/clock-in/trail/trail",
     "pages/clock-in/attendance/attendance",
     "pages/clock-in/attendance/add-attendance/add-attendance",
-    "pages/clock-in/attendance/task-select/task-select"
+    "pages/clock-in/attendance/task-select/task-select",
+    "pages/clock-in/attendance/scheduling/scheduling"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -52,7 +52,6 @@ Page({
         this.setData({
           field: res.data.data.field
         })
-        console.log(this.data.field)
       }
     })
   },
@@ -93,9 +92,15 @@ Page({
           taskflowInfo.forEach((item, index) => {
             item.transcendData = []
             item.field.forEach((item1, index1) => {
-              item1.isShow = this.data.field[index1].isShow
-              if (item1.isShow == 1) {
-                item.transcendData.push(item1.value)
+              if (this.data.field) {
+                this.data.field.forEach((item2, index2) => {
+                  if (item1.name == item2.name) {
+                    item1.isShow = item2.isShow
+                    if (item1.isShow == 1) {
+                      item.transcendData.push(item1.value)
+                    }
+                  }
+                })
               }
             })
           })
@@ -161,7 +166,6 @@ Page({
                 title: '删除成功',
               })
               this.setData({
-                spinShow: true,
                 taskflowList: [],
                 page: 1
               })

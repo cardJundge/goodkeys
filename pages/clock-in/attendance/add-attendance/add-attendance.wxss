@@ -34,6 +34,11 @@
   border-bottom: 1px solid #F2F2F2;
 }
 
+.add-content-item-right input{
+  width: 360rpx;
+  text-align: right;
+}
+
 .add-btn {
   width: 702rpx;
   height: 80rpx;

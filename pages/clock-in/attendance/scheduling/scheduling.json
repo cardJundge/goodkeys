@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "i-spin": "/dist/spin/index"
+  },
+  "navigationBarTitleText": "排班"
+}

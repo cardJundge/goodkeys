@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "i-icon": "/dist/icon/index"
-  }
+  },
+  "navigationBarTitleText": "参与考勤人员"
 }

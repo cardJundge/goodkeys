@@ -1,0 +1,54 @@
+/* 排班 */
+.scheduling-body {
+
+}
+
+.scheduling-top {
+  width: 100%;
+  height: 60rpx;
+}
+
+.scheduling-top>text {
+  padding: 0 12rpx;
+}
+
+.scheduling-week {
+  width: 100%;
+  height: 100rpx;
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.10);
+  color: #717171;
+}
+
+.scheduling-table {
+  width: 100%;
+  padding: 0 5rpx 82rpx 5rpx;
+}
+
+.scheduling-td {
+  width: 106rpx;
+  height: 194rpx;
+  border: 1rpx solid #eeeeee;
+  padding: 12rpx;
+  font-size: 24rpx;
+}
+
+.scheduling-td-item {
+  font-size: 20rpx;
+  margin-bottom: 6rpx;
+}
+
+.scheduling-td-item-msg {
+  font-size: 14rpx;
+  color: #717171;
+}
+
+.scheduling-btn {
+  width: 100%;
+  height: 80rpx;
+  background: #1a65ff;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
