@@ -2,10 +2,15 @@
 <view class="personnel-body">
 	<view class="card flex-sb-01">
 		<view class="card-left flex al-c">
-			<image src="/images/logo.png"></image>
-			<text>zhangxx</text>
+			<image src="{{taskFace ? imgUrl + taskFace : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
+			<text>{{taskName}}</text>
 		</view>
-		<view class="card-right flex-c-01 status-01">正常</view>
+		<view class="card-right flex-c-01 status-01" wx:if="{{taskStatus == '正常' && timeTabActive == 0}}">正常</view>
+		<view class="card-right flex-c-01 status-02" wx:if="{{taskStatus == '迟到' && timeTabActive == 0}}">迟到</view>
+		<view class="card-right flex-c-01 status-02" wx:if="{{taskStatus == '缺卡' && timeTabActive == 0}}">缺卡</view>
+		<view class="card-right flex-c-01 status-03" wx:if="{{taskStatus == '休假' && timeTabActive == 0}}">休假</view>
+		<view class="card-right flex-c-01 status-04" wx:if="{{taskStatus == '请假' && timeTabActive == 0}}">请假</view>
+		<view class="card-right flex-c-01 status-05" wx:if="{{taskStatus == '旷工' && timeTabActive == 0}}">旷工</view>
 	</view>
 	<view class="calendar">
 		<view class="calendar-title flex al-c">
@@ -14,87 +19,99 @@
 			</block>
 		</view>
 		<view class="calendar-content" wx:if="{{timeTabActive == 0}}">
-			<calendar calendarConfig="{{calendarConfig}}" bind:onTapDay="onTapDay"></calendar>
+			<calendar calendarConfig="{{calendarConfig}}" bind:onTapDay="onTapDay" bind:afterTapDay="afterTapDay" bind:whenChangeMonth="whenChangeMonth"></calendar>
 		</view>
 		<view class="calendar-content" wx:if="{{timeTabActive == 1}}">
 			<view class="calendar-week-title flex al-c ju-fe">
 				<view class="flex-sb-01">
-					<i-icon type="return" color="#8e8e8e" size="18" />
-					<text>2020.04.14-2020.04.21</text>
-					<i-icon type="enter" color="#8e8e8e" size="18" />
+					<!-- <i-icon type="return" color="#8e8e8e" size="18" /> -->
+					<text>{{weekObjWxml}}</text>
+					<!-- <i-icon type="enter" color="#8e8e8e" size="18" /> -->
 				</view>
 			</view>
 			<view class="calendar-week">
 				<view class="calendar-week-item flex-sb-01">
 					<text>出勤天数</text>
-					<text>23天</text>
+					<text>{{clockNum}}天</text>
 				</view>
 				<view class="calendar-week-item flex-sb-01">
 					<text>休息天数</text>
-					<text>23天</text>
+					<text>{{restNum}}天</text>
 				</view>
 				<view class="calendar-week-item flex-sb-01">
 					<text>请假</text>
-					<text>1天</text>
+					<text>{{leaveNum}}天</text>
 				</view>
 			</view>
 		</view>
 		<view class="calendar-content" wx:if="{{timeTabActive == 2}}">
 			<view class="calendar-month-title flex al-c ju-fe">
 				<view class="flex-sb-01">
-					<i-icon type="return" color="#8e8e8e" size="16" />
-					<text>2020.04</text>
-					<i-icon type="enter" color="#8e8e8e" size="16" />
+					<i-icon type="return" color="#8e8e8e" size="16" bindtap="toPreMonth" />
+					<text>{{monthObjWxml}}</text>
+					<i-icon type="enter" color="#8e8e8e" size="16" bindtap="toNextMonth" />
 				</view>
 			</view>
 			<view class="calendar-month">
 				<view class="calendar-month-item flex-sb-01">
 					<text>出勤天数</text>
-					<text>23天</text>
-				</view>
-				<view class="calendar-month-item flex-sb-01">
-					<text>休息天数</text>
-					<text>23天</text>
+					<text>{{clockNum}}天</text>
 				</view>
 				<view class="calendar-month-item flex-sb-01">
 					<text>请假</text>
-					<text>1天</text>
+					<text>{{leaveNum}}天</text>
 				</view>
 			</view>
 		</view>
 	</view>
-	<view class="record" wx:if="{{timeTabActive == 0}}">
-		<text class="record-msg-01">班次:默认班次09:00-18:00</text>
-		<view class="record-msg-02 flex al-c">
-			<image src="/images/clock/record_msg.png"></image>
-			<text>今日打卡1次</text>
+	<view wx:if="{{timeTabActive == 0}}">
+		<view class="record-null flex flex-d-col al-c" wx:if="{{!allDayData.up && !allDayData.down}}">
+			<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/clock-null.png"></image>
+			<text>暂无打卡记录</text>
 		</view>
-		<view class="steps">
-			<i-steps current="1" direction="vertical">
-				<i-step>
-					<view slot="title" class="steps-title">
-						<text>打卡时间:14:42:50</text>
-						<text>(上班 时间 09:00)</text>
-					</view>
-					<view slot="content" class="steps-content">
-						<view class="flex al-c">
-							<image src="/images/index/location_01.png"></image>
-							<text>陕西省西安市雁塔区科技路地铁口</text>
+		<view class="record" wx:else>
+			<text class="record-msg-01">班次:默认班次{{allDayData.work}}-{{allDayData.close}}</text>
+			<view class="record-msg-02 flex al-c">
+				<image src="/images/clock/record_msg.png"></image>
+				<text wx:if="{{allDayData.up && allDayData.down}}">今日打卡2次</text>
+				<text wx:if="{{(allDayData.up && !allDayData.down) || (!allDayData.up && allDayData.down)}}">今日打卡1次</text>
+			</view>
+			<view class="steps">
+				<i-steps current="1" direction="vertical">
+					<i-step wx:if="{{allDayData.up}}">
+						<view slot="title" class="steps-title">
+							<text>打卡时间:{{allDayData.up.date}}</text>
+							<text>(上班 时间 {{allDayData.work}})</text>
 						</view>
-						<view class="steps-content-late flex-c-01">迟到16分钟</view>
-					</view>
-				</i-step>
-				<i-step>
-					<view slot="title" class="steps-title">
-						<text>打卡时间:14:42:50</text>
-						<text>(上班 时间 09:00)</text>
-					</view>
-					<view slot="content" class="steps-content flex al-c">
-						<image src="/images/index/location_01.png"></image>
-						<text>陕西省西安市雁塔区科技路地铁口xx</text>
-					</view>
-				</i-step>
-			</i-steps>
+						<view slot="content" class="steps-content">
+							<view class="flex al-c">
+								<image src="/images/index/location_01.png"></image>
+								<text>{{allDayData.up.location}}</text>
+							</view>
+							<view class="steps-content-late" wx:if="{{allDayData.up.result != '正常'}}">{{allDayData.up.result}}</view>
+							<view class="steps-content-image">
+								<image wx:if="{{allDayData.up.picture}}" src="{{imgUrl + allDayData.up.picture}}" bindtap="previewImage" data-src="{{allDayData.up.picture}}"></image>
+							</view>
+						</view>
+					</i-step>
+					<i-step wx:if="{{allDayData.down}}">
+						<view slot="title" class="steps-title">
+							<text>打卡时间:{{allDayData.down.date}}</text>
+							<text>(下班 时间 {{allDayData.close}})</text>
+						</view>
+						<view slot="content" class="steps-content">
+							<view class="flex al-c">
+								<image src="/images/index/location_01.png"></image>
+								<text>{{allDayData.down.location}}</text>
+							</view>
+							<view class="steps-content-late" wx:if="{{allDayData.down.result != '正常'}}">{{allDayData.down.result}}</view>
+							<view class="steps-content-image">
+								<image wx:if="{{allDayData.down.picture}}" src="{{imgUrl + allDayData.down.picture}}" bindtap="previewImage" data-src="{{allDayData.down.picture}}"></image>
+							</view>
+						</view>
+					</i-step>
+				</i-steps>
+			</view>
 		</view>
 	</view>
 </view>

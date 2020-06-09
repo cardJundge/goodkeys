@@ -55,8 +55,11 @@ Page({
           title: '开通商铺'
         })
       } else if (res.data == 1) {
+        // this.setData({
+        //   isOpen: true
+        // })
         this.setData({
-          isOpen: true
+          isOpen: false
         })
         wx.setNavigationBarTitle({
           title: '我的商铺'
@@ -122,8 +125,11 @@ Page({
     mineModel.openShops(params, res => {
       console.log(res)
       if (res.data.status == 1) {
+        // this.setData({
+        //   isOpen: true
+        // })
         this.setData({
-          isOpen: true
+          isOpen: false
         })
         wx.showToast({
           title: '开通成功',

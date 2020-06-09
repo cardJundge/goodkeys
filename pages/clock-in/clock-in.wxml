@@ -8,12 +8,12 @@
 			</block>
 		</view>
 	</view>
-	<view wx:if="{{switchActive == 0}}">
+	<view wx:if="{{switchActive == 0 && !attendanceNull}}">
 		<!-- 打卡统计卡片 -->
 		<view class="statistics flex-sb-02">
 			<view class="statistics-01 flex-sb-01">
 				<view class="flex al-c">
-					<picker mode="date" start="2010" end="2050" bindchange="dateChange">
+					<picker mode="date" start="2010" end="{{todayObj}}" bindchange="dateChange">
 						<view>{{dateObj}}</view>
 					</picker>
 					<i-icon type="unfold" color="#1a65ff" size="20" />
@@ -22,79 +22,104 @@
 			</view>
 			<view class="statistics-02 flex-sa-02">
 				<text>打卡人数/全部人数</text>
-				<text>12/20</text>
+				<text>{{clockData.clock}}/{{clockData.count}}</text>
 				<text bindtap="toAttendance">考勤设置</text>
 			</view>
 			<view class="statistics-03 flex-sa-01">
 				<view class="statistics-03-item flex flex-d-col al-c">
-					<text>0</text>
+					<text>{{clockData.not_clock}}</text>
 					<text>未打卡</text>
 				</view>
 				<view class="statistics-03-item flex flex-d-col al-c">
-					<text>110</text>
+					<text>{{clockData.clock}}</text>
 					<text>已打卡</text>
 				</view>
 				<view class="statistics-03-item flex flex-d-col al-c">
-					<text>20</text>
+					<text>{{clockData.rest}}</text>
 					<text>休假中</text>
 				</view>
 				<view class="statistics-03-item flex flex-d-col al-c">
-					<text>0</text>
+					<text>{{clockData.leave}}</text>
 					<text>请假中</text>
 				</view>
 			</view>
 		</view>
 		<!-- 人员列表 -->
 		<view class="task-list">
-			<view class="task-item flex-sb-01" bindtap="toPersonnel">
+			<view class="task-item-title flex-sb-01">
+				<view class="task-item-left flex al-c ju-c">人员</view>
+				<view class="task-item-center">上班</view>
+				<view class="task-item-center">下班</view>
+			</view>
+			<view class="task-item flex-sb-01" wx:for="{{taskStatusList}}" bindtap="toPersonnel" data-id="{{item.id}}" data-face="{{item.face}}" data-name="{{item.nickname}}">
 				<view class="task-item-left flex al-c">
-					<image src="/images/logo.png"></image>
-					<text>zhangxx</text>
+					<image src="{{item.face ? imgUrl + item.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
+					<text>{{item.nickname}}</text>
 				</view>
-				<view class="task-item-right flex-c-01 status-01">正常</view>
+				<view class="task-item-center" wx:if="{{item.up == '正常'}}">正常</view>
+				<view class="task-item-center status-02" wx:if="{{item.up == '迟到'}}">迟到</view>
+				<view class="task-item-center status-02" wx:if="{{item.up == '早退'}}">早退</view>
+				<view class="task-item-center status-03" wx:if="{{item.up == '休假'}}">休假</view>
+				<view class="task-item-center status-04" wx:if="{{item.up == '请假'}}">请假</view>
+				<view class="task-item-center" wx:if="{{item.up == '-'}}">-</view>
+				<view class="task-item-right" wx:if="{{item.down == '正常'}}">正常</view>
+				<view class="task-item-right status-02" wx:if="{{item.down == '迟到'}}">迟到</view>
+				<view class="task-item-right status-02" wx:if="{{item.down == '早退'}}">早退</view>
+				<view class="task-item-right status-03" wx:if="{{item.down == '休假'}}">休假</view>
+				<view class="task-item-right status-04" wx:if="{{item.down == '请假'}}">请假</view>
+				<view class="task-item-right" wx:if="{{item.down == '-'}}">-</view>
 			</view>
 		</view>
 	</view>
+	<view class="attendance-null flex flex-d-col al-c ju-c" style="height: {{windowHeight-102}}px" wx:if="{{switchActive == 0 && attendanceNull}}">
+		<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/clock-null.png"></image>
+		<text>暂无考勤设置</text>
+		<view bindtap="toAttendance">考勤设置</view>
+	</view>
 	<view wx:if="{{switchActive == 1}}">
-		<block>
+	  <view class="no-data flex flex-d-col al-c ju-c" style="height: {{windowHeight-102}}px" wx:if="{{noData}}">
+			<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/leave_null.png"></image>
+			<text>暂无数据</text>
+		</view>
+		<block wx:if="{{!noData}}" wx:for="{{leaveList}}">
 			<!-- 审批 -->
-			<view class="leave-item flex flex-d-col">
-				<view class="leave-item-title">张xx提交的请假</view>
+			<view wx:if="{{item.status == 0}}" class="leave-item flex flex-d-col">
+				<view class="leave-item-title">{{item.task_id.nickname}}提交的请假</view>
 				<view class="leave-item-content">
 					<view class="flex al-c">
 						<text>开始时间: </text>
-						<text>2020-04-21 09：00</text>
+						<text>{{item.start_date}}</text>
 					</view>
 					<view class="flex al-c">
 						<text>结束时间: </text>
-						<text>2020-04-27 09：00</text>
+						<text>{{item.end_date}}</text>
 					</view>
 					<view class="flex al-c">
 						<text>请假事由: </text>
-						<text>事假</text>
+						<text>{{item.cause}}</text>
 					</view>
 				</view>
 				<view class="leave-item-btn flex al-c ju-fe">
-					<view class="flex-c-01" bindtap="toRejectLeave">拒绝</view>
-					<view class="flex-c-01">同意</view>
+					<view class="flex-c-01" bindtap="toRefuseLeave" data-id="{{item.id}}">拒绝</view>
+					<view class="flex-c-01" bindtap="toAgreeLeave" data-id="{{item.id}}">同意</view>
 				</view>
 			</view>
 			<!-- 审批通过 -->
-			<view class="leave-item flex-sb-01">
+			<view wx:if="{{item.status == 1}}" class="leave-item flex-sb-01">
 				<view class="left flex flex-d-col">
-					<view class="leave-item-title">张xx提交的请假</view>
+					<view class="leave-item-title">{{item.task_id.nickname}}提交的请假</view>
 					<view class="leave-item-content">
 						<view class="flex al-c">
 							<text>开始时间: </text>
-							<text>2020-04-21 09：00</text>
+							<text>{{item.start_date}}</text>
 						</view>
 						<view class="flex al-c">
 							<text>结束时间: </text>
-							<text>2020-04-27 09：00</text>
+							<text>{{item.end_date}}</text>
 						</view>
 						<view class="flex al-c">
 							<text>请假事由: </text>
-							<text>事假</text>
+							<text>{{item.cause}}</text>
 						</view>
 					</view>
 				</view>
@@ -103,22 +128,22 @@
 				</view>
 			</view>
 			<!-- 审批拒绝 -->
-			<view class="leave-item">
+			<view wx:if="{{item.status == 2}}" class="leave-item">
 				<view class="flex-sb-01">
 					<view class="left flex flex-d-col">
-						<view class="leave-item-title">张xx提交的请假</view>
+						<view class="leave-item-title">{{item.task_id.nickname}}提交的请假</view>
 						<view class="leave-item-content">
 							<view class="flex al-c">
 								<text>开始时间: </text>
-								<text>2020-04-21 09：00</text>
+								<text>{{item.start_date}}</text>
 							</view>
 							<view class="flex al-c">
 								<text>结束时间: </text>
-								<text>2020-04-27 09：00</text>
+								<text>{{item.end_date}}</text>
 							</view>
 							<view class="flex al-c">
 								<text>请假事由: </text>
-								<text>事假</text>
+								<text>{{item.cause}}</text>
 							</view>
 						</view>
 					</view>
@@ -131,15 +156,16 @@
 				<view class="leave-item-content">
 					<view class="flex al-c">
 						<text>审批时间: </text>
-						<text>2020-04-21 09：00</text>
+						<text>{{item.refuse_date}}</text>
 					</view>
-					<view class="flex al-c">
+					<view class="leave-item-refuse flex al-c">
 						<text>拒绝理由: </text>
-						<text>不同意</text>
+						<text>{{item.refuse_reason}}</text>
 					</view>
 				</view>
 			</view>
 		</block>
+		<view class="more-data" wx:if="{{hasMoreData && !noData}}">上拉加载更多...</view>
 	</view>
-	<leave isShow="{{leaveShow}}" bind:boxConfirm="boxConfirm" />
+	<leave isShow="{{leaveShow}}" bind:refuseEvent="refuseEvent" />
 </view>

@@ -202,6 +202,13 @@ Page({
     })
   },
 
+  // 进入商铺页面
+  toShops() {
+    wx.navigateTo({
+      url: '../mine/shops/shops',
+    })
+  },
+
   // 进入联盟页面
   toUnion() {
     wx.navigateTo({

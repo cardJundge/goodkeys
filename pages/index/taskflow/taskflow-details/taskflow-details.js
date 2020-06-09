@@ -17,7 +17,8 @@ Page({
     approvalBoxShow: false,
     unfold: false,
     optionChecked: [],
-    tempOption: []
+    tempOption: [],
+    isDisabled: false
   },
 
   onLoad(options) {
@@ -365,7 +366,10 @@ Page({
 
   toCompleteApprovalTemp(e) {
     let name = e.currentTarget.dataset.name
-    this.toCompleteApproval(name)
+    if (this.data.isDisabled == false) {
+      this.data.isDisabled = true
+      this.toCompleteApproval(name)
+    }
   },
 
   // 完成审核
@@ -393,6 +397,7 @@ Page({
         this.setData({
           imageList: []
         })
+        this.data.isDisabled = false
       }
     })
   },

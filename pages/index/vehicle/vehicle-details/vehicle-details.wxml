@@ -149,6 +149,12 @@
       <view wx:else>无</view>
     </view>
 
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>保单号:</text>
+      <text wx:if="{{vehicleList.policy_no}}">{{vehicleList.policy_no}}</text>
+      <text wx:else>无</text>
+    </view>
+
   </view>
 </view>
 

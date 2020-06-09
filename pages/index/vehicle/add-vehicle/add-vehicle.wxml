@@ -83,8 +83,13 @@
         <text>调查内容</text>
         <input placeholder="请输入调查内容" placeholder-class="ph-class" name="investigation"></input>
       </view>
+
+      <view class="case-item">
+        <text>保单号</text>
+        <input placeholder="请输入保单号" placeholder-class="ph-class" name="policyno"></input>
+      </view>
     </view>
-    <button class="next-btn" form-type="submit">下一步</button>
+    <button class="next-btn" form-type="submit" disabled="{{isDisabled}}">下一步</button>
     <!-- <button class="next-btn" bindtap="nextStep">下一步</button> -->
   </form>
 </view>

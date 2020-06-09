@@ -2,10 +2,17 @@
 Component({
   properties: {
     isShow: {
-      type: Boolean
+      type: Boolean,
+      value: {},
+      observer(newVal, oldVal) {
+        this.getWeekList()
+      }
     },
     flag: {
       type: String
+    },
+    weekData: {
+      type: Array
     }
   },
 
@@ -17,6 +24,20 @@ Component({
   },
 
   methods: {
+    getWeekList() {
+      this.data.weekList.forEach((item, index) => {
+        item.checked = false
+        this.data.weekData.forEach((item1, index1) => {
+          if (item.name == item1) {
+            item.checked = true
+          }
+        })
+      })
+      this.setData({
+        weekList: this.data.weekList
+      })
+    },
+
     typeChange(e) {
       let index = e.currentTarget.dataset.index,
         id = e.currentTarget.dataset.id,

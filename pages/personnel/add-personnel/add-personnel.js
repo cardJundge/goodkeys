@@ -192,12 +192,18 @@ Page({
     let params = e.detail.value
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
+      this.setData({
+        isDisabled: false
+      })
       wx.showToast({
         title: error.msg,
         icon: 'none'
       })
       return false
     } else if (this.data.module.system.length == 0 && this.data.module.define.length == 0) {
+      this.setData({
+        isDisabled: false
+      })
       return wx.showToast({
         title: '请选择人员类型',
         icon: 'none'

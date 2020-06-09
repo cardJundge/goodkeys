@@ -12,8 +12,9 @@
     <view class="open-content">
       <image src="/images/logo.png"></image>
       <text class="open-content-text01">线上商铺</text>
-      <text class="open-content-text02">简单好用的线上线下结合商铺</text>
-      <button bindtap="openShopsFirst">399/年</button>
+      <text class="open-content-text02">敬请期待...</text>
+      <!-- <text class="open-content-text02">简单好用的线上线下结合商铺</text> -->
+      <!-- <button bindtap="openShopsFirst">399/年</button> -->
     </view>
     <view class="open-bottom-bg"></view>
   </view>

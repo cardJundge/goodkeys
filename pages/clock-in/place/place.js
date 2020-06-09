@@ -51,6 +51,36 @@ Page({
     this.handleImage(0)
   },
 
+  onShow() {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userLocation']) {
+          this.getBasicInfo()
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '您未授权位置信息，功能将无法使用，是否前往设置页面授权位置',
+            success: res1 => {
+              if (res1.confirm) {
+                wx.openSetting({
+                  success: res2 => {
+                    // 打开设置页面进行判断
+                  },
+                  fail: err2 => {
+                    wx.showToast({
+                      title: '请前往设置页面设置位置授权',
+                      icon: 'none'
+                    })
+                  }
+                })
+              }
+            },
+          })
+        }
+      }
+    })
+  },
+
   getBasicInfo() {
     wx.getSystemInfo({
       success: res => {
@@ -65,7 +95,8 @@ Page({
       success: (res) => {
         let lat = res.latitude
         let lng = res.longitude
-        this.setData({
+        console.log('我',res)
+        this.setData({    
           poi: {
             latitude: lat,
             longitude: lng

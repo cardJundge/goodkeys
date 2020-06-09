@@ -6,10 +6,45 @@ var address = new QQMapWX({
 Page({
   data: {
   },
-  onLoad: function(options) {
+  onLoad(options) {
+    this.getLocation()
+  },
+
+  onShow() {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userLocation']) {
+          this.getLocation()
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '您未授权位置信息，功能将无法使用，是否前往设置页面授权位置',
+            success: res1 => {
+              if (res1.confirm) {
+                wx.openSetting({
+                  success: res2 => {
+                    // 打开设置页面进行判断
+                  },
+                  fail: err2 => {
+                    wx.showToast({
+                      title: '请前往设置页面设置位置授权',
+                      icon: 'none'
+                    })
+                  }
+                })
+              }
+            },
+          })
+        }
+      }
+    })
+  },
+
+  getLocation() {
     wx.getLocation({
       type: 'gcj02',
       success: res => {
+        console.log('发生的风格', res)
         let lat = res.latitude
         let lng = res.longitude
         address.reverseGeocoder({
@@ -37,7 +72,6 @@ Page({
                 longitude: res.result.location.lng
               },
             })
-            console.log('ceshivceshi',addList)
           }
         })
       },

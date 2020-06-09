@@ -76,12 +76,28 @@
   font-size: 48rpx;
 }
 
+.task-list {
+  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 20rpx;
+  margin-top: 24rpx;
+}
+
 .task-item {
   width: 100%;
   height: 148rpx;
   padding: 0 24rpx;
-  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.1);
-  border-radius: 20rpx;
+  border-bottom: 1px solid #DCDCDC;
+  margin: 12rpx 0;
+}
+
+.task-item-title {
+  height: 90rpx;
+  padding: 0 24rpx;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+.task-item-left {
+  width: 240rpx;
 }
 
 .task-item-left image {
@@ -92,30 +108,38 @@
 }
 
 .task-item-left text {
-  font-size: 36rpx;
+  width: 108rpx;
+  word-break: break-all;
+}
+
+.task-item-center {
+  width: 240rpx;
+  text-align: center;
 }
 
 .task-item-right {
-  width: 110rpx;
-  height: 60rpx;
-  border-radius: 10rpx;
-  color: #fff;
+  width: 240rpx;
+  text-align: center;
 }
 
 .status-01 {
- background: #1a65ff;
+  color: #1a65ff;
 }
 
 .status-02 {
-  background: #FF881A;
+  color: #FF881A;
 }
 
 .status-03 {
-  background: #19D64D ;
+  color: #19D64D;
 }
 
 .status-04 {
-  background: #F21AFF;
+  color: #F21AFF;
+}
+
+.status-05 {
+  color: #e4393c;
 }
 
 /* 请假 */
@@ -140,6 +164,11 @@
   margin-right: 8rpx;
 }
 
+.leave-item-refuse>text:last-child {
+  width: 500rpx;
+  word-break: break-all;
+}
+
 .leave-item-btn {
   width: 100%;
   padding-top: 24rpx;
@@ -162,7 +191,7 @@
   color: #fff;
 }
 
-.leave-item .right image{
+.leave-item .right image {
   width: 209rpx;
   height: 168rpx;
 }
@@ -172,4 +201,43 @@
   height: 2rpx;
   background: #e4e4e4;
   margin: 12rpx 0 24rpx;
+}
+
+.no-data {
+  width: 100%;
+  color: #8e8e8e;
+}
+
+.no-data image {
+  width: 418rpx;
+  height: 418rpx;
+  margin-bottom: 24rpx;
+}
+
+.more-data {
+  width: 100%;
+  line-height: 80rpx;
+  text-align: center;
+  color: #737373;
+}
+
+.attendance-null>image {
+  width: 418rpx;
+  height: 418rpx;
+}
+
+.attendance-null>text {
+  color: #8e8e8e;
+  margin: 24rpx 0;
+}
+
+.attendance-null>view {
+  width: 220rpx;
+  height: 70rpx;
+  border-radius: 8rpx;
+  background: #1a65ff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

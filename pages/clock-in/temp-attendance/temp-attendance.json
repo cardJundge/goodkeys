@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "attendance-modal": "/components/attendance/attendance"
+  },
+  "navigationBarTitleText": "考勤设置"
+}

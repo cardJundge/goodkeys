@@ -54,6 +54,7 @@ Page({
     if (this.data.btnDisabled == false) {
       this.data.btnDisabled = true
       if (this.data.approvalData.length == 0 && this.data.evaluateData.length == 0 && this.data.taskInputData.length == 0) {
+        this.data.btnDisabled = false
         return wx.showToast({
           title: '请创建任务流标准',
           icon: 'none'

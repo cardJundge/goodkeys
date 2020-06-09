@@ -39,18 +39,18 @@
 				<!-- 系统模块 -->
 				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}" data-id="{{item.id}}">
 					<image class="left" src="{{item.img}}"></image>
-					<view class="business-item-text">
+					<!-- <view class="business-item-text"> -->
 						<text>{{item.name}}</text>
-					</view>
-					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'system'}}"></image>
+					<!-- </view> -->
+					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/index/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'system'}}"></image>
 				</view>
 				<!-- 自定义模块 -->
 				<view wx:if="{{item.icon}}" class="business-item" catchtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
 					<image class="left" src="{{item.img}}"></image>
-					<view class="business-item-text">
+					<!-- <view class="business-item-text"> -->
 						<text>{{item.name}}</text>
-					</view>
-					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'define'}}"></image>
+					<!-- </view> -->
+					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/index/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'define'}}"></image>
 				</view>
 			</block>
 			<view class="business-item" bindtap="toAddModule">
@@ -74,6 +74,13 @@
 					<text>人员管控</text>
 				</view>
 				<image src="/images/clock/icon_clock.png"></image>
+			</view>
+			<view class="qms-item" bindtap="toShops">
+				<view class="qms-item-left">
+					<text>商铺</text>
+					<text>商铺管理</text>
+				</view>
+				<image src="/images/mine/shops/icon_shops.png"></image>
 			</view>
 			<view class="qms-item" bindtap="toUnion">
 				<view class="qms-item-left">

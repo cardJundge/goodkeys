@@ -72,6 +72,14 @@ function getNowDate() {
   return [year, mont, date].join('-');
 }
 
+function getNowMonth() {
+  // 当前时间的处理
+  var newDate = new Date();
+  var year = withData(newDate.getFullYear()),
+    mont = withData(newDate.getMonth() + 1);
+  return [year, mont].join('-');
+}
+
 function dateTimePicker(startYear, endYear, date) {
   // 返回默认显示的数组和联动数组的声明
   var dateTime = [], dateTimeArray = [[], [], [], [], [], []];
@@ -109,7 +117,7 @@ function getDates(days, todate) {
 function dateLater(dates, later) {
   let dateObj = {};
   let show_day = new Array('日', '一', '二', '三', '四', '五', '六');
-  let date = new Date(dates);
+  let date = new Date(dates.replace(/-/g,'/'));
   date.setDate(date.getDate() + later);
   let day = date.getDay();
   let yearDate = date.getFullYear();
@@ -124,5 +132,6 @@ module.exports = {
   getMonthDay: getMonthDay,
   getNow: getNow,
   getNowDate: getNowDate,
-  getDates: getDates
+  getDates: getDates,
+  getNowMonth: getNowMonth
 }

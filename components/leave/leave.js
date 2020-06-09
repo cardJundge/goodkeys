@@ -9,16 +9,22 @@ Component({
 
   },
   methods: {
-    // 同意请假
+    // 确定
     toConfirm() {
       this.setData({
         isShow: false
       })
+      this.triggerEvent('refuseEvent', { leaveRefuseReason: this.data.textValue})
     },
 
-    // 拒绝请假
+    getTextInput(e) {
+      this.setData({
+        textValue: e.detail.value
+      })
+    },
+
+    // 取消
     toCloseModule() {
-      console.log('eeeee')
       this.setData({
         isShow: false
       })

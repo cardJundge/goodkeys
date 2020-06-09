@@ -6,9 +6,9 @@
 </view>
 <view class="scheduling-body" wx:else>
 	<view class="scheduling-top flex ju-c al-fe">
-		<i-icon type="return" size="18" color="#717171"/>
+		<i-icon type="return" size="18" color="#717171" bindtap="toPre"/>
 		<text>2020年5月</text>
-		<i-icon type="enter" size="18" color="#717171"/>
+		<i-icon type="enter" size="18" color="#717171" bindtap="toNext"/>
 	</view>
   <view class="scheduling-week flex-sa-01">
     <view wx:for="{{weekList}}">{{item}}</view>

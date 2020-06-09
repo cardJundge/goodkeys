@@ -1,0 +1,35 @@
+/* 临时考勤设置 */
+
+.temp-content-item>view input{
+  text-align: right;
+  font-size: 24rpx;
+}
+
+.temp-content {
+  width: 100%;
+  padding: 0 24rpx;
+  border-bottom: 6px solid #F2F2F2;
+}
+
+.temp-content-item {
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 1px solid #F2F2F2;
+}
+
+.temp-content-item-right input{
+  width: 360rpx;
+  text-align: right;
+}
+
+.temp-btn {
+  width: 702rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  border-radius: 8rpx;
+  background: #1a65ff;
+  color: #fff;
+  margin-top: 165rpx;
+  margin-bottom: 24rpx;
+  font-size: 30rpx;
+}
