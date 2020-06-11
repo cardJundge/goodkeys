@@ -65,7 +65,7 @@
 	<!-- 企业管理系统 -->
 	<view class="qms">
 		<view class="qms-title">
-			<text>企业管理</text>
+			<text>应用中心</text>
 		</view>
 		<view class="qms-content">
 			<view class="qms-item" bindtap="toClockIn">

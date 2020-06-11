@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "i-swipeout": "/dist/swipeout/index",
-    "i-icon": "/dist/icon/index"
+    "i-icon": "/dist/icon/index",
+    "vehicle-screen": "/components/vehicle-screen/vehicle-screen"
   },
   "navigationBarTitleText": "车物调查",
   "enablePullDownRefresh": true

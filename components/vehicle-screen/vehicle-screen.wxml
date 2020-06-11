@@ -1,0 +1,42 @@
+<!--车务调查列表筛选-->
+<view class="container" wx:if="{{isShow && (flag == 'status' || flag == 'time')}}">
+	<view class="status-content" catchtap="stopBubble" wx:if="{{flag == 'status'}}">
+		<view wx:for="{{statusList}}" class="status-item {{statusId == item.id ? 'is-active' : ''}}" bindtap="changeStatus" data-id="{{item.id}}" data-name="{{item.name}}">{{item.name}}</view>
+	</view>
+	<view class="time-content" catchtap="stopBubble" wx:if="{{flag == 'time'}}">
+		<picker mode="date" bindchange="startDateChange">
+			<view class="time-item" wx:if="{{startDate}}">
+				{{startDate}}
+			</view>
+			<view class="time-item time-item-other" wx:if="{{!startDate}}">开始时间</view>
+		</picker>
+		<view class="time-line"></view>
+		<picker mode="date" bindchange="endDateChange">
+			<view class="time-item" wx:if="{{endDate}}">
+				{{endDate}}
+			</view>
+			<view class="time-item time-item-other" wx:if="{{!endDate}}">结束时间</view>
+		</picker>
+		<view class="time-btn {{isDisabled == false ? 'time-btn-active' : ''}}">完成</view>
+	</view>
+</view>
+<view class="container-more" wx:if="{{isShow && flag == 'more'}}">
+	<view class="more-content">
+		<view>
+			<view class="more-title">赔付意见</view>
+			<view class="more-box">
+				<view class="more-box-item {{opinionId == item.id ? 'is-active' : ''}}" wx:for="{{opinionList}}" bindtap="changeOpinion" data-id="{{item.id}}">{{item.name}}</view>
+			</view>
+		</view>
+		<view>
+			<view class="more-title">调查员</view>
+			<view class="more-box">
+				<view wx:for="{{personnelList}}" data-id="{{index}}" bindtap="changePersonnel" class="more-box-item {{personnelId == index ? 'is-active' : ''}}">{{item.nickname}}</view>
+			</view>
+		</view>
+		<view class="more-btn">
+			<view>重置</view>
+			<view bindtap="toConfirm">确定</view>
+		</view>
+	</view>
+</view>

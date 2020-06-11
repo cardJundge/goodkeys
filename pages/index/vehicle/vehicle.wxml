@@ -4,7 +4,7 @@
     <view class="search-bg">
       <view class="search-box">
         <view class="search">
-          <input placeholder-class="ph-class" type='text' placeholder="被保险人、驾驶员、联系电话、车险车牌号" bindconfirm="search" value="{{keywords}}"></input>
+          <input placeholder-class="ph-class" type='text' placeholder="搜索" bindconfirm="search" value="{{keywords}}"></input>
           <image src="/images/personnel/icon_search.png"></image>
         </view>
         <image bindtap="addVehicle" src="/images/personnel/icon_add.png" class="add"></image>
@@ -16,9 +16,30 @@
     <image src="/images/index/refresh.gif"></image>
   </view>
   <!-- 状态选择 -->
-  <scroll-view scroll-x class="status-box" scroll-left="{{navScrollLeft}}">
-    <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="status-item {{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
-  </scroll-view>
+  <!-- <scroll-view scroll-x class="status-box" scroll-left="{{navScrollLeft}}">
+    <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-id="{{item.id}}" class="status-item {{item.id == statusId? 'select-active': 'status-item'}}">{{item.name}}</view>
+  </scroll-view> -->
+  <view class="screen-box">
+    <view class="screen-item">
+      <text>区域</text>
+      <i-icon type="unfold" />
+    </view>
+    <view class="screen-item" bindtap="showScreenBox" data-flag="status">
+      <text>{{statusName ? statusName : '全部案件'}}</text>
+      <i-icon type="unfold" wx:if="{{!statusShow}}" />
+      <i-icon type="packup" wx:if="{{statusShow}}" />
+    </view>
+    <view class="screen-item" bindtap="showScreenBox" data-flag="time">
+      <text>委托时间</text>
+      <i-icon type="unfold" wx:if="{{!timeShow}}" />
+      <i-icon type="packup" wx:if="{{timeShow}}" />
+    </view>
+    <view class="screen-item" bindtap="showScreenBox" data-flag="more">
+      <text>筛选</text>
+      <i-icon type="unfold" wx:if="{{!moreShow}}" />
+      <i-icon type="packup" wx:if="{{moreShow}}" />
+    </view>
+  </view>
 
   <view class="loading-img" wx:if="{{spinShow}}">
     <image src="/images/loading.gif"></image>
@@ -52,3 +73,5 @@
     暂无数据
   </view>
 </view>
+
+<vehicle-screen isShow="{{screenShow}}" flag="{{screenFlag}}" bind:changeStatusEvent="changeStatusEvent" bind:changemoreEvent="changemoreEvent"/>

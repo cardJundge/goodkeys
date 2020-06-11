@@ -28,8 +28,6 @@ Page({
       dateObj: dateTimePicker.getNowDate(),
       windowHeight: wx.getSystemInfoSync().windowHeight
     })
-    // 判断之前是否有设置考勤
-    // this.getTaskList()
   },
 
   onShow() {
@@ -92,18 +90,6 @@ Page({
     })
   },
 
-  // 获取作业员列表
-  // getTaskList() {
-  //   let params = {}
-  //   personnelModel.getTaskList(params, res => {
-  //     if (res.data.status == 1) {
-  //       this.setData({
-  //         taskList: res.data.data
-  //       })
-  //     }
-  //   })
-  // },
-
   // 请假审批列表
   getLeaveList() {
     let params = {
@@ -111,13 +97,6 @@ Page({
     }
     clockinModel.getLeaveList(params, res => {
       if (res.data.status == 1) {
-        // res.data.data.data.forEach((item, index) => {
-        //   this.data.taskList.forEach((item1, index1) => {
-        //     if (item.task_id == item1.id) {
-        //       item.task_name = item1.nickname
-        //     }
-        //   })
-        // })
         let leaveList = this.data.leaveList,
           leaveInfo = res.data.data.data
         if (this.data.page == 1 && res.data.data.data.length == 0) {

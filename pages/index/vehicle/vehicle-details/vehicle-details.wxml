@@ -97,6 +97,11 @@
 
   <view class="base-infor">
     <!-- 案件信息 -->
+    <view class="task-list base-item" wx:if="{{currentTab == 0 && vehicleList.policy_no}}">
+      <text>保单号:</text>
+      <text>{{vehicleList.policy_no}}</text>
+    </view>
+    
     <view class="task-list base-item" wx:if="{{currentTab == 0}}">
       <text>被保险人:</text>
       <text>{{vehicleList.recognizee}}</text>
@@ -147,12 +152,6 @@
       <text>调查内容:</text>
       <view wx:if="{{vehicleList.survey_content}}">{{vehicleList.survey_content}}</view>
       <view wx:else>无</view>
-    </view>
-
-    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
-      <text>保单号:</text>
-      <text wx:if="{{vehicleList.policy_no}}">{{vehicleList.policy_no}}</text>
-      <text wx:else>无</text>
     </view>
 
   </view>

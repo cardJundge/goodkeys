@@ -10,36 +10,39 @@ Page({
     vehicleList: [],
     statusList: [{
         name: '全部案件',
-        id: 1
+        id: 0
       },
       {
         name: '已分配',
-        id: 2
+        id: 1
       },
       {
         name: '进行中',
-        id: 3
+        id: 2
       },
       {
         name: '预结案',
-        id: 4
+        id: 3
       },
       {
         name: '已结案',
-        id: 5
+        id: 4
       },
       {
         name: '转单',
-        id: 6
+        id: 5
       }
     ],
-    selected: 1,
+    statusId: 0, // 车物调查初始状态
     page: 1,
     pageSize: 15,
     hasNoData: false,
     navScrollLeft: 0,
     marginTop: 136,
-    vehStatus: 0 // 车物调查初始状态
+    // vehStatus: 0, 
+
+    screenShow: false,
+    statusName: '全部案件'
   },
 
   onLoad(options) {
@@ -53,7 +56,7 @@ Page({
       vehicleList: [],
       page: 1,
       spinShow: true,
-      selected: 1
+      statusId: 0
     })
     this.getVehicleList()
   },
@@ -65,8 +68,8 @@ Page({
       page: this.data.page,
       keywords: this.data.keywords ? this.data.keywords : ''
     }
-    if (this.data.selected == 1 || this.data.selected == 6) {} else {
-      params.status = this.data.vehStatus
+    if (this.data.statusId == 0 || this.data.statusId == 5) {} else {
+      params.status = this.data.statusId
     }
     indexModel.getWorkList(params, res => {
       wx.stopPullDownRefresh()
@@ -102,7 +105,7 @@ Page({
         }
         // this.data.vehicleTempList = this.data.vehicleList
 
-        if (this.data.selected == 6) {
+        if (this.data.statusId == 5) {
           let tempList = []
           this.data.vehicleList.forEach((item, index) => {
             if (item.turn_service_id) {
@@ -134,46 +137,69 @@ Page({
     })
   },
 
-  changeStatus(e) {
+  // ----------------------
+  // changeStatus(e) {
+  //   this.setData({
+  //     statusId: e.currentTarget.dataset.id,
+  //     keywords: ''
+  //   })
+
+  //   if (this.data.statusId == 0 || this.data.statusId == 1 || this.data.statusId == 2) {
+  //     this.setData({
+  //       navScrollLeft: 0
+  //     })
+  //   } else if (this.data.statusId == 3 || this.data.statusId == 4 || this.data.statusId == 5) {
+  //     this.setData({
+  //       navScrollLeft: 800
+  //     })
+  //   }
+  //   this.data.page = 1
+  //   this.data.vehicleList = []
+  //   this.getVehicleList()
+  // },
+  // ----------------------
+
+  // 弹出状态框
+  showScreenBox(e) {
+    let screenFlag = e.currentTarget.dataset.flag
     this.setData({
-      selected: e.target.dataset.index,
+      screenFlag: screenFlag,
+      screenShow: !this.data.screenShow
+    })
+    if (screenFlag == 'status') {
+      this.setData({
+        statusShow: this.data.screenShow
+      })
+    } else if (screenFlag == 'time') {
+      this.setData({
+        timeShow: this.data.screenShow
+      })
+    } else if (screenFlag == 'more') {
+      this.setData({
+        moreShow: this.data.screenShow
+      })
+    }
+  },
+
+  changeStatusEvent(e) {
+    this.setData({
+      statusId: e.detail.statusId,
+      statusName: e.detail.statusName,
+      screenShow: false,
+      statusShow: false,
       keywords: ''
     })
     this.data.page = 1
     this.data.vehicleList = []
-    if (this.data.selected === 1) {
-      this.setData({
-        navScrollLeft: 0
-      })
-      this.data.vehStatus = 0
-      this.getVehicleList()
-    } else if (this.data.selected === 2) {
-      this.setData({
-        navScrollLeft: 0
-      })
-      this.data.vehStatus = 1
-      this.getVehicleList()
-    } else if (this.data.selected === 3) {
-      this.data.vehStatus = 2
-      this.getVehicleList()
-    } else if (this.data.selected === 4) {
-      this.setData({
-        navScrollLeft: 800
-      })
-      this.data.vehStatus = 3
-      this.getVehicleList()
-    } else if (this.data.selected === 5) {
-      this.setData({
-        navScrollLeft: 800
-      })
-      this.data.vehStatus = 4
-      this.getVehicleList()
-    } else if (this.data.selected === 6) {
-      this.setData({
-        navScrollLeft: 800
-      })
-      this.getVehicleList()
-    }
+    this.getVehicleList()
+  },
+
+  // 更多筛选确定
+  changemoreEvent() {
+    this.setData({
+      screenShow: false,
+      moreShow: false
+    })
   },
 
   toVehicleDetails(e) {
@@ -198,7 +224,7 @@ Page({
       title: '加载中...'
     })
     this.setData({
-      selected: 1
+      statusId: 0
     })
     this.data.page = 1
     this.data.keywords = e.detail.value

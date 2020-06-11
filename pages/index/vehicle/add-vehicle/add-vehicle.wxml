@@ -1,95 +1,95 @@
 <!--增加车物调查案件-->
 <view class="add-vehicle-body">
-  <form bindsubmit="addVehicle">
-    <view class="case-whole">
-      <view class="case-item">
-        <text>报案号</text>
-        <input placeholder="请输入报案号" placeholder-class="ph-class" name="reportNo"></input>
-      </view>
+	<form bindsubmit="addVehicle">
+		<view class="case-whole">
+			<view class="case-item">
+				<text>保单号</text>
+				<input placeholder="请输入保单号(!可以为空)" placeholder-class="ph-class" name="policyno"></input>
+			</view>
 
-      <view class="case-item">
-        <text>委派公司</text>
-        <input placeholder="请输入委派公司" placeholder-class="ph-class" name="company"></input>
-      </view>
+			<view class="case-item">
+				<text>报案号</text>
+				<input placeholder="请输入报案号" placeholder-class="ph-class" name="reportNo"></input>
+			</view>
 
-      <view class="case-item">
-        <text>委派时间</text>
-        <picker mode="multiSelector" value="{{dateTime}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" bindchange="changedateTime" bindcancel="cancelTime" data-type="weipai">
-          <input placeholder="请选择委派时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!weipaiShow}}"></input>
-          <input disabled="disabled" wx:else value="{{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}"></input>
+			<view class="case-item">
+				<text>委派公司</text>
+				<input placeholder="请输入委派公司" placeholder-class="ph-class" name="company"></input>
+			</view>
 
-        </picker>
-      </view>
+			<view class="case-item">
+				<text>委派时间</text>
+				<picker mode="multiSelector" value="{{dateTime}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" bindchange="changedateTime" bindcancel="cancelTime" data-type="weipai">
+					<input placeholder="请选择委派时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!weipaiShow}}"></input>
+					<input disabled="disabled" wx:else value="{{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}"></input>
 
-      <view class="case-item">
-        <text>被保险人</text>
-        <input placeholder="请输入被保险人姓名" placeholder-class="ph-class" name="insuredPerson"></input>
-      </view>
+				</picker>
+			</view>
 
-      <view class="case-item">
-        <text>驾驶员</text>
-        <input placeholder="请输入驾驶员姓名" placeholder-class="ph-class" name="driverName"></input>
-      </view>
+			<view class="case-item">
+				<text>被保险人</text>
+				<input placeholder="请输入被保险人姓名" placeholder-class="ph-class" name="insuredPerson"></input>
+			</view>
 
-      <view class="case-item">
-        <text>联系电话</text>
-        <input placeholder="请输入驾驶员联系电话" placeholder-class="ph-class" name="driverTel"></input>
-      </view>
+			<view class="case-item">
+				<text>驾驶员</text>
+				<input placeholder="请输入驾驶员姓名" placeholder-class="ph-class" name="driverName"></input>
+			</view>
 
-      <view class="case-item">
-        <text>出险车牌号</text>
-        <input placeholder="请输入出险车牌号" placeholder-class="ph-class" name="carNo"></input>
-      </view>
-      <view class="case-item">
-        <text>出险时间</text>
-        <picker mode="multiSelector" value="{{dateTime2}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray2}}" bindchange="changedateTime" bindcancel="cancelTime" data-type="chuxian">
-          <input placeholder="请选择出险时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!chuxianShow}}"></input>
-          <input disabled="disabled" wx:else value="{{dateTimeArray2[0][dateTime2[0]]}}-{{dateTimeArray2[1][dateTime2[1]]}}-{{dateTimeArray2[2][dateTime2[2]]}} {{dateTimeArray2[3][dateTime2[3]]}}:{{dateTimeArray2[4][dateTime2[4]]}}"></input>
-        </picker>
-      </view>
+			<view class="case-item">
+				<text>联系电话</text>
+				<input placeholder="请输入驾驶员联系电话" placeholder-class="ph-class" name="driverTel"></input>
+			</view>
 
-      <view class="case-item">
-        <text>厂牌型号</text>
-        <input placeholder="请输入厂牌型号" placeholder-class="ph-class" name="brandNo"></input>
-      </view>
+			<view class="case-item">
+				<text>出险车牌号</text>
+				<input placeholder="请输入出险车牌号" placeholder-class="ph-class" name="carNo"></input>
+			</view>
+			<view class="case-item">
+				<text>出险时间</text>
+				<picker mode="multiSelector" value="{{dateTime2}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray2}}" bindchange="changedateTime" bindcancel="cancelTime" data-type="chuxian">
+					<input placeholder="请选择出险时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!chuxianShow}}"></input>
+					<input disabled="disabled" wx:else value="{{dateTimeArray2[0][dateTime2[0]]}}-{{dateTimeArray2[1][dateTime2[1]]}}-{{dateTimeArray2[2][dateTime2[2]]}} {{dateTimeArray2[3][dateTime2[3]]}}:{{dateTimeArray2[4][dateTime2[4]]}}"></input>
+				</picker>
+			</view>
 
-      <view class="case-item">
-        <text>出险地址</text>
-        <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
-          <input placeholder="请选择出险地址" placeholder-class="ph-class" disabled="disabled" wx:if="{{!region[0]}}"></input>
-          <input disabled="disabled" value="{{region[0]+'-'+region[1]}}" wx:else></input>
-        </picker>
-      </view>
+			<view class="case-item">
+				<text>厂牌型号</text>
+				<input placeholder="请输入厂牌型号" placeholder-class="ph-class" name="brandNo"></input>
+			</view>
 
-      <view class="case-item">
-        <text>详细地址</text>
-        <input placeholder="请输入出险详细地址" placeholder-class="ph-class" name="detailAddress"></input>
-      </view>
+			<view class="case-item">
+				<text>出险地址</text>
+				<picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+					<input placeholder="请选择出险地址" placeholder-class="ph-class" disabled="disabled" wx:if="{{!region[0]}}"></input>
+					<input disabled="disabled" value="{{region[0]+'-'+region[1]}}" wx:else></input>
+				</picker>
+			</view>
 
-      <view class="case-item">
-        <text>报案时间</text>
-        <picker mode="multiSelector" value="{{dateTime1}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray1}}" bindchange="changedateTime" bindcancel="cancelTime" data-type="baoan">
-          <input placeholder="请选择报案时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!baoanShow}}"></input>
-          <input disabled="disabled" wx:else value="{{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}"></input>
-        </picker>
-      </view>
+			<view class="case-item">
+				<text>详细地址</text>
+				<input placeholder="请输入出险详细地址" placeholder-class="ph-class" name="detailAddress"></input>
+			</view>
 
-      <view class="case-item">
-        <text>核实内容</text>
-        <input placeholder="请输入核实内容" placeholder-class="ph-class" name="verify"></input>
-      </view>
+			<view class="case-item">
+				<text>报案时间</text>
+				<picker mode="multiSelector" value="{{dateTime1}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray1}}" bindchange="changedateTime" bindcancel="cancelTime" data-type="baoan">
+					<input placeholder="请选择报案时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!baoanShow}}"></input>
+					<input disabled="disabled" wx:else value="{{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}"></input>
+				</picker>
+			</view>
 
-      <view class="case-item">
-        <text>调查内容</text>
-        <input placeholder="请输入调查内容" placeholder-class="ph-class" name="investigation"></input>
-      </view>
+			<view class="case-item">
+				<text>核实内容</text>
+				<input placeholder="请输入核实内容" placeholder-class="ph-class" name="verify"></input>
+			</view>
 
-      <view class="case-item">
-        <text>保单号</text>
-        <input placeholder="请输入保单号" placeholder-class="ph-class" name="policyno"></input>
-      </view>
-    </view>
-    <button class="next-btn" form-type="submit" disabled="{{isDisabled}}">下一步</button>
-    <!-- <button class="next-btn" bindtap="nextStep">下一步</button> -->
-  </form>
+			<view class="case-item">
+				<text>调查内容</text>
+				<input placeholder="请输入调查内容" placeholder-class="ph-class" name="investigation"></input>
+			</view>
+		</view>
+		<button class="next-btn" form-type="submit" disabled="{{isDisabled}}">下一步</button>
+		<!-- <button class="next-btn" bindtap="nextStep">下一步</button> -->
+	</form>
 </view>

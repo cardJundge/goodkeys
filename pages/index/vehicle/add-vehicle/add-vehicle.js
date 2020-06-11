@@ -208,12 +208,12 @@ Page({
       })
     }
 
-    if (!data.policyno) {
-      return wx.showToast({
-        title: '保单号不能为空！',
-        icon: "none"
-      })
-    }
+    // if (!data.policyno) {
+    //   return wx.showToast({
+    //     title: '保单号不能为空！',
+    //     icon: "none"
+    //   })
+    // }
 
     let params = {
       key: "traffic",
@@ -229,7 +229,7 @@ Page({
       report_date: this.data.dateTimeArray1[0][this.data.dateTime1[0]] + "-" + this.data.dateTimeArray1[1][this.data.dateTime1[1]] + '-' + this.data.dateTimeArray1[2][this.data.dateTime1[2]] + " " + this.data.dateTimeArray1[3][this.data.dateTime1[3]] + ":" + this.data.dateTimeArray1[4][this.data.dateTime1[4]],
       verify_content: data.verify,
       survey_content: data.investigation,
-      policy_no: data.policyno,
+      policy_no: data.policyno ? data.policyno : '',
       survey_date: this.data.dateTimeArray2[0][this.data.dateTime2[0]] + "-" + this.data.dateTimeArray2[1][this.data.dateTime2[1]] + '-' + this.data.dateTimeArray2[2][this.data.dateTime2[2]] + " " + this.data.dateTimeArray2[3][this.data.dateTime2[3]] + ":" + this.data.dateTimeArray2[4][this.data.dateTime2[4]]
     }
 
