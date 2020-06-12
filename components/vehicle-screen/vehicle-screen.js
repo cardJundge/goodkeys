@@ -97,6 +97,14 @@ Component({
       this.judgeBtn()
     },
 
+    // 日期确定
+    toTimeConfirm() {
+      this.setData({
+        isShow: false
+      })
+      this.triggerEvent('changeTimeEvent')
+    },
+
     // 判断完成按钮是否可以点击（时间）
     judgeBtn() {
       if (this.data.startDate && this.data.endDate) {
@@ -125,7 +133,7 @@ Component({
     },
 
     // 筛选（更多）确定
-    toConfirm() {
+    toMoreConfirm() {
       this.setData({
         isShow: false
       })

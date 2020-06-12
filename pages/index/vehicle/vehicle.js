@@ -159,6 +159,13 @@ Page({
   // },
   // ----------------------
 
+  // 打开位置选择框
+  bindRegionChange(e) {
+    this.setData({
+      regionData: e.detail.value
+    })
+  },
+
   // 弹出状态框
   showScreenBox(e) {
     let screenFlag = e.currentTarget.dataset.flag
@@ -178,6 +185,10 @@ Page({
       this.setData({
         moreShow: this.data.screenShow
       })
+    } else if (screenFlag == 'address') {
+      this.setData({
+
+      })
     }
   },
 
@@ -192,6 +203,14 @@ Page({
     this.data.page = 1
     this.data.vehicleList = []
     this.getVehicleList()
+  },
+
+  // 时间筛选确定
+  changeTimeEvent() {
+    this.setData({
+      screenShow: false,
+      timeShow: false
+    })
   },
 
   // 更多筛选确定

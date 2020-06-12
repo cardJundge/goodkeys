@@ -16,7 +16,7 @@
 					<picker mode="date" start="2010" end="{{todayObj}}" bindchange="dateChange">
 						<view>{{dateObj}}</view>
 					</picker>
-					<i-icon type="unfold" color="#1a65ff" size="20" />
+					<i-icon type="unfold" color="#fff" size="20" />
 				</view>
 				<text bindtap="toPlace">查看人员位置</text>
 			</view>

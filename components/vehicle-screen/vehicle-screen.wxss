@@ -81,8 +81,8 @@
 }
 
 .time-btn-active {
-  background: #F0F5FF;
-  color: #1A65FF;
+  background: #1a65ff;
+  color: #fff;
 }
 
 .container-more {
