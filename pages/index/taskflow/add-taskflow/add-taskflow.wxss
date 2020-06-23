@@ -59,9 +59,10 @@
   right: 0;
 }
 
-.image-item image {
+.image-item>image {
   width: 200rpx;
   height: 200rpx;
+  border-radius: 20rpx;
 }
 
 .location-content {

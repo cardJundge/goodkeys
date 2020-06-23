@@ -13,7 +13,9 @@ var personnelModel = new PersonnelModel()
 Page({
   data: {
     tabList: ['打卡', '请假'],
+    attendanceTabList: ['早班','晚上十二点的班'],
     switchActive: 0,
+    attendanceSwitchActive: 0,
     leaveShow: false,
     leaveList: [],
     page: 1,
@@ -191,12 +193,12 @@ Page({
 
   // 进入考勤设置
   toAttendance() {
-    // wx.navigateTo({
-    //   url: './attendance/attendance',
-    // })
     wx.navigateTo({
-      url: './temp-attendance/temp-attendance',
+      url: './attendance/attendance',
     })
+    // wx.navigateTo({
+    //   url: './temp-attendance/temp-attendance',
+    // })
   },
 
   // 上拉加载
@@ -206,4 +208,11 @@ Page({
       this.getLeaveList()
     }
   },
+
+  // 考勤组切换
+  changeAttendanceTab(e) {
+    this.setData({
+      attendanceSwitchActive: e.currentTarget.dataset.index
+    })
+  }
 })

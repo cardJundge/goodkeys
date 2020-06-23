@@ -106,6 +106,23 @@ function dateTimePicker(startYear, endYear, date) {
   }
 }
 
+function getCountDays() {
+  var curDate = new Date();
+  var curMonth = curDate.getMonth();
+  curDate.setMonth(curMonth + 1);
+  curDate.setDate(0);
+  return curDate.getDate();
+}
+
+function getEveryDay() {
+  var dayArry = [];
+  var day = getCountDays();
+  for (var k = 1; k <= day; k++) {
+      dayArry.push(k);
+  }
+  return dayArry;
+}
+
 function getDates(days, todate) {
   var dateArry = [];
   for (var i = 0; i < days; i++) {
@@ -117,13 +134,13 @@ function getDates(days, todate) {
 function dateLater(dates, later) {
   let dateObj = {};
   let show_day = new Array('日', '一', '二', '三', '四', '五', '六');
-  let date = new Date(dates.replace(/-/g,'/'));
+  let date = new Date(dates.replace(/-/g, '/'));
   date.setDate(date.getDate() + later);
   let day = date.getDay();
   let yearDate = date.getFullYear();
   let month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
   let dayFormate = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
-  dateObj.time =  yearDate+'-'+ month + '-' + dayFormate;
+  dateObj.time = yearDate + '-' + month + '-' + dayFormate;
   dateObj.week = show_day[day];
   return dateObj;
 }
@@ -133,5 +150,6 @@ module.exports = {
   getNow: getNow,
   getNowDate: getNowDate,
   getDates: getDates,
-  getNowMonth: getNowMonth
+  getNowMonth: getNowMonth,
+  getEveryDay: getEveryDay
 }

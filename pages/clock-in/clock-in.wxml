@@ -44,6 +44,9 @@
 				</view>
 			</view>
 		</view>
+		<view class="attendance-switch flex al-c">
+			<view wx:for="{{attendanceTabList}}" class="attendance-switch-item {{index == attendanceSwitchActive ? 'attendance-switch-active' : ''}}" bindtap="changeAttendanceTab" data-index="{{index}}">{{item}}</view>
+		</view>
 		<!-- 人员列表 -->
 		<view class="task-list">
 			<view class="task-item-title flex-sb-01">
@@ -77,7 +80,7 @@
 		<view bindtap="toAttendance">考勤设置</view>
 	</view>
 	<view wx:if="{{switchActive == 1}}">
-	  <view class="no-data flex flex-d-col al-c ju-c" style="height: {{windowHeight-102}}px" wx:if="{{noData}}">
+		<view class="no-data flex flex-d-col al-c ju-c" style="height: {{windowHeight-102}}px" wx:if="{{noData}}">
 			<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/leave_null.png"></image>
 			<text>暂无数据</text>
 		</view>

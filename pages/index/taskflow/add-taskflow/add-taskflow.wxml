@@ -48,7 +48,7 @@
         </view> -->
 				<view class="image-box" wx:if="{{item.type == 'image'}}">
 					<view class="image-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex">
-						<image src="{{imgUrl}}{{imgitem}}" data-index="{{imgindex}}"></image>
+						<image src="{{imgUrl}}{{imgitem}}" data-index="{{imgindex}}" data-name="{{item.name}}" bindtap="previewImage"></image>
 						<i-icon class="image-item-icon" type="delete_fill" color="#ef5959" size="24" bindtap="delImage" data-name="{{item.name}}" data-index="{{imgindex}}" />
 					</view>
 					<view class="image-item" bindtap="uploadImg" data-name="{{item.name}}">

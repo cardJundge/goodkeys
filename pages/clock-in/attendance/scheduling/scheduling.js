@@ -3,23 +3,66 @@ import dateTimePicker from '../../../../dist/dateTimePicker.js'
 Page({
   data: {
     spinShow: true,
-    tableList: [{ date: '01', taskList: ['张鹏', '王佳', '毛不易', '宋佳'] }, { date: '02', taskList: ['张鹏', '王佳', '毛不易', '宋佳'] }, { date: '03', taskList: [] }, { date: '04', taskList: [] }, { date: '05', taskList: [] }, { date: '06', taskList: [] }, { date: '07', taskList: [] }, { date: '08', taskList: ['张鹏', '王佳', '毛不易', '宋佳'] }, { date: '09', taskList: ['毛不易', '宋佳'] }, { date: '10', taskList: [] }, { date: '11', taskList: [] }, { date: '12', taskList: [] }, { date: '13', taskList: [] }, { date: '14', taskList: ['张鹏', '王佳', '毛不易', '宋佳'] }, { date: '15', taskList: ['张鹏', '王佳'] }, { date: '16', taskList: [] }, { date: '17', taskList: [] }, { date: '18', taskList: [] }, { date: '19', taskList: [] }, { date: '20', taskList: [] }, { date: '21', taskList: [] }, { date: '22', taskList: [] }, { date: '23', taskList: [] }, { date: '24', taskList: [] }, { date: '25', taskList: [] }, { date: '26', taskList: [] }, { date: '27', taskList: [] }, { date: '28', taskList: [] }, { date: '29', taskList: [] } , { date: '30', taskList: [] }, { date: '31', taskList: [] }],
+    tableList: [],
     weekList: ['日', '一', '二', '三', '四', '五', '六'],
+    currentDate: ''
   },
 
   onLoad(options) {
-    this.data.weekObj = dateTimePicker.getDates(1, '2020-05-1')[0].week
-    console.log(dateTimePicker,'654874545',dateTimePicker.getDates(1, '2020-05-1')[0],this.data.weekObj)
+    console.log(options)
+    let tempEveryDay = dateTimePicker.getEveryDay(),
+      nowMonth = dateTimePicker.getNowMonth(),
+      everyDay = []
+    this.data.taskData = options.taskData
+    tempEveryDay.forEach((item, index) => {
+      if (item < 10) {
+        everyDay.push(nowMonth + '-0' + item)
+      } else {
+        everyDay.push(nowMonth + '-' + item)
+      }
+    })
+    if (!options.tableData) {
+      everyDay.forEach((item, index) => {
+        this.data.tableList.push({ date: item, taskList: [] })
+      })
+    } else {
+      let tableData = JSON.parse(options.tableData)
+      everyDay.forEach((item, index) => {
+        this.data.tableList.push({ date: item, taskList: [] })
+        tableData.forEach((item1, index1) => {
+          if (item == item1.date) {
+            this.data.tableList[index] = item1
+          }
+        })
+      })
+    }
+
+    console.log('cicicic', this.data.tableList)
+    this.data.weekObj = dateTimePicker.getDates(1, everyDay[0])[0].week
     this.judgeWeek()
   },
 
-  // 去到上一个月份
-  toPre() {
-
+  onShow() {
+    if (this.data.selectTaskData) {
+      this.data.tableList.forEach((item, index) => {
+        if (item.date == this.data.currentDate) {
+          item.taskList = []
+          this.data.selectTaskData.forEach((item1, index1) => {
+            item.taskList.push({ nickname: item1.nickname, id: item1.id })
+          })
+        }
+      })
+      this.setData({
+        tableList: this.data.tableList
+      })
+    }
   },
 
+  // 去到上一个月份
+  toPre() { },
+
   // 去到下一个月份
-  toNext() {},
+  toNext() { },
 
   // 判断星期
   judgeWeek() {
@@ -45,9 +88,26 @@ Page({
   },
 
   // 前往选择添加作业员
-  taskSelect() {
+  taskSelect(e) {
+    this.data.currentDate = e.currentTarget.dataset.date
+    let flag = true
     wx.navigateTo({
-      url: '../task-select/task-select',
+      url: '../task-select/task-select?taskData=' + this.data.taskData + '&flag=' + flag,
+    })
+  },
+
+  // 确定
+  onConfirm() {
+    console.log(this.data.tableList)
+    var pages = getCurrentPages()
+    var currPage = pages[pages.length - 1] //当前页面
+    var prevPage = pages[pages.length - 2] //上一个页面
+
+    prevPage.setData({
+      tableList: this.data.tableList
+    })
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

@@ -49,6 +49,54 @@ class ClockInModel extends HTTP {
     this.request(params)
   }
 
+  // 考勤组列表
+  getAttendanceList(callback) {
+    var params = {
+      url: '/api/ser/clock/group',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 添加考勤组
+  toAddAttendance(param, callback) {
+    var params = {
+      url: '/api/ser/clock/addGroup',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 编辑考勤组
+  toEditAttendance(param, callback) {
+    var params = {
+      url: '/api/ser/clock/editGroup',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 删除考勤组
+  toDelAttendance(param, callback) {
+    var params = {
+      url: '/api/ser/clock/delGroup',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // ----------------------------
   // 临时考勤设置
   tempAttendance(param, callback) {
     var params = {

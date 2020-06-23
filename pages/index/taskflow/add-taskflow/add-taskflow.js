@@ -13,7 +13,6 @@ var indexModel = new IndexModel()
 Page({
   data: {
     taskList: [],
-    imageList: [],
     field: [],
     optionChecked: [],
     approvalBoxShow: false,
@@ -107,46 +106,65 @@ Page({
   // 上传图片
   uploadImg(e) {
     let name = e.currentTarget.dataset.name
-    this.data.imageList = []
-    wx.chooseImage({
-      count: 9,
-      // 可以指定是原图还是压缩图
-      sizeType: ['compressed'],
-      // 可以指定来源是相册还是相机
-      sourceType: ['album', 'camera'],
-      success: (res) => {
-        const tempFilePaths = res.tempFilePaths
-        for (let i = 0; i < res.tempFilePaths.length; i++) {
-          wx.uploadFile({
-            url: app.globalData.hostName + '/api/auth/upload',
-            filePath: res.tempFilePaths[i],
-            name: 'file',
-            success: (res) => {
-              let data = JSON.parse(res.data)
-              console.log(data)
-              if (data.status == 1) {
-                this.data.imageList.push(data.data.filename)
-                this.data.field.forEach((item, index) => {
-                  if (item.name == name) {
-                    item.value = this.data.imageList
-                  }
-                })
-                this.setData({
-                  field: this.data.field
-                })
-              } else {
-                wx.showToast({
-                  title: data.msg ? data.msg : '操作超时',
-                  icon: 'none'
-                })
-              }
-            },
-            fail: (err) => { }
-          })
+    this.data.field.forEach((item, index) => {
+      if (item.name == name) {
+        if (!item.value) {
+          item.value = []
         }
+        wx.chooseImage({
+          count: 9,
+          // 可以指定是原图还是压缩图
+          sizeType: ['compressed'],
+          // 可以指定来源是相册还是相机
+          sourceType: ['album', 'camera'],
+          success: (res) => {
+            const tempFilePaths = res.tempFilePaths
+            for (let i = 0; i < res.tempFilePaths.length; i++) {
+              wx.uploadFile({
+                url: app.globalData.hostName + '/api/auth/upload',
+                filePath: res.tempFilePaths[i],
+                name: 'file',
+                success: (res) => {
+                  let data = JSON.parse(res.data)
+                  console.log(data)
+                  if (data.status == 1) {
+                    item.value.push(data.data.filename)
+                    this.setData({
+                      field: this.data.field
+                    })
+                  } else {
+                    wx.showToast({
+                      title: data.msg ? data.msg : '操作超时',
+                      icon: 'none'
+                    })
+                  }
+                },
+                fail: (err) => { }
+              })
+            }
+          }
+        })
       }
     })
 
+  },
+
+  // 上传图片之后的大图查看
+  previewImage(e) {
+    let name = e.currentTarget.dataset.name,
+      imgArr = [],
+      imgIndex = e.currentTarget.dataset.index,v
+    this.data.field.forEach((item, index) => {
+      if (item.name == name) {
+        item.value.forEach((item1, index1) => {
+          imgArr.push(this.data.imgUrl + item1)
+        })
+        wx.previewImage({
+          urls: imgArr,
+          current: imgArr[imgIndex]
+        })
+      }
+    })
   },
 
   // 获取所有文本框、数字型内容
@@ -355,7 +373,7 @@ Page({
 
   // 确定按钮
   onConfirm() {
-    
+
     this.data.isRequired = true
     this.data.taskFlowList = {}
     this.data.taskFlowList.field = []
@@ -439,7 +457,7 @@ Page({
             delta: 1
           })
         } else {
-  
+
         }
       })
     }

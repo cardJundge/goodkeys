@@ -148,7 +148,7 @@ Page({
             urls: imgArr,
             current: imgArr[imgIndex]
           })
-          console.log(imgArr, imgArr[imgIndex])
+          // console.log(imgArr, imgArr[imgIndex])
         }
       })
     } else {

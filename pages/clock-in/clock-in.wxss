@@ -79,10 +79,28 @@
   font-size: 48rpx;
 }
 
+/* 考勤组切换 */
+
+.attendance-switch {
+  width: 100%;
+  height: 120rpx;
+}
+
+.attendance-switch-item {
+  width: 172rpx;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attendance-switch-active {
+  font-size: 36rpx;
+}
+
 .task-list {
   box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.10);
   border-radius: 20rpx;
-  margin-top: 24rpx;
 }
 
 .task-item {

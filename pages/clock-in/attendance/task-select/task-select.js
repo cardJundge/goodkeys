@@ -15,7 +15,20 @@ Page({
     this.setData({
       imgUrl: app.globalData.imgUrl
     })
-    this.getTaskList()
+    if (options.flag) {
+      let taskData = JSON.parse(options.taskData)
+      taskData.forEach((item, index) =>{
+        item.checked = false
+      })
+      this.setData({
+        taskList: taskData
+      })
+    } else {
+      this.setData({
+        selectTaskData: JSON.parse(options.data)
+      })
+      this.getTaskList()
+    }
   },
 
   // 获取作业员列表
@@ -26,6 +39,11 @@ Page({
       if(res.data.status == 1) {
         res.data.data.forEach((item, index) =>{
           item.checked = false
+          this.data.selectTaskData.forEach((item1, index1) => {
+            if (item.id == item1.id) {
+              item.checked = true
+            }
+          })
         })
         this.setData({
           taskList: res.data.data

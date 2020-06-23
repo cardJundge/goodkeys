@@ -18,13 +18,14 @@ Component({
 
   data: {
     isActive: 0,
-    typeList: [{ name: '固定时间上下班', intro: '说明:所有人按照相同的时间打卡', id: 1 }, { name: '按排班时间上下班', intro: '说明:不同人员根据各自排班打卡', id: 2 }],
+    typeList: [{ name: '固定时间上下班', intro: '说明:所有人按照相同的时间打卡', id: 0 }, { name: '按排班时间上下班', intro: '说明:不同人员根据各自排班打卡', id: 1 }],
     weekList: [{ name: '一', checked: false }, { name: '二', checked: false }, { name: '三', checked: false }, { name: '四', checked: false }, { name: '五', checked: false }, { name: '六', checked: false }, { name: '日', checked: false }],
     weekChecked: []
   },
 
   methods: {
     getWeekList() {
+      // console.log(this.data.weekData)
       this.data.weekList.forEach((item, index) => {
         item.checked = false
         this.data.weekData.forEach((item1, index1) => {

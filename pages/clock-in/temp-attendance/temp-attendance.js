@@ -5,7 +5,6 @@ import {
 } from '../models/clock-in.js'
 
 var clockinModel = new ClockInModel()
-var app = getApp()
 Page({
   data: {
     isDisabled: false,
