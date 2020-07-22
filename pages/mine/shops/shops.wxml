@@ -6,30 +6,30 @@
 </view>
 <view class="shops-body" wx:if="{{!spinShow}}">
   <!-- 开通商铺 -->
-  <view class="open-shops" wx:if="{{!isOpen}}">
+  <view class="open-shops flex flex-d-col ju-sb" wx:if="{{!isOpen}}">
     <view class="open-explain"></view>
     <!-- <view class="open-explain">商铺开通说明</view> -->
-    <view class="open-content">
+    <view class="open-content flex flex-d-col al-c">
       <image src="/images/logo.png"></image>
       <text class="open-content-text01">线上商铺</text>
       <text class="open-content-text02">敬请期待...</text>
       <!-- <text class="open-content-text02">简单好用的线上线下结合商铺</text> -->
-      <!-- <button bindtap="openShopsFirst">399/年</button> -->
+      <!-- <button class="flex-c-01" bindtap="openShopsFirst">399/年</button> -->
     </view>
     <view class="open-bottom-bg"></view>
   </view>
   <!-- 我的商铺 -->
   <view class="mine-shops" wx:if="{{isOpen}}">
     <!-- 今日收入 -->
-    <view class="mine-income">
-      <view class="mine-income-left">
+    <view class="mine-income flex ju-sb">
+      <view class="mine-income-left flex al-c">
         <text>七日收入</text>
         <text>0.00</text>
       </view>
       <text bindtap="toIncomeRecord">记录</text>
     </view>
     <!-- 今日访客 -->
-    <view class="mine-vistor">
+    <view class="mine-vistor flex al-c ju-sa">
       <view>
         <text>0</text>
         <text>今日访客</text>
@@ -44,7 +44,7 @@
       </view>
     </view>
     <!-- 添加商品/服务 -->
-    <view class="add-service" bindtap="toAddService">
+    <view class="add-service flex al-c" bindtap="toAddService">
       <image src="/images/mine/shops/add_icon.png"></image>
       <view>添加商品/服务</view>
     </view>

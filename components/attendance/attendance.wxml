@@ -4,7 +4,7 @@
 		<view class="title">考勤类型</view>
 		<view class="box">
 			<block wx:for="{{typeList}}">
-				<view class="box-item {{isActive == index ? 'box-active' : ''}}" bindtap="typeChange" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
+				<view class="box-item {{isActive == index ? 'box-active' : ''}}" bindtap="typeChange" data-index="{{index}}" data-id="{{item.id}}">
 					<i-icon wx:if="{{isActive == index}}" type="success_fill" color="#1a65ff" size="28" />
 					<i-icon wx:else type="success_fill" color="#737373" size="28" />
 					<view class="type-text">

@@ -1,6 +1,6 @@
 <!--人员位置-->
 <view>
-	<map longitude="{{poi.longitude}}" latitude="{{poi.latitude}}" markers="{{markers}}"  bindmarkertap='goMarkersDetails' style="width: 100%; height: {{windowHeight*2}}rpx;" scale='14' subkey="UVIBZ-MMEW4-3L3UG-DAWD7-PL3LQ-WHF3C" show-location circles="{{circles}}">
+	<map longitude="{{poi.longitude}}" latitude="{{poi.latitude}}" markers="{{markers}}"  bindmarkertap='goMarkersDetails' style="width: 100%; height: {{windowHeight}}px;" scale='14' subkey="UVIBZ-MMEW4-3L3UG-DAWD7-PL3LQ-WHF3C" show-location circles="{{circles}}">
 	</map>
   <canvas canvas-id='avatarCanvas'></canvas>
 </view>

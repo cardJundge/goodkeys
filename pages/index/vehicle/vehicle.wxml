@@ -21,9 +21,9 @@
   </scroll-view> -->
 	<view class="screen-box">
 		<view class="screen-item">
-			<picker mode="region" bindchange="bindRegionChange">
-				<text wx:if="{{!regionData || regionData.length == 0}}">区域</text>
-				<text wx:if="{{regionData.length != 0}}">{{regionData[0]}}</text>
+			<picker mode="region" bindchange="bindRegionChange" custom-item="不限">
+				<text wx:if="{{!regionList || regionList.length == 0}}">区域</text>
+				<text wx:if="{{regionList.length != 0}}">{{regionList[0]}}</text>
 				<i-icon type="unfold" />
 			</picker>
 		</view>
@@ -33,7 +33,7 @@
 			<i-icon type="packup" wx:if="{{statusShow}}" />
 		</view>
 		<view class="screen-item" bindtap="showScreenBox" data-flag="time">
-			<text>委托时间</text>
+			<text>委派时间</text>
 			<i-icon type="unfold" wx:if="{{!timeShow}}" />
 			<i-icon type="packup" wx:if="{{timeShow}}" />
 		</view>

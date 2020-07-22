@@ -1,0 +1,45 @@
+/* 订单 */
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.order-body {
+  width: 100%;
+  height: 100%;
+}
+
+.order-null {
+  width: 100%;
+  height: 100%;
+}
+
+.order-content {
+  width: 100%;
+  height: 100%;
+}
+
+.order-content image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-bottom: 24rpx;
+}
+
+.order-content-text01 {
+  font-size: 50rpx;
+  color: #3f78c7;
+  margin-bottom: 24rpx;
+}
+
+.order-content-text02 {
+  color: #6e6e7a;
+  margin-bottom: 76rpx;
+}
+
+.order-bottom-bg {
+  width: 100%;
+  height: 472rpx;
+  background: url('https://6f6d-omo-service-b6dza-1301029807.tcb.qcloud.la/images/open_shops_bg.png?sign=e654084f98916bef77bc94a83032d028&t=1578451976') no-repeat center;
+  background-size: 100% 100%;
+}

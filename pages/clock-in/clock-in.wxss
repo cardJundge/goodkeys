@@ -87,15 +87,11 @@
 }
 
 .attendance-switch-item {
-  width: 172rpx;
-  text-align: center;
+  max-width: 320rpx;
+  margin-left: 12rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.attendance-switch-active {
-  font-size: 36rpx;
 }
 
 .task-list {

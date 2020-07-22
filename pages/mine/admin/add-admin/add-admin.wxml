@@ -1,0 +1,59 @@
+<!--添加管理员-->
+<view>
+	<view class="add-form">
+		<!-- 姓名 -->
+		<view class="add-item flex-d-col">
+			<text>管理员姓名</text>
+			<input placeholder="请输入管理员姓名" placeholder-class="ph-class" value="{{adminName}}" bindinput="getAdminNameInput"></input>
+		</view>
+		<!-- 电话 -->
+		<view class="add-item flex-d-col">
+			<text>管理员手机号（管理员登录账号）</text>
+			<input placeholder="请输入管理员手机号" placeholder-class="ph-class" value="{{adminPhone}}" bindinput="getAdminPhoneInut"></input>
+		</view>
+		<!-- 密码 -->
+		<view class="add-item flex-d-col" wx:if="{{!isEdit}}">
+			<text>密码</text>
+			<input placeholder="默认密码为123456" placeholder-class="ph-class" type="password" value="{{adminPwd}}" bindinput="getAdminPwdInut"></input>
+		</view>
+		<view class="add-item flex-d-col">
+			<text>管理模块</text>
+			<view class="manage-list">
+				<view class="manage-item">
+					<view class="flex-sb-01" wx:if="{{moduleShow}}" bindtap="unfoldModule">
+						<text>业务模块（已选{{moduleNum}}项）</text>
+						<i-icon type="unfold" color="#a3a3a3"/>
+					</view>
+					<view class="flex-sb-01" wx:else bindtap="foldModule">
+						<text>业务模块（已选{{moduleNum}}项）</text>
+						<i-icon type="enter" color="#a3a3a3"/>
+					</view>
+					<checkbox-group wx:if="{{moduleShow}}" class="manage-item-box flex flex-w" bindchange="toSelectModule">
+						<label class="manage-item-box-label flex" wx:for="{{moduleList}}">
+							<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+							<text>{{item.name}}</text>
+						</label>
+					</checkbox-group>
+				</view>
+				<view class="manage-item">
+					<view class="flex-sb-01" wx:if="{{applicationShow}}" bindtap="unfoldApplication">
+						<text>应用中心（已选{{applicationNum}}项）</text>
+						<i-icon type="unfold" color="#a3a3a3" />
+					</view>
+					<view class="flex-sb-01" wx:else bindtap="foldApplication">
+						<text>应用中心（已选{{applicationNum}}项）</text>
+						<i-icon type="enter" color="#a3a3a3" />
+					</view>
+					<checkbox-group wx:if="{{applicationShow}}" class="manage-item-box flex flex-w" bindchange="toSelectApplication">
+						<label class="manage-item-box-label flex" wx:for="{{applicationList}}" wx:if="{{item.id != 4}}">
+							<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+							<text>{{item.name}}</text>
+						</label>
+					</checkbox-group>
+				</view>
+			</view>
+		</view>
+		<view class="del-btn flex-c-01" wx:if="{{isEdit == true}}" bindtap="delAdmin">删除</view>
+	</view>
+	<button class="add-btn flex-c-01" bindtap="onConfirm" disabled="{{isDisabled}}">确定</button>
+</view>

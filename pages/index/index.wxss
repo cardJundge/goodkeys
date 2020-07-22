@@ -74,10 +74,6 @@
   font-size: 36rpx;
 }
 
-.business-title text:last-child {
-  color: #1a65ff;
-}
-
 .business-content {
   padding: 0 24rpx;
   display: flex;
@@ -179,4 +175,28 @@
 .qms-item image {
   width: 80rpx;
   height: 80rpx;
+}
+
+.no-data-content {
+  width: 100%;
+  padding: 0 24rpx 34rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-data image {
+  width: 418rpx;
+  height: 418rpx;
+}
+
+.no-data text {
+  color: #9C9C9C;
 }

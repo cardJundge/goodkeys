@@ -1,8 +1,8 @@
 <!--收入记录-->
 <view class="record-body">
   <view class="record-list" wx:if="">
-    <view class="record-item">
-      <view class="record-item-left">
+    <view class="record-item flex-sb-01">
+      <view class="record-item-left flex flex-d-col al-fs">
         <text>小欣欣</text>
         <text>2020-01-08 15:34:56</text>
       </view>
@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class="record-list">
-    <view class="no-record-img">
+    <view class="no-record-img flex-c-02">
       <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/classification_null_bg.png" />
       <text>暂时没有记录...</text>
     </view>

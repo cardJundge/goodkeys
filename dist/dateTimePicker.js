@@ -80,6 +80,14 @@ function getNowMonth() {
   return [year, mont].join('-');
 }
 
+function getNowMonth1(params) {
+  // 当前时间的处理
+  var newDate = new Date(params);
+  var year = withData(newDate.getFullYear()),
+    mont = withData(newDate.getMonth() + 1);
+  return [year, mont].join('-');
+}
+
 function dateTimePicker(startYear, endYear, date) {
   // 返回默认显示的数组和联动数组的声明
   var dateTime = [], dateTimeArray = [[], [], [], [], [], []];
@@ -122,6 +130,22 @@ function getEveryDay() {
   }
   return dayArry;
 }
+function getCountDays1(params) {
+  var curDate = new Date(params);
+  var curMonth = curDate.getMonth();
+  curDate.setMonth(curMonth + 1);
+  curDate.setDate(0);
+  return curDate.getDate();
+}
+
+function getEveryDay1(params) {
+  var dayArry = [];
+  var day = getCountDays1(params);
+  for (var k = 1; k <= day; k++) {
+      dayArry.push(k);
+  }
+  return dayArry;
+}
 
 function getDates(days, todate) {
   var dateArry = [];
@@ -151,5 +175,7 @@ module.exports = {
   getNowDate: getNowDate,
   getDates: getDates,
   getNowMonth: getNowMonth,
-  getEveryDay: getEveryDay
+  getEveryDay: getEveryDay,
+  getNowMonth1: getNowMonth1,
+  getEveryDay1: getEveryDay1
 }

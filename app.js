@@ -1,20 +1,25 @@
 //app.js
 App({
   onLaunch: function () {
-    console.log('onLaunch')
+    // console.log('onLaunch')
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    // 登录(获取小程序基本信息)
+    this.getAuth(res=> {
+      console.log(res)
+      if(res.data.status == 1) {
+        this.globalData.unionId = res.data.data.unionid
       }
     })
+
     // 获取用户信息
 
+  },
+
+  onShow() {
     // 小程序版本更新
     if (wx.canIUse("getUpdateManager")) {
       const updateManager = wx.getUpdateManager()
@@ -53,17 +58,43 @@ App({
         }
       })
     } else {
-
       wx.showModal({
         title: '提示',
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
-   
   },
+
+  getAuth(sCallback) {
+    // 微信登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: this.globalData.hostName + "/api/ser/openid/get",
+          method: 'POST',
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          data: {
+            code: res.code
+          },
+          success: (res1) => {
+            sCallback(res1)
+          }
+        })
+      }
+    })
+  },
+
   globalData: {
+    auth: {
+      statistics: null,
+      task: null,
+    },
+    unionId: null,
     userInfo: null,
-    hostName: 'http://test-api.feecgo.com', 
+    hostName: 'http://test-api.feecgo.com',
     // hostName: 'http://192.168.1.123:8080',
     // hostName: 'https://api.feecgo.com',
     imgUrl: 'http://test-api.feecgo.com/storage/',

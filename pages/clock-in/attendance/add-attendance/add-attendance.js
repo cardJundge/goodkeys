@@ -79,14 +79,14 @@ Page({
   attendanceSelect() {
     this.setData({
       showAttendanceModal: true,
-      attendanceFlag: 'type'
+      attendanceFlag: 'type',
     })
   },
 
   // 考勤类型选择（弹框返回）
   typeChangeEvent(e) {
     this.setData({
-      attendanceTypeId: e.detail.typeId
+      attendanceTypeId: e.detail.typeId,
     })
   },
 
@@ -110,14 +110,37 @@ Page({
     })
   },
 
+  // 判断考勤人员与排班表是否对应
+  judgeTask(sCallback) {
+    let tempArr = []
+    this.data.tableList.forEach((item, index) => {
+      tempArr[index] = []
+      item.taskList.forEach((item1, index1) => {
+        this.data.selectTaskData.forEach((item2, index2) => {
+          if (item1.id == item2.id) {
+            tempArr[index].push(item1)
+          }
+        })
+      })
+    })
+    this.data.tableList.forEach((item ,index) => {
+      item.taskList = tempArr[index]
+      if (index === (this.data.tableList.length - 1)) {
+        sCallback(true)
+      }
+    })
+  },
+
   // 进入排班页面
   toScheduling() {
     console.log(this.data.tableList)
     let taskData = JSON.stringify(this.data.selectTaskData)
     if (this.data.tableList) {
-      let tableData = JSON.stringify(this.data.tableList)
-      wx.navigateTo({
-        url: '../scheduling/scheduling?taskData=' + taskData + '&tableData=' + tableData,
+      this.judgeTask(res=> {
+        let tableData = JSON.stringify(this.data.tableList)
+        wx.navigateTo({
+          url: '../scheduling/scheduling?taskData=' + taskData + '&tableData=' + tableData,
+        })
       })
     } else {
       wx.navigateTo({
@@ -201,10 +224,12 @@ Page({
     if (this.data.attendanceTypeId == 0) {
       params.week = this.data.cycleData
     } else if (this.data.attendanceTypeId == 1) {
-      params.table = this.data.tableList
+      this.judgeTask(res => {
+        params.table = this.data.tableList
+      })
     }
 
-    // console.log(params)
+    console.log(params)
     // 编辑
     if (this.data.isEdit == true) {
       params.group_id = this.data.attendanceId
@@ -222,6 +247,14 @@ Page({
           wx.navigateBack({
             delta: 1
           })
+        } else {
+          if (res.data.msg.match('Token已过期或失效')) {
+          } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
         }
       })
     } else {
@@ -239,6 +272,14 @@ Page({
           wx.navigateBack({
             delta: 1
           })
+        } else {
+          if (res.data.msg.match('Token已过期或失效')) {
+          } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
         }
       })
     }

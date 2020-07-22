@@ -1,30 +1,30 @@
 <!--登录-->
 <view class="login-body">
-  <view class="login-content">
-    <image class="login-content-logo" src="/images/logo.png"></image>
-    <view class="login-content-title">Goodkeys企业版</view>
-    <form bindsubmit="formSubmit">
-      <view class="login-content-form">
-        <!-- 账号 -->
-        <view class="input-box">
-          <image src="/images/login/login_account.png"></image>
-          <input placeholder-class="ph-class" type='text' name="phone" value ="{{formData.phone}}" placeholder='请输入您的手机号' />
-        </view>
-        <!-- 密码 -->
-        <view class="input-box">
-          <image src="/images/login/login_pwd.png"></image>
-          <input placeholder-class="ph-class" type='password' name="password" value ="{{formData.password}}" placeholder='请输入您的密码' />
-        </view>
-        <!-- 忘记密码 -->
-        <view class="operation-bar">
-          <text bindtap="toRegister">注册</text>
-          <text bindtap="toForget">忘记密码</text>
-        </view>
-        <!-- 登录按钮 -->
-        <button class="btn-box" formType="submit" wx:if="{{!isDisabled}}">登录</button>
-        <button class="btn-box" wx:if="{{isDisabled}}">登录中...</button>
-      </view>
-    </form>
-  </view>
-  <view class="beizhu">注：本系统属于企业内部协作工具，提供给企业内部员工使用，请使用手机账号和密码登录</view>
+	<view class="login-content">
+		<image class="login-content-logo" src="/images/logo.png"></image>
+		<view class="login-content-title">Goodkeys企业版</view>
+		<form bindsubmit="formSubmit">
+			<view class="login-content-form">
+				<!-- 账号 -->
+				<view class="input-box">
+					<image src="/images/login/login_account.png"></image>
+					<input placeholder-class="ph-class" type='text' name="phone" value="{{formData.phone}}" placeholder='请输入您的手机号' />
+				</view>
+				<!-- 密码 -->
+				<view class="input-box">
+					<image src="/images/login/login_pwd.png"></image>
+					<input placeholder-class="ph-class" type='password' name="password" value="{{formData.password}}" placeholder='请输入您的密码' />
+				</view>
+				<!-- 忘记密码 -->
+				<view class="operation-bar">
+					<text bindtap="toRegister">注册</text>
+					<text bindtap="toForget">忘记密码</text>
+				</view>
+				<!-- 登录按钮 -->
+				<button class="btn-box" formType="submit" wx:if="{{!isDisabled}}">登录</button>
+				<button class="btn-box" wx:if="{{isDisabled}}">登录中...</button>
+			</view>
+		</form>
+	</view>
+	<view class="beizhu">注：本系统属于企业内部协作工具，提供给企业内部员工使用，请使用手机账号和密码登录</view>
 </view>

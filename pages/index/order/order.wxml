@@ -1,0 +1,11 @@
+<!--订单-->
+<view class="order-body">
+	<view class="order-null flex flex-d-col al-c ju-fe">
+		<view class="order-content flex flex-d-col al-c ju-c">
+			<image src="/images/logo.png"></image>
+			<text class="order-content-text01">订单管理</text>
+			<text class="order-content-text02">敬请期待...</text>
+		</view>
+		<view class="order-bottom-bg"></view>
+	</view>
+</view>

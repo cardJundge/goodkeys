@@ -66,6 +66,7 @@
     "pages/index/add-module/first/icon/icon",
     "pages/index/taskflow/add-taskflow/add-taskflow",
     "pages/index/statistics/statistics",
+    "pages/index/statistics/add-report/add-report",
     "pages/index/increment/increment",
     "pages/index/increment/increment-details/increment-details",
     "pages/index/increment/increment-details/pack-details/pack-details",
@@ -77,7 +78,10 @@
     "pages/clock-in/attendance/add-attendance/add-attendance",
     "pages/clock-in/attendance/task-select/task-select",
     "pages/clock-in/attendance/scheduling/scheduling",
-    "pages/clock-in/temp-attendance/temp-attendance"
+    "pages/clock-in/temp-attendance/temp-attendance",
+    "pages/mine/admin/admin",
+    "pages/mine/admin/add-admin/add-admin",
+    "pages/index/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",

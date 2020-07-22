@@ -212,7 +212,6 @@ Page({
       params.module = this.data.module
       params.type = this.data.isLeader
       params.groupId = this.data.number ? this.data.groupData[this.data.number].id : 0
-      params.serviceId = app.globalData.userInfo.id
       if(this.data.isEdit) {
         params.id = this.data.taskId
         personnelModel.editTask(params, res=> {
@@ -239,6 +238,7 @@ Page({
           })
         })
       } else {
+        params.serviceId = app.globalData.userInfo.id
         personnelModel.addTask(params, res => {
           if (res.data.status == 1) {
             wx.showToast({

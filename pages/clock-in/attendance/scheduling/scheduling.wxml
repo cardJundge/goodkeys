@@ -1,9 +1,10 @@
 <!--排班-->
 <wxs module="fn">
+	var sub = function(str) {
+		return str.substring(8, 10)
+	}
 	module.exports = {
-		subString: function(str) {
-			return str.substring(8, 10)
-		}
+		sub: sub
 	}
 </wxs>
 <view class="scheduling-body" wx:if="{{spinShow}}">
@@ -14,7 +15,7 @@
 <view class="scheduling-body" wx:else>
 	<view class="scheduling-top flex ju-c al-fe">
 		<!-- <i-icon type="return" size="18" color="#717171" bindtap="toPre" /> -->
-		<text>2020年6月</text>
+		<text>{{currentMonth}}</text>
 		<!-- <i-icon type="enter" size="18" color="#717171" bindtap="toNext" /> -->
 	</view>
 	<view class="scheduling-week flex-sa-01">
@@ -22,7 +23,7 @@
 	</view>
 	<view class="scheduling-content">
 		<view class="scheduling-table flex flex-w">
-			<view class="scheduling-td" wx:for="{{tableList}}" bindtap="taskSelect" data-date="{{item.date}}">{{fn.subString(item.date)}}
+			<view class="scheduling-td" wx:for="{{tableList}}" bindtap="taskSelect" data-date="{{item.date}}" data-task="{{item.taskList}}">{{fn.sub(item.date)}}
 				<view class="scheduling-td-item" wx:for="{{item.taskList}}" wx:for-item="taskitem" wx:for-index="taskindex" wx:if="{{taskindex<3}}">{{taskitem.nickname}}</view>
 				<view class="scheduling-td-item-msg" wx:if="{{item.taskList.length>3}}">还有{{item.taskList.length - 3}}个人</view>
 			</view>

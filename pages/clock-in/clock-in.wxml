@@ -18,12 +18,12 @@
 					</picker>
 					<i-icon type="unfold" color="#fff" size="20" />
 				</view>
-				<text bindtap="toPlace">查看人员位置</text>
+				<text bindtap="toAttendance">考勤设置</text>
 			</view>
 			<view class="statistics-02 flex-sa-02">
 				<text>打卡人数/全部人数</text>
 				<text>{{clockData.clock}}/{{clockData.count}}</text>
-				<text bindtap="toAttendance">考勤设置</text>
+				<!-- <text bindtap="toAttendance">考勤设置</text> -->
 			</view>
 			<view class="statistics-03 flex-sa-01">
 				<view class="statistics-03-item flex flex-d-col al-c">
@@ -45,7 +45,12 @@
 			</view>
 		</view>
 		<view class="attendance-switch flex al-c">
-			<view wx:for="{{attendanceTabList}}" class="attendance-switch-item {{index == attendanceSwitchActive ? 'attendance-switch-active' : ''}}" bindtap="changeAttendanceTab" data-index="{{index}}">{{item}}</view>
+			<picker mode="selector" range="{{attendanceNameList}}" value="{{attendanceSwitchActive}}" bindchange="changeAttendanceTab">
+				<view class="flex al-c">
+					<text class="attendance-switch-item">{{attendanceList[attendanceSwitchActive].name}}</text><text style="font-size: 26rpx; color: #979797"> ({{attendanceList[attendanceSwitchActive].date}})</text>
+					<i-icon type="unfold" size="20" style="margin-left: 12rpx" />
+				</view>
+			</picker>
 		</view>
 		<!-- 人员列表 -->
 		<view class="task-list">
@@ -54,10 +59,10 @@
 				<view class="task-item-center">上班</view>
 				<view class="task-item-center">下班</view>
 			</view>
-			<view class="task-item flex-sb-01" wx:for="{{taskStatusList}}" bindtap="toPersonnel" data-id="{{item.id}}" data-face="{{item.face}}" data-name="{{item.nickname}}">
+			<view class="task-item flex-sb-01" wx:for="{{taskStatusList}}" bindtap="toPersonnel" data-id="{{item.info[0].id}}" data-face="{{item.info[0].face}}" data-name="{{item.info[0].nickname}}">
 				<view class="task-item-left flex al-c">
-					<image src="{{item.face ? imgUrl + item.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
-					<text>{{item.nickname}}</text>
+					<image src="{{item.info[0].face ? imgUrl + item.info[0].face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
+					<text>{{item.info[0].nickname}}</text>
 				</view>
 				<view class="task-item-center" wx:if="{{item.up == '正常'}}">正常</view>
 				<view class="task-item-center status-02" wx:if="{{item.up == '迟到'}}">迟到</view>

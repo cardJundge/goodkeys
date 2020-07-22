@@ -13,7 +13,8 @@ var personnelModel = new PersonnelModel()
 Page({
   data: {
     tabList: ['打卡', '请假'],
-    attendanceTabList: ['早班','晚上十二点的班'],
+    attendanceNameList: [],
+    attendanceList: [],
     switchActive: 0,
     attendanceSwitchActive: 0,
     leaveShow: false,
@@ -33,18 +34,28 @@ Page({
   },
 
   onShow() {
-    this.judgeAttendance()
+    this.getAttendanceList()
   },
 
-  judgeAttendance() {
-    clockinModel.judgeTempAttendance(res => {
+   // 获取考勤组列表(判断是否设置考勤)
+   getAttendanceList() {
+    clockinModel.getAttendanceList(res => {
       if (res.data.status == 1) {
         if (!res.data.data || res.data.data.length == 0) {
           this.setData({
             attendanceNull: true
           })
         } else {
+          this.data.attendanceNameList = []
+          this.data.attendanceIdList = []
+          res.data.data.forEach((item, index) => {
+            this.data.attendanceNameList.push(item.name + '(' + item.date + ')')
+            this.data.attendanceIdList.push(item.id)
+          })
           this.setData({
+            attendanceNameList: this.data.attendanceNameList,
+            attendanceList: res.data.data,
+            attendanceIdList: this.data.attendanceIdList,
             attendanceNull: false
           })
           this.getClockList()
@@ -63,7 +74,7 @@ Page({
       wx.setNavigationBarTitle({
         title: '打卡统计'
       })
-      this.judgeAttendance()
+      this.getAttendanceList()
     } else {
       wx.setNavigationBarTitle({
         title: '请假审批'
@@ -79,8 +90,10 @@ Page({
 
   // 获取打卡列表
   getClockList() {
+    console.log(this.data.attendanceIdList)
     let params = {
-      date: this.data.dateObj
+      date: this.data.dateObj,
+      group_id: this.data.attendanceIdList[this.data.attendanceSwitchActive]
     }
     clockinModel.getClockList(params, res => {
       if (res.data.status == 1) {
@@ -212,7 +225,8 @@ Page({
   // 考勤组切换
   changeAttendanceTab(e) {
     this.setData({
-      attendanceSwitchActive: e.currentTarget.dataset.index
+      attendanceSwitchActive: e.detail.value
     })
+    this.getClockList()
   }
 })

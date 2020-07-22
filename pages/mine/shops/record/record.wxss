@@ -15,18 +15,12 @@ page {
 
 .record-item {
   background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 120rpx;
   border-bottom: 1rpx solid #ccc;
   padding: 0 70rpx 0 24rpx;
 }
 
 .record-item-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .record-item-left text:first-child {
@@ -46,10 +40,6 @@ page {
 
 .no-record-img {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: #909090;
 }
 

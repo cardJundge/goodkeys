@@ -1,57 +1,62 @@
 <!--人员管理-->
-<view class="personnel-body" wx:if="{{spinShow}}">
-  <view class="spin-article">
-    <i-spin size="large" fix></i-spin>
-  </view>
-</view>
-
 <view class="personnel-body">
-  <view class="personnel-top">
-    <view class="search-bg">
-      <view class="search-box">
-        <view class="search">
-          <input placeholder-class="ph-class" type='text' placeholder="搜索人员" bindinput="search"></input>
-          <image src="/images/personnel/icon_search.png"></image>
-        </view>
-        <image bindtap="addGroup" class="add" src="/images/personnel/group.png"></image>
-        <image bindtap="addStaff" class="add" src="/images/personnel/icon_add.png"></image>
-      </view>
-    </view>
-  </view>
+	<view wx:if="{{taskAuthority || !authority || authority == 0}}">
+		<view class="spin-article" wx:if="{{spinShow}}">
+			<i-spin size="large" fix></i-spin>
+		</view>
+		<view class="personnel-top">
+			<view class="search-bg">
+				<view class="search-box">
+					<view class="search">
+						<input placeholder-class="ph-class" type='text' placeholder="搜索人员" bindinput="search"></input>
+						<image src="/images/personnel/icon_search.png"></image>
+					</view>
+					<image bindtap="addGroup" class="add" src="/images/personnel/group.png"></image>
+					<image bindtap="addStaff" class="add" src="/images/personnel/icon_add.png"></image>
+				</view>
+			</view>
+		</view>
 
-  <view class="personnel-content" wx:if="{{!someone}}">
-    <view class="personnel-content-null">
-      <image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/someone_null_bg.png"></image>
-      <text>暂无人员</text>
-      <view bindtap="addStaff">立即添加</view>
-    </view>
-  </view>
+		<view class="personnel-content" wx:if="{{!someone}}">
+			<view class="personnel-content-null">
+				<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/someone_null_bg.png"></image>
+				<text>暂无人员</text>
+				<view bindtap="addStaff">立即添加</view>
+			</view>
+		</view>
 
-  <view class="personnel-content" wx:if="{{someone}}">
-    <!-- <view class="personnel-content-title">
+		<view class="personnel-content" wx:if="{{someone}}">
+			<!-- <view class="personnel-content-title">
       <text>剩余人数： {{personnelCount}}</text>
       <text bindtap="addQuota">增加名额</text>
     </view> -->
-    <view class="personnel-content-list">
-      <i-index height="100%" bind:change="onChange">
-        <i-index-item wx:for="{{ personnel }}" wx:for-index="index" wx:key="{{index}}" wx:for-item="item" name="{{item.key}}" keyList="{{item.list}}">
-          <i-swipeout operateWidth="{{138}}" wx:for="{{item.list}}" wx:for-index="in" wx:key="{{in}}" wx:for-item="it">
-            <view slot="content" class="personnel-content-item" bindtap="phoneCall" data-phone="{{it.mobile}}">
-              <image src="{{it.face ? imgUrl + it.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
-              <view class="personnel-content-item-text">
-                <text>{{it.name}}</text>
-                <view class="personnel-content-item-text-tag">
-                  <view wx:for="{{it.module}}" wx:for-item="modules" wx:key="">{{modules.name}}</view>
-                </view>
-              </view>
-            </view>
-            <view slot="button" class="personnel-content-item-right">
-              <view bindtap="toEditTask" data-id="{{it.id}}">编辑</view>
-              <view bindtap="toDelTask" data-id="{{it.id}}">删除</view>
-            </view>
-          </i-swipeout>
-        </i-index-item>
-      </i-index>
-    </view>
-  </view>
+			<view class="personnel-content-list">
+				<i-index height="100%" bind:change="onChange">
+					<i-index-item wx:for="{{ personnel }}" wx:for-index="index" wx:key="{{index}}" wx:for-item="item" name="{{item.key}}" keyList="{{item.list}}">
+						<i-swipeout operateWidth="{{138}}" wx:for="{{item.list}}" wx:for-index="in" wx:key="{{in}}" wx:for-item="it">
+							<view slot="content" class="personnel-content-item" bindtap="phoneCall" data-phone="{{it.mobile}}">
+								<image src="{{it.face ? imgUrl + it.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
+								<view class="personnel-content-item-text">
+									<text>{{it.name}}</text>
+									<view class="personnel-content-item-text-tag">
+										<view wx:for="{{it.module}}" wx:for-item="modules" wx:key="">{{modules.name}}</view>
+									</view>
+								</view>
+							</view>
+							<view slot="button" class="personnel-content-item-right">
+								<view bindtap="toEditTask" data-id="{{it.id}}">编辑</view>
+								<view bindtap="toDelTask" data-id="{{it.id}}">删除</view>
+							</view>
+						</i-swipeout>
+					</i-index-item>
+				</i-index>
+			</view>
+		</view>
+	</view>
+	<view wx:else>
+		<view class="no-data" style="height: {{windowHeight}}px">
+			<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/no_authority.png"></image>
+			<text>暂无权限</text>
+		</view>
+	</view>
 </view>

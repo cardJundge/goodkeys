@@ -1,6 +1,7 @@
 import {
   HTTP
 } from '../../../utils/http.js'
+var app = getApp()
 
 class ClockInModel extends HTTP {
   // 获取请假审批列表
@@ -62,6 +63,7 @@ class ClockInModel extends HTTP {
 
   // 添加考勤组
   toAddAttendance(param, callback) {
+    param.service_id = (!app.globalData.userInfo.parent_id || app.globalData.userInfo.parent_id == 0) ? app.globalData.userInfo.id : app.globalData.userInfo.parent_id
     var params = {
       url: '/api/ser/clock/addGroup',
       type: 'POST',
@@ -152,6 +154,17 @@ class ClockInModel extends HTTP {
       type: 'GET',
       auth: true,
       data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 作业员当前位置获取
+  getCurLocation(callback) {
+    var params = {
+      url: '/api/ser/siteList/get',
+      type: 'GET',
+      auth: true,
       sCallback: callback
     }
     this.request(params)

@@ -71,6 +71,20 @@ Page({
     if (this.data.statusId == 0 || this.data.statusId == 5) {} else {
       params.status = this.data.statusId
     }
+    if (this.data.regionData) {
+      params.survey_address = this.data.regionData
+    }
+    if (this.data.opinionData && this.data.opinionData.length !=0) {
+      params.pay_opinion = this.data.opinionData
+    }
+    if (this.data.personnelData && this.data.personnelData.length != 0) {
+      params.task_id = this.data.personnelData
+    }
+    if (this.data.startDate && this.data.endDate) {
+      params.start_entrust_at = this.data.startDate
+      params.end_entrust_at = this.data.endDate
+    }
+    console.log('params', params)
     indexModel.getWorkList(params, res => {
       wx.stopPullDownRefresh()
       this.setData({
@@ -162,8 +176,18 @@ Page({
   // 打开位置选择框
   bindRegionChange(e) {
     this.setData({
-      regionData: e.detail.value
+      regionList: e.detail.value
     })
+    for (let i = this.data.regionList.length - 1; i >= 0; i--) {
+       if (this.data.regionList[i] == '不限') {
+        this.data.regionList.splice(i, 1)
+       }
+    }
+    this.data.regionData = this.data.regionList.join("")
+    this.data.page = 1
+    this.data.vehicleList = []
+    this.getVehicleList()
+    // console.log(this.data.regionData)
   },
 
   // 弹出状态框
@@ -192,6 +216,7 @@ Page({
     }
   },
 
+  // 状态筛选
   changeStatusEvent(e) {
     this.setData({
       statusId: e.detail.statusId,
@@ -206,19 +231,29 @@ Page({
   },
 
   // 时间筛选确定
-  changeTimeEvent() {
+  changeTimeEvent(e) {
     this.setData({
       screenShow: false,
       timeShow: false
     })
+    this.data.startDate = e.detail.startDate
+    this.data.endDate = e.detail.endDate
+    this.data.page = 1
+    this.data.vehicleList = []
+    this.getVehicleList()
   },
 
   // 更多筛选确定
-  changemoreEvent() {
+  changemoreEvent(e) {
     this.setData({
       screenShow: false,
       moreShow: false
     })
+    this.data.opinionData = e.detail.opinionData
+    this.data.personnelData = e.detail.personnelData
+    this.data.page = 1
+    this.data.vehicleList = []
+    this.getVehicleList()
   },
 
   toVehicleDetails(e) {

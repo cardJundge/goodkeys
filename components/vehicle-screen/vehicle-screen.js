@@ -48,12 +48,10 @@ Component({
     statusId: 0,
     isDisabled: true,
     opinionList: [
-      { name: '正常赔付', id: 1 },
-      { name: '拒赔处理', id: 2 },
-      { name: '减损处理', id: 3 },
+      { name: '正常赔付', checked: false },
+      { name: '拒赔处理', checked: false },
+      { name: '减损处理', checked: false },
     ],
-    opinionId: 1,
-    personnelId: 0,
   },
 
   methods: {
@@ -65,19 +63,42 @@ Component({
       })
       this.triggerEvent('changeStatusEvent', { statusId: this.data.statusId, statusName: this.data.statusName })
     },
-    
+
     // 选择赔付意见
     changeOpinion(e) {
-      this.setData({
-        opinionId: e.currentTarget.dataset.id
+      this.data.opinionData = []
+      this.data.opinionList.forEach((item, index) => {
+        if (item.name == e.currentTarget.dataset.name) {
+          item.checked = !item.checked
+        }
       })
+      this.data.opinionList.forEach((item, index) => {
+        if (item.checked == true) {
+          this.data.opinionData.push(item.name)
+        }
+      })
+      this.setData({
+        opinionList: this.data.opinionList
+      })
+      console.log(this.data.opinionList)
     },
 
     // 选择人员
     changePersonnel(e) {
-      console.log(e)
+      this.data.personnelData = []
+      this.data.personnelList.forEach((item, index) => {
+        if (item.id == e.currentTarget.dataset.id) {
+          item.checked = !item.checked
+        }
+      })
+      this.data.personnelList.forEach((item, index) => {
+        if (item.checked == true) {
+          this.data.personnelData.push(item.id)
+        }
+      })
+
       this.setData({
-        personnelId: e.currentTarget.dataset.id
+        personnelList: this.data.personnelList
       })
     },
 
@@ -102,7 +123,7 @@ Component({
       this.setData({
         isShow: false
       })
-      this.triggerEvent('changeTimeEvent')
+      this.triggerEvent('changeTimeEvent', { startDate: this.data.startDate, endDate: this.data.endDate })
     },
 
     // 判断完成按钮是否可以点击（时间）
@@ -125,6 +146,9 @@ Component({
       }
       personnelModel.getTaskList(params, res => {
         if (res.data.status == 1) {
+          res.data.data.forEach((item, index) => {
+            item.checked = false
+          })
           this.setData({
             personnelList: res.data.data
           })
@@ -134,16 +158,23 @@ Component({
 
     // 筛选（更多）确定
     toMoreConfirm() {
+      console.log(this.data.personnelData, this.data.opinionData)
       this.setData({
         isShow: false
       })
-      this.triggerEvent('changemoreEvent')
+      this.triggerEvent('changemoreEvent', { personnelData: this.data.personnelData, opinionData: this.data.opinionData })
     },
 
     toReset() {
+      this.data.personnelList.forEach((item, index) => {
+        item.checked = false
+      })
+      this.data.opinionList.forEach((item, index) => {
+        item.checked = false
+      })
       this.setData({
-        personnelId: 0,
-        opinionId: 1
+        personnelList: this.data.personnelList,
+        opinionList: this.data.opinionList
       })
     }
   }

@@ -3,52 +3,22 @@ var QQMapWX = require('./../../../dist/qqmap-wx-jssdk.min.js')
 var qqmapsdk = new QQMapWX({
   key: 'UVIBZ-MMEW4-3L3UG-DAWD7-PL3LQ-WHF3C'
 })
+var app = getApp()
+import {
+  ClockInModel
+} from './../models/clock-in.js'
+var clockinModel = new ClockInModel()
 Page({
   data: {
-    taskInfoList: [
-      {
-        taskId: 1,
-        photo: 'https://wx.qlogo.cn/mmopen/vi_32/a3ZcWibYWCy7CAlZmicuflTIygTqcs3icszhooPIh8gRKMev6gFphR5b2q6D3sjItbWVrvEkxMnaIWoicmD8NflS8A/132',
-        taskName: '王晓一',
-        longitude: '108.93984',
-        latitude: '34.34127'
-      },
-      {
-        taskId: 2,
-        photo: 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoxF7QA6D6JAYXuY8tXNicWz4lExxRukbPBiasw1KSIf5KDzpTFpehzib1L1vtFibxnm9ZzohibrgibvICg/132',
-        taskName: '测试',
-        longitude: '108.95984',
-        latitude: '34.345932'
-      },
-      {
-        taskId: 3,
-        photo: 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoxF7QA6D6JAYXuY8tXNicWz4lExxRukbPBiasw1KSIf5KDzpTFpehzib1L1vtFibxnm9ZzohibrgibvICg/132',
-        taskName: '赵毅个',
-        longitude: '108.99984',
-        latitude: '34.395932'
-      },
-      {
-        taskId: 4,
-        photo: 'https://wx.qlogo.cn/mmopen/vi_32/a3ZcWibYWCy7CAlZmicuflTIygTqcs3icszhooPIh8gRKMev6gFphR5b2q6D3sjItbWVrvEkxMnaIWoicmD8NflS8A/132',
-        taskName: '王晓二',
-        longitude: '108.77984',
-        latitude: '34.309932'
-      },
-      {
-        taskId: 5,
-        photo: 'https://wx.qlogo.cn/mmopen/vi_32/a3ZcWibYWCy7CAlZmicuflTIygTqcs3icszhooPIh8gRKMev6gFphR5b2q6D3sjItbWVrvEkxMnaIWoicmD8NflS8A/132',
-        taskName: '王晓三',
-        longitude: '108.11984',
-        latitude: '34.247932'
-      },
-    ],
+    taskInfoList: [],
     rectangleImg: '/images/clock/rectangle.png'
   },
 
   onLoad(options) {
+    this.data.imgUrl = app.globalData.imgUrl
     this.data.markers = []
+    this.getCurLocation()
     this.getBasicInfo()
-    this.handleImage(0)
   },
 
   onShow() {
@@ -81,9 +51,25 @@ Page({
     })
   },
 
+  getCurLocation() {
+    clockinModel.getCurLocation(res=> {
+      if (res.data.status == 1) {
+        this.data.taskInfoList = res.data.data
+        this.data.taskInfoList.forEach((item, index) => {
+          if (!item.face || item.face == '') {
+            // item.face = 'face/2020-07-09/saGSya8T0q7MrLYRlwoatbuUm3iwCHvOtWnIGvMN.png'
+            item.face = 'face/2020-07-16/IYiNr6NQJEye4AyuFIi9V7gkFokGK3o1uMVHpmVK.png'
+          }
+        })
+        this.handleImage(0)
+      }
+    })
+  },
+
   getBasicInfo() {
     wx.getSystemInfo({
       success: res => {
+        console.log(res)
         this.setData({
           windowWidth: res.windowWidth,
           windowHeight: res.windowHeight
@@ -95,7 +81,6 @@ Page({
       success: (res) => {
         let lat = res.latitude
         let lng = res.longitude
-        console.log('我',res)
         this.setData({    
           poi: {
             latitude: lat,
@@ -136,7 +121,7 @@ Page({
   // canvas画头像
   drawImage(item, sCallback) {
     wx.getImageInfo({
-      src: item.photo,
+      src: this.data.imgUrl + item.face,
       success: res => {
         const ctx = wx.createCanvasContext('avatarCanvas'),
         rectangleImgWidth = 140,
@@ -149,7 +134,7 @@ Page({
         // 用户姓名
         ctx.setFillStyle('#242729')
         ctx.setFontSize(this.rpx2px(28))
-        ctx.fillText(item.taskName, this.rpx2px(102), this.rpx2px(56))
+        ctx.fillText(item.nickname, this.rpx2px(102), this.rpx2px(56))
 
         // 用户头像
         ctx.save()
@@ -164,14 +149,14 @@ Page({
             canvasId: 'avatarCanvas',
             success: res_tfpath => {
               this.data.markers.push({
-                id: item.taskId,
+                id: item.id,
                 iconPath: res_tfpath.tempFilePath,
                 width: this.rpx2px(200),
                 height:  this.rpx2px(90),
                 latitude: item.latitude,
                 longitude: item.longitude,
               })
-              console.log(this.data.markers)
+              // console.log(this.data.markers)
               sCallback(true)
             }
           })
@@ -183,8 +168,8 @@ Page({
   // 进入作业员轨迹
   goMarkersDetails(e) {
     console.log(e, e.markerId)
-    wx.navigateTo({
-      url: '../trail/trail',
-    })
+    // wx.navigateTo({
+    //   url: '../trail/trail',
+    // })
   }
 })

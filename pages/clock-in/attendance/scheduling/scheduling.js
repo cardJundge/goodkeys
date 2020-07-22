@@ -9,11 +9,22 @@ Page({
   },
 
   onLoad(options) {
-    console.log(options)
-    let tempEveryDay = dateTimePicker.getEveryDay(),
-      nowMonth = dateTimePicker.getNowMonth(),
-      everyDay = []
+    // console.log(options)
+    let everyDay = [],tempEveryDay,nowMonth,currentMonth
+
+    if (!options.tableData || JSON.parse(options.tableData).length == 0) {
+      tempEveryDay = dateTimePicker.getEveryDay()
+      nowMonth = dateTimePicker.getNowMonth()
+    } else {
+      tempEveryDay = dateTimePicker.getEveryDay1(JSON.parse(options.tableData)[0].date)
+      nowMonth = dateTimePicker.getNowMonth1(JSON.parse(options.tableData)[0].date)
+    }
+
+    this.setData({
+      currentMonth: nowMonth.split('-')[0] + '年' + nowMonth.split('-')[1] + '月'
+    })
     this.data.taskData = options.taskData
+
     tempEveryDay.forEach((item, index) => {
       if (item < 10) {
         everyDay.push(nowMonth + '-0' + item)
@@ -21,6 +32,7 @@ Page({
         everyDay.push(nowMonth + '-' + item)
       }
     })
+
     if (!options.tableData) {
       everyDay.forEach((item, index) => {
         this.data.tableList.push({ date: item, taskList: [] })
@@ -37,7 +49,6 @@ Page({
       })
     }
 
-    console.log('cicicic', this.data.tableList)
     this.data.weekObj = dateTimePicker.getDates(1, everyDay[0])[0].week
     this.judgeWeek()
   },
@@ -90,15 +101,15 @@ Page({
   // 前往选择添加作业员
   taskSelect(e) {
     this.data.currentDate = e.currentTarget.dataset.date
+    let taskDataSelected = JSON.stringify(e.currentTarget.dataset.task)
     let flag = true
     wx.navigateTo({
-      url: '../task-select/task-select?taskData=' + this.data.taskData + '&flag=' + flag,
+      url: '../task-select/task-select?taskData=' + this.data.taskData + '&flag=' + flag + '&taskDataSelected=' + taskDataSelected,
     })
   },
 
   // 确定
   onConfirm() {
-    console.log(this.data.tableList)
     var pages = getCurrentPages()
     var currPage = pages[pages.length - 1] //当前页面
     var prevPage = pages[pages.length - 2] //上一个页面

@@ -48,6 +48,11 @@ Page({
   },
 
   onLoad(options) {
+    this.setData({
+      windowHeight: wx.getSystemInfoSync().windowHeight,
+      statisticsAuthority: app.globalData.auth.statistics,
+      authority: app.globalData.userInfo.parent_id
+    })
     this.getModule()
   },
 

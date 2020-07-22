@@ -39,6 +39,7 @@ switch .wx-switch-input {
 switch .wx-switch-input::before {
   width: 80rpx !important;
   height: 42rpx !important;
+  background: #e7e7e7;
 }
 
 /*蓝色样式（true的样式）*/

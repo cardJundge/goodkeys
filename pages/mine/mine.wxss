@@ -1,7 +1,6 @@
 /* 我 */
 
-.mine-body {
-}
+.mine-body {}
 
 .mine-card {
   width: 100%;
@@ -97,8 +96,7 @@
   height: 50rpx;
 }
 
-.mine-list {
-}
+.mine-list {}
 
 .mine-item {
   width: 100%;
@@ -121,4 +119,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.official-account {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.official-account>view {
+  position: relative;
+}
+
+.official-account-view {
+  width: 100%;
+}
+
+.official-account .icon {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+  z-index: 999;
 }

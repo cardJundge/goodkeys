@@ -1,6 +1,7 @@
 import {
   HTTP
 } from '../../../utils/http.js'
+var app = getApp()
 
 class PersonnelModel extends HTTP {
 
@@ -18,6 +19,7 @@ class PersonnelModel extends HTTP {
 
   // 添加人员
   addTask(param, callback) {
+    (!app.globalData.userInfo.parent_id || app.globalData.userInfo.parent_id == 0) ? param.service_id = app.globalData.userInfo.id : param.parent_id = app.globalData.userInfo.parent_id
     var params = {
       url: '/api/ser/user/increase',
       type: 'POST',
@@ -31,7 +33,7 @@ class PersonnelModel extends HTTP {
         module: param.module,
         type: param.type,
         group_id: param.groupId,
-        service_id: param.serviceId
+        service_id: (!app.globalData.userInfo.parent_id || app.globalData.userInfo.parent_id == 0) ? param.serviceId : app.globalData.userInfo.parent_id
       },
       sCallback: callback
     }
@@ -108,8 +110,10 @@ class PersonnelModel extends HTTP {
 
   // 获取服务商拥有的模块
   getModule(callback) {
+    let type = (!app.globalData.userInfo.parent_id || app.globalData.userInfo.parent_id == 0) ? 0 : 1
     var params = {
-      url: '/api/ser/user/module',
+      // url: '/api/ser/user/module/',
+      url: '/api/ser/user/module/' + type,
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -117,8 +121,9 @@ class PersonnelModel extends HTTP {
     this.request(params)
   }
 
-  // 增加分组
+  // 添加分组
   addGroup(param, callback) {
+    param.service_id = (!app.globalData.userInfo.parent_id || app.globalData.userInfo.parent_id == 0) ? app.globalData.userInfo.id : app.globalData.userInfo.parent_id
     var params = {
       url: '/api/ser/group/add',
       type: 'POST',

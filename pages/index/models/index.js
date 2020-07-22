@@ -1,6 +1,7 @@
 import {
   HTTP
 } from '../../../utils/http.js'
+var app = getApp()
 
 class IndexModel extends HTTP {
 
@@ -31,7 +32,7 @@ class IndexModel extends HTTP {
   getWorkList(param, callback) {
     var params = {
       url: '/api/ser/work/lists',
-      type: 'GET',
+      type: 'POST',
       auth: true,
       data: param,
       sCallback: callback
@@ -149,6 +150,7 @@ class IndexModel extends HTTP {
 
   // 增加业务
   addBusiness(param, callback) {
+    param.service_id = (!app.globalData.userInfo.parent_id || app.globalData.userInfo.parent_id == 0) ? app.globalData.userInfo.id : app.globalData.userInfo.parent_id
     var params = {
       url: '/api/ser/work/increase',
       type: 'POST',
@@ -259,6 +261,7 @@ class IndexModel extends HTTP {
 
   // 车物调查添加任务
   addTask(param, callback) {
+    
     var params = {
       url: '/api/traffic/task/insert',
       type: 'POST',
@@ -427,6 +430,7 @@ class IndexModel extends HTTP {
 
   // 新模块添加案件
   addTaskflow(param, callback) {
+    param.service_id = (!app.globalData.userInfo.parent_id || app.globalData.userInfo.parent_id == 0) ? app.globalData.userInfo.id : app.globalData.userInfo.parent_id
     var params = {
       url: '/api/ser/case/create',
       type: 'POST',

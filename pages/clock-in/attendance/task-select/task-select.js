@@ -16,9 +16,18 @@ Page({
       imgUrl: app.globalData.imgUrl
     })
     if (options.flag) {
-      let taskData = JSON.parse(options.taskData)
-      taskData.forEach((item, index) =>{
+      let taskData = JSON.parse(options.taskData),
+        taskDataSelected = JSON.parse(options.taskDataSelected)
+      console.log(taskData, taskDataSelected)
+      this.data.selectTaskData = []
+      taskData.forEach((item, index) => {
         item.checked = false
+        taskDataSelected.forEach((item1, index1) => {
+          if (item.id == item1.id) {
+            item.checked = true
+            this.data.selectTaskData.push(item1)
+          }
+        })
       })
       this.setData({
         taskList: taskData
@@ -35,9 +44,9 @@ Page({
   getTaskList() {
     let params = {
     }
-    personnelModel.getTaskList(params, res=> {
-      if(res.data.status == 1) {
-        res.data.data.forEach((item, index) =>{
+    personnelModel.getTaskList(params, res => {
+      if (res.data.status == 1) {
+        res.data.data.forEach((item, index) => {
           item.checked = false
           this.data.selectTaskData.forEach((item1, index1) => {
             if (item.id == item1.id) {
@@ -61,7 +70,7 @@ Page({
     this.setData({
       taskList: this.data.taskList,
       isSelectAll: true,
-      numPeople:  this.data.taskList.length
+      numPeople: this.data.taskList.length
     })
     this.data.selectTaskData = this.data.taskList
   },
@@ -96,6 +105,7 @@ Page({
 
   // 确定
   onConfirm() {
+    console.log(this.data.selectTaskData)
     var pages = getCurrentPages()
     var currPage = pages[pages.length - 1] //当前页面
     var prevPage = pages[pages.length - 2] //上一个页面

@@ -6,9 +6,13 @@ import {
 import {
   IndexModel
 } from './models/index.js'
+import {
+  MineModel
+} from '../mine/models/mine.js'
 
 var personnelModel = new PersonnelModel()
 var indexModel = new IndexModel()
+var mineModel = new MineModel()
 Page({
   data: {
     dataStatisticsArray: [],
@@ -17,18 +21,82 @@ Page({
     page: 1,
     moduleArray: [],
     businessArray: [],
-    spinShow: true,
+    // spinShow: true,
+    // 权限----
+    clockAuthority: false,
+    orderAuthority: false,
+    shopsAuthority: false,
+    unionAuthority: false,
+    noApplyAuthority: true
   },
   onLoad() {
     this.setData({
-      serviceType: app.globalData.userInfo.type
+      serviceType: app.globalData.userInfo.type,
+      authority: app.globalData.userInfo.parent_id
     })
+    // 获取服务商应用权限
+    this.getSerApplication()
   },
   onShow() {
     this.getDataStatics()
     this.getModule()
     this.setData({
       editIconshow: false
+    })
+  },
+
+  // 获取服务商应用权限
+  getSerApplication() {
+    mineModel.getSerApplicationList(res => {
+      if (res.data.status == 1) {
+        res.data.data.forEach((item, index) => {
+          // 打卡
+          if (item.id == 1) {
+            this.setData({
+              clockAuthority: true
+            })
+          }
+          // 订单
+          if (item.id == 2) {
+            this.setData({
+              orderAuthority: true
+            })
+          }
+          // 商铺
+          if (item.id == 3) {
+            this.setData({
+              shopsAuthority: true
+            })
+          }
+          // 联盟
+          if (item.id == 4) {
+            this.setData({
+              unionAuthority: true
+            })
+          }
+          // 人员位置
+          if (item.id == 7) {
+            this.setData({
+              locationAuthority: true
+            })
+          }
+          // 应用中心一个也没有
+          if (item.id == 1 || item.id == 2 || item.id == 3 || item.id == 4 || item.id == 7) {
+            this.setData({
+              noApplyAuthority: false
+            })
+          }
+          console.log('noApplyAuthority', this.data.noApplyAuthority)
+          // 统计分析
+          if (item.id == 5) {
+            app.globalData.auth.statistics = true
+          }
+          // 人员管理
+          if (item.id == 6) {
+            app.globalData.auth.task = true
+          }
+        })
+      }
     })
   },
 
@@ -56,7 +124,7 @@ Page({
   // 进入业务列表
   toItemList(e) {
     let key = e.currentTarget.dataset.key,
-    id = e.currentTarget.dataset.id
+      id = e.currentTarget.dataset.id
     if (key == 'survey') {
       wx.navigateTo({
         url: './survey/survey',
@@ -130,8 +198,8 @@ Page({
   // 管理自定义模块
   toEditAllModule(e) {
     let id = e.currentTarget.dataset.id,
-    flag = e.currentTarget.dataset.flag,
-    itemList = []
+      flag = e.currentTarget.dataset.flag,
+      itemList = []
     this.setData({
       editIconshow: false
     })
@@ -157,14 +225,14 @@ Page({
                   let params = {
                     id: id
                   }
-                  indexModel.delModule(params, res=> {
+                  indexModel.delModule(params, res => {
                     if (res.data.status == 1) {
                       wx.showToast({
                         title: '删除成功',
                       })
                       this.getModule()
                     } else {
-                      if (res.data.msg.match('Token')) {} else {
+                      if (res.data.msg.match('Token')) { } else {
                         wx.showToast({
                           title: res.data.msg ? res.data.msg : '请求超时',
                           icon: 'none'
@@ -172,7 +240,7 @@ Page({
                       }
                     }
                   })
-                } else if (flag == 'system')  {
+                } else if (flag == 'system') {
                   this.data.systemModuleId.forEach((item, index) => {
                     if (item == id) {
                       this.data.systemModuleId.splice(index, 1)
@@ -181,9 +249,14 @@ Page({
                   let params = {
                     module: this.data.systemModuleId.join(',')
                   }
-                  indexModel.setSelfModule(params, res=> {
+                  indexModel.setSelfModule(params, res => {
                     if (res.data.status == 1) {
                       this.getModule()
+                    } else {
+                      wx.showToast({
+                        title: res.data.msg ? res.data.msg : '操作超时',
+                        icon: 'none'
+                      })
                     }
                   })
                 }
@@ -206,6 +279,20 @@ Page({
   toShops() {
     wx.navigateTo({
       url: '../mine/shops/shops',
+    })
+  },
+
+  // 进入人员位置
+  toLocation() {
+    wx.navigateTo({
+      url: '../clock-in/place/place',
+    })
+  },
+
+  // 进入订单页面
+  toOrder() {
+    wx.navigateTo({
+      url: './order/order',
     })
   },
 

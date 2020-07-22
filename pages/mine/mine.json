@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "i-icon": "/dist/icon/index"
+    "i-icon": "/dist/icon/index",
+    "subscribe": "/components/subscribe/subscribe"
   },
   "navigationStyle": "custom"
 }

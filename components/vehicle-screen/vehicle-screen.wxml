@@ -25,17 +25,17 @@
 		<view>
 			<view class="more-title">赔付意见</view>
 			<view class="more-box">
-				<view class="more-box-item {{opinionId == item.id ? 'is-active' : ''}}" wx:for="{{opinionList}}" bindtap="changeOpinion" data-id="{{item.id}}">{{item.name}}</view>
+				<view class="more-box-item {{item.checked == true ? 'is-active' : ''}}" wx:for="{{opinionList}}" bindtap="changeOpinion" data-name="{{item.name}}">{{item.name}}</view>
 			</view>
 		</view>
 		<view>
 			<view class="more-title">调查员</view>
 			<view class="more-box">
-				<view wx:for="{{personnelList}}" data-id="{{index}}" bindtap="changePersonnel" class="more-box-item {{personnelId == index ? 'is-active' : ''}}">{{item.nickname}}</view>
+				<view wx:for="{{personnelList}}"  class="more-box-item {{item.checked == true ? 'is-active' : ''}}" bindtap="changePersonnel" data-id="{{item.id}}">{{item.nickname}}</view>
 			</view>
 		</view>
 		<view class="more-btn">
-			<view>重置</view>
+			<view bindtap="toReset">重置</view>
 			<view bindtap="toMoreConfirm">确定</view>
 		</view>
 	</view>

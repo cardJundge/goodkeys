@@ -1,0 +1,24 @@
+<!--订阅消息弹框组件-->
+<view class='container' wx:if="{{show}}" catchtouchmove="ture">
+  <view class="modal-bottom" animation="{{animationData}}">
+    <view class="topbox">
+      <image src="/images/logo.png"></image>
+      <text>Goodkeys企业版版 申请</text>
+    </view>
+    <text >发送已下消息</text>
+    <form bindsubmit="formSubmit">
+      <scroll-view class="scrollbox" scroll-y>
+        <checkbox-group class="checkboxgroup" name="checkbox">
+          <label wx:for="{{subscribeList}}" class="labelbox">
+            <checkbox value="{{item.tmplIds}}" checked="{{item.checked}}" />{{item.title}}
+          </label>
+        </checkbox-group>
+      </scroll-view>
+
+      <view class="btn-area">
+        <button bindtap="hideModal">取消</button>
+        <button form-type="submit">允许</button>
+      </view>
+    </form>
+  </view>
+</view>

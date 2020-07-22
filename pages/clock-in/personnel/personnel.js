@@ -66,6 +66,9 @@ Page({
     }
     clockinModel.getDayClockDetails(params, res => {
       if (res.data.status == 1) {
+        if (res.data.data.work && res.data.data.close && (Number(res.data.data.work.split(':')[0])> Number(res.data.data.close.split(':')[0]))) {
+          res.data.data.close = '次日' + res.data.data.close
+        }
         this.setData({
           allDayData: res.data.data
         })
@@ -89,7 +92,7 @@ Page({
         })
         if (res.data.data.restNum) {
           let weekObjWxmlArr = res.data.data.week.split('-'),
-          weekObjWxml = Number(weekObjWxmlArr[0]) + '.' + Number(weekObjWxmlArr[1]) + '.' + Number(weekObjWxmlArr[2]) + '-' + Number(weekObjWxmlArr[3]) + '.' + Number(weekObjWxmlArr[4]) + '.' + Number(weekObjWxmlArr[5])
+            weekObjWxml = Number(weekObjWxmlArr[0]) + '.' + Number(weekObjWxmlArr[1]) + '.' + Number(weekObjWxmlArr[2]) + '-' + Number(weekObjWxmlArr[3]) + '.' + Number(weekObjWxmlArr[4]) + '.' + Number(weekObjWxmlArr[5])
           this.setData({
             restNum: res.data.data.restNum,
             weekObjWxml: weekObjWxml

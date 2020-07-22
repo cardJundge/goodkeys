@@ -76,6 +76,7 @@ Page({
       })
       loginModel.postLogin(params, res=> {
         if(res.data.status == 1) {
+          app.globalData.userInfo = null
           app.globalData.userInfo = res.data.data
           wx.setStorageSync('userMobile', res.data.data.mobile)
           wx.setStorageSync('userPwd', params.password)

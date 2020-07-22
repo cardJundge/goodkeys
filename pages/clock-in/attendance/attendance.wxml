@@ -4,7 +4,6 @@
     <image src="/images/index/add_module_icon.png"></image>
     <view class="attendance-add-text flex flex-d-col">
       <text>新增考勤组</text>
-      <!-- <text>参与考勤10人，考勤组3个</text> -->
       <text>考勤组{{attendanceList.length}}个</text>
     </view>
   </view>

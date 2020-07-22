@@ -21,6 +21,9 @@ Page({
 
   onLoad(options) {
     this.setData({
+      windowHeight: wx.getSystemInfoSync().windowHeight,
+      taskAuthority: app.globalData.auth.task,
+      authority: app.globalData.userInfo.parent_id,
       imgUrl: app.globalData.imgUrl
     })
     

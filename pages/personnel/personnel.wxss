@@ -181,3 +181,19 @@ page,.personnel-body {
 .personnel-content-item-right view:last-child {
   background: #FF7165;
 }
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-data image {
+  width: 418rpx;
+  height: 418rpx;
+}
+
+.no-data text {
+  color: #9C9C9C;
+}

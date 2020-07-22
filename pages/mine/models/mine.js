@@ -292,6 +292,86 @@ class MineModel extends HTTP {
     this.request(params)
   }
 
+  // ---------------管理员-------------
+  // 获取应用列表
+  getApplicationList(callback) {
+    var params = {
+      url: '/api/apply',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 获取服务商应用列表
+  getSerApplicationList(callback) {
+    var params = {
+      url: '/api/ser/user/apply',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 获取管理员列表
+  getAdminList(callback) {
+    var params = {
+      url: '/api/ser/user',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 添加管理员
+  addAdmin(param, callback) {
+    var params = {
+      url: '/api/ser/user/insert',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 编辑管理员
+  editAdmin(param, callback) {
+    var params = {
+      url: '/api/ser/user/' + param.id + '/edit',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 删除管理员
+  delAdmin(param, callback) {
+    var params = {
+      url: '/api/ser/user/' + param.id + '/delete',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 请假审批订阅
+  approveSubscribe(param, callback) {
+    var params = {
+      url: '/api/send/message',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 
 }
 export {

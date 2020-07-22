@@ -1,0 +1,43 @@
+<!--管理员-->
+<view class="admin-body">
+	<view class="no-data flex flex-d-col al-c ju-c" style="height: {{windowHeight}}px" wx:if="{{noData}}">
+		<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/admin_null.png"></image>
+		<text>暂无管理员</text>
+		<view bindtap="toAddAdmin">设置管理员</view>
+	</view>
+	<view class="" wx:else>
+		<view class="list-top">
+			<view class="search-bg">
+				<view class="search-box">
+					<view class="search">
+						<input placeholder-class="ph-class" type='text' placeholder="搜索业务" bindconfirm="search"></input>
+						<image src="/images/personnel/icon_search.png"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="list-content">
+			<view class="list-content-item flex ju-sb al-fs" wx:for="{{adminList}}">
+				<view class="left">
+					<image src="{{item.face ? imgUrl + item.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
+				</view>
+				<view class="center">
+					<text>{{item.name}}</text>
+					<text class="text-phone">{{item.mobile}}</text>
+					<view class="text-line"></view>
+					<view class="module-box flex flex-w">
+						<view class="module-item flex-c-01" wx:for="{{item.module}}" wx:for-item="moduleItem">{{moduleItem.name}}</view>						
+					</view>
+				</view>
+				<view class="right">
+					<image src="/images/mine/icon_edit01.png" bindtap="toEditAdmin" data-id="{{item.id}}"></image>
+					<image src="/images/mine/icon_del.png" bindtap="toDelAdmin" data-id="{{item.id}}"></image>
+				</view>
+			</view>
+		</view>
+		<view class="list-btn flex-c-01" bindtap="toAddAdmin">
+      <i-icon type="add" color="#fff" size="22"/>
+			<text>添加管理员</text>
+		</view>
+	</view>
+</view>

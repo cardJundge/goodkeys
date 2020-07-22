@@ -65,18 +65,19 @@
 		</view>
 	</view>
 	<view wx:if="{{timeTabActive == 0}}">
-		<view class="record-null flex flex-d-col al-c" wx:if="{{!allDayData.up && !allDayData.down}}">
-			<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/clock-null.png"></image>
-			<text>暂无打卡记录</text>
-		</view>
-		<view class="record" wx:else>
-			<text class="record-msg-01">班次:默认班次{{allDayData.work}}-{{allDayData.close}}</text>
+		<view class="record">
+			<text class="record-msg-01" wx:if="{{allDayData.work && allDayData.close}}">班次:默认班次{{allDayData.work}}-{{allDayData.close}}</text>
 			<view class="record-msg-02 flex al-c">
 				<image src="/images/clock/record_msg.png"></image>
 				<text wx:if="{{allDayData.up && allDayData.down}}">今日打卡2次</text>
-				<text wx:if="{{(allDayData.up && !allDayData.down) || (!allDayData.up && allDayData.down)}}">今日打卡1次</text>
+				<text wx:elif="{{(allDayData.up && !allDayData.down) || (!allDayData.up && allDayData.down)}}">今日打卡1次</text>
+				<text wx:else>今日打卡0次</text>
 			</view>
-			<view class="steps">
+			<view class="record-null flex flex-d-col al-c" wx:if="{{!allDayData.up && !allDayData.down}}">
+				<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/clock-null.png"></image>
+				<text>暂无打卡记录</text>
+			</view>
+			<view class="steps" wx:else>
 				<i-steps current="1" direction="vertical">
 					<i-step wx:if="{{allDayData.up}}">
 						<view slot="title" class="steps-title">
