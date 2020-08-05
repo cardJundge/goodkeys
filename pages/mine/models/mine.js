@@ -293,8 +293,8 @@ class MineModel extends HTTP {
   }
 
   // ---------------管理员-------------
-  // 获取应用列表
-  getApplicationList(callback) {
+  // 获取系统所有应用列表
+  getAllApplyList(callback) {
     var params = {
       url: '/api/apply',
       type: 'GET',
@@ -305,10 +305,22 @@ class MineModel extends HTTP {
   }
 
   // 获取服务商应用列表
-  getSerApplicationList(callback) {
+  getSerApplyList(callback) {
     var params = {
       url: '/api/ser/user/apply',
       type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 编辑应用
+  editApply(param, callback) {
+    var params = {
+      url: '/api/ser/user/editApply',
+      type: 'POST',
+      data: param,
       auth: true,
       sCallback: callback
     }

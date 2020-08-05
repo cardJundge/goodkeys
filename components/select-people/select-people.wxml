@@ -1,0 +1,44 @@
+<!--自定义模块-选择人员-->
+<view class="container" catchtouchmove="true" wx:if="{{isShow}}">
+	<view class="select-box" catchtap="stopBubble">
+		<view class="select-tab">
+			<view class="tab-item" wx:if="{{peopleFlag == 'taskinput'}}">
+				<view>人员</view>
+				<view class="tab-item-line"></view>
+			</view>
+			<view class="tab-item" wx:if="{{peopleFlag == 'approval'}}">
+				<view>管理员</view>
+				<view class="tab-item-line"></view>
+			</view>
+		</view>
+		<view class="select-content">
+			<scroll-view scroll-y="true" style="max-height: {{windowHeight - 144}}px" wx:if="{{peopleFlag == 'taskinput'}}">
+				<checkbox-group bindchange="taskChange">
+					<view class="people-item" wx:for="{{taskList}}">
+						<view class="people-item-left">
+							<image src="{{item.face ? imgUrl+item.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png' }}"></image>
+							<text>{{item.nickname}}</text>
+						</view>
+						<checkbox value="{{item.id}}" checked="{{item.checked}}"></checkbox>
+					</view>
+				</checkbox-group>
+			</scroll-view>
+			<scroll-view scroll-y="true" style="max-height: {{windowHeight - 144}}px" wx:if="{{peopleFlag == 'approval'}}">
+				<checkbox-group bindchange="userChange">
+					<view class="people-item" wx:for="{{userList}}">
+						<view class="people-item-left">
+							<image src="{{item.face ? imgUrl+item.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png' }}"></image>
+							<text>{{item.name}}</text>
+						</view>
+						<checkbox value="{{item.id}}" checked="{{item.checked}}"></checkbox>
+					</view>
+				</checkbox-group>
+			</scroll-view>
+		</view>
+
+		<view class="select-btn">
+			<view bindtap="onCancel">取消</view>
+			<view bindtap="onConfirm">确定</view>
+		</view>
+	</view>
+</view>

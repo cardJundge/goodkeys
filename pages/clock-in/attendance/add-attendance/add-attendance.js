@@ -32,7 +32,7 @@ Page({
         attendanceName: data.name,
         attendanceTypeId: data.type,
         selectTaskData: data.tasks,
-        tableList: data.table,
+        tableData: data.table,
         attendanceId: data.id
       })
       if (data.week) {
@@ -50,14 +50,7 @@ Page({
   },
 
   onShow() {
-    if (this.data.tableList) {
-      for (var i = this.data.tableList.length - 1; i >= 0; i--) {
-        if (!this.data.tableList[i].date || this.data.tableList[i].taskList.length == 0) {
-          this.data.tableList.splice(i, 1)
-        }
-      }
-      console.log(this.data.tableList)
-    }
+    console.log(this.data.tableData)
   },
 
   // 考勤人员选择
@@ -113,7 +106,7 @@ Page({
   // 判断考勤人员与排班表是否对应
   judgeTask(sCallback) {
     let tempArr = []
-    this.data.tableList.forEach((item, index) => {
+    this.data.tableData.forEach((item, index) => {
       tempArr[index] = []
       item.taskList.forEach((item1, index1) => {
         this.data.selectTaskData.forEach((item2, index2) => {
@@ -123,9 +116,9 @@ Page({
         })
       })
     })
-    this.data.tableList.forEach((item ,index) => {
+    this.data.tableData.forEach((item, index) => {
       item.taskList = tempArr[index]
-      if (index === (this.data.tableList.length - 1)) {
+      if (index === (this.data.tableData.length - 1)) {
         sCallback(true)
       }
     })
@@ -133,11 +126,11 @@ Page({
 
   // 进入排班页面
   toScheduling() {
-    console.log(this.data.tableList)
+    console.log(this.data.tableData)
     let taskData = JSON.stringify(this.data.selectTaskData)
-    if (this.data.tableList) {
-      this.judgeTask(res=> {
-        let tableData = JSON.stringify(this.data.tableList)
+    if (this.data.tableData) {
+      this.judgeTask(res => {
+        let tableData = JSON.stringify(this.data.tableData)
         wx.navigateTo({
           url: '../scheduling/scheduling?taskData=' + taskData + '&tableData=' + tableData,
         })
@@ -189,7 +182,7 @@ Page({
       })
     }
 
-    if (this.data.attendanceTypeId == 1 && this.data.tableList.length == 0) {
+    if (this.data.attendanceTypeId == 1 && this.data.tableData.length == 0) {
       return wx.showToast({
         title: '请设置排班表',
         icon: 'none'
@@ -225,7 +218,7 @@ Page({
       params.week = this.data.cycleData
     } else if (this.data.attendanceTypeId == 1) {
       this.judgeTask(res => {
-        params.table = this.data.tableList
+        params.table = this.data.tableData
       })
     }
 

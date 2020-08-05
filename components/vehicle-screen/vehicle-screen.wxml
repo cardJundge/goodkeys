@@ -17,6 +17,7 @@
 			</view>
 			<view class="time-item time-item-other" wx:if="{{!endDate}}">结束时间</view>
 		</picker>
+		<view class="time-btn" bindtap="toTimeReset">重置</view>
 		<view class="time-btn {{isDisabled == false ? 'time-btn-active' : ''}}" bindtap="toTimeConfirm">完成</view>
 	</view>
 </view>
@@ -35,7 +36,7 @@
 			</view>
 		</view>
 		<view class="more-btn">
-			<view bindtap="toReset">重置</view>
+			<view bindtap="toMoreReset">重置</view>
 			<view bindtap="toMoreConfirm">确定</view>
 		</view>
 	</view>

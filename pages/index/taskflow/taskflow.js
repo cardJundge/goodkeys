@@ -134,7 +134,7 @@ Page({
       let listId = e.currentTarget.dataset.id,
         taskname = e.currentTarget.dataset.taskname
       wx.navigateTo({
-        url: './taskflow-details/taskflow-details?listId=' + listId + '&taskname=' + taskname + '&moduleName=' + this.data.moduleName,
+        url: './taskflow-details/taskflow-details?listId=' + listId + '&moduleName=' + this.data.moduleName,
       })
     }
 

@@ -23,8 +23,7 @@ Page({
 
   onLoad(options) {
     this.setData({
-      imgUrl: app.globalData.imgUrl,
-      taskName: options.taskname
+      imgUrl: app.globalData.imgUrl
     })
     this.data.listId = options.listId
     this.getTaskflowDetail()
@@ -50,6 +49,15 @@ Page({
           }
         })
       }
+    })
+  },
+
+  // 进入相册
+  toAlbum(e) {
+    let data = JSON.stringify(e.currentTarget.dataset.imgdata),
+    name = e.currentTarget.dataset.name
+    wx.navigateTo({
+      url: './album/album?data=' + data + '&name=' + name,
     })
   },
 
@@ -92,7 +100,8 @@ Page({
         this.setData({
           fieldInfo: res.data.data.field,
           startTime: res.data.data.start_date,
-          endTime: res.data.data.end_date
+          endTime: res.data.data.end_date,
+          taskName: res.data.data.task_id.nickname
         })
         if (res.data.data.norm) {
           res.data.data.norm.forEach((item, index) => {

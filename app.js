@@ -88,6 +88,12 @@ App({
   },
 
   globalData: {
+    pathType: null,
+    pathModuleInfo: {
+      name: null,
+      caseId: null,
+      key: null
+    },
     auth: {
       statistics: null,
       task: null,

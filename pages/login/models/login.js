@@ -88,6 +88,17 @@ class LoginModel extends HTTP {
     }
     this.request(params)
   }
+
+  // 绑定openId
+  operOpenid(param, callback) {
+    var params = {
+      url: '/api/user/editOpenid',
+      type: 'POST',
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   LoginModel

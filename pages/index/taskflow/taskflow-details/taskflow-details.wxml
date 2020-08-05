@@ -7,7 +7,7 @@
 				<text>{{item.name}}</text>
 				<view class="top-item-img-box">
 					<view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex" wx:if="{{imgindex < 3}}">
-						<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="imgindex" data-name="{{item.name}}" data-flag="field"></image>
+						<image src="{{imgUrl}}{{imgitem}}" bindtap="toAlbum" data-imgdata="{{item.value}}" data-name="{{item.name}}"></image>
 					</view>
 					<view wx:if="{{item.value.length > 3}}">...</view>
 				</view>
@@ -21,14 +21,14 @@
 			<text>执行人:</text>
 			<text>{{taskName}}</text>
 		</view>
-		<view class="top-item">
+		<!-- <view class="top-item">
 			<text>开始时间:</text>
 			<text>{{startTime}}</text>
-		</view>
-		<view class="top-item">
+		</view> -->
+		<!-- <view class="top-item">
 			<text>截止时间:</text>
 			<text>{{endTime}}</text>
-		</view>
+		</view> -->
 		<view class="unfold" wx:if="{{!unfold && fieldInfo.length > 4}}" bindtap="toUnfold">
 			<i-icon type="unfold" color="#9C9C9C" size="24" />
 		</view>
@@ -37,8 +37,9 @@
 				<text>{{item.name}}</text>
 				<view class="top-item-img-box">
 					<view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex" wx:if="{{imgindex < 3}}">
-						<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="imgindex" data-name="{{item.name}}" data-flag="field"></image>
+						<image src="{{imgUrl}}{{imgitem}}" bindtap="toAlbum" data-imgdata="{{item.value}}" data-name="{{item.name}}"></image>
 					</view>
+					<view wx:if="{{item.value.length > 3}}">...</view>
 				</view>
 			</view>
 			<view class="top-item" wx:if="{{item.type != 'image' && index > 3}}">
@@ -81,7 +82,7 @@
 										<text>时间</text>
 										<text>{{recorditem.date}}</text>
 									</view>
-									<view>
+									<view wx:if="{{item.type == 'click'}}">
 										<text>地点</text>
 										<text>{{recorditem.place}}</text>
 										<image class="location-icon" src="/images/index/location_01.png"></image>
@@ -154,7 +155,7 @@
 										<text>时间</text>
 										<text>{{recorditem.date}}</text>
 									</view>
-									<view>
+									<view wx:if="{{item.type == 'click'}}">
 										<text>地点</text>
 										<text>{{recorditem.place}}</text>
 										<image class="location-icon" src="/images/index/location_01.png"></image>

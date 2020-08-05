@@ -1,0 +1,19 @@
+/* 图集 */
+.album-body {
+
+}
+
+.img-list {
+  padding: 0 1rpx;
+}
+
+.img-item {
+  width: 187rpx;
+  height: 188rpx;
+  padding: 2rpx 1rpx 1rpx;
+}
+
+.img-item image {
+  width: 185rpx;
+  height: 185rpx;
+}

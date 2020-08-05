@@ -22,11 +22,11 @@
 		<view class="list-item" wx:for="{{taskflowList}}" wx:key="" catchtap="toTaskflowDetail" bindtouchstart='bindTouchStart' bindtouchend='bindTouchEnd' bindlongtap="toDelTaskflow" data-id="{{item.id}}" data-taskname="{{item.task_id.nickname}}">
 			<view class="list-item-left" wx:if="{{item.transcendData.length == 0}}">
 				<text>{{item.case_no}}</text>
-				<text>{{item.task_id.nickname}} | {{item.start_date}}</text>
+				<text>{{item.task_id.nickname}} | {{item.created_at}}</text>
 			</view>
 			<view class="list-item-left" wx:if="{{item.transcendData.length == 1}}">
 				<text>{{item.transcendData[0]}}</text>
-				<text>{{item.task_id.nickname}} | {{item.start_date}}</text>
+				<text>{{item.task_id.nickname}} | {{item.created_at}}</text>
 			</view>
 			<view class="list-item-left" wx:if="{{item.transcendData.length == 2}}">
 				<text>{{item.transcendData[0]}}</text>

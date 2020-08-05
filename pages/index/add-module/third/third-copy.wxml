@@ -1,0 +1,93 @@
+<!--添加模块==》第三步-copy-->
+<view class="third-body">
+	<view class="third-title flex ju-c">
+		<image src="/images/index/add_module_3.png"></image>
+	</view>
+	<view class="third-content">
+		<!-- 模块标题 -->
+		<view class="third-item flex flex-d-col al-c">
+			<view class="flex-sb-01">
+				<text>模块标题</text>
+				<view>{{moduleName}}</view>
+			</view>
+			<view class="title-line"></view>
+		</view>
+		<!-- 模块人任务流信息 -->
+		<view class="third-item flex flex-d-col al-c">
+			<view>
+				<view class="third-item-title">任物流信息</view>
+				<view class="field flex ju-sb">
+					<view class="flex al-c" bindtap="unfoldFieldBox">
+						<i-icon type="browse" color="#B9B9B9" size="22" />
+						<text>点击查看可填写字段</text>
+					</view>
+					<text>{{fieldDataTemp.data.length}}个字段</text>
+				</view>
+				<view class="field-box flex-sb-01" wx:if="{{fieldBoxShow}}">
+					<view class="field-item flex flex-d-col al-c">
+						<view>标题</view>
+						<view wx:for="{{fieldDataTemp.data}}">{{item.name}}</view>
+					</view>
+					<view class="field-item flex flex-d-col al-c">
+						<view>类型</view>
+						<block wx:for="{{fieldDataTemp.data}}">
+							<view wx:if="{{item.type == 'select'}}">下拉选择-单选型</view>
+							<view wx:if="{{item.type == 'check'}}">下拉选择-多选型</view>
+							<view wx:if="{{item.type == 'text'}}">文本型</view>
+							<view wx:if="{{item.type == 'int'}}">数字型</view>
+							<view wx:if="{{item.type == 'location'}}">位置型</view>
+							<view wx:if="{{item.type == 'image'}}">图片型</view>
+							<view wx:if="{{item.type == 'date' || item.type == 'datetime' || item.type == 'time'}}">日期型</view>
+						</block>
+					</view>
+				</view>
+			</view>
+			<view class="field-line">
+				<image class="add-img" src="/images/index/add_field_icon.png" bindtap="showBubble" data-sign="field"></image>
+				<view class="field-bubble flex flex-d-col ju-sa al-c" wx:if="{{fieldDataTemp.bubble}}">
+					<view class="bubble-item" bindtap="addOperationItem" data-flag="taskinput" data-sign="field">员工录入</view>
+					<view class="bubble-item" bindtap="addOperationItem" data-flag="approval" data-sign="field">审批节点</view>
+					<view class="bubble-item" bindtap="addOperationItem" data-flag="evaluate" data-sign="field">客户操作</view>
+				</view>
+			</view>
+		</view>
+		<!-- 员工录入、管理审批、客户评价 -->
+		<view class="third-item flex flex-d-col al-c" wx:for="{{operationDataTemp}}">
+			<view>
+				<view class="third-item-title flex-sb-01">
+					<input placeholder="请输入节点名称" bindinput="getTitleInput" data-index="{{index}}" value="{{item.data.name}}"></input>
+					<!-- <i-icon type="unfold" /> -->
+				</view>
+				<view class="field" wx:if="{{item.data.column.length == 0}}" bindtap="toWriteColumn" data-index="{{index}}">填写字段</view>
+				<view class="field" wx:else bindtap="toWriteColumn" data-index="{{index}}">点击查看节点字段</view>
+				<view class="field" bindtap="toSelectPeople" data-flag="{{item.data.flag}}" data-index="{{index}}" wx:if="{{item.data.user_id.length == 0 && (item.data.flag == 'taskinput' || item.data.flag == 'approval')}}">选择人员</view>
+				<view class="field" bindtap="toSelectPeople" data-flag="{{item.data.flag}}" data-index="{{index}}" wx:if="{{item.data.user_id.length != 0 && item.data.flag == 'taskinput'}}">
+					<block wx:for="{{item.data.user_id}}" wx:for-item="iditem">
+						<block wx:for="{{taskList}}" wx:for-item="useritem">
+							<image wx:if="{{iditem == useritem.id}}" src="{{useritem.face ? imgUrl + useritem.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
+						</block>
+					</block>
+					<image src="/images/personnel/icon_add.png"></image>
+				</view>
+				<view class="field" bindtap="toSelectPeople" data-flag="{{item.data.flag}}" data-index="{{index}}" wx:if="{{item.data.user_id.length != 0 && item.data.flag == 'approval'}}">
+					<block wx:for="{{item.data.user_id}}" wx:for-item="iditem">
+						<block wx:for="{{userList}}" wx:for-item="useritem">
+							<image wx:if="{{iditem == useritem.id}}" src="{{useritem.face ? imgUrl + useritem.face : 'cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png'}}"></image>
+						</block>
+					</block>
+					<image src="/images/personnel/icon_add.png"></image>
+				</view>
+			</view>
+			<view class="field-line">
+				<image class="add-img" src="/images/index/add_field_icon.png" bindtap="showBubble" data-index="{{index}}"></image>
+				<view class="field-bubble flex flex-d-col ju-sa al-c" wx:if="{{item.bubble}}">
+					<view class="bubble-item" bindtap="addOperationItem" data-flag="taskinput" data-index="{{index}}">员工录入</view>
+					<view class="bubble-item" bindtap="addOperationItem" data-flag="approval" data-index="{{index}}">审批节点</view>
+					<view class="bubble-item" bindtap="addOperationItem" data-flag="evaluate" data-index="{{index}}">客户操作</view>
+				</view>
+				<image class="end-img" src="/images/index/end_field_icon.png" wx:if="{{index == operationDataTemp.length-1}}" bindtap="onConfirm"></image>
+			</view>
+		</view>
+	</view>
+</view>
+<select-people isShow="{{selectPeopleShow}}" peopleFlag="{{peopleFlag}}" taskIdData="{{taskIdData}}" userIdData="{{userIdData}}" userList="{{userList}}" taskList="{{taskList}}" bind:selPeopleConfirmEvent="selPeopleConfirmEvent" />

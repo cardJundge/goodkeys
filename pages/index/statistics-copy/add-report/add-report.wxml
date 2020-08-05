@@ -1,0 +1,6 @@
+<!--创建报表-->
+<view class="report-body flex ju-sb al-c">
+  <view class="report-left"></view>
+  <view class="report-center"></view>
+  <view class="report-right"></view>
+</view>

@@ -22,80 +22,172 @@ Page({
     moduleArray: [],
     businessArray: [],
     // spinShow: true,
-    // 权限----
-    clockAuthority: false,
-    orderAuthority: false,
-    shopsAuthority: false,
-    unionAuthority: false,
-    noApplyAuthority: true
+    applyEditIconshow: false,
+    noApplyAuth: true
   },
   onLoad() {
+      if (app.globalData.pathType == 'leave') {
+        wx.navigateTo({
+          url: '../clock-in/clock-in',
+        })
+      } else if (app.globalData.pathType == 'work') {
+        if (app.globalData.pathModuleInfo.key) {
+          if (app.globalData.pathModuleInfo.key == 'traffic') {
+            wx.navigateTo({
+              url: './vehicle/vehicle-details/vehicle-details?listId=' + app.globalData.pathModuleInfo.caseId,
+            })
+          } else if (app.globalData.pathModuleInfo.key == 'survey') {
+            wx.navigateTo({
+              url: './survey/survey-details/survey-details?listId=' + app.globalData.pathModuleInfo.caseId
+            })
+          } else if (app.globalData.pathModuleInfo.key == 'sickness') {
+            wx.navigateTo({
+              url: './sickness/sickness-details/sickness-details?listId=' + app.globalData.pathModuleInfo.caseId,
+            })
+          }
+        } else {
+          wx.navigateTo({
+            url: './taskflow/taskflow-details/taskflow-details?listId=' + app.globalData.pathModuleInfo.caseId + '&moduleName=' + app.globalData.pathModuleInfo.name,
+          })
+        }
+      }
     this.setData({
       serviceType: app.globalData.userInfo.type,
       authority: app.globalData.userInfo.parent_id
     })
-    // 获取服务商应用权限
-    this.getSerApplication()
   },
   onShow() {
     this.getDataStatics()
     this.getModule()
+    // 获取服务商应用权限
+    this.getSerApply()
     this.setData({
-      editIconshow: false
+      moduleEditIconshow: false
     })
   },
 
-  // 获取服务商应用权限
-  getSerApplication() {
-    mineModel.getSerApplicationList(res => {
+  // 获取服务商应用
+  getSerApply() {
+    mineModel.getSerApplyList(res => {
       if (res.data.status == 1) {
-        res.data.data.forEach((item, index) => {
-          // 打卡
-          if (item.id == 1) {
-            this.setData({
-              clockAuthority: true
-            })
+        if (res.data.data.length == 0) {
+          let params = {
+            apply: [1, 5, 6, 7]
           }
-          // 订单
-          if (item.id == 2) {
-            this.setData({
-              orderAuthority: true
-            })
-          }
-          // 商铺
-          if (item.id == 3) {
-            this.setData({
-              shopsAuthority: true
-            })
-          }
-          // 联盟
-          if (item.id == 4) {
-            this.setData({
-              unionAuthority: true
-            })
-          }
-          // 人员位置
-          if (item.id == 7) {
-            this.setData({
-              locationAuthority: true
-            })
-          }
-          // 应用中心一个也没有
-          if (item.id == 1 || item.id == 2 || item.id == 3 || item.id == 4 || item.id == 7) {
-            this.setData({
-              noApplyAuthority: false
-            })
-          }
-          console.log('noApplyAuthority', this.data.noApplyAuthority)
-          // 统计分析
-          if (item.id == 5) {
-            app.globalData.auth.statistics = true
-          }
-          // 人员管理
-          if (item.id == 6) {
-            app.globalData.auth.task = true
-          }
-        })
+          mineModel.editApply(params, res1 => {
+            if (res1.data.status == 1) {
+              this.getSerApply()
+            }
+          })
+        } else {
+          this.setData({
+            serApplyList: res.data.data
+          })
+          this.data.applyIdList = []
+          res.data.data.forEach((item, index) => {
+            this.data.applyIdList.push(item.id)
+            if (item.id == 1 || item.id == 2 || item.id == 3 || item.id == 4 || item.id == 7) {
+              this.setData({
+                noApplyAuth: false
+              })
+            }
+            // 统计分析
+            if (item.id == 5) {
+              app.globalData.auth.statistics = true
+            }
+            // 人员管理
+            if (item.id == 6) {
+              app.globalData.auth.task = true
+            }
+          })
+        }
+      }
+    })
+  },
+
+  // 应用中心各应用跳转
+  toApply(e) {
+    let applyId = e.currentTarget.dataset.id
+    if (applyId == 1) {
+      wx.navigateTo({
+        url: '../clock-in/clock-in',
+      })
+    } else if (applyId == 2) {
+      wx.navigateTo({
+        url: './order/order',
+      })
+    } else if (applyId == 3) {
+      wx.navigateTo({
+        url: '../mine/shops/shops',
+      })
+    } else if (applyId == 4) {
+      wx.navigateTo({
+        url: '../union/union',
+      })
+    } else if (applyId == 7) {
+      wx.navigateTo({
+        url: '../clock-in/place/place',
+      })
+    }
+  },
+
+  // 添加应用
+  toAddApply() {
+    let data = JSON.stringify(this.data.serApplyList)
+    wx.navigateTo({
+      url: './add-module/zero/zero?serApplyList=' + data,
+    })
+  },
+
+  // 管理(应用)
+  manageApply(e) {
+    this.setData({
+      applyEditIconshow: !this.data.applyEditIconshow
+    })
+  },
+
+  // 删除应用
+  delApply(e) {
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      applyEditIconshow: false
+    })
+    wx.showActionSheet({
+      itemList: ['删除应用'],
+      success: res => {
+        if (res.tapIndex == 0) {
+          wx.showModal({
+            title: '提示',
+            content: '确定删除该应用吗？',
+            success: res => {
+              if (res.confirm) {
+                this.data.applyIdList.forEach((item, index) => {
+                  if (item == id) {
+                    this.data.applyIdList.splice(index, 1)
+                  }
+                })
+                let params = {
+                  apply: this.data.applyIdList
+                }
+                mineModel.editApply(params, res => {
+                  if (res.data.status == 1) {
+                    wx.showToast({
+                      title: '删除成功',
+                    })
+                    this.getSerApply()
+                  } else {
+                    if (res.data.msg.match('Token')) { } else {
+                      wx.showToast({
+                        title: res.data.msg ? res.data.msg : '请求超时',
+                        icon: 'none'
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        }
       }
     })
   },
@@ -153,10 +245,10 @@ Page({
     })
   },
 
-  // 管理
-  toManage() {
+  // 管理(模块)
+  manageModule() {
     this.setData({
-      editIconshow: !this.data.editIconshow
+      moduleEditIconshow: !this.data.moduleEditIconshow
     })
   },
 
@@ -201,7 +293,7 @@ Page({
       flag = e.currentTarget.dataset.flag,
       itemList = []
     this.setData({
-      editIconshow: false
+      moduleEditIconshow: false
     })
     if (flag == 'system') {
       itemList = ['删除模块']
@@ -265,41 +357,6 @@ Page({
           })
         }
       }
-    })
-  },
-
-  // 进入打卡页面
-  toClockIn() {
-    wx.navigateTo({
-      url: '../clock-in/clock-in',
-    })
-  },
-
-  // 进入商铺页面
-  toShops() {
-    wx.navigateTo({
-      url: '../mine/shops/shops',
-    })
-  },
-
-  // 进入人员位置
-  toLocation() {
-    wx.navigateTo({
-      url: '../clock-in/place/place',
-    })
-  },
-
-  // 进入订单页面
-  toOrder() {
-    wx.navigateTo({
-      url: './order/order',
-    })
-  },
-
-  // 进入联盟页面
-  toUnion() {
-    wx.navigateTo({
-      url: '../union/union',
     })
   }
 })

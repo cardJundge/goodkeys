@@ -18,8 +18,14 @@ Page({
       tmplIds: "IYQh27vEqH_7a9WWxd5MmOCjvd8XDy04YoctN3jC07k",
       title: '请假审批通知',
       checked: true
+    },
+    {
+      tmplIds: "CP1SrOWReoxdykBKhq7Qa9zkbswyruVY1cz5pnGadLU",
+      title: '任务审批通知',
+      checked: true
     }]
   },
+
   onLoad: function () {
     this.setData({
       authority: app.globalData.userInfo.parent_id
@@ -28,14 +34,13 @@ Page({
       duration: 500, //动画的持续时间 默认400ms   数值越大，动画越慢   数值越小，动画越快
       timingFunction: 'ease', //动画的效果 默认值是linear
     })
-    console.log(app.globalData)
   },
+
   onShow() {
     this.setData({
       basicUserInfo: app.globalData.userInfo,
       avatarUrl: app.globalData.userInfo.face ? app.globalData.imgUrl + app.globalData.userInfo.face : '',
     })
-    // console.log(this.data.avatarUrl)
     if (!app.globalData.unionId) {
       app.getAuth(res => {
         app.globalData.unionId = res.data.data.unionid
@@ -52,7 +57,7 @@ Page({
 
   bindLoad(e) {
     console.log(e)
-    if (e.detail.status == 0) {}
+    if (e.detail.status == 0) { }
   },
 
   bindError(e) {
@@ -92,8 +97,8 @@ Page({
       success: res => {
         let params = {
           js_code: res.code,
-          type: 'omo',
-          key: 1
+          type: 'gk',
+          key: 3
         }
         mineModel.bindWx(params, response => {
           if (response.data.status == 1) {
@@ -122,8 +127,8 @@ Page({
       title: '解绑中...',
     })
     let params = {
-      type: 'omo',
-      key: 1
+      type: 'gk',
+      key: 3
     }
     mineModel.unTying(params, res => {
       if (res.data.status == 1) {
@@ -144,7 +149,7 @@ Page({
 
   // 我的商铺
   // toShops() {
-  //   let openId = this.data.basicUserInfo.openId_omo
+  //   let openId = this.data.basicUserInfo.openId_gk
   //   if (!openId) {
   //     wx.showModal({
   //       title: '提示',
@@ -170,7 +175,7 @@ Page({
 
   // 账户钱包
   toAccount() {
-    let openId = this.data.basicUserInfo.openId_omo
+    let openId = this.data.basicUserInfo.openId_gk
     if (!openId) {
       wx.showModal({
         title: '提示',
@@ -212,9 +217,7 @@ Page({
   },
 
   // 订阅消息
-  toSubscribe() {  
-
-    
+  toSubscribe() {
     if (app.globalData.unionId) {
       this.setData({
         showBottomModal: true,

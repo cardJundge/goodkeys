@@ -1,0 +1,8 @@
+<!--图集-->
+<view class="album-body">
+  <view class="img-list flex flex-w">
+    <view class="img-item" wx:for="{{imgList}}">
+      <image src="{{imgUrl + item}}" bindtap="previewImage" data-index="{{index}}"></image>
+    </view>
+  </view>
+</view>

@@ -62,7 +62,7 @@
 				<text>出险地址</text>
 				<picker mode="region" value="{{region}}" bindchange="bindRegionChange">
 					<input placeholder="请选择出险地址" placeholder-class="ph-class" disabled="disabled" wx:if="{{!region[0]}}"></input>
-					<input disabled="disabled" value="{{region[0]+'-'+region[1]}}" wx:else></input>
+					<input disabled="disabled" value="{{region[0]+'-'+region[1]+'-'+region[2]}}" wx:else></input>
 				</picker>
 			</view>
 

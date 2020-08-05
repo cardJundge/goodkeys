@@ -1,0 +1,105 @@
+/* 自定义模块-选择人员 */
+.container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  z-index: 99;
+}
+
+.select-box {
+  width: 510rpx;
+  height: 100%;
+  background: #fff;
+  padding: 0 24rpx;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 120rpx;
+  bottom: 0;
+}
+
+.select-tab {
+  padding: 24rpx 0;
+  display: flex;
+  align-items: center;
+}
+
+.tab-item {
+  width: 90rpx;
+  position: relative;
+  margin-right: 50rpx;
+}
+
+.tab-item-line{
+  width: 90rpx;
+  height: 4rpx;
+  background: #FEA414;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -12rpx;
+}
+
+.select-content {
+ margin-bottom: 100rpx;
+}
+
+.people-item {
+  width: 100%;
+  height: 104rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.people-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.people-item-left image {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+
+.select-btn {
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  padding: 0 52rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.select-btn>view {
+  width: 160rpx;
+  height: 70rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-btn>view:first-child {
+  border: 1px solid #979797;
+  color: #7F7F7F;
+}
+
+.select-btn>view:last-child {
+  background: #1a65ff;
+  color: #fff;
+}

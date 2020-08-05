@@ -261,7 +261,6 @@ class IndexModel extends HTTP {
 
   // 车物调查添加任务
   addTask(param, callback) {
-    
     var params = {
       url: '/api/traffic/task/insert',
       type: 'POST',

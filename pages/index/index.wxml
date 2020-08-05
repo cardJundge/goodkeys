@@ -32,7 +32,7 @@
 	<view class="business">
 		<view class="business-title">
 			<text>业务模块</text>
-			<text bindtap="toManage" style="color: #1a65ff" wx:if="{{!authority || authority == 0}}">管理</text>
+			<text bindtap="manageModule" style="color: #1a65ff" wx:if="{{!authority || authority == 0}}">管理</text>
 		</view>
 		<view class="business-content">
 			<block wx:for="{{businessArray}}">
@@ -42,7 +42,7 @@
 					<!-- <view class="business-item-text"> -->
 					<text>{{item.name}}</text>
 					<!-- </view> -->
-					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/index/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'system'}}"></image>
+					<image wx:if="{{moduleEditIconshow}}" class="business-item-edit" src="/images/index/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'system'}}"></image>
 				</view>
 				<!-- 自定义模块 -->
 				<view wx:if="{{item.icon}}" class="business-item" catchtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
@@ -50,12 +50,12 @@
 					<!-- <view class="business-item-text"> -->
 					<text>{{item.name}}</text>
 					<!-- </view> -->
-					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/index/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'define'}}"></image>
+					<image wx:if="{{moduleEditIconshow}}" class="business-item-edit" src="/images/index/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'define'}}"></image>
 				</view>
 			</block>
 			<view class="business-item" bindtap="toAddModule" wx:if="{{!authority || authority == 0}}">
 				<!-- <i-icon class="left" type="add" size="48" color="#1a65ff" /> -->
-				<image class="left" src="/images/index/add_module.png"></image>
+				<image class="left" src="/images/personnel/icon_add.png"></image>
 				<view class="business-item-text">
 					<text>添加模块</text>
 				</view>
@@ -66,48 +66,48 @@
 	<view class="qms">
 		<view class="qms-title">
 			<text>应用中心</text>
+			<text bindtap="manageApply" style="color: #1a65ff" wx:if="{{!authority || authority == 0}}">管理</text>
 		</view>
-		<view class="no-data-content" wx:if="{{authority && authority != 0 && noApplyAuthority == true}}">
+		<view class="no-data-content" wx:if="{{authority && authority != 0 && noApplyAuth == true}}">
 			<view class="no-data" style="height: {{windowHeight}}px">
 				<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/no_authority.png"></image>
 				<text>暂无权限</text>
 			</view>
 		</view>
 		<view class="qms-content" wx:else>
-			<view class="qms-item" bindtap="toClockIn" wx:if="{{clockAuthority == true || !authority || authority == 0}}">
-				<view class="qms-item-left">
+			<view class="qms-item" wx:for="{{serApplyList}}" wx:if="{{item.id == 1 || item.id == 2 || item.id == 3 || item.id == 4 || item.id == 7}}" bindtap="toApply" data-id="{{item.id}}">
+				<view class="qms-item-left" wx:if="{{item.id == 1}}">
 					<text>打卡</text>
 					<text>人员管控</text>
 				</view>
-				<image src="/images/clock/icon_clock.png"></image>
-			</view>
-			<view class="qms-item" bindtap="toOrder" wx:if="{{orderAuthority == true || !authority || authority == 0}}">
-				<view class="qms-item-left">
+				<view class="qms-item-left" wx:if="{{item.id == 2}}">
 					<text>订单</text>
 					<text>订单管理</text>
 				</view>
-				<image src="/images/order/icon_order.png"></image>
-			</view>
-			<view class="qms-item" bindtap="toShops" wx:if="{{shopsAuthority == true || !authority || authority == 0}}">
-				<view class="qms-item-left">
+				<view class="qms-item-left" wx:if="{{item.id == 3}}">
 					<text>商铺</text>
 					<text>商铺管理</text>
 				</view>
-				<image src="/images/mine/shops/icon_shops.png"></image>
-			</view>
-			<view class="qms-item" bindtap="toUnion" wx:if="{{unionAuthority == true || !authority || authority == 0}}">
-				<view class="qms-item-left">
+				<view class="qms-item-left" wx:if="{{item.id == 4}}">
 					<text>联盟</text>
 					<text>相互合作</text>
 				</view>
-				<image src="/images/union/icon_union.png"></image>
-			</view>
-			<view class="qms-item" bindtap="toLocation" wx:if="{{locationAuthority == true || !authority || authority == 0}}">
-				<view class="qms-item-left">
+				<view class="qms-item-left" wx:if="{{item.id == 7}}">
 					<text>位置</text>
 					<text>人员位置</text>
 				</view>
-				<image src="/images/clock/icon_location.png"></image>
+				<image class="right-image" src="/images/clock/icon_clock.png" wx:if="{{item.id == 1}}"></image>
+				<image class="right-image" src="/images/order/icon_order.png" wx:if="{{item.id == 2}}"></image>
+				<image class="right-image" src="/images/mine/shops/icon_shops.png" wx:if="{{item.id == 3}}"></image>
+				<image class="right-image" src="/images/union/icon_union.png" wx:if="{{item.id == 4}}"></image>
+				<image class="right-image" src="/images/clock/icon_location.png" wx:if="{{item.id == 7}}"></image>
+				<image wx:if="{{applyEditIconshow}}" class="edit-image" src="/images/index/icon_edit.png" catchtap="delApply" data-id="{{item.id}}"></image>
+			</view>
+			<view class="qms-item" bindtap="toAddApply" wx:if="{{!authority || authority == 0}}">
+				<view class="qms-item-left">
+					<text style="font-size: 30rpx;color: #242429">添加应用</text>
+				</view>
+				<i-icon type="add" size="48" color="#1a65ff"/>
 			</view>
 		</view>
 	</view>

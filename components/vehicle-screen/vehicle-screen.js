@@ -12,7 +12,7 @@ Component({
       type: String,
       value: {},
       observer(newVal, oldVal) {
-        if (newVal == 'more') {
+        if (!this.data.personnelList && newVal == 'more') {
           this.getTaskList()
         }
       }
@@ -165,7 +165,8 @@ Component({
       this.triggerEvent('changemoreEvent', { personnelData: this.data.personnelData, opinionData: this.data.opinionData })
     },
 
-    toReset() {
+    // 更多筛选重置
+    toMoreReset() {
       this.data.personnelList.forEach((item, index) => {
         item.checked = false
       })
@@ -176,6 +177,20 @@ Component({
         personnelList: this.data.personnelList,
         opinionList: this.data.opinionList
       })
+      this.data.personnelData = []
+      this.data.opinionData = []
+      this.triggerEvent('changemoreEvent', { personnelData: this.data.personnelData, opinionData: this.data.opinionData })
+    },
+
+    // 时间筛选重置
+    toTimeReset() {
+      this.setData({
+        isShow: false,
+        startDate: '',
+        endDate: ''
+      })
+      this.judgeBtn()
+      this.triggerEvent('changeTimeEvent', { startDate: this.data.startDate, endDate: this.data.endDate })
     }
   }
 })

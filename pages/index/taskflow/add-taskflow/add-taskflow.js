@@ -414,23 +414,23 @@ Page({
       })
     }
 
-    if (!this.data.startDatetime) {
-      return wx.showToast({
-        title: '必填项内容不能为空',
-        icon: 'none'
-      })
-    } else {
-      this.data.taskFlowList['start_date'] = this.data.startDatetime
-    }
+    // if (!this.data.startDatetime) {
+    //   return wx.showToast({
+    //     title: '必填项内容不能为空',
+    //     icon: 'none'
+    //   })
+    // } else {
+    //   this.data.taskFlowList['start_date'] = this.data.startDatetime
+    // }
 
-    if (!this.data.endDatetime) {
-      return wx.showToast({
-        title: '必填项内容不能为空',
-        icon: 'none'
-      })
-    } else {
-      this.data.taskFlowList['end_date'] = this.data.endDatetime
-    }
+    // if (!this.data.endDatetime) {
+    //   return wx.showToast({
+    //     title: '必填项内容不能为空',
+    //     icon: 'none'
+    //   })
+    // } else {
+    //   this.data.taskFlowList['end_date'] = this.data.endDatetime
+    // }
 
     if (!this.data.taskName) {
       return wx.showToast({

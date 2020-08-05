@@ -22,7 +22,7 @@ Page({
 
   onLoad: function (options) {
     this.setData({
-      openId: app.globalData.userInfo.openId_omo
+      openId: app.globalData.userInfo.openId_gk
     })
     mineModel.getBean(res=> {
       if (res.data.status == 1) {

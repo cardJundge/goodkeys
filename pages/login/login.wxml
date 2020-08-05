@@ -17,7 +17,8 @@
 				</view>
 				<!-- 忘记密码 -->
 				<view class="operation-bar">
-					<text bindtap="toRegister">注册</text>
+					<text></text>
+					<!-- <text bindtap="toRegister">注册</text> -->
 					<text bindtap="toForget">忘记密码</text>
 				</view>
 				<!-- 登录按钮 -->
@@ -28,3 +29,4 @@
 	</view>
 	<view class="beizhu">注：本系统属于企业内部协作工具，提供给企业内部员工使用，请使用手机账号和密码登录</view>
 </view>
+<sms isShow="{{smsShow}}" bind:confirmEvent="confirmEvent" bind:getSmsValEvent="getSmsVal" bind:closeEvent="closeEvent" codeTime="{{codeTime}}" />

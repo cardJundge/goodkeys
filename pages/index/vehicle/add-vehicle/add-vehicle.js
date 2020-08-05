@@ -225,7 +225,7 @@ Page({
       mobile: data.driverTel,
       car_no: data.carNo,
       factory_no: data.brandNo,
-      survey_address: this.data.region[0] + "-" + this.data.region[1] + " " + data.detailAddress,
+      survey_address: this.data.region[0] + "-" + this.data.region[1] + "-" + this.data.region[2] + " " + data.detailAddress,
       report_date: this.data.dateTimeArray1[0][this.data.dateTime1[0]] + "-" + this.data.dateTimeArray1[1][this.data.dateTime1[1]] + '-' + this.data.dateTimeArray1[2][this.data.dateTime1[2]] + " " + this.data.dateTimeArray1[3][this.data.dateTime1[3]] + ":" + this.data.dateTimeArray1[4][this.data.dateTime1[4]],
       verify_content: data.verify,
       survey_content: data.investigation,

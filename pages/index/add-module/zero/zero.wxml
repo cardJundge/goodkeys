@@ -1,5 +1,5 @@
 <!--创建模块===》开始页面-->
-<view class="zero-body">
+<view class="zero-body" wx:if="{{flag == 'module'}}">
 	<!-- 系统模块 -->
 	<view class="system">
 		<view class="title">系统模块</view>
@@ -31,10 +31,50 @@
 					<text>{{item.name}}</text>
 				</view>
 			</block>
-				<view class="define-item" bindtap="addDefineModule">
-					<image src="/images/index/add_module.png"></image>
-					<text>添加模块</text>
+			<view class="define-item" bindtap="addDefineModule">
+				<image src="/images/personnel/icon_add.png"></image>
+				<text>添加模块</text>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="zero-body" wx:else>
+	<view class="qms" wx:if="{{curApplyList.length != 0}}">
+		<view class="qms-title">应用中心</view>
+		<view class="qms-content">
+			<view class="qms-item" wx:for="{{curApplyList}}" wx:if="{{item.id == 1 || item.id == 2 || item.id == 3 || item.id == 4 || item.id == 7}}" bindtap="addApply" data-id="{{item.id}}">
+				<view class="qms-item-left" wx:if="{{item.id == 1}}">
+					<text>打卡</text>
+					<text>人员管控</text>
 				</view>
+				<view class="qms-item-left" wx:if="{{item.id == 2}}">
+					<text>订单</text>
+					<text>订单管理</text>
+				</view>
+				<view class="qms-item-left" wx:if="{{item.id == 3}}">
+					<text>商铺</text>
+					<text>商铺管理</text>
+				</view>
+				<view class="qms-item-left" wx:if="{{item.id == 4}}">
+					<text>联盟</text>
+					<text>相互合作</text>
+				</view>
+				<view class="qms-item-left" wx:if="{{item.id == 7}}">
+					<text>位置</text>
+					<text>人员位置</text>
+				</view>
+				<image class="right-image" src="/images/clock/icon_clock.png" wx:if="{{item.id == 1}}"></image>
+				<image class="right-image" src="/images/order/icon_order.png" wx:if="{{item.id == 2}}"></image>
+				<image class="right-image" src="/images/mine/shops/icon_shops.png" wx:if="{{item.id == 3}}"></image>
+				<image class="right-image" src="/images/union/icon_union.png" wx:if="{{item.id == 4}}"></image>
+				<image class="right-image" src="/images/clock/icon_location.png" wx:if="{{item.id == 7}}"></image>
+			</view>
+		</view>
+	</view>
+	<view class="qms" wx:else>
+		<view class="no-data">
+			<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/no_authority.png"></image>
+			<text>暂无可添加应用</text>
 		</view>
 	</view>
 </view>

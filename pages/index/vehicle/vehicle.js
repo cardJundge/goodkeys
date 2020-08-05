@@ -55,8 +55,7 @@ Page({
     this.setData({
       vehicleList: [],
       page: 1,
-      spinShow: true,
-      statusId: 0
+      spinShow: true
     })
     this.getVehicleList()
   },
@@ -175,6 +174,7 @@ Page({
 
   // 打开位置选择框
   bindRegionChange(e) {
+    console.log(e)
     this.setData({
       regionList: e.detail.value
     })
@@ -183,7 +183,7 @@ Page({
         this.data.regionList.splice(i, 1)
        }
     }
-    this.data.regionData = this.data.regionList.join("")
+    this.data.regionData = this.data.regionList.join("-")
     this.data.page = 1
     this.data.vehicleList = []
     this.getVehicleList()

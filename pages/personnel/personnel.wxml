@@ -26,10 +26,10 @@
 		</view>
 
 		<view class="personnel-content" wx:if="{{someone}}">
-			<!-- <view class="personnel-content-title">
-      <text>剩余人数： {{personnelCount}}</text>
-      <text bindtap="addQuota">增加名额</text>
-    </view> -->
+			<view class="personnel-content-title">
+				<text>人数：{{personnelData.length}}/{{personnelCount}}</text>
+				<text bindtap=""></text>
+			</view>
 			<view class="personnel-content-list">
 				<i-index height="100%" bind:change="onChange">
 					<i-index-item wx:for="{{ personnel }}" wx:for-index="index" wx:key="{{index}}" wx:for-item="item" name="{{item.key}}" keyList="{{item.list}}">

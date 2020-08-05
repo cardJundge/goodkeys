@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "sms": "/components/sms/sms"
+  },
   "navigationStyle": "custom"
 }

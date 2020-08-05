@@ -1,5 +1,13 @@
 /* 创建模块====》开始页面 */
-.zero-body {}
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.zero-body {
+  width: 100%;
+  height: 100%;
+}
 
 .system,
 .define {
@@ -113,4 +121,84 @@
   font-size: 32rpx;
   color: #242429;
   width: 128rpx;
+}
+
+.qms {
+  width: 100%;
+  height: 100%;
+}
+
+.qms-title {
+  width: 100%;
+  padding: 24rpx;
+  font-size: 36rpx;
+}
+
+.qms-title text:first-child {
+  font-size: 36rpx;
+}
+
+.qms-content {
+  width: 100%;
+  padding: 0 24rpx 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.qms-item {
+  width: 340rpx;
+  height: 126rpx;
+  box-shadow: 0 0 6rpx 2rpx rgba(0, 0, 0, 0.1);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.qms-item-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.qms-item-left text:last-child {
+  font-size: 20rpx;
+  color: #BBBBBB;
+  margin-top: 12rpx;
+}
+
+.qms-item .right-image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.qms-item .edit-image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: -12rpx;
+  top: -12rpx;
+}
+
+.no-data {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-data image {
+  width: 418rpx;
+  height: 418rpx;
+}
+
+.no-data text {
+  color: #9C9C9C;
 }

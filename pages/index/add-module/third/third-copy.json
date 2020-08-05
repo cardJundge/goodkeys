@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "select-people": "/components/select-people/select-people"
+  },
+  "navigationBarTitleText": "创建模块"
+}

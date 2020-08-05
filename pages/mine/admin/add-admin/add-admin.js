@@ -60,8 +60,8 @@ Page({
         adminId: data.id
       })
     }
-    // 获取应用列表
-    this.getApplicationList()
+    // 获取服务商应用列表
+    this.getSerApplyList()
     // 获取模块列表
     this.getModuleList()
   },
@@ -95,8 +95,8 @@ Page({
   },
 
   // 获取应用列表
-  getApplicationList() {
-    mineModel.getApplicationList(res => {
+  getSerApplyList() {
+    mineModel.getSerApplyList(res => {
       if (res.data.status == 1) {
         res.data.data.forEach((item, index) => {
           item.checked = false

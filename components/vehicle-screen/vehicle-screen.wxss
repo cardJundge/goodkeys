@@ -48,7 +48,7 @@
 }
 
 .time-item {
-  width: 230rpx;
+  width: 190rpx;
   height: 70rpx;
   background: #EFEFEF;
   border-radius: 14rpx;
@@ -69,8 +69,8 @@
 }
 
 .time-btn {
-  width: 168rpx;
-  height: 70rpx;
+  width: 120rpx;
+  height: 60rpx;
   border-radius: 35rpx;
   background: #EFEFEF;
   color: #747474;

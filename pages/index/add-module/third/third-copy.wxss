@@ -1,0 +1,136 @@
+/* 添加模块==》第三步-copy */
+.third-body {}
+
+.third-title {
+  padding: 30rpx 0;
+}
+
+.third-title image {
+  width: 612rpx;
+  height: 68rpx;
+}
+
+.third-content {
+  width: 100%;
+  padding: 0 24rpx 48rpx;
+}
+
+.third-item {
+  width: 100%;
+}
+
+.third-item>view:first-child {
+  width: 100%;
+  box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 30rpx;
+  padding: 24rpx;
+}
+
+.third-item .title-line {
+  width: 4rpx;
+  height: 34rpx;
+  background-image: linear-gradient(to bottom, #4164FB, #6CE4FA);
+}
+
+.third-item .third-item-title {
+  /* margin-bottom: 12rpx; */
+}
+
+.field {
+  font-size: 24rpx;
+  color: #A7A7A7;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.field:last-child {
+  border-bottom: 0;
+}
+
+.field image {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.field-box {
+  width: 100%;
+  padding: 0 24rpx;
+}
+
+.field-item {
+  font-size: 24rpx;
+}
+
+.field-item>view {
+  padding: 12rpx 0;
+}
+
+.field-item>view:first-child {
+  font-size: 30rpx;
+}
+
+.field-line {
+  width: 4rpx;
+  height: 124rpx;
+  background-image: linear-gradient(to bottom, #4164FB, #6CE4FA);
+  position: relative;
+}
+
+.field-line .add-img {
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  z-index: 9;
+  top: 38rpx;
+  left: -22rpx;
+}
+
+.field-line .end-img {
+  width: 80rpx;
+  height: 84rpx;
+  position: absolute;
+  z-index: 9;
+  top: 124rpx;
+  left: -38rpx;
+}
+
+.field-bubble {
+  width: 243rpx;
+  height: 294rpx;
+  background: url('https://676f-goodkeys-zhlfy-1302053658.tcb.qcloud.la/images/bubble_bg.png?sign=8a3322b4245ff3276f7c487083419b11&t=1595495437') no-repeat center;
+  background-size: 100% 100%;
+  position: absolute;
+  z-index: 9;
+  top: 24rpx;
+  left: 22rpx;
+  padding: 0 12rpx 0 32rpx;
+}
+
+.approval-bubble {
+  width: 243rpx;
+  height: 196rpx;
+  background: url('https://676f-goodkeys-zhlfy-1302053658.tcb.qcloud.la/images/bubble_bg.png?sign=8a3322b4245ff3276f7c487083419b11&t=1595495437') no-repeat center;
+  background-size: 100% 100%;
+}
+
+.evaluate-bubble {
+  width: 243rpx;
+  height: 98rpx;
+  background: url('https://676f-goodkeys-zhlfy-1302053658.tcb.qcloud.la/images/bubble_bg.png?sign=8a3322b4245ff3276f7c487083419b11&t=1595495437') no-repeat center;
+  background-size: 100% 100%;
+}
+
+.bubble-item {
+  padding: 24rpx 12rpx;
+  border-bottom: 1px solid #E1E1E1;
+}
+
+.bubble-item:last-child {
+  border-bottom: 0;
+}
+
+
+
+

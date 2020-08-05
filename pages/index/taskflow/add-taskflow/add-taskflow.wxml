@@ -126,7 +126,7 @@
 			</view>
 		</block>
 		<!-- 开始时间 -->
-		<view class="add-item">
+		<!-- <view class="add-item">
 			<view class="add-item-title">
 				<text>*</text>
 				<text>开始时间</text>
@@ -137,9 +137,9 @@
 					<view wx:if="{{startDatetime}}">{{startDatetime}}</view>
 				</picker>
 			</view>
-		</view>
+		</view> -->
 		<!-- 截止时间 -->
-		<view class="add-item">
+		<!-- <view class="add-item">
 			<view class="add-item-title">
 				<text>*</text>
 				<text>截止时间</text>
@@ -150,7 +150,7 @@
 					<view wx:if="{{endDatetime}}">{{endDatetime}}</view>
 				</picker>
 			</view>
-		</view>
+		</view> -->
 		<!-- 执行人 -->
 		<view class="add-item">
 			<view class="add-item-title">

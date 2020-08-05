@@ -1,0 +1,195 @@
+<!--数据统计-->
+<view class="statistics">
+	<!-- 头部 -->
+	<!-- 有权限 -->
+	<view wx:if="{{statisticsAuthority || !authority || authority == 0}}">
+		<view class="back-btn" wx:if="{{currentPage == 'task'}}" bindtap="toBackService">返回</view>
+		<view class="top {{currentPage == 'task' ? 'top-task' : ''}}">
+			<scroll-view scroll-x>
+				<view class="top-tab">
+					<block wx:for="{{moduleList}}">
+						<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}" data-id="{{item.id}}">
+							<text>{{item.name}}</text>
+							<view wx:if="{{topActive == index}}">
+								<i-icon class="top-tab-item-triangle" type="play_fill" color="#fff" size="12" />
+							</view>
+						</view>
+					</block>
+				</view>
+			</scroll-view>
+			<view class="top-content" wx:if="{{currentPage == 'service'}}">
+				<view class="top-content-title">本周数据统计</view>
+				<view class="top-content-num">
+					<view class="top-content-num-items">
+						<text wx:if="{{noData}}">0</text>
+						<text wx:else>{{moduleFlag == 'define' ? allStatistics.count.unfinished : allStatistics.unfinished}}</text>
+						<text>未完成</text>
+					</view>
+					<view class="top-content-num-items">
+						<text wx:if="{{noData}}">0</text>
+						<text wx:else>{{moduleFlag == 'define' ? allStatistics.count.complete : allStatistics.complete}}</text>
+						<text>已完成</text>
+					</view>
+					<view class="top-content-num-items">
+						<text wx:if="{{noData}}">0</text>
+						<text wx:else>{{moduleFlag == 'define' ? allStatistics.count.total : allStatistics.total}}</text>
+						<text>案件总数</text>
+					</view>
+				</view>
+				<view class="top-content-msg">统计自{{allStatistics.date[0]}} 00:00至{{allStatistics.date[1]}} 24:00</view>
+			</view>
+			<view class="top-content top-content-task" wx:if="{{currentPage == 'task'}}">
+				<view class="task-card">
+					<view class="task-card-left">
+						<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/task_default_avatar.png"></image>
+						<text>{{taskName}}</text>
+					</view>
+					<view class="task-card-right">0分</view>
+				</view>
+				<view class="top-content-task-card">
+					<view class="top-content-title">本周数据统计</view>
+					<view class="top-content-num">
+						<view class="top-content-num-items">
+							<text wx:if="{{noData}}">0</text>
+							<text wx:else>{{moduleFlag == 'define' ? allStatistics.count.unfinished : allStatistics.unfinished}}</text>
+							<text>未完成</text>
+						</view>
+						<view class="top-content-num-items">
+							<text wx:if="{{noData}}">0</text>
+							<text wx:else>{{moduleFlag == 'define' ? allStatistics.count.complete : allStatistics.complete}}</text>
+							<text>已完成</text>
+						</view>
+						<view class="top-content-num-items">
+							<text wx:if="{{noData}}">0</text>
+							<text wx:else>{{moduleFlag == 'define' ? allStatistics.count.total : allStatistics.total}}</text>
+							<text>案件总数</text>
+						</view>
+					</view>
+					<view class="top-content-msg">统计自{{allStatistics.date[0]}} 00:00至{{allStatistics.date[1]}} 24:00</view>
+				</view>
+			</view>
+		</view>
+		<view class="no-data" wx:if="{{noData || (moduleFlag == 'system' && allStatistics.total == 0 && allStatistics.complete == 0 && allStatistics.unfinished == 0)}}">
+			<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/statistics_no_data.png"></image>
+			<text>暂无数据</text>
+		</view>
+		<view wx:if="{{moduleFlag == 'define' && !noData}}">
+			<!-- 时效统计 -->
+			<view class="ageing" wx:if="{{ageingData && ageingData.length != 0}}">
+				<view class="ageing-title">时效统计</view>
+				<view class="chart-tab">
+					<block wx:for="{{dateList}}">
+						<view class="chart-tab-item {{ageingActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAgeingTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
+					</block>
+				</view>
+				<view class="ageing-list">
+					<block wx:for="{{ageingData}}">
+						<view class="ageing-item">
+							<view>
+								<text>{{index+1}}、</text>
+								<text>{{item.norm}}</text>
+							</view>
+							<view>平均{{item.avg}}</view>
+						</view>
+					</block>
+				</view>
+			</view>
+			<!-- 下拉选择型的标题-饼图 -->
+			<view class="select" wx:if="{{pieList && pieList.length != 0}}">
+				<view class="select-title">下拉选择型</view>
+				<view class="chart-tab">
+					<block wx:for="{{dateList}}">
+						<view class="chart-tab-item {{selectActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeSelectTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
+					</block>
+				</view>
+				<view class="select-content">
+					<view class="select-item" wx:for="{{pieList}}" wx:if="{{item.data.length < 6}}">
+						<view class="select-item-name">{{item.name}}</view>
+						<view>
+							<view class="select-item-left">
+								<ec-canvas id="mychart-dom-bar" class='mychart-bar' canvas-id="mychart-bar" importData="{{item.data}}" ec="{{ ec1 }}"></ec-canvas>
+							</view>
+							<view class="select-item-right">
+								<block wx:for="{{item.data}}" wx:for-item="pieItem" wx:for-index="pieIndex">
+									<view class="select-item-right-item">
+										<view>
+											<view style="background:{{pieColor[pieIndex]}}"></view>
+											<text>{{pieItem.option}}</text>
+										</view>
+										<text>{{pieItem.chose}}</text>
+									</view>
+								</block>
+							</view>
+						</view>
+					</view>
+					<view>
+						<view class="select-item" wx:for="{{pieMoreList}}" wx:if="{{item.data[0].key.length > 5}}">
+							<view class="select-item-name">{{item.name}}</view>
+							<view>
+								<view class="select-item-pie-more" style="height:{{item.data[0].key.length*60}}rpx">
+									<ec-canvas id="mychart" canvas-id="mychart-bar" importData="{{item.data}}" ec="{{ ec4 }}"></ec-canvas>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 逾期率 -->
+			<view class="laterate" wx:if="{{laterateData && laterateData.length != 0}}">
+				<view class="laterate-title">逾期率</view>
+				<view class="chart-tab">
+					<block wx:for="{{dateList}}">
+						<view class="chart-tab-item {{laterateActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLaterateTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
+					</block>
+				</view>
+				<view class="laterate-content">
+					<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" importData="{{laterateData}}" ec="{{ ec2 }}"></ec-canvas>
+				</view>
+			</view>
+			<!-- 超期数 -->
+			<view class="latenum" wx:if="{{latenumData && latenumData.length != 0}}">
+				<view class="latenum-title">超期数</view>
+				<view class="chart-tab">
+					<block wx:for="{{dateList}}">
+						<view class="chart-tab-item {{latenumActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLatenumTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
+					</block>
+				</view>
+				<view class="latenum-content">
+					<ec-canvas id="mychart" canvas-id="mychart-bar" importData="{{latenumData}}" ec="{{ ec3 }}"></ec-canvas>
+				</view>
+			</view>
+			<!-- 表格 -->
+			<view class="all" wx:if="{{currentPage == 'service'}}">
+				<view class="all-title">综合</view>
+				<view class="chart-tab">
+					<block wx:for="{{dateList}}">
+						<view class="chart-tab-item {{allActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAllTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
+					</block>
+				</view>
+				<view class="all-content">
+					<view class="table">
+						<view class="tr">
+							<view class="th">执行人</view>
+							<view class="th">完成时效</view>
+							<view class="th">逾期率</view>
+							<view class="th">超期数</view>
+							<view class="th">分数</view>
+						</view>
+						<view class="tr" wx:for="{{tableData}}">
+							<view class="td" style="color: #1a65ff" bindtap="enterTaskPage" data-id="{{item.id}}" data-name="{{item.nickname}}">{{item.nickname}}</view>
+							<view class="td">{{item.aging}}</view>
+							<view class="td">{{item.over_rate}}</view>
+							<view class="td">{{item.over}}</view>
+							<view class="td">0</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 无权限 -->
+	<view class="no-data" style="height: {{windowHeight}}px;background: #fff" wx:else>
+		<image src="cloud://goodkeys-zhlfy.676f-goodkeys-zhlfy-1302053658/images/no_authority.png"></image>
+			<text>暂无权限</text>
+	</view>
+</view>

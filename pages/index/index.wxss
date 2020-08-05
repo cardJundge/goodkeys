@@ -132,7 +132,7 @@
   padding: 24rpx;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .qms-title text:first-child {
@@ -158,6 +158,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .qms-item-left {
@@ -172,9 +173,17 @@
   margin-top: 12rpx;
 }
 
-.qms-item image {
-  width: 80rpx;
-  height: 80rpx;
+.qms-item .right-image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.qms-item .edit-image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: -12rpx;
+  top: -12rpx;
 }
 
 .no-data-content {

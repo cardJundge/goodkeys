@@ -20,7 +20,7 @@
   left: 0;
   right: 0;
   width: 750rpx;
-  height: 450rpx;
+  height: 520rpx;
   background: #fff;
   border-radius: 34rpx 34rpx 0 0;
   padding: 36rpx 24rpx 12rpx 24rpx;

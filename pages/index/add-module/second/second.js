@@ -171,8 +171,11 @@ Page({
     if (this.data.flag == 'add') {
       // "添加"==>下一步
       let data = JSON.stringify(this.data.fieldData)
+      // wx.navigateTo({
+      //   url: '../third/third?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon + '&fieldData=' + data,
+      // })
       wx.navigateTo({
-        url: '../third/third?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon + '&fieldData=' + data,
+        url: '../third/third-copy?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon + '&fieldData=' + data,
       })
     } else if (this.data.flag == 'edit') {
       // "编辑"==>确定

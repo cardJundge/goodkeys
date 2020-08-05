@@ -1,6 +1,6 @@
 <!--管理者审批-->
 <view class="approval-body">
-  <view class="operation-title">评价标准</view>
+  <view class="operation-title">审批标准</view>
 
   <movable-area class='movable-area' style='display:{{movableViewInfo.showClass}}; height:{{pageInfo.scrollHeight + 200}}px;'>
     <movable-view class='movable-row' out-of-bounds='true' inertia="false" damping="9999" friction="9999" style='height:{{rowHeight}}px;' direction="vertical" y="{{movableViewInfo.y}}">

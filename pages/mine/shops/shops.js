@@ -88,7 +88,7 @@ Page({
     let params = {
       type: '0',
       body: '开通商铺',
-      openid: app.globalData.userInfo.openId_omo,
+      openid: app.globalData.userInfo.openId_gk,
       money: '0.01',
     }
     mineModel.toPay(params, res => {

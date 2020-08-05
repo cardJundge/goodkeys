@@ -18,7 +18,7 @@ Page({
     if (options.flag) {
       let taskData = JSON.parse(options.taskData),
         taskDataSelected = JSON.parse(options.taskDataSelected)
-      console.log(taskData, taskDataSelected)
+      // console.log(taskData, taskDataSelected)
       this.data.selectTaskData = []
       taskData.forEach((item, index) => {
         item.checked = false

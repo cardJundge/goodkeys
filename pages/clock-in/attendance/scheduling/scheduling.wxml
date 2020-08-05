@@ -14,19 +14,21 @@
 </view>
 <view class="scheduling-body" wx:else>
 	<view class="scheduling-top flex ju-c al-fe">
-		<!-- <i-icon type="return" size="18" color="#717171" bindtap="toPre" /> -->
+		<i-icon type="return" size="18" color="#717171" bindtap="toPre" />
 		<text>{{currentMonth}}</text>
-		<!-- <i-icon type="enter" size="18" color="#717171" bindtap="toNext" /> -->
+		<i-icon type="enter" size="18" color="#717171" bindtap="toNext" />
 	</view>
 	<view class="scheduling-week flex-sa-01">
 		<view wx:for="{{weekList}}">{{item}}</view>
 	</view>
 	<view class="scheduling-content">
 		<view class="scheduling-table flex flex-w">
-			<view class="scheduling-td" wx:for="{{tableList}}" bindtap="taskSelect" data-date="{{item.date}}" data-task="{{item.taskList}}">{{fn.sub(item.date)}}
-				<view class="scheduling-td-item" wx:for="{{item.taskList}}" wx:for-item="taskitem" wx:for-index="taskindex" wx:if="{{taskindex<3}}">{{taskitem.nickname}}</view>
-				<view class="scheduling-td-item-msg" wx:if="{{item.taskList.length>3}}">还有{{item.taskList.length - 3}}个人</view>
-			</view>
+			<block wx:for="{{tableList}}" wx:if="{{item.month == currentMonth}}">
+				<view class="scheduling-td" wx:for="{{item.data}}" wx:for-item="dateitem" bindtap="taskSelect" data-date="{{dateitem.date}}" data-task="{{dateitem.taskList}}">{{fn.sub(dateitem.date)}}
+					<view class="scheduling-td-item" wx:for="{{dateitem.taskList}}" wx:for-item="taskitem" wx:for-index="taskindex" wx:if="{{taskindex<3}}">{{taskitem.nickname}}</view>
+					<view class="scheduling-td-item-msg" wx:if="{{dateitem.taskList.length>3}}">还有{{dateitem.taskList.length - 3}}个人</view>
+				</view>
+			</block>
 		</view>
 	</view>
 	<view class="scheduling-btn flex-c-01" bindtap="onConfirm">确定</view>

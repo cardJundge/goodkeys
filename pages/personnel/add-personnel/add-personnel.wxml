@@ -3,27 +3,27 @@
   <form bindsubmit="formSubmit">
     <view class="add-form">
       <view class="input-box">
-        <text>作业员姓名</text>
-        <input placeholder-class="ph-class" type="text" placeholder="输入作业员姓名" name="nickName" value="{{formData.nickName}}"></input>
+        <text>姓名</text>
+        <input placeholder-class="ph-class" type="text" placeholder="输入姓名" name="nickName" value="{{formData.nickName}}"></input>
       </view>
       <view class="input-box">
-        <text>作业员电话</text>
-        <input placeholder-class="ph-class" type="text" placeholder="输入作业员电话" name="mobile" value="{{formData.mobile}}"></input>
+        <text>电话</text>
+        <input placeholder-class="ph-class" type="text" placeholder="输入电话" name="mobile" value="{{formData.mobile}}"></input>
       </view>
       <view class="input-box">
-        <text decode="{{true}}">机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <text>机构</text>
         <input placeholder-class="ph-class" type="text" placeholder="输入机构名称" name="org" value="{{formData.org}}"></input>
       </view>
       <view class="input-box">
-        <text decode="{{true}}">工号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <text>工号</text>
         <input placeholder-class="ph-class" type="text" placeholder="输入作业员工号" name="jobNo" value="{{formData.jobNo}}"></input>
       </view>
       <view class="input-box" wx:if="{{!isEdit}}">
-        <text decode="{{true}}">密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <text>密码</text>
         <input placeholder-class="ph-class" type="text" placeholder="初始密码为123456" name="password" value="{{formData.password}}"></input>
       </view>
       <view class="input-box">
-        <text decode="{{true}}">分组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <text>分组</text>
         <picker bindchange="bindGroupChange" value="{{number}}" range="{{groupDataName}}">
           <!-- <input placeholder-class="ph-class" type="text" placeholder="请选择分组" value="{{groupData[number].name}}"></input> -->
           <text class="{{groupData[number].name ? 'select-text' : 'select-text-active'}}">{{groupData[number].name?groupData[number].name: '请选择分组'}}</text>

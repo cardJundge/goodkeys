@@ -21,6 +21,7 @@ Page({
 
   onLoad(options) {
     this.setData({
+      personnelCount: app.globalData.userInfo.count,
       windowHeight: wx.getSystemInfoSync().windowHeight,
       taskAuthority: app.globalData.auth.task,
       authority: app.globalData.userInfo.parent_id,
@@ -71,7 +72,6 @@ Page({
       if (res.data.status == 1) {
         if(res.data.data.length > 0) {
           this.setData({
-            personnelCount: res.data.count,
             personnelData: res.data.data,
             someone: true
           })
@@ -95,9 +95,16 @@ Page({
 
   // 添加人员
   addStaff() {
-    wx.navigateTo({
-      url: './add-personnel/add-personnel',
-    })
+    if (this.data.personnelData.length >= this.data.personnelCount) {
+      wx.showModal({
+        title: '提示',
+        content: '可添加人员数量已到达上限'
+      })
+    } else {
+      wx.navigateTo({
+        url: './add-personnel/add-personnel',
+      })
+    }
   },
 
   // 进入分组页面（添加编辑）
